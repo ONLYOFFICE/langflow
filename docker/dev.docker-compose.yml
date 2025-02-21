@@ -1,13 +1,10 @@
-networks:
-  dev-langflow:
-
 services:
   langflow:
     build:
       context: ..
       dockerfile: docker/dev.Dockerfile
-    image: dev-langflow
-    container_name: dev-langflow
+    image: onlyoffice-langflow
+    container_name: onlyoffice-langflow
     restart: always
     ports:
       - "7860:7860"
@@ -24,8 +21,6 @@ services:
       - ../:/app
     depends_on:
       - postgres
-    networks:
-      -  dev-langflow
 
 
   postgres:
@@ -37,6 +32,8 @@ services:
       POSTGRES_DB: langflow
     ports:
       - "5432:5432"
-    networks:
-      -  dev-langflow
 
+networks:
+  default:
+    name: onlyoffice
+    external: true
