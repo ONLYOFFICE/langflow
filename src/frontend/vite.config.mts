@@ -47,6 +47,7 @@ export default defineConfig(({ mode }) => {
       proxy: {
         ...proxyTargets,
       },
+      allowedHosts: ["langflow.onlyoffice.io"],
     },
   };
 });
