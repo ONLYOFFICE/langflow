@@ -50,7 +50,7 @@ on:
 
 env:
   POETRY_VERSION: "1.8.2"
-  TEST_TAG: "langflowai/langflow:test"
+  TEST_TAG: "onlyoffice/4testing-flow:test"
 
 jobs:
   get-version:
@@ -152,24 +152,20 @@ jobs:
 
           if [[ "${{ inputs.release_type }}" == "base" || "${{ inputs.release_type }}" == "nightly-base" ]]; then
             # LANGFLOW-BASE RELEASE
-            echo "docker_tags=langflowai/langflow${nightly_suffix}:base-${{ needs.get-version.outputs.version }},langflowai/langflow${nightly_suffix}:base-latest" >> $GITHUB_OUTPUT
-            echo "ghcr_tags=ghcr.io/langflow-ai/langflow${nightly_suffix}:base-${{ needs.get-version.outputs.version }},ghcr.io/langflow-ai/langflow${nightly_suffix}:base-latest" >> $GITHUB_OUTPUT
+            echo "docker_tags=onlyoffice/4testing-flow${nightly_suffix}:base-${{ needs.get-version.outputs.version }},onlyoffice/4testing-flow${nightly_suffix}:base-latest" >> $GITHUB_OUTPUT
             echo "file=./docker/build_and_push_base.Dockerfile" >> $GITHUB_OUTPUT
           else
             if [[ "${{ inputs.pre_release }}" == "true" ]]; then
               # LANGFLOW-MAIN PRE-RELEASE
-              echo "docker_tags=langflowai/langflow${nightly_suffix}:${{ needs.get-version.outputs.version }}" >> $GITHUB_OUTPUT
-              echo "ghcr_tags=ghcr.io/langflow-ai/langflow${nightly_suffix}:${{ needs.get-version.outputs.version }}" >> $GITHUB_OUTPUT
+              echo "docker_tags=onlyoffice/4testing-flow${nightly_suffix}:${{ needs.get-version.outputs.version }}" >> $GITHUB_OUTPUT
               echo "file=./docker/build_and_push.Dockerfile" >> $GITHUB_OUTPUT
             elif [[ "${{ inputs.release_type }}" == "main-ep" ]]; then
               # LANGFLOW-MAIN (ENTRYPOINT) RELEASE
-              echo "docker_tags=langflowai/langflow-ep${nightly_suffix}:${{ needs.get-version.outputs.version }},langflowai/langflow-ep${nightly_suffix}:latest" >> $GITHUB_OUTPUT
-              echo "ghcr_tags=ghcr.io/langflow-ai/langflow-ep${nightly_suffix}:${{ needs.get-version.outputs.version }},ghcr.io/langflow-ai/langflow-ep${nightly_suffix}:latest" >> $GITHUB_OUTPUT
+              echo "docker_tags=onlyoffice/4testing-flow-ep${nightly_suffix}:${{ needs.get-version.outputs.version }},onlyoffice/4testing-flow-ep${nightly_suffix}:latest" >> $GITHUB_OUTPUT
               echo "file=./docker/build_and_push_ep.Dockerfile" >> $GITHUB_OUTPUT
             elif [[ "${{ inputs.release_type }}" == "main" || "${{ inputs.release_type }}" == "nightly-main" ]]; then
               # LANGFLOW-MAIN RELEASE
-              echo "docker_tags=langflowai/langflow${nightly_suffix}:${{ needs.get-version.outputs.version }},langflowai/langflow${nightly_suffix}:latest" >> $GITHUB_OUTPUT
-              echo "ghcr_tags=ghcr.io/langflow-ai/langflow${nightly_suffix}:${{ needs.get-version.outputs.version }},ghcr.io/langflow-ai/langflow${nightly_suffix}:latest" >> $GITHUB_OUTPUT
+              echo "docker_tags=onlyoffice/4testing-flow${nightly_suffix}:${{ needs.get-version.outputs.version }},onlyoffice/4testing-flow${nightly_suffix}:latest" >> $GITHUB_OUTPUT
               echo "file=./docker/build_and_push.Dockerfile" >> $GITHUB_OUTPUT
             else
               echo "Invalid release type. Exiting the workflow."
@@ -215,24 +211,6 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
-      - name: Login to Github Container Registry
-        uses: docker/login-action@v3
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.TEMP_GHCR_TOKEN}}
-
-      - name: Build and push to Github Container Registry
-        uses: docker/build-push-action@v6
-        with:
-          context: .
-          push: true
-          file: ${{ needs.setup.outputs.file }}
-          tags: ${{ needs.setup.outputs.ghcr_tags }}
-          platforms: linux/amd64,linux/arm64
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
-
   build_components:
     if: ${{ inputs.release_type == 'main' }}
     runs-on: ubuntu-latest
@@ -241,24 +219,16 @@ jobs:
     needs: [build, get-version]
     strategy:
       matrix:
-        component: [docker-backend, docker-frontend, ghcr-backend, ghcr-frontend]
+        component: [docker-backend, docker-frontend]
         include:
           - component: docker-backend
             dockerfile: ./docker/build_and_push_backend.Dockerfile
-            tags: langflowai/langflow-backend:${{ needs.get-version.outputs.version }},langflowai/langflow-backend:latest
-            langflow_image: langflowai/langflow:${{ needs.get-version.outputs.version }}
+            tags: onlyoffice/4testing-flow-backend:${{ needs.get-version.outputs.version }},onlyoffice/4testing-flow-backend:latest
+            langflow_image: onlyoffice/4testing-flow:${{ needs.get-version.outputs.version }}
           - component: docker-frontend
             dockerfile: ./docker/frontend/build_and_push_frontend.Dockerfile
-            tags: langflowai/langflow-frontend:${{ needs.get-version.outputs.version }},langflowai/langflow-frontend:latest
-            langflow_image: langflowai/langflow:${{ needs.get-version.outputs.version }}
-          - component: ghcr-backend
-            dockerfile: ./docker/build_and_push_backend.Dockerfile
-            tags: ghcr.io/langflow-ai/langflow-backend:${{ needs.get-version.outputs.version }},ghcr.io/langflow-ai/langflow-backend:latest
-            langflow_image: ghcr.io/langflow-ai/langflow:${{ needs.get-version.outputs.version }}
-          - component: ghcr-frontend
-            dockerfile: ./docker/frontend/build_and_push_frontend.Dockerfile
-            tags: ghcr.io/langflow-ai/langflow-frontend:${{ needs.get-version.outputs.version }},ghcr.io/langflow-ai/langflow-frontend:latest
-            langflow_image: ghcr.io/langflow-ai/langflow:${{ needs.get-version.outputs.version }}
+            tags: onlyoffice/4testing-flow-frontend:${{ needs.get-version.outputs.version }},onlyoffice/4testing-flow-frontend:latest
+            langflow_image: onlyoffice/4testing-flow:${{ needs.get-version.outputs.version }}
     steps:
       - name: Check out the code at a specific ref
         uses: actions/checkout@v4
@@ -275,14 +245,6 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Login to Github Container Registry
-        if: ${{ matrix.component == 'ghcr-backend' }} || ${{ matrix.component == 'ghcr-frontend' }}
-        uses: docker/login-action@v3
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.TEMP_GHCR_TOKEN}}
-
       - name: Wait for propagation (for backend)
         run: sleep 120
 
@@ -297,29 +259,3 @@ jobs:
           tags: ${{ matrix.tags }}
           # provenance: false will result in a single manifest for all platforms which makes the image pullable from arm64 machines via the emulation (e.g. Apple Silicon machines)
           provenance: false
-
-  restart-space:
-    name: Restart HuggingFace Spaces
-    if: ${{ inputs.release_type == 'main' }}
-    runs-on: ubuntu-latest
-    needs: [build, get-version]
-    strategy:
-      matrix:
-        python-version:
-          - "3.13"
-    steps:
-      - name: Check out the code at a specific ref
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ inputs.ref || inputs.main_version || github.ref }}
-      - name: "Setup Environment"
-        uses: ./.github/actions/setup-uv
-        with:
-          python-version: ${{ matrix.python-version }}
-
-      - name: Restart HuggingFace Spaces Build
-        run: |
-          uv run ./scripts/factory_restart_space.py --space "Langflow/Langflow" --token ${{ secrets.HUGGINGFACE_API_TOKEN }}
-
-
-
