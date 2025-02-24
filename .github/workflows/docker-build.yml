@@ -181,6 +181,8 @@ jobs:
         with:
           ref: ${{ inputs.ref || inputs.main_version || github.ref }}
           persist-credentials: true
+      - name: Update pyarrow version
+        run: sed -i 's/pyarrow==17\.0\.0/pyarrow==19.0.0/' ./pyproject.toml
       - name: "Setup Environment"
         uses: ./.github/actions/setup-uv
       - name: Install the project
