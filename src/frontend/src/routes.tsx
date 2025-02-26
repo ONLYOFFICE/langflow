@@ -12,7 +12,6 @@ import { AuthSettingsGuard } from "./components/authorization/authSettingsGuard"
 import { StoreGuard } from "./components/authorization/storeGuard";
 import ContextWrapper from "./contexts";
 import { CustomNavigate } from "./customization/components/custom-navigate";
-import { BASENAME } from "./customization/config-constants";
 import {
   ENABLE_CUSTOM_PARAM,
   ENABLE_HOMEPAGE,
@@ -237,7 +236,7 @@ const router = createBrowserRouter(
       <Route path="*" element={<CustomNavigate replace to="/" />} />
     </Route>,
   ]),
-  { basename: BASENAME || undefined },
+  { basename: __BASENAME__ || undefined },
 );
 
 export default router;

@@ -1,6 +1,6 @@
 import useFlowStore from "@/stores/flowStore";
 import { GetCodeType } from "@/types/tweaks";
-
+import joinPaths from "@/utils/joinPaths";
 /**
  * Function to get the curl code for the API
  * @param {string} flowId - The id of the flow
@@ -22,10 +22,13 @@ export function getCurlRunCode({
   if (tweaksBuildedObject)
     tweaksString = JSON.stringify(tweaksBuildedObject, null, 2);
   // show the endpoint name in the curl command if it exists
+
+  const url = joinPaths(`${window.location.protocol}//${window.location.host}`, __BASENAME__, '/api/v1/run/', `${
+    endpointName || flowId
+  }?stream=false`);
+
   return `curl -X POST \\
-    "${window.location.protocol}//${window.location.host}/api/v1/run/${
-      endpointName || flowId
-    }?stream=false" \\
+    "${url}" \\
     -H 'Content-Type: application/json'\\${
       !isAuth ? `\n  -H 'x-api-key: <your api key>'\\` : ""
     }

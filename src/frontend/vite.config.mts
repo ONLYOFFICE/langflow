@@ -2,32 +2,36 @@ import react from "@vitejs/plugin-react-swc";
 import { defineConfig, loadEnv } from "vite";
 import svgr from "vite-plugin-svgr";
 import tsconfigPaths from "vite-tsconfig-paths";
-import {
-  API_ROUTES,
-  BASENAME,
-  PORT,
-  PROXY_TARGET,
-} from "./src/customization/config-constants";
+import joinPaths from "./src/utils/joinPaths";
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), "");
 
-  const apiRoutes = API_ROUTES || ["^/api/v1/", "/health"];
+  const BASENAME = env.VITE_BASENAME || "";
+  const PORT = Number(env.VITE_PORT) || 3000;
+  const PROXY_TARGET = env.VITE_PROXY_TARGET || "http://127.0.0.1:7860";
+  // const DOCS_LINK = env.VITE_DOCS_LINK || "https://docs.langflow.org";
 
-  const target =
-    env.VITE_PROXY_TARGET || PROXY_TARGET || "http://127.0.0.1:7860";
+  const API_ROUTES = [
+    `^${joinPaths(BASENAME, '/api/v1/')}`,
+    `${joinPaths(BASENAME, '/api/v2/')}`,
+    `${joinPaths(BASENAME, '/health')}`,
+  ];
 
-  const port = Number(env.VITE_PORT) || PORT || 3000;
+  const BASE_URL_API = joinPaths(BASENAME, '/api/v1/');
+  const HEALTH_CHECK_URL = joinPaths(BASENAME, '/health_check');
 
-  const proxyTargets = apiRoutes.reduce((proxyObj, route) => {
+  const proxyTargets = API_ROUTES.reduce((proxyObj, route) => {
     proxyObj[route] = {
-      target: target,
+      PROXY_TARGET,
       changeOrigin: true,
       secure: false,
       ws: true,
     };
     return proxyObj;
   }, {});
+
+  console.log({ BASENAME, PORT, PROXY_TARGET, API_ROUTES, BASE_URL_API, HEALTH_CHECK_URL });
 
   return {
     base: BASENAME || "",
@@ -40,10 +44,16 @@ export default defineConfig(({ mode }) => {
         env.ACCESS_TOKEN_EXPIRE_SECONDS,
       ),
       "process.env.CI": JSON.stringify(env.CI),
+      __BASENAME__: JSON.stringify(BASENAME),
+      // __PORT__: JSON.stringify(PORT),
+      // __PROXY_TARGET__: JSON.stringify(PROXY_TARGET),
+      // __DOCS_LINK__: JSON.stringify(DOCS_LINK),
+      __BASE_URL_API__: JSON.stringify(BASE_URL_API),
+      __HEALTH_CHECK_URL__: JSON.stringify(HEALTH_CHECK_URL),
     },
     plugins: [react(), svgr(), tsconfigPaths()],
     server: {
-      port: port,
+      port: PORT,
       proxy: {
         ...proxyTargets,
       },

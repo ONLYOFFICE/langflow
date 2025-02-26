@@ -1,7 +1,6 @@
 import { defineConfig, devices } from "@playwright/test";
 import * as dotenv from "dotenv";
 import path from "path";
-import { PORT } from "./src/customization/config-constants";
 dotenv.config();
 dotenv.config({ path: path.resolve(__dirname, "../../.env") });
 
@@ -12,6 +11,8 @@ dotenv.config({ path: path.resolve(__dirname, "../../.env") });
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
+
+const PORT = process.env.VITE_PORT || process.env.PORT || 3000; // default port
 
 export default defineConfig({
   testDir: "./tests",

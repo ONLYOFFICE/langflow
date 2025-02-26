@@ -96,7 +96,9 @@
     "serve": "vite preview",
     "format": "npx prettier --write \"{tests,src}/**/*.{js,jsx,ts,tsx,json,md}\" --ignore-path .prettierignore",
     "check-format": "npx prettier --check \"{tests,src}/**/*.{js,jsx,ts,tsx,json,md}\" --ignore-path .prettierignore",
-    "type-check": "tsc --noEmit --pretty --project tsconfig.json && vite"
+    "type-check": "tsc --noEmit --pretty --project tsconfig.json && vite",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "eslintConfig": {
     "extends": [
@@ -143,6 +145,7 @@
     "tailwindcss-dotted-background": "^1.1.0",
     "typescript": "^5.4.5",
     "ua-parser-js": "^1.0.38",
-    "vite": "^5.4.14"
+    "vite": "^5.4.14",
+    "vitest": "^3.0.7"
   }
 }

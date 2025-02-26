@@ -1,6 +1,5 @@
 // src/constants/constants.ts
 
-import custom from "../customization/config-constants";
 import { languageMap } from "../types/components";
 
 /**
@@ -568,7 +567,7 @@ export const ADMIN_HEADER_TITLE = "Admin Page";
 export const ADMIN_HEADER_DESCRIPTION =
   "Navigate through this section to efficiently oversee all application users. From here, you can seamlessly manage user accounts.";
 
-export const BASE_URL_API = custom.BASE_URL_API || "/api/v1/";
+export const BASE_URL_API = __BASE_URL_API__ || "/api/v1/";
 
 /**
  * URLs excluded from error retries.

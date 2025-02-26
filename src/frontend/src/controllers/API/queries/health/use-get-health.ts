@@ -2,7 +2,6 @@ import {
   REFETCH_SERVER_HEALTH_INTERVAL,
   SERVER_HEALTH_INTERVAL,
 } from "@/constants/constants";
-import { HEALTH_CHECK_URL } from "@/customization/config-constants";
 import { useUtilityStore } from "@/stores/utilityStore";
 import { createNewError503 } from "@/types/factory/axios-error-503";
 import { keepPreviousData } from "@tanstack/react-query";
@@ -46,7 +45,7 @@ export const useGetHealthQuery: useQueryFunctionType<
       );
 
       const apiPromise = api.get<getHealthResponse>(
-        HEALTH_CHECK_URL || "/health",
+        __HEALTH_CHECK_URL__ || "/health_check",
       );
       const response = await Promise.race([apiPromise, timeoutPromise]);
       setHealthCheckTimeout(

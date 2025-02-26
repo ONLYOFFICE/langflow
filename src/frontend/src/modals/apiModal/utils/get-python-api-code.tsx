@@ -1,4 +1,5 @@
 import { GetCodeType } from "@/types/tweaks";
+import joinPaths from "@/utils/joinPaths";
 
 /**
  * Function to get the python code for the API
@@ -21,6 +22,10 @@ export default function getPythonApiCode({
       .replace(/false/g, "False")
       .replace(/null|undefined/g, "None");
 
+      const domain = `${window.location.protocol}//${window.location.host}`
+
+      const baseApiUrl = joinPaths(domain, __BASENAME__);
+
   return `import argparse
 import json
 from argparse import RawTextHelpFormatter
@@ -33,7 +38,7 @@ except ImportError:
     warnings.warn("Langflow provides a function to help you upload files to the flow. Please install langflow to use it.")
     upload_file = None
 
-BASE_API_URL = "${window.location.protocol}//${window.location.host}"
+BASE_API_URL = "${baseApiUrl}"
 FLOW_ID = "${flowId}"
 ENDPOINT = "${endpointName || ""}" ${
     endpointName

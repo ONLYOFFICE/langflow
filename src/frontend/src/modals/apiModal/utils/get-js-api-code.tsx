@@ -1,5 +1,6 @@
 import useFlowStore from "@/stores/flowStore";
 import { GetCodeType } from "@/types/tweaks";
+import joinPaths from "@/utils/joinPaths";
 
 /**
  * Function to generate JavaScript code for interfacing with an API using the LangflowClient class.
@@ -24,8 +25,12 @@ export default function getJsApiCode({
   const hasChatInput = inputs.some((input) => input.type === "ChatInput");
   const hasChatOutput = outputs.some((output) => output.type === "ChatOutput");
 
+  const url = joinPaths(`${window.location.protocol}//${window.location.host}`, __BASENAME__, '/api/v1/run/', `${
+    endpointName || flowId
+  }?stream=false`);
+
   return `${activeTweaks ? "" : 'let inputValue = ""; // Insert input value here\n\n'}fetch(
-  "${window.location.protocol}//${window.location.host}/api/v1/run/${endpointName || flowId}?stream=false",
+  "${url}",
   {
     method: "POST",
     headers: {
