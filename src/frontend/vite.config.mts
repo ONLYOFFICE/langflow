@@ -8,8 +8,8 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), "");
 
   const BASENAME = env.VITE_BASENAME || "";
-  const PORT = Number(env.VITE_PORT) || 3000;
-  const PROXY_TARGET = env.VITE_PROXY_TARGET || "http://127.0.0.1:7860";
+  const PORT = Number(env.VITE_PORT || 3000);
+  const PROXY_TARGET = env.VITE_BACKEND_PROXY_URL || "http://127.0.0.1:7860";
   // const DOCS_LINK = env.VITE_DOCS_LINK || "https://docs.langflow.org";
 
   const API_ROUTES = [
@@ -23,7 +23,7 @@ export default defineConfig(({ mode }) => {
 
   const proxyTargets = API_ROUTES.reduce((proxyObj, route) => {
     proxyObj[route] = {
-      PROXY_TARGET,
+      target: PROXY_TARGET,
       changeOrigin: true,
       secure: false,
       ws: true,
@@ -39,15 +39,11 @@ export default defineConfig(({ mode }) => {
       outDir: "build",
     },
     define: {
-      "process.env.BACKEND_URL": JSON.stringify(env.BACKEND_URL),
       "process.env.ACCESS_TOKEN_EXPIRE_SECONDS": JSON.stringify(
         env.ACCESS_TOKEN_EXPIRE_SECONDS,
       ),
       "process.env.CI": JSON.stringify(env.CI),
       __BASENAME__: JSON.stringify(BASENAME),
-      // __PORT__: JSON.stringify(PORT),
-      // __PROXY_TARGET__: JSON.stringify(PROXY_TARGET),
-      // __DOCS_LINK__: JSON.stringify(DOCS_LINK),
       __BASE_URL_API__: JSON.stringify(BASE_URL_API),
       __HEALTH_CHECK_URL__: JSON.stringify(HEALTH_CHECK_URL),
     },
