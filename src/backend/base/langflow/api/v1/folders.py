@@ -20,7 +20,7 @@ from langflow.api.v1.flows import create_flows
 from langflow.api.v1.schemas import FlowListCreate
 from langflow.helpers.flow import generate_unique_flow_name
 from langflow.helpers.folders import generate_unique_folder_name
-from langflow.initial_setup.constants import STARTER_FOLDER_NAME
+from langflow.initial_setup.constants import STARTER_FOLDER_NAME, SYSTEM_FOLDER_ID
 from langflow.services.database.models.flow.model import Flow, FlowCreate, FlowRead
 from langflow.services.database.models.folder.constants import DEFAULT_FOLDER_NAME
 from langflow.services.database.models.folder.model import (
@@ -52,18 +52,21 @@ async def create_folder(
         # based on the highest number found
         if (
             await session.exec(
-                statement=select(Folder).where(Folder.name == new_folder.name).where(Folder.user_id == current_user.id)
+                statement=select(Folder).where(Folder.name == new_folder.name).where(
+                    Folder.user_id == current_user.id)
             )
         ).first():
             folder_results = await session.exec(
                 select(Folder).where(
-                    Folder.name.like(f"{new_folder.name}%"),  # type: ignore[attr-defined]
+                    # type: ignore[attr-defined]
+                    Folder.name.like(f"{new_folder.name}%"),
                     Folder.user_id == current_user.id,
                 )
             )
             if folder_results:
                 folder_names = [folder.name for folder in folder_results]
-                folder_numbers = [int(name.split("(")[-1].split(")")[0]) for name in folder_names if "(" in name]
+                folder_numbers = [int(name.split("(")[-1].split(")")[0])
+                                  for name in folder_names if "(" in name]
                 if folder_numbers:
                     new_folder.name = f"{new_folder.name} ({max(folder_numbers) + 1})"
                 else:
@@ -75,13 +78,15 @@ async def create_folder(
 
         if folder.components_list:
             update_statement_components = (
-                update(Flow).where(Flow.id.in_(folder.components_list)).values(folder_id=new_folder.id)  # type: ignore[attr-defined]
+                update(Flow).where(Flow.id.in_(folder.components_list)).values(
+                    folder_id=new_folder.id)  # type: ignore[attr-defined]
             )
             await session.exec(update_statement_components)
             await session.commit()
 
         if folder.flows_list:
-            update_statement_flows = update(Flow).where(Flow.id.in_(folder.flows_list)).values(folder_id=new_folder.id)  # type: ignore[attr-defined]
+            update_statement_flows = update(Flow).where(Flow.id.in_(folder.flows_list)).values(
+                folder_id=new_folder.id)  # type: ignore[attr-defined]
             await session.exec(update_statement_flows)
             await session.commit()
 
@@ -102,10 +107,13 @@ async def read_folders(
             await session.exec(
                 select(Folder).where(
                     or_(Folder.user_id == current_user.id, Folder.user_id == None)  # noqa: E711
+                ).where(
+                    Folder.id != SYSTEM_FOLDER_ID
                 )
             )
         ).all()
-        folders = [folder for folder in folders if folder.name != STARTER_FOLDER_NAME]
+        folders = [folder for folder in folders if folder.name !=
+                   STARTER_FOLDER_NAME]
         return sorted(folders, key=lambda x: x.name != DEFAULT_FOLDER_NAME)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e)) from e
@@ -132,7 +140,8 @@ async def read_folder(
         ).first()
     except Exception as e:
         if "No result found" in str(e):
-            raise HTTPException(status_code=404, detail="Folder not found") from e
+            raise HTTPException(
+                status_code=404, detail="Folder not found") from e
         raise HTTPException(status_code=500, detail=str(e)) from e
 
     if not folder:
@@ -143,13 +152,15 @@ async def read_folder(
             stmt = select(Flow).where(Flow.folder_id == folder_id)
 
             if Flow.updated_at is not None:
-                stmt = stmt.order_by(Flow.updated_at.desc())  # type: ignore[attr-defined]
+                # type: ignore[attr-defined]
+                stmt = stmt.order_by(Flow.updated_at.desc())
             if is_component:
                 stmt = stmt.where(Flow.is_component == True)  # noqa: E712
             if is_flow:
                 stmt = stmt.where(Flow.is_component == False)  # noqa: E712
             if search:
-                stmt = stmt.where(Flow.name.like(f"%{search}%"))  # type: ignore[attr-defined]
+                # type: ignore[attr-defined]
+                stmt = stmt.where(Flow.name.like(f"%{search}%"))
             paginated_flows = await paginate(session, stmt, params=params)
 
             return FolderWithPaginatedFlows(folder=FolderRead.model_validate(folder), flows=paginated_flows)
@@ -157,7 +168,8 @@ async def read_folder(
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e)) from e
 
-    flows_from_current_user_in_folder = [flow for flow in folder.flows if flow.user_id == current_user.id]
+    flows_from_current_user_in_folder = [
+        flow for flow in folder.flows if flow.user_id == current_user.id]
     folder.flows = flows_from_current_user_in_folder
     return folder
 
@@ -167,7 +179,8 @@ async def update_folder(
     *,
     session: DbSession,
     folder_id: UUID,
-    folder: FolderUpdate,  # Assuming FolderUpdate is a Pydantic model defining updatable fields
+    # Assuming FolderUpdate is a Pydantic model defining updatable fields
+    folder: FolderUpdate,
     current_user: CurrentActiveUser,
 ):
     try:
@@ -205,14 +218,17 @@ async def update_folder(
         my_collection_folder = (await session.exec(select(Folder).where(Folder.name == DEFAULT_FOLDER_NAME))).first()
         if my_collection_folder:
             update_statement_my_collection = (
-                update(Flow).where(Flow.id.in_(excluded_flows)).values(folder_id=my_collection_folder.id)  # type: ignore[attr-defined]
+                update(Flow).where(Flow.id.in_(excluded_flows)).values(
+                    # type: ignore[attr-defined]
+                    folder_id=my_collection_folder.id)
             )
             await session.exec(update_statement_my_collection)
             await session.commit()
 
         if concat_folder_components:
             update_statement_components = (
-                update(Flow).where(Flow.id.in_(concat_folder_components)).values(folder_id=existing_folder.id)  # type: ignore[attr-defined]
+                update(Flow).where(Flow.id.in_(concat_folder_components)).values(
+                    folder_id=existing_folder.id)  # type: ignore[attr-defined]
             )
             await session.exec(update_statement_components)
             await session.commit()
@@ -264,7 +280,8 @@ async def download_file(
 ):
     """Download all flows from folder as a zip file."""
     try:
-        query = select(Folder).where(Folder.id == folder_id, Folder.user_id == current_user.id)
+        query = select(Folder).where(Folder.id == folder_id,
+                                     Folder.user_id == current_user.id)
         result = await session.exec(query)
         folder = result.first()
 
@@ -273,12 +290,15 @@ async def download_file(
 
         flows_query = select(Flow).where(Flow.folder_id == folder_id)
         flows_result = await session.exec(flows_query)
-        flows = [FlowRead.model_validate(flow, from_attributes=True) for flow in flows_result.all()]
+        flows = [FlowRead.model_validate(
+            flow, from_attributes=True) for flow in flows_result.all()]
 
         if not flows:
-            raise HTTPException(status_code=404, detail="No flows found in folder")
+            raise HTTPException(
+                status_code=404, detail="No flows found in folder")
 
-        flows_without_api_keys = [remove_api_keys(flow.model_dump()) for flow in flows]
+        flows_without_api_keys = [remove_api_keys(
+            flow.model_dump()) for flow in flows]
         zip_stream = io.BytesIO()
 
         with zipfile.ZipFile(zip_stream, "w") as zip_file:
@@ -288,7 +308,8 @@ async def download_file(
 
         zip_stream.seek(0)
 
-        current_time = datetime.now(tz=timezone.utc).astimezone().strftime("%Y%m%d_%H%M%S")
+        current_time = datetime.now(
+            tz=timezone.utc).astimezone().strftime("%Y%m%d_%H%M%S")
         filename = f"{current_time}_{folder.name}_flows.zip"
 
         return StreamingResponse(
@@ -299,7 +320,8 @@ async def download_file(
 
     except Exception as e:
         if "No result found" in str(e):
-            raise HTTPException(status_code=404, detail="Folder not found") from e
+            raise HTTPException(
+                status_code=404, detail="Folder not found") from e
         raise HTTPException(status_code=500, detail=str(e)) from e
 
 
@@ -315,13 +337,15 @@ async def upload_file(
     data = orjson.loads(contents)
 
     if not data:
-        raise HTTPException(status_code=400, detail="No flows found in the file")
+        raise HTTPException(
+            status_code=400, detail="No flows found in the file")
 
     folder_name = await generate_unique_folder_name(data["folder_name"], current_user.id, session)
 
     data["folder_name"] = folder_name
 
-    folder = FolderCreate(name=data["folder_name"], description=data["folder_description"])
+    folder = FolderCreate(
+        name=data["folder_name"], description=data["folder_description"])
 
     new_folder = Folder.model_validate(folder, from_attributes=True)
     new_folder.id = None
@@ -334,9 +358,11 @@ async def upload_file(
     del data["folder_description"]
 
     if "flows" in data:
-        flow_list = FlowListCreate(flows=[FlowCreate(**flow) for flow in data["flows"]])
+        flow_list = FlowListCreate(
+            flows=[FlowCreate(**flow) for flow in data["flows"]])
     else:
-        raise HTTPException(status_code=400, detail="No flows found in the data")
+        raise HTTPException(
+            status_code=400, detail="No flows found in the data")
     # Now we set the user_id for all flows
     for flow in flow_list.flows:
         flow_name = await generate_unique_flow_name(flow.name, current_user.id, session)

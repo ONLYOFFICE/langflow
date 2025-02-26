@@ -1,2 +1,5 @@
 STARTER_FOLDER_NAME = "Starter Projects"
 STARTER_FOLDER_DESCRIPTION = "Starter projects to help you get started in Langflow."
+SYSTEM_FOLDER_NAME = "System"
+SYSTEM_FOLDER_DESCRIPTION = "System project to store all your system flows."
+SYSTEM_FOLDER_ID = "00000000-0000-0000-0000-000000000000"

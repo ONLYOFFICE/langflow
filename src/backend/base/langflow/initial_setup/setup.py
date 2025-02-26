@@ -27,7 +27,7 @@ from sqlmodel import select
 from sqlmodel.ext.asyncio.session import AsyncSession
 
 from langflow.base.constants import FIELD_FORMAT_ATTRIBUTES, NODE_FORMAT_ATTRIBUTES, ORJSON_OPTIONS
-from langflow.initial_setup.constants import STARTER_FOLDER_DESCRIPTION, STARTER_FOLDER_NAME
+from langflow.initial_setup.constants import STARTER_FOLDER_DESCRIPTION, STARTER_FOLDER_NAME, SYSTEM_FOLDER_DESCRIPTION, SYSTEM_FOLDER_ID, SYSTEM_FOLDER_NAME
 from langflow.services.auth.utils import create_super_user
 from langflow.services.database.models.flow.model import Flow, FlowCreate
 from langflow.services.database.models.folder.constants import DEFAULT_FOLDER_NAME
@@ -168,7 +168,8 @@ def update_new_output(data):
             new_source_handle = scape_json_parse(edge["sourceHandle"])
             new_target_handle = scape_json_parse(edge["targetHandle"])
             id_ = new_source_handle["id"]
-            source_node_index = next((index for (index, d) in enumerate(nodes) if d["id"] == id_), -1)
+            source_node_index = next(
+                (index for (index, d) in enumerate(nodes) if d["id"] == id_), -1)
             source_node = nodes[source_node_index] if source_node_index != -1 else None
 
             if "baseClasses" in new_source_handle:
@@ -190,14 +191,16 @@ def update_new_output(data):
 
             selected = intersection[0] if intersection else None
             if "name" not in new_source_handle:
-                new_source_handle["name"] = " | ".join(new_source_handle["output_types"])
+                new_source_handle["name"] = " | ".join(
+                    new_source_handle["output_types"])
             new_source_handle["output_types"] = [selected] if selected else []
 
             if source_node and not source_node["data"]["node"].get("outputs"):
                 if "outputs" not in source_node["data"]["node"]:
                     source_node["data"]["node"]["outputs"] = []
                 types = source_node["data"]["node"].get(
-                    "output_types", source_node["data"]["node"].get("base_classes", [])
+                    "output_types", source_node["data"]["node"].get(
+                        "base_classes", [])
                 )
                 if not any(output.get("selected") == selected for output in source_node["data"]["node"]["outputs"]):
                     source_node["data"]["node"]["outputs"].append(
@@ -253,18 +256,21 @@ def update_edges_with_latest_component_versions(project_data):
         target_handle = scape_json_parse(target_handle)
         # Now find the source and target nodes in the nodes list
         source_node = next(
-            (node for node in project_data.get("nodes", []) if node.get("id") == edge.get("source")),
+            (node for node in project_data.get("nodes", [])
+             if node.get("id") == edge.get("source")),
             None,
         )
         target_node = next(
-            (node for node in project_data.get("nodes", []) if node.get("id") == edge.get("target")),
+            (node for node in project_data.get("nodes", [])
+             if node.get("id") == edge.get("target")),
             None,
         )
         if source_node and target_node:
             source_node_data = source_node.get("data").get("node")
             target_node_data = target_node.get("data").get("node")
             output_data = next(
-                (output for output in source_node_data.get("outputs", []) if output["name"] == source_handle["name"]),
+                (output for output in source_node_data.get("outputs", [])
+                 if output["name"] == source_handle["name"]),
                 None,
             )
             if not output_data:
@@ -285,6 +291,7 @@ def update_edges_with_latest_component_versions(project_data):
                     new_output_types = [output_data.get("selected")]
                 else:
                     new_output_types = []
+
             else:
                 new_output_types = []
 
@@ -309,17 +316,20 @@ def update_edges_with_latest_component_versions(project_data):
                         "new_value": target_node_data.get("template").get(field_name).get("input_types"),
                     }
                 )
-                target_handle["inputTypes"] = target_node_data.get("template").get(field_name).get("input_types")
+                target_handle["inputTypes"] = target_node_data.get(
+                    "template").get(field_name).get("input_types")
             escaped_source_handle = escape_json_dump(source_handle)
             escaped_target_handle = escape_json_dump(target_handle)
             try:
-                old_escape_source_handle = escape_json_dump(json.loads(edge["sourceHandle"]))
+                old_escape_source_handle = escape_json_dump(
+                    json.loads(edge["sourceHandle"]))
 
             except json.JSONDecodeError:
                 old_escape_source_handle = edge["sourceHandle"]
 
             try:
-                old_escape_target_handle = escape_json_dump(json.loads(edge["targetHandle"]))
+                old_escape_target_handle = escape_json_dump(
+                    json.loads(edge["targetHandle"]))
             except json.JSONDecodeError:
                 old_escape_target_handle = edge["targetHandle"]
             if old_escape_source_handle != escaped_source_handle:
@@ -383,6 +393,28 @@ async def load_starter_projects(retries=3, delay=1) -> list[tuple[anyio.Path, di
                     raise ValueError(msg) from e
                 await asyncio.sleep(delay)  # Wait before retrying
     return starter_projects
+
+
+async def load_system_projects(retries=3, delay=1) -> list[tuple[anyio.Path, dict]]:
+    system_projects = []
+    folder = anyio.Path(__file__).parent / "system"
+    async for file in folder.glob("*.json"):
+        attempt = 0
+        while attempt < retries:
+            async with async_open(str(file), "r", encoding="utf-8") as f:
+                content = await f.read()
+            try:
+                project = orjson.loads(content)
+                system_projects.append((file, project))
+                logger.info(f"Loaded system project {file}")
+                break  # Break if load is successful
+            except orjson.JSONDecodeError as e:
+                attempt += 1
+                if attempt >= retries:
+                    msg = f"Error loading system project {file}: {e}"
+                    raise ValueError(msg) from e
+                await asyncio.sleep(delay)  # Wait before retrying
+    return system_projects
 
 
 async def copy_profile_pictures() -> None:
@@ -462,7 +494,8 @@ def get_project_data(project):
         updated_at_datetime = datetime.fromisoformat(project_updated_at)
     project_data = project.get("data")
     project_icon = project.get("icon")
-    project_icon = demojize(project_icon) if project_icon and purely_emoji(project_icon) else project_icon
+    project_icon = demojize(project_icon) if project_icon and purely_emoji(
+        project_icon) else project_icon
     project_icon_bg_color = project.get("icon_bg_color")
     project_gradient = project.get("gradient")
     project_tags = project.get("tags")
@@ -537,11 +570,19 @@ def create_new_project(
 
 
 async def get_all_flows_similar_to_project(session, folder_id):
-    stmt = select(Folder).options(selectinload(Folder.flows)).where(Folder.id == folder_id)
+    stmt = select(Folder).options(selectinload(
+        Folder.flows)).where(Folder.id == folder_id)
     return (await session.exec(stmt)).first().flows
 
 
 async def delete_start_projects(session, folder_id) -> None:
+    flows = await get_all_flows_similar_to_project(session, folder_id)
+    for flow in flows:
+        await session.delete(flow)
+    await session.commit()
+
+
+async def delete_system_projects(session, folder_id) -> None:
     flows = await get_all_flows_similar_to_project(session, folder_id)
     for flow in flows:
         await session.delete(flow)
@@ -556,7 +597,8 @@ async def folder_exists(session, folder_name):
 
 async def create_starter_folder(session):
     if not await folder_exists(session, STARTER_FOLDER_NAME):
-        new_folder = FolderCreate(name=STARTER_FOLDER_NAME, description=STARTER_FOLDER_DESCRIPTION)
+        new_folder = FolderCreate(
+            name=STARTER_FOLDER_NAME, description=STARTER_FOLDER_DESCRIPTION)
         db_folder = Folder.model_validate(new_folder, from_attributes=True)
         session.add(db_folder)
         await session.commit()
@@ -566,12 +608,26 @@ async def create_starter_folder(session):
     return (await session.exec(stmt)).first()
 
 
+async def create_system_folder(session):
+    if not await folder_exists(session, SYSTEM_FOLDER_NAME):
+        new_folder = FolderCreate(
+            name=SYSTEM_FOLDER_NAME, description=SYSTEM_FOLDER_DESCRIPTION)
+        db_folder = Folder.model_validate(new_folder, from_attributes=True)
+        db_folder.id = UUID(SYSTEM_FOLDER_ID)
+        session.add(db_folder)
+        await session.commit()
+        await session.refresh(db_folder)
+        return db_folder
+    stmt = select(Folder).where(Folder.name == SYSTEM_FOLDER_NAME)
+    return (await session.exec(stmt)).first()
+
+
 def _is_valid_uuid(val):
     try:
         uuid_obj = UUID(val)
-    except ValueError:
+        return str(uuid_obj) == val
+    except (ValueError, AttributeError, TypeError):
         return False
-    return str(uuid_obj) == val
 
 
 async def load_flows_from_directory() -> None:
@@ -585,7 +641,8 @@ async def load_flows_from_directory() -> None:
     if not flows_path:
         return
     if not settings_service.auth_settings.AUTO_LOGIN:
-        logger.warning("AUTO_LOGIN is disabled, not loading flows from directory")
+        logger.warning(
+            "AUTO_LOGIN is disabled, not loading flows from directory")
         return
 
     async with session_scope() as session:
@@ -662,7 +719,8 @@ async def load_bundles_from_urls() -> tuple[list[TemporaryDirectory], list[str]]
                 response.raise_for_status()
 
             with zipfile.ZipFile(io.BytesIO(response.content)) as zfile:
-                dir_names = [f.filename for f in zfile.infolist() if f.is_dir() and "/" not in f.filename[:-1]]
+                dir_names = [f.filename for f in zfile.infolist(
+                ) if f.is_dir() and "/" not in f.filename[:-1]]
                 temp_dir = None
                 for filename in zfile.namelist():
                     path = Path(filename)
@@ -678,7 +736,8 @@ async def load_bundles_from_urls() -> tuple[list[TemporaryDirectory], list[str]]
                             if temp_dir is None:
                                 temp_dir = await asyncio.to_thread(TemporaryDirectory)
                                 temp_dirs.append(temp_dir)
-                            component_paths.add(str(Path(temp_dir.name) / f"{dir_name}components"))
+                            component_paths.add(
+                                str(Path(temp_dir.name) / f"{dir_name}components"))
                             await asyncio.to_thread(zfile.extract, filename, temp_dir.name)
 
     return temp_dirs, list(component_paths)
@@ -701,7 +760,8 @@ async def upsert_flow_from_file(file_content: AnyStr, filename: str, session: As
     existing = await find_existing_flow(session, flow_id, flow_endpoint_name)
     if existing:
         logger.debug(f"Found existing flow: {existing.name}")
-        logger.info(f"Updating existing flow: {flow_id} with endpoint name {flow_endpoint_name}")
+        logger.info(
+            f"Updating existing flow: {flow_id} with endpoint name {flow_endpoint_name}")
         for key, value in flow.items():
             if hasattr(existing, key):
                 # flow dict from json and db representation are not 100% the same
@@ -723,7 +783,8 @@ async def upsert_flow_from_file(file_content: AnyStr, filename: str, session: As
 
         session.add(existing)
     else:
-        logger.info(f"Creating new flow: {flow_id} with endpoint name {flow_endpoint_name}")
+        logger.info(
+            f"Creating new flow: {flow_id} with endpoint name {flow_endpoint_name}")
 
         # Assign the newly created flow to the default folder
         folder = await get_or_create_default_folder(session, user_id)
@@ -740,7 +801,8 @@ async def find_existing_flow(session, flow_id, flow_endpoint_name):
         logger.debug(f"flow_endpoint_name: {flow_endpoint_name}")
         stmt = select(Flow).where(Flow.endpoint_name == flow_endpoint_name)
         if existing := (await session.exec(stmt)).first():
-            logger.debug(f"Found existing flow by endpoint name: {existing.name}")
+            logger.debug(
+                f"Found existing flow by endpoint name: {existing.name}")
             return existing
 
     stmt = select(Flow).where(Flow.id == flow_id)
@@ -759,6 +821,9 @@ async def create_or_update_starter_projects(all_types_dict: dict, *, do_create: 
     """
     async with session_scope() as session:
         new_folder = await create_starter_folder(session)
+        system_folder = await create_system_folder(session)
+
+        # Handle starter projects
         starter_projects = await load_starter_projects()
         await delete_start_projects(session, new_folder.id)
         await copy_profile_pictures()
@@ -774,12 +839,14 @@ async def create_or_update_starter_projects(all_types_dict: dict, *, do_create: 
                 project_gradient,
                 project_tags,
             ) = get_project_data(project)
-            do_update_starter_projects = os.environ.get("LANGFLOW_UPDATE_STARTER_PROJECTS", "true").lower() == "true"
+            do_update_starter_projects = os.environ.get(
+                "LANGFLOW_UPDATE_STARTER_PROJECTS", "true").lower() == "true"
             if do_update_starter_projects:
                 updated_project_data = update_projects_components_with_latest_component_versions(
                     project_data.copy(), all_types_dict
                 )
-                updated_project_data = update_edges_with_latest_component_versions(updated_project_data)
+                updated_project_data = update_edges_with_latest_component_versions(
+                    updated_project_data)
                 if updated_project_data != project_data:
                     project_data = updated_project_data
                     # We also need to update the project data in the file
@@ -800,6 +867,51 @@ async def create_or_update_starter_projects(all_types_dict: dict, *, do_create: 
                     project_gradient=project_gradient,
                     project_tags=project_tags,
                     new_folder_id=new_folder.id,
+                )
+
+        # Handle system projects
+        system_projects = await load_system_projects()
+        await delete_system_projects(session, system_folder.id)
+        for project_path, project in system_projects:
+            (
+                project_name,
+                project_description,
+                project_is_component,
+                updated_at_datetime,
+                project_data,
+                project_icon,
+                project_icon_bg_color,
+                project_gradient,
+                project_tags,
+            ) = get_project_data(project)
+            do_update_system_projects = os.environ.get(
+                "LANGFLOW_UPDATE_SYSTEM_PROJECTS", "true").lower() == "true"
+            if do_update_system_projects:
+                updated_project_data = update_projects_components_with_latest_component_versions(
+                    project_data.copy(), all_types_dict
+                )
+                updated_project_data = update_edges_with_latest_component_versions(
+                    updated_project_data)
+                if updated_project_data != project_data:
+                    project_data = updated_project_data
+                    # We also need to update the project data in the file
+                    await update_project_file(project_path, project, updated_project_data)
+            if do_create and project_name and project_data:
+                for existing_project in await get_all_flows_similar_to_project(session, system_folder.id):
+                    await session.delete(existing_project)
+
+                create_new_project(
+                    session=session,
+                    project_name=project_name,
+                    project_description=project_description,
+                    project_is_component=project_is_component,
+                    updated_at_datetime=updated_at_datetime,
+                    project_data=project_data,
+                    project_icon=project_icon,
+                    project_icon_bg_color=project_icon_bg_color,
+                    project_gradient=project_gradient,
+                    project_tags=project_tags,
+                    new_folder_id=system_folder.id,
                 )
 
 
@@ -834,7 +946,8 @@ async def get_or_create_default_folder(session: AsyncSession, user_id: UUID) -> 
     Returns:
         UUID: The ID of the default folder.
     """
-    stmt = select(Folder).where(Folder.user_id == user_id, Folder.name == DEFAULT_FOLDER_NAME)
+    stmt = select(Folder).where(Folder.user_id == user_id,
+                                Folder.name == DEFAULT_FOLDER_NAME)
     result = await session.exec(stmt)
     folder = result.first()
     if folder:
