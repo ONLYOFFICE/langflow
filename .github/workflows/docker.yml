@@ -26,9 +26,6 @@ jobs:
         with:
           context: .
           file: ./docker/build_and_push.Dockerfile
-          build-args: |
-            VITE_PORT=7860
-            VITE_BASENAME=/onlyflow/
           push: true
           tags: onlyoffice/4testing-flow:latest
           platforms: linux/amd64
