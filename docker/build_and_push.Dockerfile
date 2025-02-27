@@ -20,7 +20,6 @@ ENV UV_COMPILE_BYTECODE=1
 # Copy from the cache instead of linking since it's a mounted volume
 ENV UV_LINK_MODE=copy
 
-ENV VITE_PORT=7860
 ENV VITE_BASENAME=/onlyflow/
 
 RUN apt-get update \

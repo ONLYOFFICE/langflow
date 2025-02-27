@@ -9,6 +9,8 @@
 FROM --platform=$BUILDPLATFORM node:lts-bookworm-slim AS builder-base
 COPY src/frontend /frontend
 
+ENV VITE_BASENAME=/onlyflow/
+
 RUN cd /frontend && npm install && npm run build
 
 ################################

@@ -3,11 +3,23 @@ name: Docker Build and Push
 on:
   push:
     branches:
-      - main
+      - bugfix/separate-dockerbuild
 
 jobs:
-  build-and-push:
+  build_components:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        component: [docker-backend, docker-frontend]
+        include:
+          - component: docker-backend
+            dockerfile: ./docker/build_and_push_backend.Dockerfile
+            tags: onlyoffice/4testing-flow-backend:latest
+            langflow_image: onlyoffice/4testing-flow:latest
+          - component: docker-frontend
+            dockerfile: ./docker/frontend/build_and_push_frontend.Dockerfile
+            tags: onlyoffice/4testing-flow-frontend:latest
+            langflow_image: onlyoffice/4testing-flow:latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -21,13 +33,13 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build and Push to Docker Hub
+      - name: Build and push ${{ matrix.component }}
         uses: docker/build-push-action@v6
         with:
           context: .
-          file: ./docker/build_and_push.Dockerfile
+          file: ${{ matrix.dockerfile }}
           push: true
-          tags: onlyoffice/4testing-flow:latest
+          tags: ${{ matrix.tags }}
           platforms: linux/amd64
           cache-from: type=gha
           cache-to: type=gha,mode=max
