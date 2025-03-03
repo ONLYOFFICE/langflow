@@ -1,0 +1,31 @@
+version: '3.7'
+
+services:
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: onlyoffice-qdrant
+    volumes:
+      - qdrant_data:/qdrant/storage
+    expose:
+      - "6333"  # gRPC port
+      - "6334"  # HTTP port
+    environment:
+      - QDRANT_ALLOW_PRIVATE_NETWORKS_ONLY=true  # Only allow internal network access
+      - QDRANT_SERVICE_HOST=0.0.0.0  # Listen on all interfaces within container
+      - QDRANT_SERVICE_PORT=6333  # gRPC port
+      - QDRANT_REST_PORT=6334  # HTTP port
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:6334/healthz"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+
+volumes:
+  qdrant_data:
+    name: langflow_qdrant_data
+
+networks:
+  default:
+    name: onlyoffice
+    external: true
