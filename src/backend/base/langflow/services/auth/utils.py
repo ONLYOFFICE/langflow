@@ -7,7 +7,7 @@ from typing import TYPE_CHECKING, Annotated
 from uuid import UUID
 
 from cryptography.fernet import Fernet
-from fastapi import Depends, HTTPException, Security, status
+from fastapi import Depends, HTTPException, Request, Security, status
 from fastapi.security import APIKeyHeader, APIKeyQuery, OAuth2PasswordBearer
 from jose import JWTError, jwt
 from loguru import logger
@@ -27,8 +27,10 @@ oauth2_login = OAuth2PasswordBearer(tokenUrl="api/v1/login", auto_error=False)
 
 API_KEY_NAME = "x-api-key"
 
-api_key_query = APIKeyQuery(name=API_KEY_NAME, scheme_name="API key query", auto_error=False)
-api_key_header = APIKeyHeader(name=API_KEY_NAME, scheme_name="API key header", auto_error=False)
+api_key_query = APIKeyQuery(
+    name=API_KEY_NAME, scheme_name="API key query", auto_error=False)
+api_key_header = APIKeyHeader(
+    name=API_KEY_NAME, scheme_name="API key header", auto_error=False)
 
 MINIMUM_KEY_LENGTH = 32
 
@@ -79,14 +81,62 @@ async def get_current_user(
     token: Annotated[str, Security(oauth2_login)],
     query_param: Annotated[str, Security(api_key_query)],
     header_param: Annotated[str, Security(api_key_header)],
+    request: Request,
     db: Annotated[AsyncSession, Depends(get_session)],
 ) -> User:
+    logger.debug(f"[AUTH DEBUG] Request path: {request.url.path}")
+    logger.debug(f"[AUTH DEBUG] Authorization header present: {'Authorization' in request.headers}")
+    logger.debug(f"[AUTH DEBUG] Available cookies: {list(request.cookies.keys())}")
+    logger.debug(f"[AUTH DEBUG] JWT token from oauth2_login: {bool(token)}")
+    
+    # Check for access_token_lf in cookies
+    access_token_cookie = request.cookies.get("access_token_lf")
+    logger.debug(f"[AUTH DEBUG] access_token_lf in cookies: {bool(access_token_cookie)}")
+    
+    if access_token_cookie and not token:
+        logger.debug("[AUTH DEBUG] Using access_token_lf from cookies")
+        try:
+            # Try to authenticate with the cookie token
+            return await get_current_user_by_jwt(access_token_cookie, db)
+        except Exception as e:
+            logger.error(f"[AUTH DEBUG] Error authenticating with cookie token: {str(e)}")
+    
+    # First check for JWT token
     if token:
-        return await get_current_user_by_jwt(token, db)
-    user = await api_key_security(query_param, header_param)
-    if user:
-        return user
+        logger.debug("[AUTH DEBUG] Using token from Authorization header")
+        try:
+            return await get_current_user_by_jwt(token, db)
+        except Exception as e:
+            logger.error(f"[AUTH DEBUG] Error authenticating with JWT token: {str(e)}")
 
+    # Then check for API key
+    logger.debug(f"[AUTH DEBUG] API key in query: {bool(query_param)}")
+    logger.debug(f"[AUTH DEBUG] API key in header: {bool(header_param)}")
+    
+    try:
+        user = await api_key_security(query_param, header_param)
+        if user:
+            logger.debug(f"[AUTH DEBUG] Successfully authenticated with API key, user: {user.username}")
+            return user
+    except Exception as e:
+        logger.error(f"[AUTH DEBUG] Error authenticating with API key: {str(e)}")
+
+    # Finally, check for external auth cookie
+    logger.debug(f"[AUTH DEBUG] asc_auth_key in cookies: {'asc_auth_key' in request.cookies}")
+    
+    from langflow.services.auth.external_auth import verify_external_auth
+    if "asc_auth_key" in request.cookies:
+        try:
+            logger.debug("[AUTH DEBUG] Attempting external auth verification")
+            user, tokens = await verify_external_auth(request=request, db=db)
+            if user:
+                logger.debug(f"[AUTH DEBUG] Successfully authenticated with external auth, user: {user.username}")
+                return user
+        except Exception as e:
+            logger.error(
+                f"[AUTH DEBUG] Error verifying external auth in get_current_user: {str(e)}")
+
+    logger.error("[AUTH DEBUG] All authentication methods failed")
     raise HTTPException(
         status_code=status.HTTP_403_FORBIDDEN,
         detail="Invalid or missing API key",
@@ -115,7 +165,8 @@ async def get_current_user_by_jwt(
     try:
         with warnings.catch_warnings():
             warnings.simplefilter("ignore")
-            payload = jwt.decode(token, secret_key, algorithms=[settings_service.auth_settings.ALGORITHM])
+            payload = jwt.decode(token, secret_key, algorithms=[
+                                 settings_service.auth_settings.ALGORITHM])
         user_id: UUID = payload.get("sub")  # type: ignore[assignment]
         token_type: str = payload.get("type")  # type: ignore[assignment]
         if expires := payload.get("exp", None):
@@ -136,7 +187,8 @@ async def get_current_user_by_jwt(
                 headers={"WWW-Authenticate": "Bearer"},
             )
     except JWTError as e:
-        logger.debug("JWT validation failed: Invalid token format or signature")
+        logger.debug(
+            "JWT validation failed: Invalid token format or signature")
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Could not validate credentials",
@@ -170,15 +222,18 @@ async def get_current_user_for_websocket(
 
 async def get_current_active_user(current_user: Annotated[User, Depends(get_current_user)]):
     if not current_user.is_active:
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Inactive user")
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED, detail="Inactive user")
     return current_user
 
 
 async def get_current_active_superuser(current_user: Annotated[User, Depends(get_current_user)]) -> User:
     if not current_user.is_active:
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Inactive user")
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED, detail="Inactive user")
     if not current_user.is_superuser:
-        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="The user doesn't have enough privileges")
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN,
+                            detail="The user doesn't have enough privileges")
     return current_user
 
 
@@ -235,7 +290,8 @@ async def create_user_longterm_token(db: AsyncSession) -> tuple[UUID, dict]:
     username = settings_service.auth_settings.SUPERUSER
     super_user = await get_user_by_username(db, username)
     if not super_user:
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Super user hasn't been created")
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,
+                            detail="Super user hasn't been created")
     access_token_expires_longterm = timedelta(days=365)
     access_token = create_token(
         data={"sub": str(super_user.id), "type": "access"},
@@ -272,13 +328,15 @@ def get_user_id_from_token(token: str) -> UUID:
 async def create_user_tokens(user_id: UUID, db: AsyncSession, *, update_last_login: bool = False) -> dict:
     settings_service = get_settings_service()
 
-    access_token_expires = timedelta(seconds=settings_service.auth_settings.ACCESS_TOKEN_EXPIRE_SECONDS)
+    access_token_expires = timedelta(
+        seconds=settings_service.auth_settings.ACCESS_TOKEN_EXPIRE_SECONDS)
     access_token = create_token(
         data={"sub": str(user_id), "type": "access"},
         expires_delta=access_token_expires,
     )
 
-    refresh_token_expires = timedelta(seconds=settings_service.auth_settings.REFRESH_TOKEN_EXPIRE_SECONDS)
+    refresh_token_expires = timedelta(
+        seconds=settings_service.auth_settings.REFRESH_TOKEN_EXPIRE_SECONDS)
     refresh_token = create_token(
         data={"sub": str(user_id), "type": "refresh"},
         expires_delta=refresh_token_expires,
@@ -289,6 +347,7 @@ async def create_user_tokens(user_id: UUID, db: AsyncSession, *, update_last_log
         await update_user_last_login_at(user_id, db)
 
     return {
+        "user_id": user_id,
         "access_token": access_token,
         "refresh_token": refresh_token,
         "token_type": "bearer",
@@ -311,12 +370,14 @@ async def create_refresh_token(refresh_token: str, db: AsyncSession):
         token_type: str = payload.get("type")  # type: ignore[assignment]
 
         if user_id is None or token_type == "":
-            raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid refresh token")
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid refresh token")
 
         user_exists = await get_user_by_id(db, user_id)
 
         if user_exists is None:
-            raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid refresh token")
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid refresh token")
 
         return await create_user_tokens(user_id, db)
 
@@ -336,8 +397,10 @@ async def authenticate_user(username: str, password: str, db: AsyncSession) -> U
 
     if not user.is_active:
         if not user.last_login_at:
-            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Waiting for approval")
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Inactive user")
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST, detail="Waiting for approval")
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED, detail="Inactive user")
 
     return user if verify_password(password, user.password) else None
 

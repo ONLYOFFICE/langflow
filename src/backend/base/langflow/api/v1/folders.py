@@ -4,6 +4,7 @@ import zipfile
 from datetime import datetime, timezone
 from typing import Annotated
 from uuid import UUID
+from loguru import logger
 
 import orjson
 from fastapi import APIRouter, Depends, File, HTTPException, Response, UploadFile, status
@@ -103,6 +104,7 @@ async def read_folders(
     current_user: CurrentActiveUser,
 ):
     try:
+        logger.debug(f"Reading folders for user: {current_user}")
         folders = (
             await session.exec(
                 select(Folder).where(
@@ -112,8 +114,11 @@ async def read_folders(
                 )
             )
         ).all()
+
         folders = [folder for folder in folders if folder.name !=
                    STARTER_FOLDER_NAME]
+
+        logger.debug(f"Folders read: {folders}")
         return sorted(folders, key=lambda x: x.name != DEFAULT_FOLDER_NAME)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e)) from e
