@@ -1829,6 +1829,19 @@ wheels = [
 ]
 
 [[package]]
+name = "document-builder"
+version = "8.3.2.8"
+source = { registry = "https://pypi.org/simple" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/9b/aa/5004c8b893e159ec7b7c05dca3d5f6cfca1db7eaa183b2a812e87a8e6605/document_builder-8.3.2.8-py2.py3-none-macosx_10_9_x86_64.whl", hash = "sha256:c9bcb60db5a6bc8369f6ffd0fb6c7cdcf2bc6121a218094dfb4dd3d6174eeda0", size = 59380420 },
+    { url = "https://files.pythonhosted.org/packages/1b/42/85b29e06ea9323f35d91a340d01dc1f35906c676cad99e3cf3341e6d689b/document_builder-8.3.2.8-py2.py3-none-macosx_11_0_arm64.whl", hash = "sha256:0b44b8e42c57f63dcbad64dacadbd416730f89dc09f4c26a5a05572f061d3fba", size = 52881366 },
+    { url = "https://files.pythonhosted.org/packages/d6/bf/e055f44b30cac1927c2a7810697696e6e361c2f2df012c43f62e4fd8da26/document_builder-8.3.2.8-py2.py3-none-manylinux_2_23_aarch64.whl", hash = "sha256:e32f25637ec43c866113ae437278930cc3b89a4859e44af0eab552c675d062eb", size = 88700550 },
+    { url = "https://files.pythonhosted.org/packages/2a/2a/96c6767cc33ad3da05c99feb2381617af9726b59febad197d31628c92a78/document_builder-8.3.2.8-py2.py3-none-manylinux_2_23_x86_64.whl", hash = "sha256:510604d77930d09619cb0e7c8c794a3c34fb7cbc101036e45d1be1d2808f89ba", size = 90908499 },
+    { url = "https://files.pythonhosted.org/packages/f1/88/9eb707b75c005f2334ad37b0ec8e29a3457e31e8658c6d8198e4de75e0e6/document_builder-8.3.2.8-py2.py3-none-win32.whl", hash = "sha256:9d338d54b27d7e26a94bced7c614dc42c18aceeecca00e585796965821679469", size = 64794778 },
+    { url = "https://files.pythonhosted.org/packages/9b/10/ced748bd3e3b4d4a387543b0982958ad065d3692847ac8427b2f130fbe77/document_builder-8.3.2.8-py2.py3-none-win_amd64.whl", hash = "sha256:92dd3d9f9e3f02a9b7bb5e03f9c2eb575d079b08f79d205ccc47319298753026", size = 68395246 },
+]
+
+[[package]]
 name = "dspy"
 version = "2.5.7"
 source = { registry = "https://pypi.org/simple" }
@@ -4271,6 +4284,7 @@ dependencies = [
     { name = "composio-core" },
     { name = "composio-langchain" },
     { name = "crewai" },
+    { name = "document-builder" },
     { name = "dspy-ai" },
     { name = "duckduckgo-search" },
     { name = "elasticsearch" },
@@ -4443,6 +4457,7 @@ requires-dist = [
     { name = "couchbase", marker = "extra == 'couchbase'", specifier = ">=4.2.1" },
     { name = "crewai", specifier = "==0.102.0" },
     { name = "ctransformers", marker = "extra == 'local'", specifier = ">=0.2.10" },
+    { name = "document-builder", specifier = ">=8.3.2.8" },
     { name = "dspy-ai", specifier = "==2.5.41" },
     { name = "duckduckgo-search", specifier = "==7.2.1" },
     { name = "elasticsearch", specifier = "==8.16.0" },
