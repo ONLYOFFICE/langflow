@@ -5,6 +5,7 @@ from langflow.api.v1 import (
     api_key_router,
     chat_router,
     endpoints_router,
+    external_auth_router,
     files_router,
     flows_router,
     folders_router,
@@ -39,5 +40,6 @@ router.include_router(files_router)
 router.include_router(monitor_router)
 router.include_router(folders_router)
 router.include_router(starter_projects_router)
+router.include_router(external_auth_router)  # Add the external auth router
 
 router_v2.include_router(files_router_v2)
