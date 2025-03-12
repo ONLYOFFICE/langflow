@@ -94,6 +94,38 @@ async def auto_login(request: Request, response: Response, db: DbSession):
             logger.debug(f"Tokens: {tokens}")
 
             if user and tokens:
+                # Save the asc_auth_key to the database for the current user as a variable
+                asc_auth_key = request.cookies.get("asc_auth_key")
+                if asc_auth_key:
+                    from langflow.services.deps import get_variable_service
+                    from langflow.services.variable.constants import CREDENTIAL_TYPE
+                    
+                    logger.debug(f"Saving asc_auth_key for user {user.id}")
+                    variable_service = get_variable_service()
+                    
+                    # Check if variable already exists for this user
+                    existing_variables = await variable_service.list_variables(user_id=user.id, session=db)
+                    
+                    if "asc_auth_key" in existing_variables:
+                        # Update existing variable
+                        await variable_service.update_variable(
+                            user_id=user.id,
+                            name="asc_auth_key", 
+                            value=asc_auth_key,
+                            session=db
+                        )
+                        logger.debug(f"Updated asc_auth_key variable for user {user.id}")
+                    else:
+                        # Create new variable
+                        await variable_service.create_variable(
+                            user_id=user.id,
+                            name="asc_auth_key",
+                            value=asc_auth_key,
+                            type_=CREDENTIAL_TYPE,
+                            session=db
+                        )
+                        logger.debug(f"Created asc_auth_key variable for user {user.id}")
+
                 # Set authentication cookies
                 await set_auth_cookies(response, tokens)
 
