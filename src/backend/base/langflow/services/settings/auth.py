@@ -34,15 +34,25 @@ class AuthSettings(BaseSettings):
     SUPERUSER: str = DEFAULT_SUPERUSER
     SUPERUSER_PASSWORD: str = DEFAULT_SUPERUSER_PASSWORD
 
-    REFRESH_SAME_SITE: Literal["lax", "strict", "none"] = "none"
-    """The SameSite attribute of the refresh token cookie."""
-    REFRESH_SECURE: bool = True
+    REFRESH_SAME_SITE: Literal["lax", "strict", "none"] = Field(
+        default="none",
+        description="The SameSite attribute of the refresh token cookie.")
+
+    REFRESH_SECURE: bool = Field(
+        default=True,
+        description="The Secure attribute of the refresh token cookie. Set to False when running over HTTP."
+    )
     """The Secure attribute of the refresh token cookie."""
     REFRESH_HTTPONLY: bool = True
     """The HttpOnly attribute of the refresh token cookie."""
-    ACCESS_SAME_SITE: Literal["lax", "strict", "none"] = "lax"
-    """The SameSite attribute of the access token cookie."""
-    ACCESS_SECURE: bool = False
+
+    ACCESS_SAME_SITE: Literal["lax", "strict", "none"] = Field(
+        default="lax",
+        description="The SameSite attribute of the access token cookie.")
+    ACCESS_SECURE: bool = Field(
+        default=False,
+        description="The Secure attribute of the access token cookie. Set to False when running over HTTP."
+    )
     """The Secure attribute of the access token cookie."""
     ACCESS_HTTPONLY: bool = False
     """The HttpOnly attribute of the access token cookie."""
@@ -50,9 +60,11 @@ class AuthSettings(BaseSettings):
     COOKIE_DOMAIN: str | None = None
     """The domain attribute of the cookies. If None, the domain is not set."""
 
-    pwd_context: CryptContext = CryptContext(schemes=["bcrypt"], deprecated="auto")
+    pwd_context: CryptContext = CryptContext(
+        schemes=["bcrypt"], deprecated="auto")
 
-    model_config = SettingsConfigDict(validate_assignment=True, extra="ignore", env_prefix="LANGFLOW_")
+    model_config = SettingsConfigDict(
+        validate_assignment=True, extra="ignore", env_prefix="LANGFLOW_")
 
     def reset_credentials(self) -> None:
         self.SUPERUSER = DEFAULT_SUPERUSER

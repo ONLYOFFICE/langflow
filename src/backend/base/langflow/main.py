@@ -33,7 +33,7 @@ from langflow.initial_setup.setup import (
 from langflow.interface.components import get_and_cache_all_types_dict
 from langflow.interface.utils import setup_llm_caching
 from langflow.logging.logger import configure
-from langflow.middleware import ContentSizeLimitMiddleware
+from langflow.middleware import ContentSizeLimitMiddleware, ExternalAuthMiddleware
 from langflow.services.deps import get_queue_service, get_settings_service, get_telemetry_service
 from langflow.services.utils import initialize_services, teardown_services
 
@@ -161,6 +161,11 @@ def create_app():
     app = FastAPI(lifespan=lifespan, title="Langflow", version=__version__)
     app.add_middleware(
         ContentSizeLimitMiddleware,
+    )
+    
+    # Add the external authentication middleware
+    app.add_middleware(
+        ExternalAuthMiddleware,
     )
 
     setup_sentry(app)

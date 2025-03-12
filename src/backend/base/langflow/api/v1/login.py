@@ -78,9 +78,43 @@ async def login_to_get_access_token(
 
 
 @router.get("/auto_login")
-async def auto_login(response: Response, db: DbSession):
+async def auto_login(request: Request, response: Response, db: DbSession):
     auth_settings = get_settings_service().auth_settings
 
+    # Check for external authentication via asc_auth_key cookie
+    if "asc_auth_key" in request.cookies:
+        from langflow.services.auth.external_auth import verify_external_auth, set_auth_cookies
+        from loguru import logger
+
+        try:
+            logger.debug("Auto login with external authentication")
+            user, tokens = await verify_external_auth(request=request, db=db)
+
+            logger.debug(f"User: {user}")
+            logger.debug(f"Tokens: {tokens}")
+
+            if user and tokens:
+                # Set authentication cookies
+                await set_auth_cookies(response, tokens)
+
+                # Set API key cookie if available
+                if user.store_api_key is not None:
+                    response.set_cookie(
+                        "apikey_tkn_lflw",
+                        str(user.store_api_key),  # Ensure it's a string
+                        httponly=auth_settings.ACCESS_HTTPONLY,
+                        samesite=auth_settings.ACCESS_SAME_SITE,
+                        secure=auth_settings.ACCESS_SECURE,
+                        expires=None,  # Set to None to make it a session cookie
+                        domain=auth_settings.COOKIE_DOMAIN,
+                    )
+
+                return tokens
+        except Exception as e:
+            logger.error(f"Error in external auto login: {str(e)}")
+            # Fall through to regular auto login if external auth fails
+
+    # Fall back to standard auto login
     if auth_settings.AUTO_LOGIN:
         user_id, tokens = await create_user_longterm_token(db)
         response.set_cookie(

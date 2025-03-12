@@ -7,6 +7,7 @@ import zipfile
 from datetime import datetime, timezone
 from typing import Annotated
 from uuid import UUID
+from loguru import logger
 
 import orjson
 from fastapi import APIRouter, Depends, File, HTTPException, UploadFile
@@ -51,7 +52,8 @@ async def _new_flow(
         if (await session.exec(select(Flow).where(Flow.name == flow.name).where(Flow.user_id == user_id))).first():
             flows = (
                 await session.exec(
-                    select(Flow).where(Flow.name.like(f"{flow.name} (%")).where(Flow.user_id == user_id)  # type: ignore[attr-defined]
+                    select(Flow).where(Flow.name.like(f"{flow.name} (%")).where(
+                        Flow.user_id == user_id)  # type: ignore[attr-defined]
                 )
             ).all()
             if flows:
@@ -70,14 +72,16 @@ async def _new_flow(
             flow.endpoint_name
             and (
                 await session.exec(
-                    select(Flow).where(Flow.endpoint_name == flow.endpoint_name).where(Flow.user_id == user_id)
+                    select(Flow).where(Flow.endpoint_name ==
+                                       flow.endpoint_name).where(Flow.user_id == user_id)
                 )
             ).first()
         ):
             flows = (
                 await session.exec(
                     select(Flow)
-                    .where(Flow.endpoint_name.like(f"{flow.endpoint_name}-%"))  # type: ignore[union-attr]
+                    # type: ignore[union-attr]
+                    .where(Flow.endpoint_name.like(f"{flow.endpoint_name}-%"))
                     .where(Flow.user_id == user_id)
                 )
             ).all()
@@ -85,7 +89,8 @@ async def _new_flow(
                 # The endpoint name is like "my-endpoint","my-endpoint-1", "my-endpoint-2"
                 # so we need to get the highest number and add 1
                 # we need to get the last part of the endpoint name
-                numbers = [int(flow.endpoint_name.split("-")[-1]) for flow in flows]
+                numbers = [int(flow.endpoint_name.split("-")[-1])
+                           for flow in flows]
                 flow.endpoint_name = f"{flow.endpoint_name}-{max(numbers) + 1}"
             else:
                 flow.endpoint_name = f"{flow.endpoint_name}-1"
@@ -127,11 +132,13 @@ async def create_flow(
     except Exception as e:
         if "UNIQUE constraint failed" in str(e):
             # Get the name of the column that failed
-            columns = str(e).split("UNIQUE constraint failed: ")[1].split(".")[1].split("\n")[0]
+            columns = str(e).split("UNIQUE constraint failed: ")[
+                1].split(".")[1].split("\n")[0]
             # UNIQUE constraint failed: flow.user_id, flow.name
             # or UNIQUE constraint failed: flow.name
             # if the column has id in it, we want the other column
-            column = columns.split(",")[1] if "id" in columns.split(",")[0] else columns.split(",")[0]
+            column = columns.split(",")[1] if "id" in columns.split(",")[
+                0] else columns.split(",")[0]
 
             raise HTTPException(
                 status_code=400, detail=f"{column.capitalize().replace('_', ' ')} must be unique"
@@ -175,6 +182,8 @@ async def read_flows(
         A list of flows or a paginated response containing the list of flows or a list of flow headers.
     """
     try:
+        logger.debug(f"Reading flows for user: {current_user}")
+
         auth_settings = get_settings_service().auth_settings
 
         default_folder = (await session.exec(select(Folder).where(Folder.name == DEFAULT_FOLDER_NAME))).first()
@@ -184,6 +193,8 @@ async def read_flows(
         starter_folder_id = starter_folder.id if starter_folder else None
 
         if not starter_folder and not default_folder:
+            logger.debug(
+                "Starter folder and default folder not found. Please create a folder and add flows to it.")
             raise HTTPException(
                 status_code=404,
                 detail="Starter folder and default folder not found. Please create a folder and add flows to it.",
@@ -211,13 +222,21 @@ async def read_flows(
             if components_only:
                 flows = [flow for flow in flows if flow.is_component]
             if remove_example_flows and starter_folder_id:
-                flows = [flow for flow in flows if flow.folder_id != starter_folder_id]
+                flows = [flow for flow in flows if flow.folder_id !=
+                         starter_folder_id]
             if header_flows:
                 return [FlowHeader.model_validate(flow, from_attributes=True) for flow in flows]
+
+            logger.debug(f"Flows read (get_all): {flows}")
+
             return flows
 
         stmt = stmt.where(Flow.folder_id == folder_id)
-        return await paginate(session, stmt, params=params)
+        flows = await paginate(session, stmt, params=params)
+
+        logger.debug(f"Flows read (not get_all): {flows}")
+
+        return flows
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e)) from e
@@ -299,17 +318,20 @@ async def update_flow(
     except Exception as e:
         if "UNIQUE constraint failed" in str(e):
             # Get the name of the column that failed
-            columns = str(e).split("UNIQUE constraint failed: ")[1].split(".")[1].split("\n")[0]
+            columns = str(e).split("UNIQUE constraint failed: ")[
+                1].split(".")[1].split("\n")[0]
             # UNIQUE constraint failed: flow.user_id, flow.name
             # or UNIQUE constraint failed: flow.name
             # if the column has id in it, we want the other column
-            column = columns.split(",")[1] if "id" in columns.split(",")[0] else columns.split(",")[0]
+            column = columns.split(",")[1] if "id" in columns.split(",")[
+                0] else columns.split(",")[0]
             raise HTTPException(
                 status_code=400, detail=f"{column.capitalize().replace('_', ' ')} must be unique"
             ) from e
 
         if hasattr(e, "status_code"):
-            raise HTTPException(status_code=e.status_code, detail=str(e)) from e
+            raise HTTPException(status_code=e.status_code,
+                                detail=str(e)) from e
         raise HTTPException(status_code=500, detail=str(e)) from e
 
     return db_flow
@@ -368,7 +390,8 @@ async def upload_file(
     contents = await file.read()
     data = orjson.loads(contents)
     response_list = []
-    flow_list = FlowListCreate(**data) if "flows" in data else FlowListCreate(flows=[FlowCreate(**data)])
+    flow_list = FlowListCreate(
+        **data) if "flows" in data else FlowListCreate(flows=[FlowCreate(**data)])
     # Now we set the user_id for all flows
     for flow in flow_list.flows:
         flow.user_id = current_user.id
@@ -384,11 +407,13 @@ async def upload_file(
     except Exception as e:
         if "UNIQUE constraint failed" in str(e):
             # Get the name of the column that failed
-            columns = str(e).split("UNIQUE constraint failed: ")[1].split(".")[1].split("\n")[0]
+            columns = str(e).split("UNIQUE constraint failed: ")[
+                1].split(".")[1].split("\n")[0]
             # UNIQUE constraint failed: flow.user_id, flow.name
             # or UNIQUE constraint failed: flow.name
             # if the column has id in it, we want the other column
-            column = columns.split(",")[1] if "id" in columns.split(",")[0] else columns.split(",")[0]
+            column = columns.split(",")[1] if "id" in columns.split(",")[
+                0] else columns.split(",")[0]
 
             raise HTTPException(
                 status_code=400, detail=f"{column.capitalize().replace('_', ' ')} must be unique"
@@ -442,7 +467,8 @@ async def download_multiple_file(
     if not flows:
         raise HTTPException(status_code=404, detail="No flows found.")
 
-    flows_without_api_keys = [remove_api_keys(flow.model_dump()) for flow in flows]
+    flows_without_api_keys = [remove_api_keys(
+        flow.model_dump()) for flow in flows]
 
     if len(flows_without_api_keys) > 1:
         # Create a byte stream to hold the ZIP file
@@ -461,7 +487,8 @@ async def download_multiple_file(
         zip_stream.seek(0)
 
         # Generate the filename with the current datetime
-        current_time = datetime.now(tz=timezone.utc).astimezone().strftime("%Y%m%d_%H%M%S")
+        current_time = datetime.now(
+            tz=timezone.utc).astimezone().strftime("%Y%m%d_%H%M%S")
         filename = f"{current_time}_langflow_flows.zip"
 
         return StreamingResponse(

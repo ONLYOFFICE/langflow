@@ -1,5 +1,9 @@
 FROM ghcr.io/astral-sh/uv:python3.12-bookworm-slim
+ARG BUILD_DATE="unset"
+ENV BUILD_DATE=${BUILD_DATE}
 ENV TZ=UTC
+
+LABEL onlyoffice.langflow.release-date="${BUILD_DATE}"
 
 WORKDIR /app
 
