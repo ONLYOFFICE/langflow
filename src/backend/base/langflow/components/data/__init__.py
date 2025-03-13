@@ -6,6 +6,8 @@ from .json_to_data import JSONToDataComponent
 from .sql_executor import SQLExecutorComponent
 from .url import URLComponent
 from .webhook import WebhookComponent
+from .variable_retrieve import VariableRetrieveComponent
+from .variable_store import VariableStoreComponent
 
 __all__ = [
     "APIRequestComponent",
@@ -16,4 +18,6 @@ __all__ = [
     "SQLExecutorComponent",
     "URLComponent",
     "WebhookComponent",
+    "VariableRetrieveComponent",
+    "VariableStoreComponent",
 ]
