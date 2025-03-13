@@ -81,21 +81,6 @@ async def login_to_get_access_token(
 async def auto_login(request: Request, response: Response, db: DbSession):
     auth_settings = get_settings_service().auth_settings
 
-    # Extract request origin information
-    origin = request.headers.get("Origin", "")
-
-    # If origin is missing, use the request's scheme and host
-    if not origin:
-        request_scheme = request.url.scheme
-        request_host = request.headers.get("host") or request.url.netloc
-        request_origin = f"{request_scheme}://{request_host}"
-    else:
-        request_origin = origin
-
-    # Log the request origin
-    from loguru import logger
-    logger.debug(f"Auto login request from origin: {request_origin}")
-
     # Check for external authentication via asc_auth_key cookie
     if "asc_auth_key" in request.cookies:
         from langflow.services.auth.external_auth import verify_external_auth, set_auth_cookies
@@ -114,44 +99,22 @@ async def auto_login(request: Request, response: Response, db: DbSession):
                 if asc_auth_key:
                     from langflow.services.deps import get_variable_service
                     from langflow.services.variable.constants import CREDENTIAL_TYPE
-
+                    
                     logger.debug(f"Saving asc_auth_key for user {user.id}")
                     variable_service = get_variable_service()
-
+                    
                     # Check if variable already exists for this user
                     existing_variables = await variable_service.list_variables(user_id=user.id, session=db)
-
-                    # Save request origin information
-                    if "portal_origin" in existing_variables:
-                        await variable_service.update_variable(
-                            user_id=user.id,
-                            name="portal_origin",
-                            value=request_origin,
-                            session=db
-                        )
-                        logger.debug(
-                            f"Updated portal_origin variable for user {user.id}")
-                    else:
-                        await variable_service.create_variable(
-                            user_id=user.id,
-                            name="portal_origin",
-                            value=request_origin,
-                            type_="str",
-                            session=db
-                        )
-                        logger.debug(
-                            f"Created portal_origin variable for user {user.id}")
-
+                    
                     if "asc_auth_key" in existing_variables:
                         # Update existing variable
                         await variable_service.update_variable(
                             user_id=user.id,
-                            name="asc_auth_key",
+                            name="asc_auth_key", 
                             value=asc_auth_key,
                             session=db
                         )
-                        logger.debug(
-                            f"Updated asc_auth_key variable for user {user.id}")
+                        logger.debug(f"Updated asc_auth_key variable for user {user.id}")
                     else:
                         # Create new variable
                         await variable_service.create_variable(
@@ -161,8 +124,7 @@ async def auto_login(request: Request, response: Response, db: DbSession):
                             type_=CREDENTIAL_TYPE,
                             session=db
                         )
-                        logger.debug(
-                            f"Created asc_auth_key variable for user {user.id}")
+                        logger.debug(f"Created asc_auth_key variable for user {user.id}")
 
                 # Set authentication cookies
                 await set_auth_cookies(response, tokens)
@@ -187,27 +149,6 @@ async def auto_login(request: Request, response: Response, db: DbSession):
     # Fall back to standard auto login
     if auth_settings.AUTO_LOGIN:
         user_id, tokens = await create_user_longterm_token(db)
-
-        # For standard login, also save the request origin
-        from langflow.services.deps import get_variable_service
-        variable_service = get_variable_service()
-        existing_variables = await variable_service.list_variables(user_id=user_id, session=db)
-
-        if "portal_origin" in existing_variables:
-            await variable_service.update_variable(
-                user_id=user_id,
-                name="portal_origin",
-                value=request_origin,
-                session=db
-            )
-        else:
-            await variable_service.create_variable(
-                user_id=user_id,
-                name="portal_origin",
-                value=request_origin,
-                type_="str",
-                session=db
-            )
         response.set_cookie(
             "access_token_lf",
             tokens["access_token"],
