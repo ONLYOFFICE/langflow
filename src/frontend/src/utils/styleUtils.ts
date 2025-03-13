@@ -290,6 +290,7 @@ import { NovitaIcon } from "../icons/Novita";
 import { NvidiaIcon } from "../icons/Nvidia";
 import { OlivyaIcon } from "../icons/Olivya";
 import { OllamaIcon } from "../icons/Ollama";
+import { OnlyofficeIcon } from "../icons/Onlyoffice";
 import { OpenAiIcon } from "../icons/OpenAi";
 import { OpenRouterIcon } from "../icons/OpenRouter";
 import { OpenSearch } from "../icons/OpenSearch";
@@ -441,6 +442,7 @@ export const nodeColors: { [char: string]: string } = {
   Agent: "#903BBE",
   AgentExecutor: "#903BBE",
   Tool: "#00fbfc",
+  onlyoffice: "#FF6F3D",
 };
 
 export const nodeColorsName: { [char: string]: string } = {
@@ -494,6 +496,7 @@ export const nodeColorsName: { [char: string]: string } = {
   BaseChatMessageHistory: "orange",
   Memory: "orange",
   DataFrame: "pink",
+  onlyoffice: "orange",
 };
 
 export const SIDEBAR_CATEGORIES = [
@@ -522,6 +525,7 @@ export const SIDEBAR_CATEGORIES = [
 ];
 
 export const SIDEBAR_BUNDLES = [
+  { display_name: "ONLYOFFICE", name: "onlyoffice", icon: "onlyoffice" },
   // Add apify
   { display_name: "Apify", name: "apify", icon: "Apify" },
   { display_name: "LangChain", name: "langchain_utilities", icon: "LangChain" },
@@ -746,6 +750,7 @@ export const nodeIconsLucide: iconsType = {
   Wikipedia: WikipediaIcon,
   Arize: ArizeIcon,
   Apify: ApifyIcon,
+  onlyoffice: OnlyofficeIcon,
 
   //Node Icons
   model_specs: FileSliders,
