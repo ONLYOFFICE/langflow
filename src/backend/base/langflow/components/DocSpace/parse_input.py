@@ -30,6 +30,11 @@ class InputParserComponent(Component):
     def parse_input(self) -> Data:
         """Parse input text to extract references.
 
+        References can be in the following formats:
+        - @123 (file ID)
+        - @folder-123 (folder ID)
+        - References can appear anywhere in the text
+
         Returns:
             Data object with extracted references and text
         """
@@ -41,21 +46,28 @@ class InputParserComponent(Component):
             if not isinstance(text, str) or not text:
                 return Data(data={})
 
-            # Split input into references and text parts
+            # Define regex patterns for file and folder references
+            file_pattern = r'@(\d+)'  # Matches @123 (file ID)
+            folder_pattern = r'@folder-(\d+)'  # Matches @folder-123 (folder ID)
+            
+            # Extract all references
+            file_refs = re.findall(file_pattern, text)
+            folder_refs = re.findall(folder_pattern, text)
+            
+            # Combine all references
+            references = file_refs + [f"folder-{ref}" for ref in folder_refs]
+            
+            # Remove references from text if they are at the beginning
+            # This maintains backward compatibility with the old format
+            cleaned_text = text
             parts = text.split(' ', 1)
-            ref_part = parts[0]  # First part with @references
-            text_part = parts[1] if len(parts) > 1 else ''  # Rest is the text
-
-            # Extract references from the first part
-            references = []
-            if ref_part.startswith('@'):
-                # Split by comma and clean up @ symbols
-                refs = ref_part.split(',')
-                references = [ref.strip().lstrip('@') for ref in refs]
-
+            if parts[0].startswith('@'):
+                cleaned_text = parts[1] if len(parts) > 1 else ''
+            
             result = {
                 "references": references,
-                "text": text_part
+                "text": cleaned_text,
+                "original_text": text
             }
 
             return Data(data=result)
