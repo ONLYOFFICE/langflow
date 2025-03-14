@@ -1,10 +1,9 @@
 import json
-from urllib.parse import urljoin
 
 from langchain.tools import StructuredTool
 from pydantic import BaseModel, Field
-import requests
 
+from langflow.base.onlyoffice.docspace.client import ErrorResponse, Client
 from langflow.custom.custom_component.component_with_cache import ComponentWithCache
 from langflow.field_typing import Tool
 from langflow.inputs import MessageTextInput, SecretStrInput
@@ -85,11 +84,13 @@ class OnlyofficeDocspaceGetRoom(ComponentWithCache):
 
     def _get_room(self, schema: Schema) -> dict:
         data = json.loads(self.auth_text)
-        url = urljoin(data["base_url"], f"api/2.0/files/rooms/{schema.room_id}")
-        headers = {
-            "Accept": "application/json",
-            "Authorization": f"{data["token"]}",
-        }
-        response = requests.get(url, headers=headers)
-        response.raise_for_status()
-        return response.json()
+
+        client = Client()
+        client.base_url = data["base_url"]
+        client = client.with_auth_token(data["token"])
+
+        room, response = client.files.get_room(schema.room_id)
+        if isinstance(response, ErrorResponse):
+            raise response.exception
+
+        return room
