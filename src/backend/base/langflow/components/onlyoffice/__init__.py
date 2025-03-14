@@ -12,6 +12,7 @@ from .docspace_folders_get_folder import OnlyofficeDocspaceGetFolder
 from .docspace_folders_list_my import OnlyofficeDocspaceListMy
 from .docspace_folders_list_subfolders import OnlyofficeDocspaceListSubfolders
 from .docspace_folders_update_folder import OnlyofficeDocspaceUpdateFolder
+from .docspace_http_request import OnlyofficeDocspaceHttpRequest
 from .docspace_rooms_archive_room import OnlyofficeDocspaceArchiveRoom
 from .docspace_rooms_create_room import OnlyofficeDocspaceCreateRoom
 from .docspace_rooms_get_room import OnlyofficeDocspaceGetRoom
@@ -29,6 +30,7 @@ __all__ = [
     "OnlyofficeDocspaceGetFile",
     "OnlyofficeDocspaceGetFolder",
     "OnlyofficeDocspaceGetRoom",
+    "OnlyofficeDocspaceHttpRequest",
     "OnlyofficeDocspaceListMy",
     "OnlyofficeDocspaceListOperations",
     "OnlyofficeDocspaceListRooms",
