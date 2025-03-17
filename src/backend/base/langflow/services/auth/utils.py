@@ -44,7 +44,9 @@ async def api_key_security(
     result: ApiKey | User | None
 
     async with get_db_service().with_session() as db:
-        if settings_service.auth_settings.AUTO_LOGIN:
+        if header_param:
+            result = await check_key(db, header_param)
+        elif settings_service.auth_settings.AUTO_LOGIN:
             # Get the first user
             if not settings_service.auth_settings.SUPERUSER:
                 raise HTTPException(
@@ -54,7 +56,7 @@ async def api_key_security(
 
             result = await get_user_by_username(db, settings_service.auth_settings.SUPERUSER)
 
-        elif not query_param and not header_param:
+        elif not query_param:
             raise HTTPException(
                 status_code=status.HTTP_403_FORBIDDEN,
                 detail="An API key must be passed as query or header",
@@ -62,9 +64,6 @@ async def api_key_security(
 
         elif query_param:
             result = await check_key(db, query_param)
-
-        else:
-            result = await check_key(db, header_param)
 
         if not result:
             raise HTTPException(
@@ -85,52 +84,61 @@ async def get_current_user(
     db: Annotated[AsyncSession, Depends(get_session)],
 ) -> User:
     logger.debug(f"[AUTH DEBUG] Request path: {request.url.path}")
-    logger.debug(f"[AUTH DEBUG] Authorization header present: {'Authorization' in request.headers}")
-    logger.debug(f"[AUTH DEBUG] Available cookies: {list(request.cookies.keys())}")
+    logger.debug(
+        f"[AUTH DEBUG] Authorization header present: {'Authorization' in request.headers}")
+    logger.debug(
+        f"[AUTH DEBUG] Available cookies: {list(request.cookies.keys())}")
     logger.debug(f"[AUTH DEBUG] JWT token from oauth2_login: {bool(token)}")
-    
+
     # Check for access_token_lf in cookies
     access_token_cookie = request.cookies.get("access_token_lf")
-    logger.debug(f"[AUTH DEBUG] access_token_lf in cookies: {bool(access_token_cookie)}")
-    
+    logger.debug(
+        f"[AUTH DEBUG] access_token_lf in cookies: {bool(access_token_cookie)}")
+
     if access_token_cookie and not token:
         logger.debug("[AUTH DEBUG] Using access_token_lf from cookies")
         try:
             # Try to authenticate with the cookie token
             return await get_current_user_by_jwt(access_token_cookie, db)
         except Exception as e:
-            logger.error(f"[AUTH DEBUG] Error authenticating with cookie token: {str(e)}")
-    
+            logger.error(
+                f"[AUTH DEBUG] Error authenticating with cookie token: {str(e)}")
+
     # First check for JWT token
     if token:
         logger.debug("[AUTH DEBUG] Using token from Authorization header")
         try:
             return await get_current_user_by_jwt(token, db)
         except Exception as e:
-            logger.error(f"[AUTH DEBUG] Error authenticating with JWT token: {str(e)}")
+            logger.error(
+                f"[AUTH DEBUG] Error authenticating with JWT token: {str(e)}")
 
     # Then check for API key
     logger.debug(f"[AUTH DEBUG] API key in query: {bool(query_param)}")
     logger.debug(f"[AUTH DEBUG] API key in header: {bool(header_param)}")
-    
+
     try:
         user = await api_key_security(query_param, header_param)
         if user:
-            logger.debug(f"[AUTH DEBUG] Successfully authenticated with API key, user: {user.username}")
+            logger.debug(
+                f"[AUTH DEBUG] Successfully authenticated with API key, user: {user.username}")
             return user
     except Exception as e:
-        logger.error(f"[AUTH DEBUG] Error authenticating with API key: {str(e)}")
+        logger.error(
+            f"[AUTH DEBUG] Error authenticating with API key: {str(e)}")
 
     # Finally, check for external auth cookie
-    logger.debug(f"[AUTH DEBUG] asc_auth_key in cookies: {'asc_auth_key' in request.cookies}")
-    
+    logger.debug(
+        f"[AUTH DEBUG] asc_auth_key in cookies: {'asc_auth_key' in request.cookies}")
+
     from langflow.services.auth.external_auth import verify_external_auth
     if "asc_auth_key" in request.cookies:
         try:
             logger.debug("[AUTH DEBUG] Attempting external auth verification")
             user, tokens = await verify_external_auth(request=request, db=db)
             if user:
-                logger.debug(f"[AUTH DEBUG] Successfully authenticated with external auth, user: {user.username}")
+                logger.debug(
+                    f"[AUTH DEBUG] Successfully authenticated with external auth, user: {user.username}")
                 return user
         except Exception as e:
             logger.error(
