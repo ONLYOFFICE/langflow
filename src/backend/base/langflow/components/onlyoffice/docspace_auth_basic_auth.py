@@ -1,11 +1,10 @@
 import hashlib
 import json
-from urllib.parse import urljoin
 
 from langchain.tools import StructuredTool
 from pydantic import BaseModel, Field
-import requests
 
+from langflow.base.onlyoffice.docspace.client import AuthOptions, Client, SuccessResponse
 from langflow.custom.custom_component.component_with_cache import ComponentWithCache
 from langflow.field_typing import Tool
 from langflow.inputs import MessageTextInput, SecretStrInput
@@ -152,10 +151,33 @@ class OnlyofficeDocspaceBasicAuthentication(ComponentWithCache):
 
 
     def _ensure_token(self, schema: Schema, key: str) -> str:
+        client = Client()
+        client.base_url = schema.base_url
+
         token = self._retrieve_token(key)
-        if not token or not self._check_auth(schema, token):
-            token = self._do_auth(schema)
-            self._cache_token(key, token)
+
+        if token:
+            _, response = client.with_auth_token(token).auth.check()
+            if not isinstance(response, SuccessResponse):
+                token = ""
+
+        if not token:
+            options = AuthOptions(
+                UserName=schema.username,
+                Password=schema.password,
+            )
+
+            auth, response = client.auth.auth(options)
+            if not isinstance(response, SuccessResponse):
+                raise ValueError("Failed to authenticate")
+
+            if not auth.token:
+                raise ValueError("Token is empty")
+
+            token = auth.token
+
+        self._cache_token(key, token)
+
         return token
 
 
@@ -168,29 +190,3 @@ class OnlyofficeDocspaceBasicAuthentication(ComponentWithCache):
 
     def _cache_token(self, key: str, token: str):
         self._shared_component_cache.set(key, token)
-
-
-    def _do_auth(self, schema: Schema) -> str:
-        url = urljoin(schema.base_url, "api/2.0/authentication")
-        headers = {
-            "Accept": "application/json",
-            "Content-Type": "application/json",
-        }
-        body = {
-            "UserName": schema.username,
-            "Password": schema.password,
-        }
-        response = requests.post(url, headers=headers, json=body)
-        response.raise_for_status()
-        return response.json()["response"]["token"]
-
-
-    def _check_auth(self, schema: Schema, token: str) -> bool:
-        url = urljoin(schema.base_url, "api/2.0/authentication")
-        headers = {
-            "Accept": "application/json",
-            "Authorization": f"{token}",
-        }
-        response = requests.get(url, headers=headers)
-        response.raise_for_status()
-        return response.json()["response"]
