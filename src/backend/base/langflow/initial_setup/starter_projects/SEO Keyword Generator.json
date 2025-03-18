@@ -24,9 +24,9 @@
         "id": "reactflow__edge-Prompt-a6SIY{œdataTypeœ:œPromptœ,œidœ:œPrompt-a6SIYœ,œnameœ:œpromptœ,œoutput_typesœ:[œMessageœ]}-OpenAIModel-brPVM{œfieldNameœ:œsystem_messageœ,œidœ:œOpenAIModel-brPVMœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "selected": false,
         "source": "Prompt-a6SIY",
-        "sourceHandle": "{œdataTypeœ: œPromptœ, œidœ: œPrompt-a6SIYœ, œnameœ: œpromptœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œPromptœ,œidœ:œPrompt-a6SIYœ,œnameœ:œpromptœ,œoutput_typesœ:[œMessageœ]}",
         "target": "OpenAIModel-brPVM",
-        "targetHandle": "{œfieldNameœ: œsystem_messageœ, œidœ: œOpenAIModel-brPVMœ, œinputTypesœ: [œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œsystem_messageœ,œidœ:œOpenAIModel-brPVMœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "className": "",
@@ -51,9 +51,9 @@
         "id": "reactflow__edge-Prompt-jkCpO{œdataTypeœ:œPromptœ,œidœ:œPrompt-jkCpOœ,œnameœ:œpromptœ,œoutput_typesœ:[œMessageœ]}-OpenAIModel-brPVM{œfieldNameœ:œinput_valueœ,œidœ:œOpenAIModel-brPVMœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "selected": false,
         "source": "Prompt-jkCpO",
-        "sourceHandle": "{œdataTypeœ: œPromptœ, œidœ: œPrompt-jkCpOœ, œnameœ: œpromptœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œPromptœ,œidœ:œPrompt-jkCpOœ,œnameœ:œpromptœ,œoutput_typesœ:[œMessageœ]}",
         "target": "OpenAIModel-brPVM",
-        "targetHandle": "{œfieldNameœ: œinput_valueœ, œidœ: œOpenAIModel-brPVMœ, œinputTypesœ: [œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œOpenAIModel-brPVMœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "className": "",
@@ -80,9 +80,9 @@
         "id": "reactflow__edge-OpenAIModel-brPVM{œdataTypeœ:œOpenAIModelœ,œidœ:œOpenAIModel-brPVMœ,œnameœ:œtext_outputœ,œoutput_typesœ:[œMessageœ]}-ChatOutput-oE2ic{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-oE2icœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "selected": false,
         "source": "OpenAIModel-brPVM",
-        "sourceHandle": "{œdataTypeœ: œOpenAIModelœ, œidœ: œOpenAIModel-brPVMœ, œnameœ: œtext_outputœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œOpenAIModelœ,œidœ:œOpenAIModel-brPVMœ,œnameœ:œtext_outputœ,œoutput_typesœ:[œMessageœ]}",
         "target": "ChatOutput-oE2ic",
-        "targetHandle": "{œfieldNameœ: œinput_valueœ, œidœ: œChatOutput-oE2icœ, œinputTypesœ: [œDataœ, œDataFrameœ, œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-oE2icœ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œstrœ}"
       }
     ],
     "nodes": [

@@ -24,9 +24,9 @@
         },
         "id": "xy-edge__ArXivComponent-LChQN{œdataTypeœ:œArXivComponentœ,œidœ:œArXivComponent-LChQNœ,œnameœ:œpapersœ,œoutput_typesœ:[œDataœ]}-LoopComponent-3vpc1{œfieldNameœ:œdataœ,œidœ:œLoopComponent-3vpc1œ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}",
         "source": "ArXivComponent-LChQN",
-        "sourceHandle": "{œdataTypeœ: œArXivComponentœ, œidœ: œArXivComponent-LChQNœ, œnameœ: œpapersœ, œoutput_typesœ: [œDataœ]}",
+        "sourceHandle": "{œdataTypeœ:œArXivComponentœ,œidœ:œArXivComponent-LChQNœ,œnameœ:œpapersœ,œoutput_typesœ:[œDataœ]}",
         "target": "LoopComponent-3vpc1",
-        "targetHandle": "{œfieldNameœ: œdataœ, œidœ: œLoopComponent-3vpc1œ, œinputTypesœ: [œDataœ], œtypeœ: œotherœ}"
+        "targetHandle": "{œfieldNameœ:œdataœ,œidœ:œLoopComponent-3vpc1œ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}"
       },
       {
         "animated": false,
@@ -51,9 +51,9 @@
         },
         "id": "xy-edge__LoopComponent-3vpc1{œdataTypeœ:œLoopComponentœ,œidœ:œLoopComponent-3vpc1œ,œnameœ:œitemœ,œoutput_typesœ:[œDataœ]}-ParseData-Pf12J{œfieldNameœ:œdataœ,œidœ:œParseData-Pf12Jœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}",
         "source": "LoopComponent-3vpc1",
-        "sourceHandle": "{œdataTypeœ: œLoopComponentœ, œidœ: œLoopComponent-3vpc1œ, œnameœ: œitemœ, œoutput_typesœ: [œDataœ]}",
+        "sourceHandle": "{œdataTypeœ:œLoopComponentœ,œidœ:œLoopComponent-3vpc1œ,œnameœ:œitemœ,œoutput_typesœ:[œDataœ]}",
         "target": "ParseData-Pf12J",
-        "targetHandle": "{œfieldNameœ: œdataœ, œidœ: œParseData-Pf12Jœ, œinputTypesœ: [œDataœ], œtypeœ: œotherœ}"
+        "targetHandle": "{œfieldNameœ:œdataœ,œidœ:œParseData-Pf12Jœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}"
       },
       {
         "animated": false,
@@ -78,9 +78,9 @@
         },
         "id": "xy-edge__ParseData-Pf12J{œdataTypeœ:œParseDataœ,œidœ:œParseData-Pf12Jœ,œnameœ:œtextœ,œoutput_typesœ:[œMessageœ]}-AnthropicModel-beO6B{œfieldNameœ:œinput_valueœ,œidœ:œAnthropicModel-beO6Bœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "source": "ParseData-Pf12J",
-        "sourceHandle": "{œdataTypeœ: œParseDataœ, œidœ: œParseData-Pf12Jœ, œnameœ: œtextœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œParseDataœ,œidœ:œParseData-Pf12Jœ,œnameœ:œtextœ,œoutput_typesœ:[œMessageœ]}",
         "target": "AnthropicModel-beO6B",
-        "targetHandle": "{œfieldNameœ: œinput_valueœ, œidœ: œAnthropicModel-beO6Bœ, œinputTypesœ: [œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œAnthropicModel-beO6Bœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "animated": false,
@@ -105,9 +105,9 @@
         },
         "id": "xy-edge__AnthropicModel-beO6B{œdataTypeœ:œAnthropicModelœ,œidœ:œAnthropicModel-beO6Bœ,œnameœ:œtext_outputœ,œoutput_typesœ:[œMessageœ]}-MessagetoData-QRSBb{œfieldNameœ:œmessageœ,œidœ:œMessagetoData-QRSBbœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "source": "AnthropicModel-beO6B",
-        "sourceHandle": "{œdataTypeœ: œAnthropicModelœ, œidœ: œAnthropicModel-beO6Bœ, œnameœ: œtext_outputœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œAnthropicModelœ,œidœ:œAnthropicModel-beO6Bœ,œnameœ:œtext_outputœ,œoutput_typesœ:[œMessageœ]}",
         "target": "MessagetoData-QRSBb",
-        "targetHandle": "{œfieldNameœ: œmessageœ, œidœ: œMessagetoData-QRSBbœ, œinputTypesœ: [œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œmessageœ,œidœ:œMessagetoData-QRSBbœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "animated": false,
@@ -132,9 +132,9 @@
         },
         "id": "xy-edge__MessagetoData-QRSBb{œdataTypeœ:œMessagetoDataœ,œidœ:œMessagetoData-QRSBbœ,œnameœ:œdataœ,œoutput_typesœ:[œDataœ]}-LoopComponent-3vpc1{œdataTypeœ:œLoopComponentœ,œidœ:œLoopComponent-3vpc1œ,œnameœ:œitemœ,œoutput_typesœ:[œDataœ]}",
         "source": "MessagetoData-QRSBb",
-        "sourceHandle": "{œdataTypeœ: œMessagetoDataœ, œidœ: œMessagetoData-QRSBbœ, œnameœ: œdataœ, œoutput_typesœ: [œDataœ]}",
+        "sourceHandle": "{œdataTypeœ:œMessagetoDataœ,œidœ:œMessagetoData-QRSBbœ,œnameœ:œdataœ,œoutput_typesœ:[œDataœ]}",
         "target": "LoopComponent-3vpc1",
-        "targetHandle": "{œdataTypeœ: œLoopComponentœ, œidœ: œLoopComponent-3vpc1œ, œnameœ: œitemœ, œoutput_typesœ: [œDataœ]}"
+        "targetHandle": "{œdataTypeœ:œLoopComponentœ,œidœ:œLoopComponent-3vpc1œ,œnameœ:œitemœ,œoutput_typesœ:[œDataœ]}"
       },
       {
         "animated": false,
@@ -159,9 +159,9 @@
         },
         "id": "xy-edge__LoopComponent-3vpc1{œdataTypeœ:œLoopComponentœ,œidœ:œLoopComponent-3vpc1œ,œnameœ:œdoneœ,œoutput_typesœ:[œDataœ]}-ParseData-igEkj{œfieldNameœ:œdataœ,œidœ:œParseData-igEkjœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}",
         "source": "LoopComponent-3vpc1",
-        "sourceHandle": "{œdataTypeœ: œLoopComponentœ, œidœ: œLoopComponent-3vpc1œ, œnameœ: œdoneœ, œoutput_typesœ: [œDataœ]}",
+        "sourceHandle": "{œdataTypeœ:œLoopComponentœ,œidœ:œLoopComponent-3vpc1œ,œnameœ:œdoneœ,œoutput_typesœ:[œDataœ]}",
         "target": "ParseData-igEkj",
-        "targetHandle": "{œfieldNameœ: œdataœ, œidœ: œParseData-igEkjœ, œinputTypesœ: [œDataœ], œtypeœ: œotherœ}"
+        "targetHandle": "{œfieldNameœ:œdataœ,œidœ:œParseData-igEkjœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}"
       },
       {
         "animated": false,
@@ -188,9 +188,9 @@
         },
         "id": "xy-edge__ParseData-igEkj{œdataTypeœ:œParseDataœ,œidœ:œParseData-igEkjœ,œnameœ:œtextœ,œoutput_typesœ:[œMessageœ]}-ChatOutput-UZgon{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-UZgonœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "source": "ParseData-igEkj",
-        "sourceHandle": "{œdataTypeœ: œParseDataœ, œidœ: œParseData-igEkjœ, œnameœ: œtextœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œParseDataœ,œidœ:œParseData-igEkjœ,œnameœ:œtextœ,œoutput_typesœ:[œMessageœ]}",
         "target": "ChatOutput-UZgon",
-        "targetHandle": "{œfieldNameœ: œinput_valueœ, œidœ: œChatOutput-UZgonœ, œinputTypesœ: [œDataœ, œDataFrameœ, œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-UZgonœ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "animated": false,
@@ -215,9 +215,9 @@
         },
         "id": "xy-edge__ChatInput-m10vc{œdataTypeœ:œChatInputœ,œidœ:œChatInput-m10vcœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}-ArXivComponent-LChQN{œfieldNameœ:œsearch_queryœ,œidœ:œArXivComponent-LChQNœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "source": "ChatInput-m10vc",
-        "sourceHandle": "{œdataTypeœ: œChatInputœ, œidœ: œChatInput-m10vcœ, œnameœ: œmessageœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œChatInputœ,œidœ:œChatInput-m10vcœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}",
         "target": "ArXivComponent-LChQN",
-        "targetHandle": "{œfieldNameœ: œsearch_queryœ, œidœ: œArXivComponent-LChQNœ, œinputTypesœ: [œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œsearch_queryœ,œidœ:œArXivComponent-LChQNœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       }
     ],
     "nodes": [

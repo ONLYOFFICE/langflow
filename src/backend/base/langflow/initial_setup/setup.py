@@ -493,6 +493,7 @@ def get_project_data(project):
     else:
         updated_at_datetime = datetime.fromisoformat(project_updated_at)
     project_data = project.get("data")
+    # Remove spaces from sourceHandle and targetHandle in edges
     project_icon = project.get("icon")
     project_icon = demojize(project_icon) if project_icon and purely_emoji(
         project_icon) else project_icon
@@ -892,10 +893,19 @@ async def create_or_update_starter_projects(all_types_dict: dict, *, do_create: 
                 )
                 updated_project_data = update_edges_with_latest_component_versions(
                     updated_project_data)
-                if updated_project_data != project_data:
-                    project_data = updated_project_data
-                    # We also need to update the project data in the file
-                    await update_project_file(project_path, project, updated_project_data)
+            if project_data and "edges" in project_data:
+                for edge in project_data["edges"]:
+                    if "sourceHandle" in edge and edge["sourceHandle"]:
+                        edge["sourceHandle"] = edge["sourceHandle"].replace(
+                            " ", "")
+                    if "targetHandle" in edge and edge["targetHandle"]:
+                        edge["targetHandle"] = edge["targetHandle"].replace(
+                            " ", "")
+
+            if updated_project_data != project_data:
+                project_data = updated_project_data
+                # We also need to update the project data in the file
+                await update_project_file(project_path, project, updated_project_data)
             if do_create and project_name and project_data:
                 for existing_project in await get_all_flows_similar_to_project(session, system_folder.id):
                     await session.delete(existing_project)

@@ -24,9 +24,9 @@
         },
         "id": "reactflow__edge-ParseData-qN4UL{œdataTypeœ:œParseDataœ,œidœ:œParseData-qN4ULœ,œnameœ:œtextœ,œoutput_typesœ:[œMessageœ]}-AnthropicModel-3QKQF{œfieldNameœ:œinput_valueœ,œidœ:œAnthropicModel-3QKQFœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "source": "ParseData-qN4UL",
-        "sourceHandle": "{œdataTypeœ: œParseDataœ, œidœ: œParseData-qN4ULœ, œnameœ: œtextœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œParseDataœ,œidœ:œParseData-qN4ULœ,œnameœ:œtextœ,œoutput_typesœ:[œMessageœ]}",
         "target": "AnthropicModel-3QKQF",
-        "targetHandle": "{œfieldNameœ: œinput_valueœ, œidœ: œAnthropicModel-3QKQFœ, œinputTypesœ: [œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œAnthropicModel-3QKQFœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "animated": false,
@@ -51,9 +51,9 @@
         },
         "id": "reactflow__edge-TextInput-2kYku{œdataTypeœ:œTextInputœ,œidœ:œTextInput-2kYkuœ,œnameœ:œtextœ,œoutput_typesœ:[œMessageœ]}-AnthropicModel-3QKQF{œfieldNameœ:œsystem_messageœ,œidœ:œAnthropicModel-3QKQFœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "source": "TextInput-2kYku",
-        "sourceHandle": "{œdataTypeœ: œTextInputœ, œidœ: œTextInput-2kYkuœ, œnameœ: œtextœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œTextInputœ,œidœ:œTextInput-2kYkuœ,œnameœ:œtextœ,œoutput_typesœ:[œMessageœ]}",
         "target": "AnthropicModel-3QKQF",
-        "targetHandle": "{œfieldNameœ: œsystem_messageœ, œidœ: œAnthropicModel-3QKQFœ, œinputTypesœ: [œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œsystem_messageœ,œidœ:œAnthropicModel-3QKQFœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "animated": false,
@@ -80,9 +80,9 @@
         },
         "id": "reactflow__edge-AnthropicModel-3QKQF{œdataTypeœ:œAnthropicModelœ,œidœ:œAnthropicModel-3QKQFœ,œnameœ:œtext_outputœ,œoutput_typesœ:[œMessageœ]}-ChatOutput-Anz6s{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-Anz6sœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "source": "AnthropicModel-3QKQF",
-        "sourceHandle": "{œdataTypeœ: œAnthropicModelœ, œidœ: œAnthropicModel-3QKQFœ, œnameœ: œtext_outputœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œAnthropicModelœ,œidœ:œAnthropicModel-3QKQFœ,œnameœ:œtext_outputœ,œoutput_typesœ:[œMessageœ]}",
         "target": "ChatOutput-Anz6s",
-        "targetHandle": "{œfieldNameœ: œinput_valueœ, œidœ: œChatOutput-Anz6sœ, œinputTypesœ: [œDataœ, œDataFrameœ, œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-Anz6sœ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "animated": false,
@@ -107,9 +107,9 @@
         },
         "id": "reactflow__edge-AnthropicModel-hy2sm{œdataTypeœ:œAnthropicModelœ,œidœ:œAnthropicModel-hy2smœ,œnameœ:œmodel_outputœ,œoutput_typesœ:[œLanguageModelœ]}-StructuredOutputv2-ZQldd{œfieldNameœ:œllmœ,œidœ:œStructuredOutputv2-ZQlddœ,œinputTypesœ:[œLanguageModelœ],œtypeœ:œotherœ}",
         "source": "AnthropicModel-hy2sm",
-        "sourceHandle": "{œdataTypeœ: œAnthropicModelœ, œidœ: œAnthropicModel-hy2smœ, œnameœ: œmodel_outputœ, œoutput_typesœ: [œLanguageModelœ]}",
+        "sourceHandle": "{œdataTypeœ:œAnthropicModelœ,œidœ:œAnthropicModel-hy2smœ,œnameœ:œmodel_outputœ,œoutput_typesœ:[œLanguageModelœ]}",
         "target": "StructuredOutputv2-ZQldd",
-        "targetHandle": "{œfieldNameœ: œllmœ, œidœ: œStructuredOutputv2-ZQlddœ, œinputTypesœ: [œLanguageModelœ], œtypeœ: œotherœ}"
+        "targetHandle": "{œfieldNameœ:œllmœ,œidœ:œStructuredOutputv2-ZQlddœ,œinputTypesœ:[œLanguageModelœ],œtypeœ:œotherœ}"
       },
       {
         "animated": false,
@@ -134,9 +134,9 @@
         },
         "id": "reactflow__edge-ParseData-idUvo{œdataTypeœ:œParseDataœ,œidœ:œParseData-idUvoœ,œnameœ:œtextœ,œoutput_typesœ:[œMessageœ]}-StructuredOutputv2-ZQldd{œfieldNameœ:œinput_valueœ,œidœ:œStructuredOutputv2-ZQlddœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "source": "ParseData-idUvo",
-        "sourceHandle": "{œdataTypeœ: œParseDataœ, œidœ: œParseData-idUvoœ, œnameœ: œtextœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œParseDataœ,œidœ:œParseData-idUvoœ,œnameœ:œtextœ,œoutput_typesœ:[œMessageœ]}",
         "target": "StructuredOutputv2-ZQldd",
-        "targetHandle": "{œfieldNameœ: œinput_valueœ, œidœ: œStructuredOutputv2-ZQlddœ, œinputTypesœ: [œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œStructuredOutputv2-ZQlddœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "className": "",
@@ -160,9 +160,9 @@
         },
         "id": "reactflow__edge-File-GICjp{œdataTypeœ:œFileœ,œidœ:œFile-GICjpœ,œnameœ:œdataœ,œoutput_typesœ:[œDataœ]}-ParseData-idUvo{œfieldNameœ:œdataœ,œidœ:œParseData-idUvoœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}",
         "source": "File-GICjp",
-        "sourceHandle": "{œdataTypeœ: œFileœ, œidœ: œFile-GICjpœ, œnameœ: œdataœ, œoutput_typesœ: [œDataœ]}",
+        "sourceHandle": "{œdataTypeœ:œFileœ,œidœ:œFile-GICjpœ,œnameœ:œdataœ,œoutput_typesœ:[œDataœ]}",
         "target": "ParseData-idUvo",
-        "targetHandle": "{œfieldNameœ: œdataœ, œidœ: œParseData-idUvoœ, œinputTypesœ: [œDataœ], œtypeœ: œotherœ}"
+        "targetHandle": "{œfieldNameœ:œdataœ,œidœ:œParseData-idUvoœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}"
       },
       {
         "data": {
@@ -185,9 +185,9 @@
         },
         "id": "xy-edge__StructuredOutputv2-ZQldd{œdataTypeœ:œStructuredOutputœ,œidœ:œStructuredOutputv2-ZQlddœ,œnameœ:œstructured_outputœ,œoutput_typesœ:[œDataœ]}-ParseData-qN4UL{œfieldNameœ:œdataœ,œidœ:œParseData-qN4ULœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}",
         "source": "StructuredOutputv2-ZQldd",
-        "sourceHandle": "{œdataTypeœ: œStructuredOutputœ, œidœ: œStructuredOutputv2-ZQlddœ, œnameœ: œstructured_outputœ, œoutput_typesœ: [œDataœ]}",
+        "sourceHandle": "{œdataTypeœ:œStructuredOutputœ,œidœ:œStructuredOutputv2-ZQlddœ,œnameœ:œstructured_outputœ,œoutput_typesœ:[œDataœ]}",
         "target": "ParseData-qN4UL",
-        "targetHandle": "{œfieldNameœ: œdataœ, œidœ: œParseData-qN4ULœ, œinputTypesœ: [œDataœ], œtypeœ: œotherœ}"
+        "targetHandle": "{œfieldNameœ:œdataœ,œidœ:œParseData-qN4ULœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}"
       }
     ],
     "nodes": [

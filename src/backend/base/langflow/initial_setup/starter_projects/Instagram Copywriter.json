@@ -25,9 +25,9 @@
         },
         "id": "reactflow__edge-TextInput-jcEYO{œdataTypeœ:œTextInputœ,œidœ:œTextInput-jcEYOœ,œnameœ:œtextœ,œoutput_typesœ:[œMessageœ]}-Prompt-5uTbs{œfieldNameœ:œguidelinesœ,œidœ:œPrompt-5uTbsœ,œinputTypesœ:[œMessageœ,œTextœ],œtypeœ:œstrœ}",
         "source": "TextInput-jcEYO",
-        "sourceHandle": "{œdataTypeœ: œTextInputœ, œidœ: œTextInput-jcEYOœ, œnameœ: œtextœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œTextInputœ,œidœ:œTextInput-jcEYOœ,œnameœ:œtextœ,œoutput_typesœ:[œMessageœ]}",
         "target": "Prompt-5uTbs",
-        "targetHandle": "{œfieldNameœ: œguidelinesœ, œidœ: œPrompt-5uTbsœ, œinputTypesœ: [œMessageœ, œTextœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œguidelinesœ,œidœ:œPrompt-5uTbsœ,œinputTypesœ:[œMessageœ,œTextœ],œtypeœ:œstrœ}"
       },
       {
         "animated": false,
@@ -52,9 +52,9 @@
         },
         "id": "reactflow__edge-ChatInput-RiIAB{œdataTypeœ:œChatInputœ,œidœ:œChatInput-RiIABœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}-Agent-nxMr2{œfieldNameœ:œinput_valueœ,œidœ:œAgent-nxMr2œ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "source": "ChatInput-RiIAB",
-        "sourceHandle": "{œdataTypeœ: œChatInputœ, œidœ: œChatInput-RiIABœ, œnameœ: œmessageœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œChatInputœ,œidœ:œChatInput-RiIABœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}",
         "target": "Agent-nxMr2",
-        "targetHandle": "{œfieldNameœ: œinput_valueœ, œidœ: œAgent-nxMr2œ, œinputTypesœ: [œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œAgent-nxMr2œ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "animated": false,
@@ -80,9 +80,9 @@
         },
         "id": "reactflow__edge-Agent-nxMr2{œdataTypeœ:œAgentœ,œidœ:œAgent-nxMr2œ,œnameœ:œresponseœ,œoutput_typesœ:[œMessageœ]}-Prompt-5uTbs{œfieldNameœ:œcontextœ,œidœ:œPrompt-5uTbsœ,œinputTypesœ:[œMessageœ,œTextœ],œtypeœ:œstrœ}",
         "source": "Agent-nxMr2",
-        "sourceHandle": "{œdataTypeœ: œAgentœ, œidœ: œAgent-nxMr2œ, œnameœ: œresponseœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œAgentœ,œidœ:œAgent-nxMr2œ,œnameœ:œresponseœ,œoutput_typesœ:[œMessageœ]}",
         "target": "Prompt-5uTbs",
-        "targetHandle": "{œfieldNameœ: œcontextœ, œidœ: œPrompt-5uTbsœ, œinputTypesœ: [œMessageœ, œTextœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œcontextœ,œidœ:œPrompt-5uTbsœ,œinputTypesœ:[œMessageœ,œTextœ],œtypeœ:œstrœ}"
       },
       {
         "className": "",
@@ -106,9 +106,9 @@
         },
         "id": "reactflow__edge-TavilySearchComponent-XbcIl{œdataTypeœ:œTavilySearchComponentœ,œidœ:œTavilySearchComponent-XbcIlœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}-Agent-nxMr2{œfieldNameœ:œtoolsœ,œidœ:œAgent-nxMr2œ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}",
         "source": "TavilySearchComponent-XbcIl",
-        "sourceHandle": "{œdataTypeœ: œTavilySearchComponentœ, œidœ: œTavilySearchComponent-XbcIlœ, œnameœ: œcomponent_as_toolœ, œoutput_typesœ: [œToolœ]}",
+        "sourceHandle": "{œdataTypeœ:œTavilySearchComponentœ,œidœ:œTavilySearchComponent-XbcIlœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}",
         "target": "Agent-nxMr2",
-        "targetHandle": "{œfieldNameœ: œtoolsœ, œidœ: œAgent-nxMr2œ, œinputTypesœ: [œToolœ], œtypeœ: œotherœ}"
+        "targetHandle": "{œfieldNameœ:œtoolsœ,œidœ:œAgent-nxMr2œ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}"
       },
       {
         "className": "",
@@ -132,9 +132,9 @@
         },
         "id": "reactflow__edge-Prompt-5uTbs{œdataTypeœ:œPromptœ,œidœ:œPrompt-5uTbsœ,œnameœ:œpromptœ,œoutput_typesœ:[œMessageœ]}-OpenAIModel-BUxp5{œfieldNameœ:œinput_valueœ,œidœ:œOpenAIModel-BUxp5œ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "source": "Prompt-5uTbs",
-        "sourceHandle": "{œdataTypeœ: œPromptœ, œidœ: œPrompt-5uTbsœ, œnameœ: œpromptœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œPromptœ,œidœ:œPrompt-5uTbsœ,œnameœ:œpromptœ,œoutput_typesœ:[œMessageœ]}",
         "target": "OpenAIModel-BUxp5",
-        "targetHandle": "{œfieldNameœ: œinput_valueœ, œidœ: œOpenAIModel-BUxp5œ, œinputTypesœ: [œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œOpenAIModel-BUxp5œ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "className": "",
@@ -159,9 +159,9 @@
         },
         "id": "reactflow__edge-OpenAIModel-BUxp5{œdataTypeœ:œOpenAIModelœ,œidœ:œOpenAIModel-BUxp5œ,œnameœ:œtext_outputœ,œoutput_typesœ:[œMessageœ]}-Prompt-vNJrn{œfieldNameœ:œpostœ,œidœ:œPrompt-vNJrnœ,œinputTypesœ:[œMessageœ,œTextœ],œtypeœ:œstrœ}",
         "source": "OpenAIModel-BUxp5",
-        "sourceHandle": "{œdataTypeœ: œOpenAIModelœ, œidœ: œOpenAIModel-BUxp5œ, œnameœ: œtext_outputœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œOpenAIModelœ,œidœ:œOpenAIModel-BUxp5œ,œnameœ:œtext_outputœ,œoutput_typesœ:[œMessageœ]}",
         "target": "Prompt-vNJrn",
-        "targetHandle": "{œfieldNameœ: œpostœ, œidœ: œPrompt-vNJrnœ, œinputTypesœ: [œMessageœ, œTextœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œpostœ,œidœ:œPrompt-vNJrnœ,œinputTypesœ:[œMessageœ,œTextœ],œtypeœ:œstrœ}"
       },
       {
         "className": "",
@@ -186,9 +186,9 @@
         },
         "id": "reactflow__edge-OpenAIModel-BUxp5{œdataTypeœ:œOpenAIModelœ,œidœ:œOpenAIModel-BUxp5œ,œnameœ:œtext_outputœ,œoutput_typesœ:[œMessageœ]}-Prompt-kfn20{œfieldNameœ:œpostœ,œidœ:œPrompt-kfn20œ,œinputTypesœ:[œMessageœ,œTextœ],œtypeœ:œstrœ}",
         "source": "OpenAIModel-BUxp5",
-        "sourceHandle": "{œdataTypeœ: œOpenAIModelœ, œidœ: œOpenAIModel-BUxp5œ, œnameœ: œtext_outputœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œOpenAIModelœ,œidœ:œOpenAIModel-BUxp5œ,œnameœ:œtext_outputœ,œoutput_typesœ:[œMessageœ]}",
         "target": "Prompt-kfn20",
-        "targetHandle": "{œfieldNameœ: œpostœ, œidœ: œPrompt-kfn20œ, œinputTypesœ: [œMessageœ, œTextœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œpostœ,œidœ:œPrompt-kfn20œ,œinputTypesœ:[œMessageœ,œTextœ],œtypeœ:œstrœ}"
       },
       {
         "className": "",
@@ -212,9 +212,9 @@
         },
         "id": "reactflow__edge-Prompt-vNJrn{œdataTypeœ:œPromptœ,œidœ:œPrompt-vNJrnœ,œnameœ:œpromptœ,œoutput_typesœ:[œMessageœ]}-OpenAIModel-EuPBl{œfieldNameœ:œinput_valueœ,œidœ:œOpenAIModel-EuPBlœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "source": "Prompt-vNJrn",
-        "sourceHandle": "{œdataTypeœ: œPromptœ, œidœ: œPrompt-vNJrnœ, œnameœ: œpromptœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œPromptœ,œidœ:œPrompt-vNJrnœ,œnameœ:œpromptœ,œoutput_typesœ:[œMessageœ]}",
         "target": "OpenAIModel-EuPBl",
-        "targetHandle": "{œfieldNameœ: œinput_valueœ, œidœ: œOpenAIModel-EuPBlœ, œinputTypesœ: [œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œOpenAIModel-EuPBlœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "className": "",
@@ -239,9 +239,9 @@
         },
         "id": "reactflow__edge-OpenAIModel-EuPBl{œdataTypeœ:œOpenAIModelœ,œidœ:œOpenAIModel-EuPBlœ,œnameœ:œtext_outputœ,œoutput_typesœ:[œMessageœ]}-Prompt-kfn20{œfieldNameœ:œimage_descriptionœ,œidœ:œPrompt-kfn20œ,œinputTypesœ:[œMessageœ,œTextœ],œtypeœ:œstrœ}",
         "source": "OpenAIModel-EuPBl",
-        "sourceHandle": "{œdataTypeœ: œOpenAIModelœ, œidœ: œOpenAIModel-EuPBlœ, œnameœ: œtext_outputœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œOpenAIModelœ,œidœ:œOpenAIModel-EuPBlœ,œnameœ:œtext_outputœ,œoutput_typesœ:[œMessageœ]}",
         "target": "Prompt-kfn20",
-        "targetHandle": "{œfieldNameœ: œimage_descriptionœ, œidœ: œPrompt-kfn20œ, œinputTypesœ: [œMessageœ, œTextœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œimage_descriptionœ,œidœ:œPrompt-kfn20œ,œinputTypesœ:[œMessageœ,œTextœ],œtypeœ:œstrœ}"
       },
       {
         "data": {
@@ -266,9 +266,9 @@
         },
         "id": "xy-edge__Prompt-kfn20{œdataTypeœ:œPromptœ,œidœ:œPrompt-kfn20œ,œnameœ:œpromptœ,œoutput_typesœ:[œMessageœ]}-ChatOutput-AZo3Y{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-AZo3Yœ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œstrœ}",
         "source": "Prompt-kfn20",
-        "sourceHandle": "{œdataTypeœ: œPromptœ, œidœ: œPrompt-kfn20œ, œnameœ: œpromptœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œPromptœ,œidœ:œPrompt-kfn20œ,œnameœ:œpromptœ,œoutput_typesœ:[œMessageœ]}",
         "target": "ChatOutput-AZo3Y",
-        "targetHandle": "{œfieldNameœ: œinput_valueœ, œidœ: œChatOutput-AZo3Yœ, œinputTypesœ: [œDataœ, œDataFrameœ, œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-AZo3Yœ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œstrœ}"
       }
     ],
     "nodes": [

@@ -26,9 +26,9 @@
         },
         "id": "reactflow__edge-Agent-8PETJ{œdataTypeœ:œAgentœ,œidœ:œAgent-8PETJœ,œnameœ:œresponseœ,œoutput_typesœ:[œMessageœ]}-ChatOutput-1fycm{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-1fycmœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "source": "Agent-8PETJ",
-        "sourceHandle": "{œdataTypeœ: œAgentœ, œidœ: œAgent-8PETJœ, œnameœ: œresponseœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œAgentœ,œidœ:œAgent-8PETJœ,œnameœ:œresponseœ,œoutput_typesœ:[œMessageœ]}",
         "target": "ChatOutput-1fycm",
-        "targetHandle": "{œfieldNameœ: œinput_valueœ, œidœ: œChatOutput-1fycmœ, œinputTypesœ: [œDataœ, œDataFrameœ, œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-1fycmœ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "animated": false,
@@ -53,9 +53,9 @@
         },
         "id": "reactflow__edge-Agent-Mb2Ep{œdataTypeœ:œAgentœ,œidœ:œAgent-Mb2Epœ,œnameœ:œresponseœ,œoutput_typesœ:[œMessageœ]}-Agent-8PETJ{œfieldNameœ:œinput_valueœ,œidœ:œAgent-8PETJœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "source": "Agent-Mb2Ep",
-        "sourceHandle": "{œdataTypeœ: œAgentœ, œidœ: œAgent-Mb2Epœ, œnameœ: œresponseœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œAgentœ,œidœ:œAgent-Mb2Epœ,œnameœ:œresponseœ,œoutput_typesœ:[œMessageœ]}",
         "target": "Agent-8PETJ",
-        "targetHandle": "{œfieldNameœ: œinput_valueœ, œidœ: œAgent-8PETJœ, œinputTypesœ: [œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œAgent-8PETJœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "animated": false,
@@ -80,9 +80,9 @@
         },
         "id": "reactflow__edge-Agent-VEG7r{œdataTypeœ:œAgentœ,œidœ:œAgent-VEG7rœ,œnameœ:œresponseœ,œoutput_typesœ:[œMessageœ]}-Agent-Mb2Ep{œfieldNameœ:œinput_valueœ,œidœ:œAgent-Mb2Epœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "source": "Agent-VEG7r",
-        "sourceHandle": "{œdataTypeœ: œAgentœ, œidœ: œAgent-VEG7rœ, œnameœ: œresponseœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œAgentœ,œidœ:œAgent-VEG7rœ,œnameœ:œresponseœ,œoutput_typesœ:[œMessageœ]}",
         "target": "Agent-Mb2Ep",
-        "targetHandle": "{œfieldNameœ: œinput_valueœ, œidœ: œAgent-Mb2Epœ, œinputTypesœ: [œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œAgent-Mb2Epœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "animated": false,
@@ -107,9 +107,9 @@
         },
         "id": "reactflow__edge-ChatInput-Nbu0b{œdataTypeœ:œChatInputœ,œidœ:œChatInput-Nbu0bœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}-Agent-VEG7r{œfieldNameœ:œinput_valueœ,œidœ:œAgent-VEG7rœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "source": "ChatInput-Nbu0b",
-        "sourceHandle": "{œdataTypeœ: œChatInputœ, œidœ: œChatInput-Nbu0bœ, œnameœ: œmessageœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œChatInputœ,œidœ:œChatInput-Nbu0bœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}",
         "target": "Agent-VEG7r",
-        "targetHandle": "{œfieldNameœ: œinput_valueœ, œidœ: œAgent-VEG7rœ, œinputTypesœ: [œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œAgent-VEG7rœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "animated": false,
@@ -134,9 +134,9 @@
         },
         "id": "reactflow__edge-URL-hJKTA{œdataTypeœ:œURLœ,œidœ:œURL-hJKTAœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}-Agent-Mb2Ep{œfieldNameœ:œtoolsœ,œidœ:œAgent-Mb2Epœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}",
         "source": "URL-hJKTA",
-        "sourceHandle": "{œdataTypeœ: œURLœ, œidœ: œURL-hJKTAœ, œnameœ: œcomponent_as_toolœ, œoutput_typesœ: [œToolœ]}",
+        "sourceHandle": "{œdataTypeœ:œURLœ,œidœ:œURL-hJKTAœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}",
         "target": "Agent-Mb2Ep",
-        "targetHandle": "{œfieldNameœ: œtoolsœ, œidœ: œAgent-Mb2Epœ, œinputTypesœ: [œToolœ], œtypeœ: œotherœ}"
+        "targetHandle": "{œfieldNameœ:œtoolsœ,œidœ:œAgent-Mb2Epœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}"
       },
       {
         "animated": false,
@@ -161,9 +161,9 @@
         },
         "id": "reactflow__edge-CalculatorComponent-T0153{œdataTypeœ:œCalculatorComponentœ,œidœ:œCalculatorComponent-T0153œ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}-Agent-8PETJ{œfieldNameœ:œtoolsœ,œidœ:œAgent-8PETJœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}",
         "source": "CalculatorComponent-T0153",
-        "sourceHandle": "{œdataTypeœ: œCalculatorComponentœ, œidœ: œCalculatorComponent-T0153œ, œnameœ: œcomponent_as_toolœ, œoutput_typesœ: [œToolœ]}",
+        "sourceHandle": "{œdataTypeœ:œCalculatorComponentœ,œidœ:œCalculatorComponent-T0153œ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}",
         "target": "Agent-8PETJ",
-        "targetHandle": "{œfieldNameœ: œtoolsœ, œidœ: œAgent-8PETJœ, œinputTypesœ: [œToolœ], œtypeœ: œotherœ}"
+        "targetHandle": "{œfieldNameœ:œtoolsœ,œidœ:œAgent-8PETJœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}"
       },
       {
         "animated": false,
@@ -188,9 +188,9 @@
         },
         "id": "reactflow__edge-SearchComponent-a9OCR{œdataTypeœ:œSearchComponentœ,œidœ:œSearchComponent-a9OCRœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}-Agent-VEG7r{œfieldNameœ:œtoolsœ,œidœ:œAgent-VEG7rœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}",
         "source": "SearchComponent-a9OCR",
-        "sourceHandle": "{œdataTypeœ: œSearchComponentœ, œidœ: œSearchComponent-a9OCRœ, œnameœ: œcomponent_as_toolœ, œoutput_typesœ: [œToolœ]}",
+        "sourceHandle": "{œdataTypeœ:œSearchComponentœ,œidœ:œSearchComponent-a9OCRœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}",
         "target": "Agent-VEG7r",
-        "targetHandle": "{œfieldNameœ: œtoolsœ, œidœ: œAgent-VEG7rœ, œinputTypesœ: [œToolœ], œtypeœ: œotherœ}"
+        "targetHandle": "{œfieldNameœ:œtoolsœ,œidœ:œAgent-VEG7rœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}"
       }
     ],
     "nodes": [

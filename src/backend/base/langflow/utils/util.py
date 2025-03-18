@@ -27,7 +27,8 @@ def remove_ansi_escape_codes(text):
 
 
 def build_template_from_function(name: str, type_to_loader_dict: dict, *, add_function: bool = False):
-    classes = [item.__annotations__["return"].__name__ for item in type_to_loader_dict.values()]
+    classes = [item.__annotations__[
+        "return"].__name__ for item in type_to_loader_dict.values()]
 
     # Raise error if name is not in chains
     if name not in classes:
@@ -53,12 +54,14 @@ def build_template_from_function(name: str, type_to_loader_dict: dict, *, add_fu
                                 module=class_.__base__.__module__, function=value_
                             )
                         except Exception:  # noqa: BLE001
-                            logger.opt(exception=True).debug(f"Error getting default factory for {value_}")
+                            logger.opt(exception=True).debug(
+                                f"Error getting default factory for {value_}")
                             variables[class_field_items]["default"] = None
                     elif name_ != "name":
                         variables[class_field_items][name_] = value_
 
-                variables[class_field_items]["placeholder"] = docs.params.get(class_field_items, "")
+                variables[class_field_items]["placeholder"] = docs.params.get(
+                    class_field_items, "")
             # Adding function to base classes to allow
             # the output to be a function
             base_classes = get_base_classes(class_)
@@ -278,7 +281,8 @@ def check_list_type(type_: str, value: dict[str, Any]) -> str:
         The modified type string.
     """
     if any(list_type in type_ for list_type in ["List", "Sequence", "Set"]):
-        type_ = type_.replace("List[", "").replace("Sequence[", "").replace("Set[", "")[:-1]
+        type_ = type_.replace("List[", "").replace(
+            "Sequence[", "").replace("Set[", "")[:-1]
         value["list"] = True
     else:
         value["list"] = False
@@ -426,13 +430,15 @@ async def update_settings(
         await settings_service.settings.update_from_yaml(config, dev=dev)
     if remove_api_keys:
         logger.debug(f"Setting remove_api_keys to {remove_api_keys}")
-        settings_service.settings.update_settings(remove_api_keys=remove_api_keys)
+        settings_service.settings.update_settings(
+            remove_api_keys=remove_api_keys)
     if cache:
         logger.debug(f"Setting cache to {cache}")
         settings_service.settings.update_settings(cache=cache)
     if components_path:
         logger.debug(f"Adding component path {components_path}")
-        settings_service.settings.update_settings(components_path=components_path)
+        settings_service.settings.update_settings(
+            components_path=components_path)
     if not store:
         logger.debug("Setting store to False")
         settings_service.settings.update_settings(store=False)
@@ -441,13 +447,17 @@ async def update_settings(
         settings_service.settings.update_settings(auto_saving=False)
     if auto_saving_interval is not None:
         logger.debug(f"Setting auto_saving_interval to {auto_saving_interval}")
-        settings_service.settings.update_settings(auto_saving_interval=auto_saving_interval)
+        settings_service.settings.update_settings(
+            auto_saving_interval=auto_saving_interval)
     if health_check_max_retries is not None:
-        logger.debug(f"Setting health_check_max_retries to {health_check_max_retries}")
-        settings_service.settings.update_settings(health_check_max_retries=health_check_max_retries)
+        logger.debug(
+            f"Setting health_check_max_retries to {health_check_max_retries}")
+        settings_service.settings.update_settings(
+            health_check_max_retries=health_check_max_retries)
     if max_file_size_upload is not None:
         logger.debug(f"Setting max_file_size_upload to {max_file_size_upload}")
-        settings_service.settings.update_settings(max_file_size_upload=max_file_size_upload)
+        settings_service.settings.update_settings(
+            max_file_size_upload=max_file_size_upload)
 
 
 def is_class_method(func, cls):
@@ -456,12 +466,13 @@ def is_class_method(func, cls):
 
 
 def escape_json_dump(edge_dict):
-    return json.dumps(edge_dict).replace('"', "œ")
+    return json.dumps(edge_dict).replace('"', "œ").replace(" ", '')
 
 
 def find_closest_match(string: str, list_of_strings: list[str]) -> str | None:
     """Find the closest match in a list of strings."""
-    closest_match = difflib.get_close_matches(string, list_of_strings, n=1, cutoff=0.2)
+    closest_match = difflib.get_close_matches(
+        string, list_of_strings, n=1, cutoff=0.2)
     if closest_match:
         return closest_match[0]
     return None

@@ -25,9 +25,9 @@
         "id": "reactflow__edge-ChatInput-JDz15{œdataTypeœ:œChatInputœ,œidœ:œChatInput-JDz15œ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}-Agent-jnpdC{œfieldNameœ:œinput_valueœ,œidœ:œAgent-jnpdCœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "selected": false,
         "source": "ChatInput-JDz15",
-        "sourceHandle": "{œdataTypeœ: œChatInputœ, œidœ: œChatInput-JDz15œ, œnameœ: œmessageœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œChatInputœ,œidœ:œChatInput-JDz15œ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}",
         "target": "Agent-jnpdC",
-        "targetHandle": "{œfieldNameœ: œinput_valueœ, œidœ: œAgent-jnpdCœ, œinputTypesœ: [œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œAgent-jnpdCœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "animated": false,
@@ -55,9 +55,9 @@
         "id": "reactflow__edge-Agent-jnpdC{œdataTypeœ:œAgentœ,œidœ:œAgent-jnpdCœ,œnameœ:œresponseœ,œoutput_typesœ:[œMessageœ]}-ChatOutput-lgshI{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-lgshIœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "selected": false,
         "source": "Agent-jnpdC",
-        "sourceHandle": "{œdataTypeœ: œAgentœ, œidœ: œAgent-jnpdCœ, œnameœ: œresponseœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œAgentœ,œidœ:œAgent-jnpdCœ,œnameœ:œresponseœ,œoutput_typesœ:[œMessageœ]}",
         "target": "ChatOutput-lgshI",
-        "targetHandle": "{œfieldNameœ: œinput_valueœ, œidœ: œChatOutput-lgshIœ, œinputTypesœ: [œDataœ, œDataFrameœ, œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-lgshIœ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "className": "",
@@ -81,9 +81,9 @@
         },
         "id": "xy-edge__ComposioAPI-ajGtz{œdataTypeœ:œComposioAPIœ,œidœ:œComposioAPI-ajGtzœ,œnameœ:œtoolsœ,œoutput_typesœ:[œToolœ]}-Agent-jnpdC{œfieldNameœ:œtoolsœ,œidœ:œAgent-jnpdCœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}",
         "source": "ComposioAPI-ajGtz",
-        "sourceHandle": "{œdataTypeœ: œComposioAPIœ, œidœ: œComposioAPI-ajGtzœ, œnameœ: œtoolsœ, œoutput_typesœ: [œToolœ]}",
+        "sourceHandle": "{œdataTypeœ:œComposioAPIœ,œidœ:œComposioAPI-ajGtzœ,œnameœ:œtoolsœ,œoutput_typesœ:[œToolœ]}",
         "target": "Agent-jnpdC",
-        "targetHandle": "{œfieldNameœ: œtoolsœ, œidœ: œAgent-jnpdCœ, œinputTypesœ: [œToolœ], œtypeœ: œotherœ}"
+        "targetHandle": "{œfieldNameœ:œtoolsœ,œidœ:œAgent-jnpdCœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}"
       }
     ],
     "nodes": [

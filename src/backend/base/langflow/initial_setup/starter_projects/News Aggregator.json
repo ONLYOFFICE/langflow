@@ -24,9 +24,9 @@
         },
         "id": "xy-edge__AgentQL-mPzt1{œdataTypeœ:œAgentQLœ,œidœ:œAgentQL-mPzt1œ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}-Agent-VOnBt{œfieldNameœ:œtoolsœ,œidœ:œAgent-VOnBtœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}",
         "source": "AgentQL-mPzt1",
-        "sourceHandle": "{œdataTypeœ: œAgentQLœ, œidœ: œAgentQL-mPzt1œ, œnameœ: œcomponent_as_toolœ, œoutput_typesœ: [œToolœ]}",
+        "sourceHandle": "{œdataTypeœ:œAgentQLœ,œidœ:œAgentQL-mPzt1œ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}",
         "target": "Agent-VOnBt",
-        "targetHandle": "{œfieldNameœ: œtoolsœ, œidœ: œAgent-VOnBtœ, œinputTypesœ: [œToolœ], œtypeœ: œotherœ}"
+        "targetHandle": "{œfieldNameœ:œtoolsœ,œidœ:œAgent-VOnBtœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}"
       },
       {
         "animated": false,
@@ -53,9 +53,9 @@
         },
         "id": "xy-edge__Agent-VOnBt{œdataTypeœ:œAgentœ,œidœ:œAgent-VOnBtœ,œnameœ:œresponseœ,œoutput_typesœ:[œMessageœ]}-ChatOutput-SyzjF{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-SyzjFœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "source": "Agent-VOnBt",
-        "sourceHandle": "{œdataTypeœ: œAgentœ, œidœ: œAgent-VOnBtœ, œnameœ: œresponseœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œAgentœ,œidœ:œAgent-VOnBtœ,œnameœ:œresponseœ,œoutput_typesœ:[œMessageœ]}",
         "target": "ChatOutput-SyzjF",
-        "targetHandle": "{œfieldNameœ: œinput_valueœ, œidœ: œChatOutput-SyzjFœ, œinputTypesœ: [œDataœ, œDataFrameœ, œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-SyzjFœ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "animated": false,
@@ -80,9 +80,9 @@
         },
         "id": "xy-edge__ChatInput-5A2FR{œdataTypeœ:œChatInputœ,œidœ:œChatInput-5A2FRœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}-Agent-VOnBt{œfieldNameœ:œinput_valueœ,œidœ:œAgent-VOnBtœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "source": "ChatInput-5A2FR",
-        "sourceHandle": "{œdataTypeœ: œChatInputœ, œidœ: œChatInput-5A2FRœ, œnameœ: œmessageœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œChatInputœ,œidœ:œChatInput-5A2FRœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}",
         "target": "Agent-VOnBt",
-        "targetHandle": "{œfieldNameœ: œinput_valueœ, œidœ: œAgent-VOnBtœ, œinputTypesœ: [œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œAgent-VOnBtœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       }
     ],
     "nodes": [

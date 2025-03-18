@@ -24,9 +24,9 @@
         },
         "id": "reactflow__edge-Prompt-KQVLR{œdataTypeœ:œPromptœ,œidœ:œPrompt-KQVLRœ,œnameœ:œpromptœ,œoutput_typesœ:[œMessageœ]}-Agent-mzPNm{œfieldNameœ:œsystem_promptœ,œidœ:œAgent-mzPNmœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "source": "Prompt-KQVLR",
-        "sourceHandle": "{œdataTypeœ: œPromptœ, œidœ: œPrompt-KQVLRœ, œnameœ: œpromptœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œPromptœ,œidœ:œPrompt-KQVLRœ,œnameœ:œpromptœ,œoutput_typesœ:[œMessageœ]}",
         "target": "Agent-mzPNm",
-        "targetHandle": "{œfieldNameœ: œsystem_promptœ, œidœ: œAgent-mzPNmœ, œinputTypesœ: [œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œsystem_promptœ,œidœ:œAgent-mzPNmœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "animated": false,
@@ -51,9 +51,9 @@
         },
         "id": "reactflow__edge-Prompt-zC2bp{œdataTypeœ:œPromptœ,œidœ:œPrompt-zC2bpœ,œnameœ:œpromptœ,œoutput_typesœ:[œMessageœ]}-Agent-PNvaZ{œfieldNameœ:œsystem_promptœ,œidœ:œAgent-PNvaZœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "source": "Prompt-zC2bp",
-        "sourceHandle": "{œdataTypeœ: œPromptœ, œidœ: œPrompt-zC2bpœ, œnameœ: œpromptœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œPromptœ,œidœ:œPrompt-zC2bpœ,œnameœ:œpromptœ,œoutput_typesœ:[œMessageœ]}",
         "target": "Agent-PNvaZ",
-        "targetHandle": "{œfieldNameœ: œsystem_promptœ, œidœ: œAgent-PNvaZœ, œinputTypesœ: [œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œsystem_promptœ,œidœ:œAgent-PNvaZœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "animated": false,
@@ -79,9 +79,9 @@
         },
         "id": "reactflow__edge-Agent-PNvaZ{œdataTypeœ:œAgentœ,œidœ:œAgent-PNvaZœ,œnameœ:œresponseœ,œoutput_typesœ:[œMessageœ]}-Prompt-KQVLR{œfieldNameœ:œfinance_agent_outputœ,œidœ:œPrompt-KQVLRœ,œinputTypesœ:[œMessageœ,œTextœ],œtypeœ:œstrœ}",
         "source": "Agent-PNvaZ",
-        "sourceHandle": "{œdataTypeœ: œAgentœ, œidœ: œAgent-PNvaZœ, œnameœ: œresponseœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œAgentœ,œidœ:œAgent-PNvaZœ,œnameœ:œresponseœ,œoutput_typesœ:[œMessageœ]}",
         "target": "Prompt-KQVLR",
-        "targetHandle": "{œfieldNameœ: œfinance_agent_outputœ, œidœ: œPrompt-KQVLRœ, œinputTypesœ: [œMessageœ, œTextœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œfinance_agent_outputœ,œidœ:œPrompt-KQVLRœ,œinputTypesœ:[œMessageœ,œTextœ],œtypeœ:œstrœ}"
       },
       {
         "animated": false,
@@ -106,9 +106,9 @@
         },
         "id": "reactflow__edge-ChatInput-ZyZgH{œdataTypeœ:œChatInputœ,œidœ:œChatInput-ZyZgHœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}-Agent-58C6Q{œfieldNameœ:œinput_valueœ,œidœ:œAgent-58C6Qœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "source": "ChatInput-ZyZgH",
-        "sourceHandle": "{œdataTypeœ: œChatInputœ, œidœ: œChatInput-ZyZgHœ, œnameœ: œmessageœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œChatInputœ,œidœ:œChatInput-ZyZgHœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}",
         "target": "Agent-58C6Q",
-        "targetHandle": "{œfieldNameœ: œinput_valueœ, œidœ: œAgent-58C6Qœ, œinputTypesœ: [œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œAgent-58C6Qœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "animated": false,
@@ -133,9 +133,9 @@
         },
         "id": "reactflow__edge-Prompt-b9wSh{œdataTypeœ:œPromptœ,œidœ:œPrompt-b9wShœ,œnameœ:œpromptœ,œoutput_typesœ:[œMessageœ]}-Agent-58C6Q{œfieldNameœ:œsystem_promptœ,œidœ:œAgent-58C6Qœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "source": "Prompt-b9wSh",
-        "sourceHandle": "{œdataTypeœ: œPromptœ, œidœ: œPrompt-b9wShœ, œnameœ: œpromptœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œPromptœ,œidœ:œPrompt-b9wShœ,œnameœ:œpromptœ,œoutput_typesœ:[œMessageœ]}",
         "target": "Agent-58C6Q",
-        "targetHandle": "{œfieldNameœ: œsystem_promptœ, œidœ: œAgent-58C6Qœ, œinputTypesœ: [œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œsystem_promptœ,œidœ:œAgent-58C6Qœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "animated": false,
@@ -160,9 +160,9 @@
         },
         "id": "reactflow__edge-Agent-58C6Q{œdataTypeœ:œAgentœ,œidœ:œAgent-58C6Qœ,œnameœ:œresponseœ,œoutput_typesœ:[œMessageœ]}-Agent-PNvaZ{œfieldNameœ:œinput_valueœ,œidœ:œAgent-PNvaZœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "source": "Agent-58C6Q",
-        "sourceHandle": "{œdataTypeœ: œAgentœ, œidœ: œAgent-58C6Qœ, œnameœ: œresponseœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œAgentœ,œidœ:œAgent-58C6Qœ,œnameœ:œresponseœ,œoutput_typesœ:[œMessageœ]}",
         "target": "Agent-PNvaZ",
-        "targetHandle": "{œfieldNameœ: œinput_valueœ, œidœ: œAgent-PNvaZœ, œinputTypesœ: [œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œAgent-PNvaZœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "animated": false,
@@ -188,9 +188,9 @@
         },
         "id": "reactflow__edge-Agent-58C6Q{œdataTypeœ:œAgentœ,œidœ:œAgent-58C6Qœ,œnameœ:œresponseœ,œoutput_typesœ:[œMessageœ]}-Prompt-KQVLR{œfieldNameœ:œresearch_agent_outputœ,œidœ:œPrompt-KQVLRœ,œinputTypesœ:[œMessageœ,œTextœ],œtypeœ:œstrœ}",
         "source": "Agent-58C6Q",
-        "sourceHandle": "{œdataTypeœ: œAgentœ, œidœ: œAgent-58C6Qœ, œnameœ: œresponseœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œAgentœ,œidœ:œAgent-58C6Qœ,œnameœ:œresponseœ,œoutput_typesœ:[œMessageœ]}",
         "target": "Prompt-KQVLR",
-        "targetHandle": "{œfieldNameœ: œresearch_agent_outputœ, œidœ: œPrompt-KQVLRœ, œinputTypesœ: [œMessageœ, œTextœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œresearch_agent_outputœ,œidœ:œPrompt-KQVLRœ,œinputTypesœ:[œMessageœ,œTextœ],œtypeœ:œstrœ}"
       },
       {
         "className": "",
@@ -214,9 +214,9 @@
         },
         "id": "reactflow__edge-CalculatorComponent-idZ9Q{œdataTypeœ:œCalculatorComponentœ,œidœ:œCalculatorComponent-idZ9Qœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}-Agent-mzPNm{œfieldNameœ:œtoolsœ,œidœ:œAgent-mzPNmœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}",
         "source": "CalculatorComponent-idZ9Q",
-        "sourceHandle": "{œdataTypeœ: œCalculatorComponentœ, œidœ: œCalculatorComponent-idZ9Qœ, œnameœ: œcomponent_as_toolœ, œoutput_typesœ: [œToolœ]}",
+        "sourceHandle": "{œdataTypeœ:œCalculatorComponentœ,œidœ:œCalculatorComponent-idZ9Qœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}",
         "target": "Agent-mzPNm",
-        "targetHandle": "{œfieldNameœ: œtoolsœ, œidœ: œAgent-mzPNmœ, œinputTypesœ: [œToolœ], œtypeœ: œotherœ}"
+        "targetHandle": "{œfieldNameœ:œtoolsœ,œidœ:œAgent-mzPNmœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}"
       },
       {
         "className": "",
@@ -240,9 +240,9 @@
         },
         "id": "reactflow__edge-YfinanceComponent-uJAk8{œdataTypeœ:œYfinanceComponentœ,œidœ:œYfinanceComponent-uJAk8œ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}-Agent-PNvaZ{œfieldNameœ:œtoolsœ,œidœ:œAgent-PNvaZœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}",
         "source": "YfinanceComponent-uJAk8",
-        "sourceHandle": "{œdataTypeœ: œYfinanceComponentœ, œidœ: œYfinanceComponent-uJAk8œ, œnameœ: œcomponent_as_toolœ, œoutput_typesœ: [œToolœ]}",
+        "sourceHandle": "{œdataTypeœ:œYfinanceComponentœ,œidœ:œYfinanceComponent-uJAk8œ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}",
         "target": "Agent-PNvaZ",
-        "targetHandle": "{œfieldNameœ: œtoolsœ, œidœ: œAgent-PNvaZœ, œinputTypesœ: [œToolœ], œtypeœ: œotherœ}"
+        "targetHandle": "{œfieldNameœ:œtoolsœ,œidœ:œAgent-PNvaZœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}"
       },
       {
         "className": "",
@@ -266,9 +266,9 @@
         },
         "id": "reactflow__edge-TavilySearchComponent-UfEaB{œdataTypeœ:œTavilySearchComponentœ,œidœ:œTavilySearchComponent-UfEaBœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}-Agent-58C6Q{œfieldNameœ:œtoolsœ,œidœ:œAgent-58C6Qœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}",
         "source": "TavilySearchComponent-UfEaB",
-        "sourceHandle": "{œdataTypeœ: œTavilySearchComponentœ, œidœ: œTavilySearchComponent-UfEaBœ, œnameœ: œcomponent_as_toolœ, œoutput_typesœ: [œToolœ]}",
+        "sourceHandle": "{œdataTypeœ:œTavilySearchComponentœ,œidœ:œTavilySearchComponent-UfEaBœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}",
         "target": "Agent-58C6Q",
-        "targetHandle": "{œfieldNameœ: œtoolsœ, œidœ: œAgent-58C6Qœ, œinputTypesœ: [œToolœ], œtypeœ: œotherœ}"
+        "targetHandle": "{œfieldNameœ:œtoolsœ,œidœ:œAgent-58C6Qœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}"
       },
       {
         "data": {
@@ -293,9 +293,9 @@
         },
         "id": "xy-edge__Agent-mzPNm{œdataTypeœ:œAgentœ,œidœ:œAgent-mzPNmœ,œnameœ:œresponseœ,œoutput_typesœ:[œMessageœ]}-ChatOutput-6kq7Z{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-6kq7Zœ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œotherœ}",
         "source": "Agent-mzPNm",
-        "sourceHandle": "{œdataTypeœ: œAgentœ, œidœ: œAgent-mzPNmœ, œnameœ: œresponseœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œAgentœ,œidœ:œAgent-mzPNmœ,œnameœ:œresponseœ,œoutput_typesœ:[œMessageœ]}",
         "target": "ChatOutput-6kq7Z",
-        "targetHandle": "{œfieldNameœ: œinput_valueœ, œidœ: œChatOutput-6kq7Zœ, œinputTypesœ: [œDataœ, œDataFrameœ, œMessageœ], œtypeœ: œotherœ}"
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-6kq7Zœ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œotherœ}"
       }
     ],
     "nodes": [

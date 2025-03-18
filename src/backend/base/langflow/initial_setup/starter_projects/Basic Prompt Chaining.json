@@ -24,9 +24,9 @@
         "id": "reactflow__edge-Prompt-f1f2v{œdataTypeœ:œPromptœ,œidœ:œPrompt-f1f2vœ,œnameœ:œpromptœ,œoutput_typesœ:[œMessageœ]}-OpenAIModel-lL9HA{œfieldNameœ:œsystem_messageœ,œidœ:œOpenAIModel-lL9HAœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "selected": false,
         "source": "Prompt-f1f2v",
-        "sourceHandle": "{œdataTypeœ: œPromptœ, œidœ: œPrompt-f1f2vœ, œnameœ: œpromptœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œPromptœ,œidœ:œPrompt-f1f2vœ,œnameœ:œpromptœ,œoutput_typesœ:[œMessageœ]}",
         "target": "OpenAIModel-lL9HA",
-        "targetHandle": "{œfieldNameœ: œsystem_messageœ, œidœ: œOpenAIModel-lL9HAœ, œinputTypesœ: [œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œsystem_messageœ,œidœ:œOpenAIModel-lL9HAœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "className": "",
@@ -51,9 +51,9 @@
         "id": "reactflow__edge-ChatInput-GyBUF{œdataTypeœ:œChatInputœ,œidœ:œChatInput-GyBUFœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}-OpenAIModel-lL9HA{œfieldNameœ:œinput_valueœ,œidœ:œOpenAIModel-lL9HAœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "selected": false,
         "source": "ChatInput-GyBUF",
-        "sourceHandle": "{œdataTypeœ: œChatInputœ, œidœ: œChatInput-GyBUFœ, œnameœ: œmessageœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œChatInputœ,œidœ:œChatInput-GyBUFœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}",
         "target": "OpenAIModel-lL9HA",
-        "targetHandle": "{œfieldNameœ: œinput_valueœ, œidœ: œOpenAIModel-lL9HAœ, œinputTypesœ: [œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œOpenAIModel-lL9HAœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "className": "",
@@ -78,9 +78,9 @@
         "id": "reactflow__edge-OpenAIModel-lL9HA{œdataTypeœ:œOpenAIModelœ,œidœ:œOpenAIModel-lL9HAœ,œnameœ:œtext_outputœ,œoutput_typesœ:[œMessageœ]}-OpenAIModel-JieGw{œfieldNameœ:œinput_valueœ,œidœ:œOpenAIModel-JieGwœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "selected": false,
         "source": "OpenAIModel-lL9HA",
-        "sourceHandle": "{œdataTypeœ: œOpenAIModelœ, œidœ: œOpenAIModel-lL9HAœ, œnameœ: œtext_outputœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œOpenAIModelœ,œidœ:œOpenAIModel-lL9HAœ,œnameœ:œtext_outputœ,œoutput_typesœ:[œMessageœ]}",
         "target": "OpenAIModel-JieGw",
-        "targetHandle": "{œfieldNameœ: œinput_valueœ, œidœ: œOpenAIModel-JieGwœ, œinputTypesœ: [œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œOpenAIModel-JieGwœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "className": "",
@@ -105,9 +105,9 @@
         "id": "reactflow__edge-Prompt-4IOgm{œdataTypeœ:œPromptœ,œidœ:œPrompt-4IOgmœ,œnameœ:œpromptœ,œoutput_typesœ:[œMessageœ]}-OpenAIModel-JieGw{œfieldNameœ:œsystem_messageœ,œidœ:œOpenAIModel-JieGwœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "selected": false,
         "source": "Prompt-4IOgm",
-        "sourceHandle": "{œdataTypeœ: œPromptœ, œidœ: œPrompt-4IOgmœ, œnameœ: œpromptœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œPromptœ,œidœ:œPrompt-4IOgmœ,œnameœ:œpromptœ,œoutput_typesœ:[œMessageœ]}",
         "target": "OpenAIModel-JieGw",
-        "targetHandle": "{œfieldNameœ: œsystem_messageœ, œidœ: œOpenAIModel-JieGwœ, œinputTypesœ: [œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œsystem_messageœ,œidœ:œOpenAIModel-JieGwœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "className": "",
@@ -132,9 +132,9 @@
         "id": "reactflow__edge-OpenAIModel-JieGw{œdataTypeœ:œOpenAIModelœ,œidœ:œOpenAIModel-JieGwœ,œnameœ:œtext_outputœ,œoutput_typesœ:[œMessageœ]}-OpenAIModel-dXMRv{œfieldNameœ:œinput_valueœ,œidœ:œOpenAIModel-dXMRvœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "selected": false,
         "source": "OpenAIModel-JieGw",
-        "sourceHandle": "{œdataTypeœ: œOpenAIModelœ, œidœ: œOpenAIModel-JieGwœ, œnameœ: œtext_outputœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œOpenAIModelœ,œidœ:œOpenAIModel-JieGwœ,œnameœ:œtext_outputœ,œoutput_typesœ:[œMessageœ]}",
         "target": "OpenAIModel-dXMRv",
-        "targetHandle": "{œfieldNameœ: œinput_valueœ, œidœ: œOpenAIModel-dXMRvœ, œinputTypesœ: [œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œOpenAIModel-dXMRvœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "className": "",
@@ -159,9 +159,9 @@
         "id": "reactflow__edge-Prompt-FRjO8{œdataTypeœ:œPromptœ,œidœ:œPrompt-FRjO8œ,œnameœ:œpromptœ,œoutput_typesœ:[œMessageœ]}-OpenAIModel-dXMRv{œfieldNameœ:œsystem_messageœ,œidœ:œOpenAIModel-dXMRvœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "selected": false,
         "source": "Prompt-FRjO8",
-        "sourceHandle": "{œdataTypeœ: œPromptœ, œidœ: œPrompt-FRjO8œ, œnameœ: œpromptœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œPromptœ,œidœ:œPrompt-FRjO8œ,œnameœ:œpromptœ,œoutput_typesœ:[œMessageœ]}",
         "target": "OpenAIModel-dXMRv",
-        "targetHandle": "{œfieldNameœ: œsystem_messageœ, œidœ: œOpenAIModel-dXMRvœ, œinputTypesœ: [œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œsystem_messageœ,œidœ:œOpenAIModel-dXMRvœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "className": "",
@@ -188,9 +188,9 @@
         "id": "reactflow__edge-OpenAIModel-dXMRv{œdataTypeœ:œOpenAIModelœ,œidœ:œOpenAIModel-dXMRvœ,œnameœ:œtext_outputœ,œoutput_typesœ:[œMessageœ]}-ChatOutput-KXQMh{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-KXQMhœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "selected": false,
         "source": "OpenAIModel-dXMRv",
-        "sourceHandle": "{œdataTypeœ: œOpenAIModelœ, œidœ: œOpenAIModel-dXMRvœ, œnameœ: œtext_outputœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œOpenAIModelœ,œidœ:œOpenAIModel-dXMRvœ,œnameœ:œtext_outputœ,œoutput_typesœ:[œMessageœ]}",
         "target": "ChatOutput-KXQMh",
-        "targetHandle": "{œfieldNameœ: œinput_valueœ, œidœ: œChatOutput-KXQMhœ, œinputTypesœ: [œDataœ, œDataFrameœ, œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-KXQMhœ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œstrœ}"
       }
     ],
     "nodes": [

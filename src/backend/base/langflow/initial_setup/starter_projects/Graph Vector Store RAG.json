@@ -25,9 +25,9 @@
         "id": "reactflow__edge-OpenAIEmbeddings-jyvkr{œdataTypeœ:œOpenAIEmbeddingsœ,œidœ:œOpenAIEmbeddings-jyvkrœ,œnameœ:œembeddingsœ,œoutput_typesœ:[œEmbeddingsœ]}-AstraDBGraph-jr8pY{œfieldNameœ:œembedding_modelœ,œidœ:œAstraDBGraph-jr8pYœ,œinputTypesœ:[œEmbeddingsœ],œtypeœ:œotherœ}",
         "selected": false,
         "source": "OpenAIEmbeddings-jyvkr",
-        "sourceHandle": "{œdataTypeœ: œOpenAIEmbeddingsœ, œidœ: œOpenAIEmbeddings-jyvkrœ, œnameœ: œembeddingsœ, œoutput_typesœ: [œEmbeddingsœ]}",
+        "sourceHandle": "{œdataTypeœ:œOpenAIEmbeddingsœ,œidœ:œOpenAIEmbeddings-jyvkrœ,œnameœ:œembeddingsœ,œoutput_typesœ:[œEmbeddingsœ]}",
         "target": "AstraDBGraph-jr8pY",
-        "targetHandle": "{œfieldNameœ: œembedding_modelœ, œidœ: œAstraDBGraph-jr8pYœ, œinputTypesœ: [œEmbeddingsœ], œtypeœ: œotherœ}"
+        "targetHandle": "{œfieldNameœ:œembedding_modelœ,œidœ:œAstraDBGraph-jr8pYœ,œinputTypesœ:[œEmbeddingsœ],œtypeœ:œotherœ}"
       },
       {
         "animated": false,
@@ -53,9 +53,9 @@
         "id": "reactflow__edge-ChatInput-ZCSfi{œdataTypeœ:œChatInputœ,œidœ:œChatInput-ZCSfiœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}-AstraDBGraph-jr8pY{œfieldNameœ:œsearch_queryœ,œidœ:œAstraDBGraph-jr8pYœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "selected": false,
         "source": "ChatInput-ZCSfi",
-        "sourceHandle": "{œdataTypeœ: œChatInputœ, œidœ: œChatInput-ZCSfiœ, œnameœ: œmessageœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œChatInputœ,œidœ:œChatInput-ZCSfiœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}",
         "target": "AstraDBGraph-jr8pY",
-        "targetHandle": "{œfieldNameœ: œsearch_queryœ, œidœ: œAstraDBGraph-jr8pYœ, œinputTypesœ: [œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œsearch_queryœ,œidœ:œAstraDBGraph-jr8pYœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "animated": false,
@@ -81,9 +81,9 @@
         "id": "reactflow__edge-AstraDBGraph-jr8pY{œdataTypeœ:œAstraDBGraphœ,œidœ:œAstraDBGraph-jr8pYœ,œnameœ:œsearch_resultsœ,œoutput_typesœ:[œDataœ]}-ParseData-T6FGT{œfieldNameœ:œdataœ,œidœ:œParseData-T6FGTœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}",
         "selected": false,
         "source": "AstraDBGraph-jr8pY",
-        "sourceHandle": "{œdataTypeœ: œAstraDBGraphœ, œidœ: œAstraDBGraph-jr8pYœ, œnameœ: œsearch_resultsœ, œoutput_typesœ: [œDataœ]}",
+        "sourceHandle": "{œdataTypeœ:œAstraDBGraphœ,œidœ:œAstraDBGraph-jr8pYœ,œnameœ:œsearch_resultsœ,œoutput_typesœ:[œDataœ]}",
         "target": "ParseData-T6FGT",
-        "targetHandle": "{œfieldNameœ: œdataœ, œidœ: œParseData-T6FGTœ, œinputTypesœ: [œDataœ], œtypeœ: œotherœ}"
+        "targetHandle": "{œfieldNameœ:œdataœ,œidœ:œParseData-T6FGTœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}"
       },
       {
         "animated": false,
@@ -110,9 +110,9 @@
         "id": "reactflow__edge-ParseData-T6FGT{œdataTypeœ:œParseDataœ,œidœ:œParseData-T6FGTœ,œnameœ:œtextœ,œoutput_typesœ:[œMessageœ]}-Prompt-2M2d5{œfieldNameœ:œcontextœ,œidœ:œPrompt-2M2d5œ,œinputTypesœ:[œMessageœ,œTextœ],œtypeœ:œstrœ}",
         "selected": false,
         "source": "ParseData-T6FGT",
-        "sourceHandle": "{œdataTypeœ: œParseDataœ, œidœ: œParseData-T6FGTœ, œnameœ: œtextœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œParseDataœ,œidœ:œParseData-T6FGTœ,œnameœ:œtextœ,œoutput_typesœ:[œMessageœ]}",
         "target": "Prompt-2M2d5",
-        "targetHandle": "{œfieldNameœ: œcontextœ, œidœ: œPrompt-2M2d5œ, œinputTypesœ: [œMessageœ, œTextœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œcontextœ,œidœ:œPrompt-2M2d5œ,œinputTypesœ:[œMessageœ,œTextœ],œtypeœ:œstrœ}"
       },
       {
         "animated": false,
@@ -139,9 +139,9 @@
         "id": "reactflow__edge-ChatInput-ZCSfi{œdataTypeœ:œChatInputœ,œidœ:œChatInput-ZCSfiœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}-Prompt-2M2d5{œfieldNameœ:œquestionœ,œidœ:œPrompt-2M2d5œ,œinputTypesœ:[œMessageœ,œTextœ],œtypeœ:œstrœ}",
         "selected": false,
         "source": "ChatInput-ZCSfi",
-        "sourceHandle": "{œdataTypeœ: œChatInputœ, œidœ: œChatInput-ZCSfiœ, œnameœ: œmessageœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œChatInputœ,œidœ:œChatInput-ZCSfiœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}",
         "target": "Prompt-2M2d5",
-        "targetHandle": "{œfieldNameœ: œquestionœ, œidœ: œPrompt-2M2d5œ, œinputTypesœ: [œMessageœ, œTextœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œquestionœ,œidœ:œPrompt-2M2d5œ,œinputTypesœ:[œMessageœ,œTextœ],œtypeœ:œstrœ}"
       },
       {
         "animated": false,
@@ -167,9 +167,9 @@
         "id": "reactflow__edge-Prompt-2M2d5{œdataTypeœ:œPromptœ,œidœ:œPrompt-2M2d5œ,œnameœ:œpromptœ,œoutput_typesœ:[œMessageœ]}-OpenAIModel-a26gL{œfieldNameœ:œinput_valueœ,œidœ:œOpenAIModel-a26gLœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "selected": false,
         "source": "Prompt-2M2d5",
-        "sourceHandle": "{œdataTypeœ: œPromptœ, œidœ: œPrompt-2M2d5œ, œnameœ: œpromptœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œPromptœ,œidœ:œPrompt-2M2d5œ,œnameœ:œpromptœ,œoutput_typesœ:[œMessageœ]}",
         "target": "OpenAIModel-a26gL",
-        "targetHandle": "{œfieldNameœ: œinput_valueœ, œidœ: œOpenAIModel-a26gLœ, œinputTypesœ: [œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œOpenAIModel-a26gLœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "animated": false,
@@ -197,9 +197,9 @@
         "id": "reactflow__edge-OpenAIModel-a26gL{œdataTypeœ:œOpenAIModelœ,œidœ:œOpenAIModel-a26gLœ,œnameœ:œtext_outputœ,œoutput_typesœ:[œMessageœ]}-ChatOutput-XL9ho{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-XL9hoœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "selected": false,
         "source": "OpenAIModel-a26gL",
-        "sourceHandle": "{œdataTypeœ: œOpenAIModelœ, œidœ: œOpenAIModel-a26gLœ, œnameœ: œtext_outputœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œOpenAIModelœ,œidœ:œOpenAIModel-a26gLœ,œnameœ:œtext_outputœ,œoutput_typesœ:[œMessageœ]}",
         "target": "ChatOutput-XL9ho",
-        "targetHandle": "{œfieldNameœ: œinput_valueœ, œidœ: œChatOutput-XL9hoœ, œinputTypesœ: [œDataœ, œDataFrameœ, œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-XL9hoœ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "animated": false,
@@ -226,9 +226,9 @@
         "id": "reactflow__edge-URL-fyWIL{œdataTypeœ:œURLœ,œidœ:œURL-fyWILœ,œnameœ:œdataœ,œoutput_typesœ:[œDataœ]}-LanguageRecursiveTextSplitter-jefpx{œfieldNameœ:œdata_inputœ,œidœ:œLanguageRecursiveTextSplitter-jefpxœ,œinputTypesœ:[œDocumentœ,œDataœ],œtypeœ:œotherœ}",
         "selected": false,
         "source": "URL-fyWIL",
-        "sourceHandle": "{œdataTypeœ: œURLœ, œidœ: œURL-fyWILœ, œnameœ: œdataœ, œoutput_typesœ: [œDataœ]}",
+        "sourceHandle": "{œdataTypeœ:œURLœ,œidœ:œURL-fyWILœ,œnameœ:œdataœ,œoutput_typesœ:[œDataœ]}",
         "target": "LanguageRecursiveTextSplitter-jefpx",
-        "targetHandle": "{œfieldNameœ: œdata_inputœ, œidœ: œLanguageRecursiveTextSplitter-jefpxœ, œinputTypesœ: [œDocumentœ, œDataœ], œtypeœ: œotherœ}"
+        "targetHandle": "{œfieldNameœ:œdata_inputœ,œidœ:œLanguageRecursiveTextSplitter-jefpxœ,œinputTypesœ:[œDocumentœ,œDataœ],œtypeœ:œotherœ}"
       },
       {
         "animated": false,
@@ -255,9 +255,9 @@
         "id": "reactflow__edge-LanguageRecursiveTextSplitter-jefpx{œdataTypeœ:œLanguageRecursiveTextSplitterœ,œidœ:œLanguageRecursiveTextSplitter-jefpxœ,œnameœ:œdataœ,œoutput_typesœ:[œDataœ]}-HtmlLinkExtractor-exHgk{œfieldNameœ:œdata_inputœ,œidœ:œHtmlLinkExtractor-exHgkœ,œinputTypesœ:[œDocumentœ,œDataœ],œtypeœ:œotherœ}",
         "selected": false,
         "source": "LanguageRecursiveTextSplitter-jefpx",
-        "sourceHandle": "{œdataTypeœ: œLanguageRecursiveTextSplitterœ, œidœ: œLanguageRecursiveTextSplitter-jefpxœ, œnameœ: œdataœ, œoutput_typesœ: [œDataœ]}",
+        "sourceHandle": "{œdataTypeœ:œLanguageRecursiveTextSplitterœ,œidœ:œLanguageRecursiveTextSplitter-jefpxœ,œnameœ:œdataœ,œoutput_typesœ:[œDataœ]}",
         "target": "HtmlLinkExtractor-exHgk",
-        "targetHandle": "{œfieldNameœ: œdata_inputœ, œidœ: œHtmlLinkExtractor-exHgkœ, œinputTypesœ: [œDocumentœ, œDataœ], œtypeœ: œotherœ}"
+        "targetHandle": "{œfieldNameœ:œdata_inputœ,œidœ:œHtmlLinkExtractor-exHgkœ,œinputTypesœ:[œDocumentœ,œDataœ],œtypeœ:œotherœ}"
       },
       {
         "animated": false,
@@ -283,9 +283,9 @@
         "id": "reactflow__edge-HtmlLinkExtractor-exHgk{œdataTypeœ:œHtmlLinkExtractorœ,œidœ:œHtmlLinkExtractor-exHgkœ,œnameœ:œdataœ,œoutput_typesœ:[œDataœ]}-AstraDBGraph-FX0tA{œfieldNameœ:œingest_dataœ,œidœ:œAstraDBGraph-FX0tAœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}",
         "selected": false,
         "source": "HtmlLinkExtractor-exHgk",
-        "sourceHandle": "{œdataTypeœ: œHtmlLinkExtractorœ, œidœ: œHtmlLinkExtractor-exHgkœ, œnameœ: œdataœ, œoutput_typesœ: [œDataœ]}",
+        "sourceHandle": "{œdataTypeœ:œHtmlLinkExtractorœ,œidœ:œHtmlLinkExtractor-exHgkœ,œnameœ:œdataœ,œoutput_typesœ:[œDataœ]}",
         "target": "AstraDBGraph-FX0tA",
-        "targetHandle": "{œfieldNameœ: œingest_dataœ, œidœ: œAstraDBGraph-FX0tAœ, œinputTypesœ: [œDataœ], œtypeœ: œotherœ}"
+        "targetHandle": "{œfieldNameœ:œingest_dataœ,œidœ:œAstraDBGraph-FX0tAœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}"
       },
       {
         "animated": false,
@@ -311,9 +311,9 @@
         "id": "reactflow__edge-OpenAIEmbeddings-83wEc{œdataTypeœ:œOpenAIEmbeddingsœ,œidœ:œOpenAIEmbeddings-83wEcœ,œnameœ:œembeddingsœ,œoutput_typesœ:[œEmbeddingsœ]}-AstraDBGraph-FX0tA{œfieldNameœ:œembedding_modelœ,œidœ:œAstraDBGraph-FX0tAœ,œinputTypesœ:[œEmbeddingsœ],œtypeœ:œotherœ}",
         "selected": false,
         "source": "OpenAIEmbeddings-83wEc",
-        "sourceHandle": "{œdataTypeœ: œOpenAIEmbeddingsœ, œidœ: œOpenAIEmbeddings-83wEcœ, œnameœ: œembeddingsœ, œoutput_typesœ: [œEmbeddingsœ]}",
+        "sourceHandle": "{œdataTypeœ:œOpenAIEmbeddingsœ,œidœ:œOpenAIEmbeddings-83wEcœ,œnameœ:œembeddingsœ,œoutput_typesœ:[œEmbeddingsœ]}",
         "target": "AstraDBGraph-FX0tA",
-        "targetHandle": "{œfieldNameœ: œembedding_modelœ, œidœ: œAstraDBGraph-FX0tAœ, œinputTypesœ: [œEmbeddingsœ], œtypeœ: œotherœ}"
+        "targetHandle": "{œfieldNameœ:œembedding_modelœ,œidœ:œAstraDBGraph-FX0tAœ,œinputTypesœ:[œEmbeddingsœ],œtypeœ:œotherœ}"
       }
     ],
     "nodes": [

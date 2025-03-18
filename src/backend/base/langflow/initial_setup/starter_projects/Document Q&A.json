@@ -24,9 +24,9 @@
         "id": "reactflow__edge-File-GwJQZ{œdataTypeœ:œFileœ,œidœ:œFile-GwJQZœ,œnameœ:œdataœ,œoutput_typesœ:[œDataœ]}-ParseData-BbvKb{œfieldNameœ:œdataœ,œidœ:œParseData-BbvKbœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}",
         "selected": false,
         "source": "File-GwJQZ",
-        "sourceHandle": "{œdataTypeœ: œFileœ, œidœ: œFile-GwJQZœ, œnameœ: œdataœ, œoutput_typesœ: [œDataœ]}",
+        "sourceHandle": "{œdataTypeœ:œFileœ,œidœ:œFile-GwJQZœ,œnameœ:œdataœ,œoutput_typesœ:[œDataœ]}",
         "target": "ParseData-BbvKb",
-        "targetHandle": "{œfieldNameœ: œdataœ, œidœ: œParseData-BbvKbœ, œinputTypesœ: [œDataœ], œtypeœ: œotherœ}"
+        "targetHandle": "{œfieldNameœ:œdataœ,œidœ:œParseData-BbvKbœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}"
       },
       {
         "className": "",
@@ -52,9 +52,9 @@
         "id": "reactflow__edge-ParseData-BbvKb{œdataTypeœ:œParseDataœ,œidœ:œParseData-BbvKbœ,œnameœ:œtextœ,œoutput_typesœ:[œMessageœ]}-Prompt-yvZHT{œfieldNameœ:œDocumentœ,œidœ:œPrompt-yvZHTœ,œinputTypesœ:[œMessageœ,œTextœ],œtypeœ:œstrœ}",
         "selected": false,
         "source": "ParseData-BbvKb",
-        "sourceHandle": "{œdataTypeœ: œParseDataœ, œidœ: œParseData-BbvKbœ, œnameœ: œtextœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œParseDataœ,œidœ:œParseData-BbvKbœ,œnameœ:œtextœ,œoutput_typesœ:[œMessageœ]}",
         "target": "Prompt-yvZHT",
-        "targetHandle": "{œfieldNameœ: œDocumentœ, œidœ: œPrompt-yvZHTœ, œinputTypesœ: [œMessageœ, œTextœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œDocumentœ,œidœ:œPrompt-yvZHTœ,œinputTypesœ:[œMessageœ,œTextœ],œtypeœ:œstrœ}"
       },
       {
         "className": "",
@@ -79,9 +79,9 @@
         "id": "reactflow__edge-ChatInput-li477{œdataTypeœ:œChatInputœ,œidœ:œChatInput-li477œ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}-OpenAIModel-atkmo{œfieldNameœ:œinput_valueœ,œidœ:œOpenAIModel-atkmoœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "selected": false,
         "source": "ChatInput-li477",
-        "sourceHandle": "{œdataTypeœ: œChatInputœ, œidœ: œChatInput-li477œ, œnameœ: œmessageœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œChatInputœ,œidœ:œChatInput-li477œ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}",
         "target": "OpenAIModel-atkmo",
-        "targetHandle": "{œfieldNameœ: œinput_valueœ, œidœ: œOpenAIModel-atkmoœ, œinputTypesœ: [œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œOpenAIModel-atkmoœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "className": "",
@@ -106,9 +106,9 @@
         "id": "reactflow__edge-Prompt-yvZHT{œdataTypeœ:œPromptœ,œidœ:œPrompt-yvZHTœ,œnameœ:œpromptœ,œoutput_typesœ:[œMessageœ]}-OpenAIModel-atkmo{œfieldNameœ:œsystem_messageœ,œidœ:œOpenAIModel-atkmoœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "selected": false,
         "source": "Prompt-yvZHT",
-        "sourceHandle": "{œdataTypeœ: œPromptœ, œidœ: œPrompt-yvZHTœ, œnameœ: œpromptœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œPromptœ,œidœ:œPrompt-yvZHTœ,œnameœ:œpromptœ,œoutput_typesœ:[œMessageœ]}",
         "target": "OpenAIModel-atkmo",
-        "targetHandle": "{œfieldNameœ: œsystem_messageœ, œidœ: œOpenAIModel-atkmoœ, œinputTypesœ: [œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œsystem_messageœ,œidœ:œOpenAIModel-atkmoœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "className": "",
@@ -135,9 +135,9 @@
         "id": "reactflow__edge-OpenAIModel-atkmo{œdataTypeœ:œOpenAIModelœ,œidœ:œOpenAIModel-atkmoœ,œnameœ:œtext_outputœ,œoutput_typesœ:[œMessageœ]}-ChatOutput-8pgwS{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-8pgwSœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "selected": false,
         "source": "OpenAIModel-atkmo",
-        "sourceHandle": "{œdataTypeœ: œOpenAIModelœ, œidœ: œOpenAIModel-atkmoœ, œnameœ: œtext_outputœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œOpenAIModelœ,œidœ:œOpenAIModel-atkmoœ,œnameœ:œtext_outputœ,œoutput_typesœ:[œMessageœ]}",
         "target": "ChatOutput-8pgwS",
-        "targetHandle": "{œfieldNameœ: œinput_valueœ, œidœ: œChatOutput-8pgwSœ, œinputTypesœ: [œDataœ, œDataFrameœ, œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-8pgwSœ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œstrœ}"
       }
     ],
     "nodes": [

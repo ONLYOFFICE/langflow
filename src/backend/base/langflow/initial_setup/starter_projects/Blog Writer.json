@@ -25,9 +25,9 @@
         },
         "id": "reactflow__edge-ParseData-4Sckw{œdataTypeœ:œParseDataœ,œidœ:œParseData-4Sckwœ,œnameœ:œtextœ,œoutput_typesœ:[œMessageœ]}-Prompt-65R68{œfieldNameœ:œreferencesœ,œidœ:œPrompt-65R68œ,œinputTypesœ:[œMessageœ,œTextœ],œtypeœ:œstrœ}",
         "source": "ParseData-4Sckw",
-        "sourceHandle": "{œdataTypeœ: œParseDataœ, œidœ: œParseData-4Sckwœ, œnameœ: œtextœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œParseDataœ,œidœ:œParseData-4Sckwœ,œnameœ:œtextœ,œoutput_typesœ:[œMessageœ]}",
         "target": "Prompt-65R68",
-        "targetHandle": "{œfieldNameœ: œreferencesœ, œidœ: œPrompt-65R68œ, œinputTypesœ: [œMessageœ, œTextœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œreferencesœ,œidœ:œPrompt-65R68œ,œinputTypesœ:[œMessageœ,œTextœ],œtypeœ:œstrœ}"
       },
       {
         "animated": false,
@@ -53,9 +53,9 @@
         },
         "id": "reactflow__edge-TextInput-t88FI{œdataTypeœ:œTextInputœ,œidœ:œTextInput-t88FIœ,œnameœ:œtextœ,œoutput_typesœ:[œMessageœ]}-Prompt-65R68{œfieldNameœ:œinstructionsœ,œidœ:œPrompt-65R68œ,œinputTypesœ:[œMessageœ,œTextœ],œtypeœ:œstrœ}",
         "source": "TextInput-t88FI",
-        "sourceHandle": "{œdataTypeœ: œTextInputœ, œidœ: œTextInput-t88FIœ, œnameœ: œtextœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œTextInputœ,œidœ:œTextInput-t88FIœ,œnameœ:œtextœ,œoutput_typesœ:[œMessageœ]}",
         "target": "Prompt-65R68",
-        "targetHandle": "{œfieldNameœ: œinstructionsœ, œidœ: œPrompt-65R68œ, œinputTypesœ: [œMessageœ, œTextœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œinstructionsœ,œidœ:œPrompt-65R68œ,œinputTypesœ:[œMessageœ,œTextœ],œtypeœ:œstrœ}"
       },
       {
         "className": "",
@@ -79,9 +79,9 @@
         },
         "id": "reactflow__edge-Prompt-65R68{œdataTypeœ:œPromptœ,œidœ:œPrompt-65R68œ,œnameœ:œpromptœ,œoutput_typesœ:[œMessageœ]}-OpenAIModel-MyAsQ{œfieldNameœ:œinput_valueœ,œidœ:œOpenAIModel-MyAsQœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "source": "Prompt-65R68",
-        "sourceHandle": "{œdataTypeœ: œPromptœ, œidœ: œPrompt-65R68œ, œnameœ: œpromptœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œPromptœ,œidœ:œPrompt-65R68œ,œnameœ:œpromptœ,œoutput_typesœ:[œMessageœ]}",
         "target": "OpenAIModel-MyAsQ",
-        "targetHandle": "{œfieldNameœ: œinput_valueœ, œidœ: œOpenAIModel-MyAsQœ, œinputTypesœ: [œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œOpenAIModel-MyAsQœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "className": "",
@@ -107,9 +107,9 @@
         },
         "id": "reactflow__edge-OpenAIModel-MyAsQ{œdataTypeœ:œOpenAIModelœ,œidœ:œOpenAIModel-MyAsQœ,œnameœ:œtext_outputœ,œoutput_typesœ:[œMessageœ]}-ChatOutput-BE4YI{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-BE4YIœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "source": "OpenAIModel-MyAsQ",
-        "sourceHandle": "{œdataTypeœ: œOpenAIModelœ, œidœ: œOpenAIModel-MyAsQœ, œnameœ: œtext_outputœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œOpenAIModelœ,œidœ:œOpenAIModel-MyAsQœ,œnameœ:œtext_outputœ,œoutput_typesœ:[œMessageœ]}",
         "target": "ChatOutput-BE4YI",
-        "targetHandle": "{œfieldNameœ: œinput_valueœ, œidœ: œChatOutput-BE4YIœ, œinputTypesœ: [œDataœ, œDataFrameœ, œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-BE4YIœ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "className": "",
@@ -133,9 +133,9 @@
         },
         "id": "reactflow__edge-URL-EPEnt{œdataTypeœ:œURLœ,œidœ:œURL-EPEntœ,œnameœ:œdataœ,œoutput_typesœ:[œDataœ]}-ParseData-4Sckw{œfieldNameœ:œdataœ,œidœ:œParseData-4Sckwœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}",
         "source": "URL-EPEnt",
-        "sourceHandle": "{œdataTypeœ: œURLœ, œidœ: œURL-EPEntœ, œnameœ: œdataœ, œoutput_typesœ: [œDataœ]}",
+        "sourceHandle": "{œdataTypeœ:œURLœ,œidœ:œURL-EPEntœ,œnameœ:œdataœ,œoutput_typesœ:[œDataœ]}",
         "target": "ParseData-4Sckw",
-        "targetHandle": "{œfieldNameœ: œdataœ, œidœ: œParseData-4Sckwœ, œinputTypesœ: [œDataœ], œtypeœ: œotherœ}"
+        "targetHandle": "{œfieldNameœ:œdataœ,œidœ:œParseData-4Sckwœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}"
       }
     ],
     "nodes": [

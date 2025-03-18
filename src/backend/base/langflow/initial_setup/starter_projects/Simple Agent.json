@@ -25,9 +25,9 @@
         "id": "reactflow__edge-ChatInput-vSKY8{œdataTypeœ:œChatInputœ,œidœ:œChatInput-vSKY8œ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}-Agent-EPjLx{œfieldNameœ:œinput_valueœ,œidœ:œAgent-EPjLxœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "selected": false,
         "source": "ChatInput-vSKY8",
-        "sourceHandle": "{œdataTypeœ: œChatInputœ, œidœ: œChatInput-vSKY8œ, œnameœ: œmessageœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œChatInputœ,œidœ:œChatInput-vSKY8œ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}",
         "target": "Agent-EPjLx",
-        "targetHandle": "{œfieldNameœ: œinput_valueœ, œidœ: œAgent-EPjLxœ, œinputTypesœ: [œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œAgent-EPjLxœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "animated": false,
@@ -55,9 +55,9 @@
         "id": "reactflow__edge-Agent-EPjLx{œdataTypeœ:œAgentœ,œidœ:œAgent-EPjLxœ,œnameœ:œresponseœ,œoutput_typesœ:[œMessageœ]}-ChatOutput-x6tZi{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-x6tZiœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "selected": false,
         "source": "Agent-EPjLx",
-        "sourceHandle": "{œdataTypeœ: œAgentœ, œidœ: œAgent-EPjLxœ, œnameœ: œresponseœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œAgentœ,œidœ:œAgent-EPjLxœ,œnameœ:œresponseœ,œoutput_typesœ:[œMessageœ]}",
         "target": "ChatOutput-x6tZi",
-        "targetHandle": "{œfieldNameœ: œinput_valueœ, œidœ: œChatOutput-x6tZiœ, œinputTypesœ: [œDataœ, œDataFrameœ, œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-x6tZiœ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "className": "",
@@ -81,9 +81,9 @@
         },
         "id": "reactflow__edge-CalculatorComponent-zxpIu{œdataTypeœ:œCalculatorComponentœ,œidœ:œCalculatorComponent-zxpIuœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}-Agent-EPjLx{œfieldNameœ:œtoolsœ,œidœ:œAgent-EPjLxœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}",
         "source": "CalculatorComponent-zxpIu",
-        "sourceHandle": "{œdataTypeœ: œCalculatorComponentœ, œidœ: œCalculatorComponent-zxpIuœ, œnameœ: œcomponent_as_toolœ, œoutput_typesœ: [œToolœ]}",
+        "sourceHandle": "{œdataTypeœ:œCalculatorComponentœ,œidœ:œCalculatorComponent-zxpIuœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}",
         "target": "Agent-EPjLx",
-        "targetHandle": "{œfieldNameœ: œtoolsœ, œidœ: œAgent-EPjLxœ, œinputTypesœ: [œToolœ], œtypeœ: œotherœ}"
+        "targetHandle": "{œfieldNameœ:œtoolsœ,œidœ:œAgent-EPjLxœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}"
       },
       {
         "className": "",
@@ -107,9 +107,9 @@
         },
         "id": "reactflow__edge-URL-yM3pY{œdataTypeœ:œURLœ,œidœ:œURL-yM3pYœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}-Agent-EPjLx{œfieldNameœ:œtoolsœ,œidœ:œAgent-EPjLxœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}",
         "source": "URL-yM3pY",
-        "sourceHandle": "{œdataTypeœ: œURLœ, œidœ: œURL-yM3pYœ, œnameœ: œcomponent_as_toolœ, œoutput_typesœ: [œToolœ]}",
+        "sourceHandle": "{œdataTypeœ:œURLœ,œidœ:œURL-yM3pYœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}",
         "target": "Agent-EPjLx",
-        "targetHandle": "{œfieldNameœ: œtoolsœ, œidœ: œAgent-EPjLxœ, œinputTypesœ: [œToolœ], œtypeœ: œotherœ}"
+        "targetHandle": "{œfieldNameœ:œtoolsœ,œidœ:œAgent-EPjLxœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}"
       }
     ],
     "nodes": [
@@ -172,7 +172,9 @@
                 "name": "response",
                 "selected": "Message",
                 "tool_mode": true,
-                "types": ["Message"],
+                "types": [
+                  "Message"
+                ],
                 "value": "__UNDEFINED__"
               }
             ],
@@ -765,7 +767,9 @@
                 "name": "message",
                 "selected": "Message",
                 "tool_mode": true,
-                "types": ["Message"],
+                "types": [
+                  "Message"
+                ],
                 "value": "__UNDEFINED__"
               }
             ],
@@ -1060,7 +1064,9 @@
                 "name": "message",
                 "selected": "Message",
                 "tool_mode": true,
-                "types": ["Message"],
+                "types": [
+                  "Message"
+                ],
                 "value": "__UNDEFINED__"
               }
             ],

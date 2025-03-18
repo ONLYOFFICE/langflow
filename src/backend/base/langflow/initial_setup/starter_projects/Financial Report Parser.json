@@ -25,9 +25,9 @@
         "id": "reactflow__edge-OpenAIModel-hx0nZ{œdataTypeœ:œOpenAIModelœ,œidœ:œOpenAIModel-hx0nZœ,œnameœ:œmodel_outputœ,œoutput_typesœ:[œLanguageModelœ]}-StructuredOutputv2-Io4Zq{œfieldNameœ:œllmœ,œidœ:œStructuredOutputv2-Io4Zqœ,œinputTypesœ:[œLanguageModelœ],œtypeœ:œotherœ}",
         "selected": false,
         "source": "OpenAIModel-hx0nZ",
-        "sourceHandle": "{œdataTypeœ: œOpenAIModelœ, œidœ: œOpenAIModel-hx0nZœ, œnameœ: œmodel_outputœ, œoutput_typesœ: [œLanguageModelœ]}",
+        "sourceHandle": "{œdataTypeœ:œOpenAIModelœ,œidœ:œOpenAIModel-hx0nZœ,œnameœ:œmodel_outputœ,œoutput_typesœ:[œLanguageModelœ]}",
         "target": "StructuredOutputv2-Io4Zq",
-        "targetHandle": "{œfieldNameœ: œllmœ, œidœ: œStructuredOutputv2-Io4Zqœ, œinputTypesœ: [œLanguageModelœ], œtypeœ: œotherœ}"
+        "targetHandle": "{œfieldNameœ:œllmœ,œidœ:œStructuredOutputv2-Io4Zqœ,œinputTypesœ:[œLanguageModelœ],œtypeœ:œotherœ}"
       },
       {
         "animated": false,
@@ -53,9 +53,9 @@
         "id": "reactflow__edge-ChatInput-Gb2ag{œdataTypeœ:œChatInputœ,œidœ:œChatInput-Gb2agœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}-StructuredOutputv2-Io4Zq{œfieldNameœ:œinput_valueœ,œidœ:œStructuredOutputv2-Io4Zqœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "selected": false,
         "source": "ChatInput-Gb2ag",
-        "sourceHandle": "{œdataTypeœ: œChatInputœ, œidœ: œChatInput-Gb2agœ, œnameœ: œmessageœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œChatInputœ,œidœ:œChatInput-Gb2agœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}",
         "target": "StructuredOutputv2-Io4Zq",
-        "targetHandle": "{œfieldNameœ: œinput_valueœ, œidœ: œStructuredOutputv2-Io4Zqœ, œinputTypesœ: [œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œStructuredOutputv2-Io4Zqœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "animated": false,
@@ -83,9 +83,9 @@
         "id": "reactflow__edge-ParseDataFrame-PwX09{œdataTypeœ:œParseDataFrameœ,œidœ:œParseDataFrame-PwX09œ,œnameœ:œtextœ,œoutput_typesœ:[œMessageœ]}-ChatOutput-xjU9g{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-xjU9gœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "selected": false,
         "source": "ParseDataFrame-PwX09",
-        "sourceHandle": "{œdataTypeœ: œParseDataFrameœ, œidœ: œParseDataFrame-PwX09œ, œnameœ: œtextœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œParseDataFrameœ,œidœ:œParseDataFrame-PwX09œ,œnameœ:œtextœ,œoutput_typesœ:[œMessageœ]}",
         "target": "ChatOutput-xjU9g",
-        "targetHandle": "{œfieldNameœ: œinput_valueœ, œidœ: œChatOutput-xjU9gœ, œinputTypesœ: [œDataœ, œDataFrameœ, œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-xjU9gœ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "className": "",
@@ -110,9 +110,9 @@
         "id": "xy-edge__StructuredOutputv2-Io4Zq{œdataTypeœ:œStructuredOutputœ,œidœ:œStructuredOutputv2-Io4Zqœ,œnameœ:œstructured_output_dataframeœ,œoutput_typesœ:[œDataFrameœ]}-ParseDataFrame-PwX09{œfieldNameœ:œdfœ,œidœ:œParseDataFrame-PwX09œ,œinputTypesœ:[œDataFrameœ],œtypeœ:œotherœ}",
         "selected": false,
         "source": "StructuredOutputv2-Io4Zq",
-        "sourceHandle": "{œdataTypeœ: œStructuredOutputœ, œidœ: œStructuredOutputv2-Io4Zqœ, œnameœ: œstructured_output_dataframeœ, œoutput_typesœ: [œDataFrameœ]}",
+        "sourceHandle": "{œdataTypeœ:œStructuredOutputœ,œidœ:œStructuredOutputv2-Io4Zqœ,œnameœ:œstructured_output_dataframeœ,œoutput_typesœ:[œDataFrameœ]}",
         "target": "ParseDataFrame-PwX09",
-        "targetHandle": "{œfieldNameœ: œdfœ, œidœ: œParseDataFrame-PwX09œ, œinputTypesœ: [œDataFrameœ], œtypeœ: œotherœ}"
+        "targetHandle": "{œfieldNameœ:œdfœ,œidœ:œParseDataFrame-PwX09œ,œinputTypesœ:[œDataFrameœ],œtypeœ:œotherœ}"
       }
     ],
     "nodes": [

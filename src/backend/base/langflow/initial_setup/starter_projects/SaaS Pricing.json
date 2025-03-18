@@ -26,9 +26,9 @@
         },
         "id": "reactflow__edge-Agent-GgGua{œdataTypeœ:œAgentœ,œidœ:œAgent-GgGuaœ,œnameœ:œresponseœ,œoutput_typesœ:[œMessageœ]}-ChatOutput-SplPb{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-SplPbœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "source": "Agent-GgGua",
-        "sourceHandle": "{œdataTypeœ: œAgentœ, œidœ: œAgent-GgGuaœ, œnameœ: œresponseœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œAgentœ,œidœ:œAgent-GgGuaœ,œnameœ:œresponseœ,œoutput_typesœ:[œMessageœ]}",
         "target": "ChatOutput-SplPb",
-        "targetHandle": "{œfieldNameœ: œinput_valueœ, œidœ: œChatOutput-SplPbœ, œinputTypesœ: [œDataœ, œDataFrameœ, œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-SplPbœ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "animated": false,
@@ -53,9 +53,9 @@
         },
         "id": "reactflow__edge-Prompt-tqP9Q{œdataTypeœ:œPromptœ,œidœ:œPrompt-tqP9Qœ,œnameœ:œpromptœ,œoutput_typesœ:[œMessageœ]}-Agent-GgGua{œfieldNameœ:œinput_valueœ,œidœ:œAgent-GgGuaœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "source": "Prompt-tqP9Q",
-        "sourceHandle": "{œdataTypeœ: œPromptœ, œidœ: œPrompt-tqP9Qœ, œnameœ: œpromptœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œPromptœ,œidœ:œPrompt-tqP9Qœ,œnameœ:œpromptœ,œoutput_typesœ:[œMessageœ]}",
         "target": "Agent-GgGua",
-        "targetHandle": "{œfieldNameœ: œinput_valueœ, œidœ: œAgent-GgGuaœ, œinputTypesœ: [œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œAgent-GgGuaœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "className": "",
@@ -79,9 +79,9 @@
         },
         "id": "reactflow__edge-CalculatorComponent-LyoFm{œdataTypeœ:œCalculatorComponentœ,œidœ:œCalculatorComponent-LyoFmœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}-Agent-GgGua{œfieldNameœ:œtoolsœ,œidœ:œAgent-GgGuaœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}",
         "source": "CalculatorComponent-LyoFm",
-        "sourceHandle": "{œdataTypeœ: œCalculatorComponentœ, œidœ: œCalculatorComponent-LyoFmœ, œnameœ: œcomponent_as_toolœ, œoutput_typesœ: [œToolœ]}",
+        "sourceHandle": "{œdataTypeœ:œCalculatorComponentœ,œidœ:œCalculatorComponent-LyoFmœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}",
         "target": "Agent-GgGua",
-        "targetHandle": "{œfieldNameœ: œtoolsœ, œidœ: œAgent-GgGuaœ, œinputTypesœ: [œToolœ], œtypeœ: œotherœ}"
+        "targetHandle": "{œfieldNameœ:œtoolsœ,œidœ:œAgent-GgGuaœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}"
       }
     ],
     "nodes": [
@@ -127,7 +127,9 @@
                 "name": "prompt",
                 "selected": "Message",
                 "tool_mode": true,
-                "types": ["Message"],
+                "types": [
+                  "Message"
+                ],
                 "value": "__UNDEFINED__"
               }
             ],
@@ -373,7 +375,9 @@
                 "name": "message",
                 "selected": "Message",
                 "tool_mode": true,
-                "types": ["Message"],
+                "types": [
+                  "Message"
+                ],
                 "value": "__UNDEFINED__"
               }
             ],
@@ -726,7 +730,9 @@
                 "name": "response",
                 "selected": "Message",
                 "tool_mode": true,
-                "types": ["Message"],
+                "types": [
+                  "Message"
+                ],
                 "value": "__UNDEFINED__"
               }
             ],

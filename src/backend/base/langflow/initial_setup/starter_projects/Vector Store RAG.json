@@ -25,9 +25,9 @@
         },
         "id": "reactflow__edge-ParseData-r0bSI{œdataTypeœ:œParseDataœ,œidœ:œParseData-r0bSIœ,œnameœ:œtextœ,œoutput_typesœ:[œMessageœ]}-Prompt-kTvlf{œfieldNameœ:œcontextœ,œidœ:œPrompt-kTvlfœ,œinputTypesœ:[œMessageœ,œTextœ],œtypeœ:œstrœ}",
         "source": "ParseData-r0bSI",
-        "sourceHandle": "{œdataTypeœ: œParseDataœ, œidœ: œParseData-r0bSIœ, œnameœ: œtextœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œParseDataœ,œidœ:œParseData-r0bSIœ,œnameœ:œtextœ,œoutput_typesœ:[œMessageœ]}",
         "target": "Prompt-kTvlf",
-        "targetHandle": "{œfieldNameœ: œcontextœ, œidœ: œPrompt-kTvlfœ, œinputTypesœ: [œMessageœ, œTextœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œcontextœ,œidœ:œPrompt-kTvlfœ,œinputTypesœ:[œMessageœ,œTextœ],œtypeœ:œstrœ}"
       },
       {
         "animated": false,
@@ -53,9 +53,9 @@
         },
         "id": "reactflow__edge-ChatInput-rfENu{œdataTypeœ:œChatInputœ,œidœ:œChatInput-rfENuœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}-Prompt-kTvlf{œfieldNameœ:œquestionœ,œidœ:œPrompt-kTvlfœ,œinputTypesœ:[œMessageœ,œTextœ],œtypeœ:œstrœ}",
         "source": "ChatInput-rfENu",
-        "sourceHandle": "{œdataTypeœ: œChatInputœ, œidœ: œChatInput-rfENuœ, œnameœ: œmessageœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œChatInputœ,œidœ:œChatInput-rfENuœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}",
         "target": "Prompt-kTvlf",
-        "targetHandle": "{œfieldNameœ: œquestionœ, œidœ: œPrompt-kTvlfœ, œinputTypesœ: [œMessageœ, œTextœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œquestionœ,œidœ:œPrompt-kTvlfœ,œinputTypesœ:[œMessageœ,œTextœ],œtypeœ:œstrœ}"
       },
       {
         "animated": false,
@@ -81,9 +81,9 @@
         },
         "id": "reactflow__edge-File-HapKo{œdataTypeœ:œFileœ,œidœ:œFile-HapKoœ,œnameœ:œdataœ,œoutput_typesœ:[œDataœ]}-SplitText-1BFPH{œfieldNameœ:œdata_inputsœ,œidœ:œSplitText-1BFPHœ,œinputTypesœ:[œDataœ,œDataFrameœ],œtypeœ:œotherœ}",
         "source": "File-HapKo",
-        "sourceHandle": "{œdataTypeœ: œFileœ, œidœ: œFile-HapKoœ, œnameœ: œdataœ, œoutput_typesœ: [œDataœ]}",
+        "sourceHandle": "{œdataTypeœ:œFileœ,œidœ:œFile-HapKoœ,œnameœ:œdataœ,œoutput_typesœ:[œDataœ]}",
         "target": "SplitText-1BFPH",
-        "targetHandle": "{œfieldNameœ: œdata_inputsœ, œidœ: œSplitText-1BFPHœ, œinputTypesœ: [œDataœ, œDataFrameœ], œtypeœ: œotherœ}"
+        "targetHandle": "{œfieldNameœ:œdata_inputsœ,œidœ:œSplitText-1BFPHœ,œinputTypesœ:[œDataœ,œDataFrameœ],œtypeœ:œotherœ}"
       },
       {
         "className": "",
@@ -107,9 +107,9 @@
         },
         "id": "reactflow__edge-Prompt-kTvlf{œdataTypeœ:œPromptœ,œidœ:œPrompt-kTvlfœ,œnameœ:œpromptœ,œoutput_typesœ:[œMessageœ]}-OpenAIModel-EseEF{œfieldNameœ:œinput_valueœ,œidœ:œOpenAIModel-EseEFœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "source": "Prompt-kTvlf",
-        "sourceHandle": "{œdataTypeœ: œPromptœ, œidœ: œPrompt-kTvlfœ, œnameœ: œpromptœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œPromptœ,œidœ:œPrompt-kTvlfœ,œnameœ:œpromptœ,œoutput_typesœ:[œMessageœ]}",
         "target": "OpenAIModel-EseEF",
-        "targetHandle": "{œfieldNameœ: œinput_valueœ, œidœ: œOpenAIModel-EseEFœ, œinputTypesœ: [œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œOpenAIModel-EseEFœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "className": "",
@@ -135,9 +135,9 @@
         },
         "id": "reactflow__edge-OpenAIModel-EseEF{œdataTypeœ:œOpenAIModelœ,œidœ:œOpenAIModel-EseEFœ,œnameœ:œtext_outputœ,œoutput_typesœ:[œMessageœ]}-ChatOutput-GDLzU{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-GDLzUœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "source": "OpenAIModel-EseEF",
-        "sourceHandle": "{œdataTypeœ: œOpenAIModelœ, œidœ: œOpenAIModel-EseEFœ, œnameœ: œtext_outputœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œOpenAIModelœ,œidœ:œOpenAIModel-EseEFœ,œnameœ:œtext_outputœ,œoutput_typesœ:[œMessageœ]}",
         "target": "ChatOutput-GDLzU",
-        "targetHandle": "{œfieldNameœ: œinput_valueœ, œidœ: œChatOutput-GDLzUœ, œinputTypesœ: [œDataœ, œDataFrameœ, œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-GDLzUœ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "className": "",
@@ -161,9 +161,9 @@
         },
         "id": "reactflow__edge-OpenAIEmbeddings-pjVd0{œdataTypeœ:œOpenAIEmbeddingsœ,œidœ:œOpenAIEmbeddings-pjVd0œ,œnameœ:œembeddingsœ,œoutput_typesœ:[œEmbeddingsœ]}-AstraDB-XU7Xo{œfieldNameœ:œembedding_modelœ,œidœ:œAstraDB-XU7Xoœ,œinputTypesœ:[œEmbeddingsœ],œtypeœ:œotherœ}",
         "source": "OpenAIEmbeddings-pjVd0",
-        "sourceHandle": "{œdataTypeœ: œOpenAIEmbeddingsœ, œidœ: œOpenAIEmbeddings-pjVd0œ, œnameœ: œembeddingsœ, œoutput_typesœ: [œEmbeddingsœ]}",
+        "sourceHandle": "{œdataTypeœ:œOpenAIEmbeddingsœ,œidœ:œOpenAIEmbeddings-pjVd0œ,œnameœ:œembeddingsœ,œoutput_typesœ:[œEmbeddingsœ]}",
         "target": "AstraDB-XU7Xo",
-        "targetHandle": "{œfieldNameœ: œembedding_modelœ, œidœ: œAstraDB-XU7Xoœ, œinputTypesœ: [œEmbeddingsœ], œtypeœ: œotherœ}"
+        "targetHandle": "{œfieldNameœ:œembedding_modelœ,œidœ:œAstraDB-XU7Xoœ,œinputTypesœ:[œEmbeddingsœ],œtypeœ:œotherœ}"
       },
       {
         "className": "",
@@ -187,9 +187,9 @@
         },
         "id": "reactflow__edge-ChatInput-rfENu{œdataTypeœ:œChatInputœ,œidœ:œChatInput-rfENuœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}-AstraDB-XU7Xo{œfieldNameœ:œsearch_queryœ,œidœ:œAstraDB-XU7Xoœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "source": "ChatInput-rfENu",
-        "sourceHandle": "{œdataTypeœ: œChatInputœ, œidœ: œChatInput-rfENuœ, œnameœ: œmessageœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œChatInputœ,œidœ:œChatInput-rfENuœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}",
         "target": "AstraDB-XU7Xo",
-        "targetHandle": "{œfieldNameœ: œsearch_queryœ, œidœ: œAstraDB-XU7Xoœ, œinputTypesœ: [œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œsearch_queryœ,œidœ:œAstraDB-XU7Xoœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "className": "",
@@ -213,9 +213,9 @@
         },
         "id": "reactflow__edge-AstraDB-XU7Xo{œdataTypeœ:œAstraDBœ,œidœ:œAstraDB-XU7Xoœ,œnameœ:œsearch_resultsœ,œoutput_typesœ:[œDataœ]}-ParseData-r0bSI{œfieldNameœ:œdataœ,œidœ:œParseData-r0bSIœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}",
         "source": "AstraDB-XU7Xo",
-        "sourceHandle": "{œdataTypeœ: œAstraDBœ, œidœ: œAstraDB-XU7Xoœ, œnameœ: œsearch_resultsœ, œoutput_typesœ: [œDataœ]}",
+        "sourceHandle": "{œdataTypeœ:œAstraDBœ,œidœ:œAstraDB-XU7Xoœ,œnameœ:œsearch_resultsœ,œoutput_typesœ:[œDataœ]}",
         "target": "ParseData-r0bSI",
-        "targetHandle": "{œfieldNameœ: œdataœ, œidœ: œParseData-r0bSIœ, œinputTypesœ: [œDataœ], œtypeœ: œotherœ}"
+        "targetHandle": "{œfieldNameœ:œdataœ,œidœ:œParseData-r0bSIœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}"
       },
       {
         "className": "",
@@ -239,9 +239,9 @@
         },
         "id": "reactflow__edge-OpenAIEmbeddings-jn7pG{œdataTypeœ:œOpenAIEmbeddingsœ,œidœ:œOpenAIEmbeddings-jn7pGœ,œnameœ:œembeddingsœ,œoutput_typesœ:[œEmbeddingsœ]}-AstraDB-fyg6q{œfieldNameœ:œembedding_modelœ,œidœ:œAstraDB-fyg6qœ,œinputTypesœ:[œEmbeddingsœ],œtypeœ:œotherœ}",
         "source": "OpenAIEmbeddings-jn7pG",
-        "sourceHandle": "{œdataTypeœ: œOpenAIEmbeddingsœ, œidœ: œOpenAIEmbeddings-jn7pGœ, œnameœ: œembeddingsœ, œoutput_typesœ: [œEmbeddingsœ]}",
+        "sourceHandle": "{œdataTypeœ:œOpenAIEmbeddingsœ,œidœ:œOpenAIEmbeddings-jn7pGœ,œnameœ:œembeddingsœ,œoutput_typesœ:[œEmbeddingsœ]}",
         "target": "AstraDB-fyg6q",
-        "targetHandle": "{œfieldNameœ: œembedding_modelœ, œidœ: œAstraDB-fyg6qœ, œinputTypesœ: [œEmbeddingsœ], œtypeœ: œotherœ}"
+        "targetHandle": "{œfieldNameœ:œembedding_modelœ,œidœ:œAstraDB-fyg6qœ,œinputTypesœ:[œEmbeddingsœ],œtypeœ:œotherœ}"
       },
       {
         "data": {
@@ -264,9 +264,9 @@
         },
         "id": "xy-edge__SplitText-1BFPH{œdataTypeœ:œSplitTextœ,œidœ:œSplitText-1BFPHœ,œnameœ:œchunksœ,œoutput_typesœ:[œDataœ]}-AstraDB-fyg6q{œfieldNameœ:œingest_dataœ,œidœ:œAstraDB-fyg6qœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}",
         "source": "SplitText-1BFPH",
-        "sourceHandle": "{œdataTypeœ: œSplitTextœ, œidœ: œSplitText-1BFPHœ, œnameœ: œchunksœ, œoutput_typesœ: [œDataœ]}",
+        "sourceHandle": "{œdataTypeœ:œSplitTextœ,œidœ:œSplitText-1BFPHœ,œnameœ:œchunksœ,œoutput_typesœ:[œDataœ]}",
         "target": "AstraDB-fyg6q",
-        "targetHandle": "{œfieldNameœ: œingest_dataœ, œidœ: œAstraDB-fyg6qœ, œinputTypesœ: [œDataœ], œtypeœ: œotherœ}"
+        "targetHandle": "{œfieldNameœ:œingest_dataœ,œidœ:œAstraDB-fyg6qœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}"
       }
     ],
     "nodes": [
