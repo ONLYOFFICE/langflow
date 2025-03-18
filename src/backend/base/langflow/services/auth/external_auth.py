@@ -14,13 +14,43 @@ from loguru import logger
 
 from langflow.services.database.models.user import User, UserCreate
 from langflow.services.database.models.user.crud import get_user_by_username
+from langflow.services.database.models.api_key import ApiKeyCreate
+from langflow.services.database.models.api_key.crud import create_api_key, get_api_keys
 from langflow.services.auth.utils import get_password_hash
 from langflow.initial_setup.setup import get_or_create_default_folder
 from langflow.services.auth.utils import create_user_tokens
 from langflow.services.deps import get_settings_service
 
 
-async def verify_external_auth(request: Request, db: AsyncSession, external_api_url: Optional[str] = None) -> Tuple[Optional[User], Optional[Dict]]:
+async def find_docspace_chat_flow(db: AsyncSession) -> Optional[str]:
+    """
+    Find the DocSpace chat flow among system flows where user_id is null.
+    
+    Args:
+        db (AsyncSession): Database session
+        
+    Returns:
+        Optional[str]: The ID of the DocSpace chat flow if found, None otherwise
+    """
+    from sqlmodel import select
+    from langflow.services.database.models.flow.model import Flow
+    
+    try:
+        # Query for system flows (where user_id is null)
+        stmt = select(Flow).where(Flow.user_id == None)  # noqa: E711
+        flows = (await db.exec(stmt)).all()
+        
+        # Find the DocSpace chat flow
+        for flow in flows:
+            if flow.name == "DocSpace chat":
+                return str(flow.id)
+        
+        return None
+    except Exception as e:
+        logger.error(f"Error finding DocSpace chat flow: {str(e)}")
+        return None
+
+async def verify_external_auth(request: Request, db: AsyncSession, external_api_url: Optional[str] = None) -> Tuple[Optional[User], Optional[Dict], Optional[str], Optional[str]]:
     """
     Verify external authentication by checking for asc_auth_key cookie
     and validating it against the external API.
@@ -31,11 +61,11 @@ async def verify_external_auth(request: Request, db: AsyncSession, external_api_
         external_api_url: Optional URL to use for the external API call, if None, use default
 
     Returns:
-        Tuple containing the user (if found/created) and tokens (if authenticated)
+        Tuple containing the user (if found/created), tokens (if authenticated), chat_api_key, and chat_id_key
     """
     asc_auth_key = request.cookies.get("asc_auth_key")
     if not asc_auth_key:
-        return None, None
+        return None, None, None, None
 
     # Use the provided external API URL or the default one
     api_url = external_api_url
@@ -61,7 +91,7 @@ async def verify_external_auth(request: Request, db: AsyncSession, external_api_
             if response.status_code != 200:
                 logger.warning(
                     f"External auth API returned status code {response.status_code}")
-                return None, None
+                return None, None, None
 
             response_data = response.json()
 
@@ -76,7 +106,7 @@ async def verify_external_auth(request: Request, db: AsyncSession, external_api_
             if not username or not email:
                 logger.warning(
                     "External auth API did not return required user data")
-                return None, None
+                return None, None, None
 
             # Check if user exists, create if not
             existing_user = await get_user_by_username(db, username)
@@ -84,7 +114,37 @@ async def verify_external_auth(request: Request, db: AsyncSession, external_api_
             if existing_user:
                 # User exists, generate tokens
                 tokens = await create_user_tokens(existing_user.id, db, update_last_login=True)
-                return existing_user, tokens
+
+                # Create chat_api_key for existing user if they don't already have one
+                chat_api_key_value = None
+                try:
+                    # We're only creating the key once for each user
+                    api_keys = await get_api_keys(db, existing_user.id)
+                    # First check if user already has a chat_api_key
+                    existing_chat_keys = [key for key in api_keys if key.name == "chat_api_key"]
+                    if existing_chat_keys:
+                        # Use existing key - we will need to query for the unmasked value
+                        api_key_id = existing_chat_keys[0].id
+                        # We can't get the actual API key value from the read model as it's masked
+                        # The actual key is returned only when created
+                        logger.info(f"Found existing chat_api_key for user {username}")
+                    else:
+                        # Create new chat_api_key
+                        api_key_create = ApiKeyCreate(name="chat_api_key")
+                        unmasked_key = await create_api_key(db, api_key_create, user_id=existing_user.id)
+                        chat_api_key_value = unmasked_key.api_key  # Store the actual API key value
+                        logger.info(f"Created chat_api_key for existing user {username}")
+                except Exception as e:
+                    logger.error(f"Error checking/creating chat_api_key for existing user: {str(e)}")
+                
+                # Find the DocSpace chat flow ID
+                chat_id_key = await find_docspace_chat_flow(db)
+                if chat_id_key:
+                    logger.debug(f"Found DocSpace chat flow with ID: {chat_id_key}")
+                else:
+                    logger.debug("DocSpace chat flow not found")
+                    
+                return existing_user, tokens, chat_api_key_value, chat_id_key
             else:
                 # Create new user
                 # Generate a random password since we'll authenticate via the external system
@@ -112,25 +172,45 @@ async def verify_external_auth(request: Request, db: AsyncSession, external_api_
                             f"Error creating default folder for user {username}")
 
                     tokens = await create_user_tokens(new_user.id, db, update_last_login=True)
-                    return new_user, tokens
+                    
+                    # Create chat_api_key for the new user
+                    chat_api_key_value = None
+                    try:
+                        api_key_create = ApiKeyCreate(name="chat_api_key")
+                        unmasked_key = await create_api_key(db, api_key_create, user_id=new_user.id)
+                        chat_api_key_value = unmasked_key.api_key  # Store the actual API key value
+                        logger.info(f"Created chat_api_key for new user {username}")
+                    except Exception as e:
+                        logger.error(f"Error creating chat_api_key for new user: {str(e)}")
+                    
+                    # Find the DocSpace chat flow ID
+                    chat_id_key = await find_docspace_chat_flow(db)
+                    if chat_id_key:
+                        logger.debug(f"Found DocSpace chat flow with ID: {chat_id_key}")
+                    else:
+                        logger.debug("DocSpace chat flow not found")
+                    
+                    return new_user, tokens, chat_api_key_value, chat_id_key
                 except Exception as e:
                     await db.rollback()
                     logger.error(
                         f"Error creating user from external auth: {str(e)}")
-                    return None, None
+                    return None, None, None
 
     except Exception as e:
         logger.error(f"Error verifying external authentication: {str(e)}")
-        return None, None
+        return None, None, None
 
 
-async def set_auth_cookies(response: Response, tokens: Dict) -> None:
+async def set_auth_cookies(response: Response, tokens: Dict, chat_api_key: Optional[str] = None, chat_id_key: Optional[str] = None) -> None:
     """
-    Set authentication cookies in the response based on tokens.
+    Set authentication cookies in the response based on tokens and API keys.
 
     Args:
         response: The FastAPI response object
         tokens: Dictionary containing access_token and refresh_token
+        chat_api_key: Optional chat API key to set in cookies
+        chat_id_key: Optional chat flow ID to set in cookies
     """
     auth_settings = get_settings_service().auth_settings
 
@@ -153,3 +233,28 @@ async def set_auth_cookies(response: Response, tokens: Dict) -> None:
         expires=auth_settings.ACCESS_TOKEN_EXPIRE_SECONDS,
         domain=auth_settings.COOKIE_DOMAIN,
     )
+    
+    # Set chat_api_key cookie if provided
+    if chat_api_key:
+        response.set_cookie(
+            "chat_api_key",
+            chat_api_key,
+            httponly=auth_settings.ACCESS_HTTPONLY,  # Using same settings as access token
+            samesite=auth_settings.ACCESS_SAME_SITE,
+            secure=auth_settings.ACCESS_SECURE,
+            expires=auth_settings.ACCESS_TOKEN_EXPIRE_SECONDS,
+            domain=auth_settings.COOKIE_DOMAIN,
+        )
+        
+    # Set chat_id_key cookie if provided
+    if chat_id_key:
+        response.set_cookie(
+            "chat_id_key",
+            chat_id_key,
+            httponly=auth_settings.ACCESS_HTTPONLY,  # Using same settings as access token
+            samesite=auth_settings.ACCESS_SAME_SITE,
+            secure=auth_settings.ACCESS_SECURE,
+            expires=auth_settings.ACCESS_TOKEN_EXPIRE_SECONDS,
+            domain=auth_settings.COOKIE_DOMAIN,
+        )
+        logger.debug("Set chat_api_key cookie")
