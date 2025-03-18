@@ -67,8 +67,8 @@ class OnlyofficeDocspaceDownloadAsText(ComponentWithCache):
 
     def build_data(self) -> Data:
         schema = self._create_schema()
-        body = self._download_as_text(schema)
-        return Data(data=body)
+        text = self._download_as_text(schema)
+        return Data(data={"text": text})
 
 
     def build_tool(self) -> Tool:
@@ -82,7 +82,8 @@ class OnlyofficeDocspaceDownloadAsText(ComponentWithCache):
 
     def _tool_func(self, **kwargs) -> dict:
         schema = self.Schema(**kwargs)
-        return self._download_as_text(schema)
+        text = self._download_as_text(schema)
+        return {"text": text}
 
 
     def _download_as_text(self, schema: Schema) -> str:
@@ -153,8 +154,8 @@ class OnlyofficeDocspaceDownloadAsText(ComponentWithCache):
         }
         response = requests.get(url, headers=headers)
         response.raise_for_status()
+        response.encoding = "utf-8"
         return response.text
-
 
     #
     # async
