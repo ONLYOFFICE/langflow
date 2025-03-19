@@ -39,10 +39,14 @@ class TransformingOpener:
 
         origin = request
 
+        method = None
+        if hasattr(origin, "method"):
+            method = origin.method
+
         request = HTTPRequest(
             request.full_url,
             data=origin.data,
-            method=origin.method
+            method=method,
         )
 
         for key, value in origin.headers.items():
