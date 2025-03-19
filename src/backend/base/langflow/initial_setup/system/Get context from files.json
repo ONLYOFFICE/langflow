@@ -7,7 +7,7 @@
         "data": {
           "sourceHandle": {
             "dataType": "GetFileCollectionName",
-            "id": "GetFileCollectionName-vUgcj",
+            "id": "GetFileCollectionName-bX4aC",
             "name": "collection_name",
             "output_types": [
               "Message"
@@ -15,75 +15,19 @@
           },
           "targetHandle": {
             "fieldName": "collection_name",
-            "id": "DocSpaceQdrantVectorStoreComponent-zR8tQ",
+            "id": "DocSpaceQdrantVectorStoreComponent-9397Q",
             "inputTypes": [
               "Message"
             ],
             "type": "str"
           }
         },
-        "id": "reactflow__edge-GetFileCollectionName-vUgcj{œdataTypeœ:œGetFileCollectionNameœ,œidœ:œGetFileCollectionName-vUgcjœ,œnameœ:œcollection_nameœ,œoutput_typesœ:[œMessageœ]}-DocSpaceQdrantVectorStoreComponent-zR8tQ{œfieldNameœ:œcollection_nameœ,œidœ:œDocSpaceQdrantVectorStoreComponent-zR8tQœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "id": "reactflow__edge-GetFileCollectionName-bX4aC{œdataTypeœ:œGetFileCollectionNameœ,œidœ:œGetFileCollectionName-bX4aCœ,œnameœ:œcollection_nameœ,œoutput_typesœ:[œMessageœ]}-DocSpaceQdrantVectorStoreComponent-9397Q{œfieldNameœ:œcollection_nameœ,œidœ:œDocSpaceQdrantVectorStoreComponent-9397Qœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "selected": false,
-        "source": "GetFileCollectionName-vUgcj",
-        "sourceHandle": "{œdataTypeœ:œGetFileCollectionNameœ,œidœ:œGetFileCollectionName-vUgcjœ,œnameœ:œcollection_nameœ,œoutput_typesœ:[œMessageœ]}",
-        "target": "DocSpaceQdrantVectorStoreComponent-zR8tQ",
-        "targetHandle": "{œfieldNameœ:œcollection_nameœ,œidœ:œDocSpaceQdrantVectorStoreComponent-zR8tQœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
-      },
-      {
-        "animated": false,
-        "className": "",
-        "data": {
-          "sourceHandle": {
-            "dataType": "DocSpaceQdrantVectorStoreComponent",
-            "id": "DocSpaceQdrantVectorStoreComponent-zR8tQ",
-            "name": "search",
-            "output_types": [
-              "Message"
-            ]
-          },
-          "targetHandle": {
-            "fieldName": "input_text",
-            "id": "ConditionalRouter-wj6Cc",
-            "inputTypes": [
-              "Message"
-            ],
-            "type": "str"
-          }
-        },
-        "id": "reactflow__edge-DocSpaceQdrantVectorStoreComponent-zR8tQ{œdataTypeœ:œDocSpaceQdrantVectorStoreComponentœ,œidœ:œDocSpaceQdrantVectorStoreComponent-zR8tQœ,œnameœ:œsearchœ,œoutput_typesœ:[œMessageœ]}-ConditionalRouter-wj6Cc{œfieldNameœ:œinput_textœ,œidœ:œConditionalRouter-wj6Ccœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
-        "selected": false,
-        "source": "DocSpaceQdrantVectorStoreComponent-zR8tQ",
-        "sourceHandle": "{œdataTypeœ:œDocSpaceQdrantVectorStoreComponentœ,œidœ:œDocSpaceQdrantVectorStoreComponent-zR8tQœ,œnameœ:œsearchœ,œoutput_typesœ:[œMessageœ]}",
-        "target": "ConditionalRouter-wj6Cc",
-        "targetHandle": "{œfieldNameœ:œinput_textœ,œidœ:œConditionalRouter-wj6Ccœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
-      },
-      {
-        "animated": false,
-        "className": "",
-        "data": {
-          "sourceHandle": {
-            "dataType": "GetFileCollectionName",
-            "id": "GetFileCollectionName-vUgcj",
-            "name": "collection_name",
-            "output_types": [
-              "Message"
-            ]
-          },
-          "targetHandle": {
-            "fieldName": "collection_name",
-            "id": "DocSpaceQdrantVectorStoreComponent-Erj5a",
-            "inputTypes": [
-              "Message"
-            ],
-            "type": "str"
-          }
-        },
-        "id": "reactflow__edge-GetFileCollectionName-vUgcj{œdataTypeœ:œGetFileCollectionNameœ,œidœ:œGetFileCollectionName-vUgcjœ,œnameœ:œcollection_nameœ,œoutput_typesœ:[œMessageœ]}-DocSpaceQdrantVectorStoreComponent-Erj5a{œfieldNameœ:œcollection_nameœ,œidœ:œDocSpaceQdrantVectorStoreComponent-Erj5aœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
-        "selected": false,
-        "source": "GetFileCollectionName-vUgcj",
-        "sourceHandle": "{œdataTypeœ:œGetFileCollectionNameœ,œidœ:œGetFileCollectionName-vUgcjœ,œnameœ:œcollection_nameœ,œoutput_typesœ:[œMessageœ]}",
-        "target": "DocSpaceQdrantVectorStoreComponent-Erj5a",
-        "targetHandle": "{œfieldNameœ:œcollection_nameœ,œidœ:œDocSpaceQdrantVectorStoreComponent-Erj5aœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
+        "source": "GetFileCollectionName-bX4aC",
+        "sourceHandle": "{œdataTypeœ:œGetFileCollectionNameœ,œidœ:œGetFileCollectionName-bX4aCœ,œnameœ:œcollection_nameœ,œoutput_typesœ:[œMessageœ]}",
+        "target": "DocSpaceQdrantVectorStoreComponent-9397Q",
+        "targetHandle": "{œfieldNameœ:œcollection_nameœ,œidœ:œDocSpaceQdrantVectorStoreComponent-9397Qœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "animated": false,
@@ -91,7 +35,7 @@
         "data": {
           "sourceHandle": {
             "dataType": "GetFile",
-            "id": "GetFile-QE22W",
+            "id": "GetFile-H8CS6",
             "name": "files",
             "output_types": [
               "Data"
@@ -99,18 +43,18 @@
           },
           "targetHandle": {
             "fieldName": "input_text",
-            "id": "ConditionalRouter-vnrHa",
+            "id": "ConditionalRouterList-9L3SS",
             "inputTypes": [
               "Data"
             ],
             "type": "other"
           }
         },
-        "id": "reactflow__edge-GetFile-QE22W{œdataTypeœ:œGetFileœ,œidœ:œGetFile-QE22Wœ,œnameœ:œfilesœ,œoutput_typesœ:[œDataœ]}-ConditionalRouter-vnrHa{œfieldNameœ:œinput_textœ,œidœ:œConditionalRouter-vnrHaœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}",
-        "source": "GetFile-QE22W",
-        "sourceHandle": "{œdataTypeœ:œGetFileœ,œidœ:œGetFile-QE22Wœ,œnameœ:œfilesœ,œoutput_typesœ:[œDataœ]}",
-        "target": "ConditionalRouter-vnrHa",
-        "targetHandle": "{œfieldNameœ:œinput_textœ,œidœ:œConditionalRouter-vnrHaœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}"
+        "id": "reactflow__edge-GetFile-H8CS6{œdataTypeœ:œGetFileœ,œidœ:œGetFile-H8CS6œ,œnameœ:œfilesœ,œoutput_typesœ:[œDataœ]}-ConditionalRouterList-9L3SS{œfieldNameœ:œinput_textœ,œidœ:œConditionalRouterList-9L3SSœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}",
+        "source": "GetFile-H8CS6",
+        "sourceHandle": "{œdataTypeœ:œGetFileœ,œidœ:œGetFile-H8CS6œ,œnameœ:œfilesœ,œoutput_typesœ:[œDataœ]}",
+        "target": "ConditionalRouterList-9L3SS",
+        "targetHandle": "{œfieldNameœ:œinput_textœ,œidœ:œConditionalRouterList-9L3SSœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}"
       },
       {
         "animated": false,
@@ -118,7 +62,7 @@
         "data": {
           "sourceHandle": {
             "dataType": "DocSpaceQdrantVectorStoreComponent",
-            "id": "DocSpaceQdrantVectorStoreComponent-Erj5a",
+            "id": "DocSpaceQdrantVectorStoreComponent-9397Q",
             "name": "search",
             "output_types": [
               "Message"
@@ -126,18 +70,18 @@
           },
           "targetHandle": {
             "fieldName": "input_value",
-            "id": "CustomComponent-hIWPf",
+            "id": "CustomComponent1-KWGPF",
             "inputTypes": [
               "Message"
             ],
             "type": "str"
           }
         },
-        "id": "reactflow__edge-DocSpaceQdrantVectorStoreComponent-Erj5a{œdataTypeœ:œDocSpaceQdrantVectorStoreComponentœ,œidœ:œDocSpaceQdrantVectorStoreComponent-Erj5aœ,œnameœ:œsearchœ,œoutput_typesœ:[œMessageœ]}-CustomComponent-hIWPf{œfieldNameœ:œinput_valueœ,œidœ:œCustomComponent-hIWPfœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
-        "source": "DocSpaceQdrantVectorStoreComponent-Erj5a",
-        "sourceHandle": "{œdataTypeœ:œDocSpaceQdrantVectorStoreComponentœ,œidœ:œDocSpaceQdrantVectorStoreComponent-Erj5aœ,œnameœ:œsearchœ,œoutput_typesœ:[œMessageœ]}",
-        "target": "CustomComponent-hIWPf",
-        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œCustomComponent-hIWPfœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
+        "id": "reactflow__edge-DocSpaceQdrantVectorStoreComponent-9397Q{œdataTypeœ:œDocSpaceQdrantVectorStoreComponentœ,œidœ:œDocSpaceQdrantVectorStoreComponent-9397Qœ,œnameœ:œsearchœ,œoutput_typesœ:[œMessageœ]}-CustomComponent1-KWGPF{œfieldNameœ:œinput_valueœ,œidœ:œCustomComponent1-KWGPFœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "source": "DocSpaceQdrantVectorStoreComponent-9397Q",
+        "sourceHandle": "{œdataTypeœ:œDocSpaceQdrantVectorStoreComponentœ,œidœ:œDocSpaceQdrantVectorStoreComponent-9397Qœ,œnameœ:œsearchœ,œoutput_typesœ:[œMessageœ]}",
+        "target": "CustomComponent1-KWGPF",
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œCustomComponent1-KWGPFœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "animated": false,
@@ -145,7 +89,7 @@
         "data": {
           "sourceHandle": {
             "dataType": "RunFlow",
-            "id": "RunFlow-iY8FD",
+            "id": "RunFlow-ag1bx",
             "name": "flow_outputs_message",
             "output_types": [
               "Message"
@@ -153,18 +97,18 @@
           },
           "targetHandle": {
             "fieldName": "restart_search",
-            "id": "DocSpaceQdrantVectorStoreComponent-Erj5a",
+            "id": "DocSpaceQdrantVectorStoreComponent-9397Q",
             "inputTypes": [
               "Message"
             ],
             "type": "str"
           }
         },
-        "id": "reactflow__edge-RunFlow-iY8FD{œdataTypeœ:œRunFlowœ,œidœ:œRunFlow-iY8FDœ,œnameœ:œflow_outputs_messageœ,œoutput_typesœ:[œMessageœ]}-DocSpaceQdrantVectorStoreComponent-Erj5a{œfieldNameœ:œrestart_searchœ,œidœ:œDocSpaceQdrantVectorStoreComponent-Erj5aœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
-        "source": "RunFlow-iY8FD",
-        "sourceHandle": "{œdataTypeœ:œRunFlowœ,œidœ:œRunFlow-iY8FDœ,œnameœ:œflow_outputs_messageœ,œoutput_typesœ:[œMessageœ]}",
-        "target": "DocSpaceQdrantVectorStoreComponent-Erj5a",
-        "targetHandle": "{œfieldNameœ:œrestart_searchœ,œidœ:œDocSpaceQdrantVectorStoreComponent-Erj5aœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
+        "id": "reactflow__edge-RunFlow-ag1bx{œdataTypeœ:œRunFlowœ,œidœ:œRunFlow-ag1bxœ,œnameœ:œflow_outputs_messageœ,œoutput_typesœ:[œMessageœ]}-DocSpaceQdrantVectorStoreComponent-9397Q{œfieldNameœ:œrestart_searchœ,œidœ:œDocSpaceQdrantVectorStoreComponent-9397Qœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "source": "RunFlow-ag1bx",
+        "sourceHandle": "{œdataTypeœ:œRunFlowœ,œidœ:œRunFlow-ag1bxœ,œnameœ:œflow_outputs_messageœ,œoutput_typesœ:[œMessageœ]}",
+        "target": "DocSpaceQdrantVectorStoreComponent-9397Q",
+        "targetHandle": "{œfieldNameœ:œrestart_searchœ,œidœ:œDocSpaceQdrantVectorStoreComponent-9397Qœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "animated": false,
@@ -172,7 +116,7 @@
         "data": {
           "sourceHandle": {
             "dataType": "EnvExtractor",
-            "id": "EnvExtractor-H4qFp",
+            "id": "EnvExtractor-5F2jP",
             "name": "files_host",
             "output_types": [
               "Message"
@@ -180,45 +124,18 @@
           },
           "targetHandle": {
             "fieldName": "files_host",
-            "id": "GetFile-QE22W",
+            "id": "GetFile-H8CS6",
             "inputTypes": [
               "Message"
             ],
             "type": "str"
           }
         },
-        "id": "reactflow__edge-EnvExtractor-H4qFp{œdataTypeœ:œEnvExtractorœ,œidœ:œEnvExtractor-H4qFpœ,œnameœ:œfiles_hostœ,œoutput_typesœ:[œMessageœ]}-GetFile-QE22W{œfieldNameœ:œfiles_hostœ,œidœ:œGetFile-QE22Wœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
-        "source": "EnvExtractor-H4qFp",
-        "sourceHandle": "{œdataTypeœ:œEnvExtractorœ,œidœ:œEnvExtractor-H4qFpœ,œnameœ:œfiles_hostœ,œoutput_typesœ:[œMessageœ]}",
-        "target": "GetFile-QE22W",
-        "targetHandle": "{œfieldNameœ:œfiles_hostœ,œidœ:œGetFile-QE22Wœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
-      },
-      {
-        "animated": false,
-        "className": "",
-        "data": {
-          "sourceHandle": {
-            "dataType": "FileID",
-            "id": "FileID-uMsHL",
-            "name": "file",
-            "output_types": [
-              "Message"
-            ]
-          },
-          "targetHandle": {
-            "fieldName": "files_ids",
-            "id": "GetFile-QE22W",
-            "inputTypes": [
-              "Message"
-            ],
-            "type": "str"
-          }
-        },
-        "id": "reactflow__edge-FileID-uMsHL{œdataTypeœ:œFileIDœ,œidœ:œFileID-uMsHLœ,œnameœ:œfileœ,œoutput_typesœ:[œMessageœ]}-GetFile-QE22W{œfieldNameœ:œfiles_idsœ,œidœ:œGetFile-QE22Wœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
-        "source": "FileID-uMsHL",
-        "sourceHandle": "{œdataTypeœ:œFileIDœ,œidœ:œFileID-uMsHLœ,œnameœ:œfileœ,œoutput_typesœ:[œMessageœ]}",
-        "target": "GetFile-QE22W",
-        "targetHandle": "{œfieldNameœ:œfiles_idsœ,œidœ:œGetFile-QE22Wœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
+        "id": "reactflow__edge-EnvExtractor-5F2jP{œdataTypeœ:œEnvExtractorœ,œidœ:œEnvExtractor-5F2jPœ,œnameœ:œfiles_hostœ,œoutput_typesœ:[œMessageœ]}-GetFile-H8CS6{œfieldNameœ:œfiles_hostœ,œidœ:œGetFile-H8CS6œ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "source": "EnvExtractor-5F2jP",
+        "sourceHandle": "{œdataTypeœ:œEnvExtractorœ,œidœ:œEnvExtractor-5F2jPœ,œnameœ:œfiles_hostœ,œoutput_typesœ:[œMessageœ]}",
+        "target": "GetFile-H8CS6",
+        "targetHandle": "{œfieldNameœ:œfiles_hostœ,œidœ:œGetFile-H8CS6œ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "animated": false,
@@ -226,7 +143,7 @@
         "data": {
           "sourceHandle": {
             "dataType": "UserQuestion",
-            "id": "UserQuestion-8GIm6",
+            "id": "UserQuestion-0BqYE",
             "name": "question",
             "output_types": [
               "Message"
@@ -234,106 +151,26 @@
           },
           "targetHandle": {
             "fieldName": "question",
-            "id": "DocSpaceQdrantVectorStoreComponent-zR8tQ",
+            "id": "DocSpaceQdrantVectorStoreComponent-9397Q",
             "inputTypes": [
               "Message"
             ],
             "type": "str"
           }
         },
-        "id": "reactflow__edge-UserQuestion-8GIm6{œdataTypeœ:œUserQuestionœ,œidœ:œUserQuestion-8GIm6œ,œnameœ:œquestionœ,œoutput_typesœ:[œMessageœ]}-DocSpaceQdrantVectorStoreComponent-zR8tQ{œfieldNameœ:œquestionœ,œidœ:œDocSpaceQdrantVectorStoreComponent-zR8tQœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
-        "source": "UserQuestion-8GIm6",
-        "sourceHandle": "{œdataTypeœ:œUserQuestionœ,œidœ:œUserQuestion-8GIm6œ,œnameœ:œquestionœ,œoutput_typesœ:[œMessageœ]}",
-        "target": "DocSpaceQdrantVectorStoreComponent-zR8tQ",
-        "targetHandle": "{œfieldNameœ:œquestionœ,œidœ:œDocSpaceQdrantVectorStoreComponent-zR8tQœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
+        "id": "reactflow__edge-UserQuestion-0BqYE{œdataTypeœ:œUserQuestionœ,œidœ:œUserQuestion-0BqYEœ,œnameœ:œquestionœ,œoutput_typesœ:[œMessageœ]}-DocSpaceQdrantVectorStoreComponent-9397Q{œfieldNameœ:œquestionœ,œidœ:œDocSpaceQdrantVectorStoreComponent-9397Qœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "source": "UserQuestion-0BqYE",
+        "sourceHandle": "{œdataTypeœ:œUserQuestionœ,œidœ:œUserQuestion-0BqYEœ,œnameœ:œquestionœ,œoutput_typesœ:[œMessageœ]}",
+        "target": "DocSpaceQdrantVectorStoreComponent-9397Q",
+        "targetHandle": "{œfieldNameœ:œquestionœ,œidœ:œDocSpaceQdrantVectorStoreComponent-9397Qœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "animated": false,
-        "className": "",
-        "data": {
-          "sourceHandle": {
-            "dataType": "UserQuestion",
-            "id": "UserQuestion-8GIm6",
-            "name": "question",
-            "output_types": [
-              "Message"
-            ]
-          },
-          "targetHandle": {
-            "fieldName": "question",
-            "id": "DocSpaceQdrantVectorStoreComponent-Erj5a",
-            "inputTypes": [
-              "Message"
-            ],
-            "type": "str"
-          }
-        },
-        "id": "reactflow__edge-UserQuestion-8GIm6{œdataTypeœ:œUserQuestionœ,œidœ:œUserQuestion-8GIm6œ,œnameœ:œquestionœ,œoutput_typesœ:[œMessageœ]}-DocSpaceQdrantVectorStoreComponent-Erj5a{œfieldNameœ:œquestionœ,œidœ:œDocSpaceQdrantVectorStoreComponent-Erj5aœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
-        "source": "UserQuestion-8GIm6",
-        "sourceHandle": "{œdataTypeœ:œUserQuestionœ,œidœ:œUserQuestion-8GIm6œ,œnameœ:œquestionœ,œoutput_typesœ:[œMessageœ]}",
-        "target": "DocSpaceQdrantVectorStoreComponent-Erj5a",
-        "targetHandle": "{œfieldNameœ:œquestionœ,œidœ:œDocSpaceQdrantVectorStoreComponent-Erj5aœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
-      },
-      {
-        "animated": false,
-        "className": "",
-        "data": {
-          "sourceHandle": {
-            "dataType": "OpenAIEmbeddings",
-            "id": "OpenAIEmbeddings-CNUO9",
-            "name": "embeddings",
-            "output_types": [
-              "Embeddings"
-            ]
-          },
-          "targetHandle": {
-            "fieldName": "embedding",
-            "id": "DocSpaceQdrantVectorStoreComponent-zR8tQ",
-            "inputTypes": [
-              "Embeddings"
-            ],
-            "type": "other"
-          }
-        },
-        "id": "reactflow__edge-OpenAIEmbeddings-CNUO9{œdataTypeœ:œOpenAIEmbeddingsœ,œidœ:œOpenAIEmbeddings-CNUO9œ,œnameœ:œembeddingsœ,œoutput_typesœ:[œEmbeddingsœ]}-DocSpaceQdrantVectorStoreComponent-zR8tQ{œfieldNameœ:œembeddingœ,œidœ:œDocSpaceQdrantVectorStoreComponent-zR8tQœ,œinputTypesœ:[œEmbeddingsœ],œtypeœ:œotherœ}",
-        "source": "OpenAIEmbeddings-CNUO9",
-        "sourceHandle": "{œdataTypeœ:œOpenAIEmbeddingsœ,œidœ:œOpenAIEmbeddings-CNUO9œ,œnameœ:œembeddingsœ,œoutput_typesœ:[œEmbeddingsœ]}",
-        "target": "DocSpaceQdrantVectorStoreComponent-zR8tQ",
-        "targetHandle": "{œfieldNameœ:œembeddingœ,œidœ:œDocSpaceQdrantVectorStoreComponent-zR8tQœ,œinputTypesœ:[œEmbeddingsœ],œtypeœ:œotherœ}"
-      },
-      {
-        "animated": false,
-        "className": "",
-        "data": {
-          "sourceHandle": {
-            "dataType": "OpenAIEmbeddings",
-            "id": "OpenAIEmbeddings-CNUO9",
-            "name": "embeddings",
-            "output_types": [
-              "Embeddings"
-            ]
-          },
-          "targetHandle": {
-            "fieldName": "embedding",
-            "id": "DocSpaceQdrantVectorStoreComponent-Erj5a",
-            "inputTypes": [
-              "Embeddings"
-            ],
-            "type": "other"
-          }
-        },
-        "id": "reactflow__edge-OpenAIEmbeddings-CNUO9{œdataTypeœ:œOpenAIEmbeddingsœ,œidœ:œOpenAIEmbeddings-CNUO9œ,œnameœ:œembeddingsœ,œoutput_typesœ:[œEmbeddingsœ]}-DocSpaceQdrantVectorStoreComponent-Erj5a{œfieldNameœ:œembeddingœ,œidœ:œDocSpaceQdrantVectorStoreComponent-Erj5aœ,œinputTypesœ:[œEmbeddingsœ],œtypeœ:œotherœ}",
-        "source": "OpenAIEmbeddings-CNUO9",
-        "sourceHandle": "{œdataTypeœ:œOpenAIEmbeddingsœ,œidœ:œOpenAIEmbeddings-CNUO9œ,œnameœ:œembeddingsœ,œoutput_typesœ:[œEmbeddingsœ]}",
-        "target": "DocSpaceQdrantVectorStoreComponent-Erj5a",
-        "targetHandle": "{œfieldNameœ:œembeddingœ,œidœ:œDocSpaceQdrantVectorStoreComponent-Erj5aœ,œinputTypesœ:[œEmbeddingsœ],œtypeœ:œotherœ}"
-      },
-      {
         "className": "",
         "data": {
           "sourceHandle": {
             "dataType": "EnvExtractor",
-            "id": "EnvExtractor-H4qFp",
+            "id": "EnvExtractor-5F2jP",
             "name": "api_host",
             "output_types": [
               "Message"
@@ -341,51 +178,27 @@
           },
           "targetHandle": {
             "fieldName": "api_host",
-            "id": "GetFileCollectionName-vUgcj",
+            "id": "GetFileCollectionName-bX4aC",
             "inputTypes": [
               "Message"
             ],
             "type": "str"
           }
         },
-        "id": "xy-edge__EnvExtractor-H4qFp{œdataTypeœ:œEnvExtractorœ,œidœ:œEnvExtractor-H4qFpœ,œnameœ:œapi_hostœ,œoutput_typesœ:[œMessageœ]}-GetFileCollectionName-vUgcj{œfieldNameœ:œapi_hostœ,œidœ:œGetFileCollectionName-vUgcjœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
-        "source": "EnvExtractor-H4qFp",
-        "sourceHandle": "{œdataTypeœ:œEnvExtractorœ,œidœ:œEnvExtractor-H4qFpœ,œnameœ:œapi_hostœ,œoutput_typesœ:[œMessageœ]}",
-        "target": "GetFileCollectionName-vUgcj",
-        "targetHandle": "{œfieldNameœ:œapi_hostœ,œidœ:œGetFileCollectionName-vUgcjœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
+        "id": "reactflow__edge-EnvExtractor-5F2jP{œdataTypeœ:œEnvExtractorœ,œidœ:œEnvExtractor-5F2jPœ,œnameœ:œapi_hostœ,œoutput_typesœ:[œMessageœ]}-GetFileCollectionName-bX4aC{œfieldNameœ:œapi_hostœ,œidœ:œGetFileCollectionName-bX4aCœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "selected": false,
+        "source": "EnvExtractor-5F2jP",
+        "sourceHandle": "{œdataTypeœ:œEnvExtractorœ,œidœ:œEnvExtractor-5F2jPœ,œnameœ:œapi_hostœ,œoutput_typesœ:[œMessageœ]}",
+        "target": "GetFileCollectionName-bX4aC",
+        "targetHandle": "{œfieldNameœ:œapi_hostœ,œidœ:œGetFileCollectionName-bX4aCœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       },
       {
+        "animated": false,
         "className": "",
         "data": {
           "sourceHandle": {
             "dataType": "ConditionalRouterList",
-            "id": "ConditionalRouter-vnrHa",
-            "name": "true_result",
-            "output_types": [
-              "Data"
-            ]
-          },
-          "targetHandle": {
-            "fieldName": "files",
-            "id": "DocSpaceQdrantVectorStoreComponent-zR8tQ",
-            "inputTypes": [
-              "Data"
-            ],
-            "type": "other"
-          }
-        },
-        "id": "xy-edge__ConditionalRouter-vnrHa{œdataTypeœ:œConditionalRouterListœ,œidœ:œConditionalRouter-vnrHaœ,œnameœ:œtrue_resultœ,œoutput_typesœ:[œDataœ]}-DocSpaceQdrantVectorStoreComponent-zR8tQ{œfieldNameœ:œfilesœ,œidœ:œDocSpaceQdrantVectorStoreComponent-zR8tQœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}",
-        "source": "ConditionalRouter-vnrHa",
-        "sourceHandle": "{œdataTypeœ:œConditionalRouterListœ,œidœ:œConditionalRouter-vnrHaœ,œnameœ:œtrue_resultœ,œoutput_typesœ:[œDataœ]}",
-        "target": "DocSpaceQdrantVectorStoreComponent-zR8tQ",
-        "targetHandle": "{œfieldNameœ:œfilesœ,œidœ:œDocSpaceQdrantVectorStoreComponent-zR8tQœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}"
-      },
-      {
-        "className": "",
-        "data": {
-          "sourceHandle": {
-            "dataType": "ConditionalRouterList",
-            "id": "ConditionalRouter-vnrHa",
+            "id": "ConditionalRouterList-9L3SS",
             "name": "false_result",
             "output_types": [
               "Message"
@@ -393,7 +206,7 @@
           },
           "targetHandle": {
             "fieldName": "input_value",
-            "id": "ChatOutput-0Bwdr",
+            "id": "ChatOutput-otfan",
             "inputTypes": [
               "Data",
               "DataFrame",
@@ -402,18 +215,19 @@
             "type": "other"
           }
         },
-        "id": "xy-edge__ConditionalRouter-vnrHa{œdataTypeœ:œConditionalRouterListœ,œidœ:œConditionalRouter-vnrHaœ,œnameœ:œfalse_resultœ,œoutput_typesœ:[œMessageœ]}-ChatOutput-0Bwdr{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-0Bwdrœ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œotherœ}",
-        "source": "ConditionalRouter-vnrHa",
-        "sourceHandle": "{œdataTypeœ:œConditionalRouterListœ,œidœ:œConditionalRouter-vnrHaœ,œnameœ:œfalse_resultœ,œoutput_typesœ:[œMessageœ]}",
-        "target": "ChatOutput-0Bwdr",
-        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-0Bwdrœ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œotherœ}"
+        "id": "reactflow__edge-ConditionalRouterList-9L3SS{œdataTypeœ:œConditionalRouterListœ,œidœ:œConditionalRouterList-9L3SSœ,œnameœ:œfalse_resultœ,œoutput_typesœ:[œMessageœ]}-ChatOutput-otfan{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-otfanœ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œotherœ}",
+        "source": "ConditionalRouterList-9L3SS",
+        "sourceHandle": "{œdataTypeœ:œConditionalRouterListœ,œidœ:œConditionalRouterList-9L3SSœ,œnameœ:œfalse_resultœ,œoutput_typesœ:[œMessageœ]}",
+        "target": "ChatOutput-otfan",
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-otfanœ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œotherœ}"
       },
       {
+        "animated": false,
         "className": "",
         "data": {
           "sourceHandle": {
             "dataType": "ConditionalRouterList",
-            "id": "ConditionalRouter-vnrHa",
+            "id": "ConditionalRouterList-9L3SS",
             "name": "true_result",
             "output_types": [
               "Data"
@@ -421,25 +235,26 @@
           },
           "targetHandle": {
             "fieldName": "files",
-            "id": "DocSpaceQdrantVectorStoreComponent-Erj5a",
+            "id": "DocSpaceQdrantVectorStoreComponent-9397Q",
             "inputTypes": [
               "Data"
             ],
             "type": "other"
           }
         },
-        "id": "xy-edge__ConditionalRouter-vnrHa{œdataTypeœ:œConditionalRouterListœ,œidœ:œConditionalRouter-vnrHaœ,œnameœ:œtrue_resultœ,œoutput_typesœ:[œDataœ]}-DocSpaceQdrantVectorStoreComponent-Erj5a{œfieldNameœ:œfilesœ,œidœ:œDocSpaceQdrantVectorStoreComponent-Erj5aœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}",
-        "source": "ConditionalRouter-vnrHa",
-        "sourceHandle": "{œdataTypeœ:œConditionalRouterListœ,œidœ:œConditionalRouter-vnrHaœ,œnameœ:œtrue_resultœ,œoutput_typesœ:[œDataœ]}",
-        "target": "DocSpaceQdrantVectorStoreComponent-Erj5a",
-        "targetHandle": "{œfieldNameœ:œfilesœ,œidœ:œDocSpaceQdrantVectorStoreComponent-Erj5aœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}"
+        "id": "reactflow__edge-ConditionalRouterList-9L3SS{œdataTypeœ:œConditionalRouterListœ,œidœ:œConditionalRouterList-9L3SSœ,œnameœ:œtrue_resultœ,œoutput_typesœ:[œDataœ]}-DocSpaceQdrantVectorStoreComponent-9397Q{œfieldNameœ:œfilesœ,œidœ:œDocSpaceQdrantVectorStoreComponent-9397Qœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}",
+        "source": "ConditionalRouterList-9L3SS",
+        "sourceHandle": "{œdataTypeœ:œConditionalRouterListœ,œidœ:œConditionalRouterList-9L3SSœ,œnameœ:œtrue_resultœ,œoutput_typesœ:[œDataœ]}",
+        "target": "DocSpaceQdrantVectorStoreComponent-9397Q",
+        "targetHandle": "{œfieldNameœ:œfilesœ,œidœ:œDocSpaceQdrantVectorStoreComponent-9397Qœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}"
       },
       {
+        "animated": false,
         "className": "",
         "data": {
           "sourceHandle": {
             "dataType": "ConditionalRouterList",
-            "id": "ConditionalRouter-wj6Cc",
+            "id": "ConditionalRouterList-NzrPJ",
             "name": "true_result",
             "output_types": [
               "Message"
@@ -447,384 +262,405 @@
           },
           "targetHandle": {
             "fieldName": "input_value",
-            "id": "CustomComponent-YURO0",
+            "id": "CustomComponent1-JMHYt",
             "inputTypes": [
               "Message"
             ],
             "type": "str"
           }
         },
-        "id": "xy-edge__ConditionalRouter-wj6Cc{œdataTypeœ:œConditionalRouterListœ,œidœ:œConditionalRouter-wj6Ccœ,œnameœ:œtrue_resultœ,œoutput_typesœ:[œMessageœ]}-CustomComponent-YURO0{œfieldNameœ:œinput_valueœ,œidœ:œCustomComponent-YURO0œ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
-        "source": "ConditionalRouter-wj6Cc",
-        "sourceHandle": "{œdataTypeœ:œConditionalRouterListœ,œidœ:œConditionalRouter-wj6Ccœ,œnameœ:œtrue_resultœ,œoutput_typesœ:[œMessageœ]}",
-        "target": "CustomComponent-YURO0",
-        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œCustomComponent-YURO0œ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
+        "id": "reactflow__edge-ConditionalRouterList-NzrPJ{œdataTypeœ:œConditionalRouterListœ,œidœ:œConditionalRouterList-NzrPJœ,œnameœ:œtrue_resultœ,œoutput_typesœ:[œMessageœ]}-CustomComponent1-JMHYt{œfieldNameœ:œinput_valueœ,œidœ:œCustomComponent1-JMHYtœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "source": "ConditionalRouterList-NzrPJ",
+        "sourceHandle": "{œdataTypeœ:œConditionalRouterListœ,œidœ:œConditionalRouterList-NzrPJœ,œnameœ:œtrue_resultœ,œoutput_typesœ:[œMessageœ]}",
+        "target": "CustomComponent1-JMHYt",
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œCustomComponent1-JMHYtœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
+      },
+      {
+        "animated": false,
+        "className": "",
+        "data": {
+          "sourceHandle": {
+            "dataType": "CustomComponent1",
+            "id": "CustomComponent1-JMHYt",
+            "name": "output",
+            "output_types": [
+              "Message"
+            ]
+          },
+          "targetHandle": {
+            "fieldName": "input_value",
+            "id": "ChatOutput-5d6xT",
+            "inputTypes": [
+              "Data",
+              "DataFrame",
+              "Message"
+            ],
+            "type": "other"
+          }
+        },
+        "id": "reactflow__edge-CustomComponent1-JMHYt{œdataTypeœ:œCustomComponent1œ,œidœ:œCustomComponent1-JMHYtœ,œnameœ:œoutputœ,œoutput_typesœ:[œMessageœ]}-ChatOutput-5d6xT{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-5d6xTœ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œotherœ}",
+        "source": "CustomComponent1-JMHYt",
+        "sourceHandle": "{œdataTypeœ:œCustomComponent1œ,œidœ:œCustomComponent1-JMHYtœ,œnameœ:œoutputœ,œoutput_typesœ:[œMessageœ]}",
+        "target": "ChatOutput-5d6xT",
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-5d6xTœ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œotherœ}"
+      },
+      {
+        "animated": false,
+        "className": "",
+        "data": {
+          "sourceHandle": {
+            "dataType": "CustomComponent1",
+            "id": "CustomComponent1-KWGPF",
+            "name": "output",
+            "output_types": [
+              "Message"
+            ]
+          },
+          "targetHandle": {
+            "fieldName": "input_value",
+            "id": "ChatOutput-PJjQV",
+            "inputTypes": [
+              "Data",
+              "DataFrame",
+              "Message"
+            ],
+            "type": "other"
+          }
+        },
+        "id": "reactflow__edge-CustomComponent1-KWGPF{œdataTypeœ:œCustomComponent1œ,œidœ:œCustomComponent1-KWGPFœ,œnameœ:œoutputœ,œoutput_typesœ:[œMessageœ]}-ChatOutput-PJjQV{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-PJjQVœ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œotherœ}",
+        "source": "CustomComponent1-KWGPF",
+        "sourceHandle": "{œdataTypeœ:œCustomComponent1œ,œidœ:œCustomComponent1-KWGPFœ,œnameœ:œoutputœ,œoutput_typesœ:[œMessageœ]}",
+        "target": "ChatOutput-PJjQV",
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-PJjQVœ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œotherœ}"
+      },
+      {
+        "animated": false,
+        "className": "",
+        "data": {
+          "sourceHandle": {
+            "dataType": "TogetherAIEmbeddings",
+            "id": "TogetherAIEmbeddings-oxOrS",
+            "name": "embeddings",
+            "output_types": [
+              "Embeddings"
+            ]
+          },
+          "targetHandle": {
+            "fieldName": "embedding",
+            "id": "DocSpaceQdrantVectorStoreComponent-9397Q",
+            "inputTypes": [
+              "Embeddings"
+            ],
+            "type": "other"
+          }
+        },
+        "id": "reactflow__edge-TogetherAIEmbeddings-oxOrS{œdataTypeœ:œTogetherAIEmbeddingsœ,œidœ:œTogetherAIEmbeddings-oxOrSœ,œnameœ:œembeddingsœ,œoutput_typesœ:[œEmbeddingsœ]}-DocSpaceQdrantVectorStoreComponent-9397Q{œfieldNameœ:œembeddingœ,œidœ:œDocSpaceQdrantVectorStoreComponent-9397Qœ,œinputTypesœ:[œEmbeddingsœ],œtypeœ:œotherœ}",
+        "source": "TogetherAIEmbeddings-oxOrS",
+        "sourceHandle": "{œdataTypeœ:œTogetherAIEmbeddingsœ,œidœ:œTogetherAIEmbeddings-oxOrSœ,œnameœ:œembeddingsœ,œoutput_typesœ:[œEmbeddingsœ]}",
+        "target": "DocSpaceQdrantVectorStoreComponent-9397Q",
+        "targetHandle": "{œfieldNameœ:œembeddingœ,œidœ:œDocSpaceQdrantVectorStoreComponent-9397Qœ,œinputTypesœ:[œEmbeddingsœ],œtypeœ:œotherœ}"
+      },
+      {
+        "animated": false,
+        "className": "",
+        "data": {
+          "sourceHandle": {
+            "dataType": "EnvExtractor",
+            "id": "EnvExtractor-5F2jP",
+            "name": "qdrant_host",
+            "output_types": [
+              "Message"
+            ]
+          },
+          "targetHandle": {
+            "fieldName": "qdrant_host",
+            "id": "DocSpaceQdrantVectorStoreComponent-9397Q",
+            "inputTypes": [
+              "Message"
+            ],
+            "type": "str"
+          }
+        },
+        "id": "reactflow__edge-EnvExtractor-5F2jP{œdataTypeœ:œEnvExtractorœ,œidœ:œEnvExtractor-5F2jPœ,œnameœ:œqdrant_hostœ,œoutput_typesœ:[œMessageœ]}-DocSpaceQdrantVectorStoreComponent-9397Q{œfieldNameœ:œqdrant_hostœ,œidœ:œDocSpaceQdrantVectorStoreComponent-9397Qœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "source": "EnvExtractor-5F2jP",
+        "sourceHandle": "{œdataTypeœ:œEnvExtractorœ,œidœ:œEnvExtractor-5F2jPœ,œnameœ:œqdrant_hostœ,œoutput_typesœ:[œMessageœ]}",
+        "target": "DocSpaceQdrantVectorStoreComponent-9397Q",
+        "targetHandle": "{œfieldNameœ:œqdrant_hostœ,œidœ:œDocSpaceQdrantVectorStoreComponent-9397Qœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
+      },
+      {
+        "animated": false,
+        "className": "",
+        "data": {
+          "sourceHandle": {
+            "dataType": "EnvExtractor",
+            "id": "EnvExtractor-5F2jP",
+            "name": "qdrant_port",
+            "output_types": [
+              "Message"
+            ]
+          },
+          "targetHandle": {
+            "fieldName": "qdrant_port",
+            "id": "DocSpaceQdrantVectorStoreComponent-9397Q",
+            "inputTypes": [
+              "Message"
+            ],
+            "type": "str"
+          }
+        },
+        "id": "reactflow__edge-EnvExtractor-5F2jP{œdataTypeœ:œEnvExtractorœ,œidœ:œEnvExtractor-5F2jPœ,œnameœ:œqdrant_portœ,œoutput_typesœ:[œMessageœ]}-DocSpaceQdrantVectorStoreComponent-9397Q{œfieldNameœ:œqdrant_portœ,œidœ:œDocSpaceQdrantVectorStoreComponent-9397Qœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "source": "EnvExtractor-5F2jP",
+        "sourceHandle": "{œdataTypeœ:œEnvExtractorœ,œidœ:œEnvExtractor-5F2jPœ,œnameœ:œqdrant_portœ,œoutput_typesœ:[œMessageœ]}",
+        "target": "DocSpaceQdrantVectorStoreComponent-9397Q",
+        "targetHandle": "{œfieldNameœ:œqdrant_portœ,œidœ:œDocSpaceQdrantVectorStoreComponent-9397Qœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
+      },
+      {
+        "animated": false,
+        "className": "",
+        "data": {
+          "sourceHandle": {
+            "dataType": "FileID",
+            "id": "FileID-AvBWj",
+            "name": "file",
+            "output_types": [
+              "Message"
+            ]
+          },
+          "targetHandle": {
+            "fieldName": "files_ids",
+            "id": "GetFile-H8CS6",
+            "inputTypes": [
+              "Message"
+            ],
+            "type": "str"
+          }
+        },
+        "id": "reactflow__edge-FileID-AvBWj{œdataTypeœ:œFileIDœ,œidœ:œFileID-AvBWjœ,œnameœ:œfileœ,œoutput_typesœ:[œMessageœ]}-GetFile-H8CS6{œfieldNameœ:œfiles_idsœ,œidœ:œGetFile-H8CS6œ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "source": "FileID-AvBWj",
+        "sourceHandle": "{œdataTypeœ:œFileIDœ,œidœ:œFileID-AvBWjœ,œnameœ:œfileœ,œoutput_typesœ:[œMessageœ]}",
+        "target": "GetFile-H8CS6",
+        "targetHandle": "{œfieldNameœ:œfiles_idsœ,œidœ:œGetFile-H8CS6œ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
+      },
+      {
+        "animated": false,
+        "className": "",
+        "data": {
+          "sourceHandle": {
+            "dataType": "ConditionalRouterList",
+            "id": "ConditionalRouterList-9L3SS",
+            "name": "true_result",
+            "output_types": [
+              "Data"
+            ]
+          },
+          "targetHandle": {
+            "fieldName": "files",
+            "id": "DocSpaceQdrantVectorStoreComponent-KkbsA",
+            "inputTypes": [
+              "Data"
+            ],
+            "type": "other"
+          }
+        },
+        "id": "reactflow__edge-ConditionalRouterList-9L3SS{œdataTypeœ:œConditionalRouterListœ,œidœ:œConditionalRouterList-9L3SSœ,œnameœ:œtrue_resultœ,œoutput_typesœ:[œDataœ]}-DocSpaceQdrantVectorStoreComponent-KkbsA{œfieldNameœ:œfilesœ,œidœ:œDocSpaceQdrantVectorStoreComponent-KkbsAœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}",
+        "source": "ConditionalRouterList-9L3SS",
+        "sourceHandle": "{œdataTypeœ:œConditionalRouterListœ,œidœ:œConditionalRouterList-9L3SSœ,œnameœ:œtrue_resultœ,œoutput_typesœ:[œDataœ]}",
+        "target": "DocSpaceQdrantVectorStoreComponent-KkbsA",
+        "targetHandle": "{œfieldNameœ:œfilesœ,œidœ:œDocSpaceQdrantVectorStoreComponent-KkbsAœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}"
+      },
+      {
+        "animated": false,
+        "className": "",
+        "data": {
+          "sourceHandle": {
+            "dataType": "GetFileCollectionName",
+            "id": "GetFileCollectionName-bX4aC",
+            "name": "collection_name",
+            "output_types": [
+              "Message"
+            ]
+          },
+          "targetHandle": {
+            "fieldName": "collection_name",
+            "id": "DocSpaceQdrantVectorStoreComponent-KkbsA",
+            "inputTypes": [
+              "Message"
+            ],
+            "type": "str"
+          }
+        },
+        "id": "reactflow__edge-GetFileCollectionName-bX4aC{œdataTypeœ:œGetFileCollectionNameœ,œidœ:œGetFileCollectionName-bX4aCœ,œnameœ:œcollection_nameœ,œoutput_typesœ:[œMessageœ]}-DocSpaceQdrantVectorStoreComponent-KkbsA{œfieldNameœ:œcollection_nameœ,œidœ:œDocSpaceQdrantVectorStoreComponent-KkbsAœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "source": "GetFileCollectionName-bX4aC",
+        "sourceHandle": "{œdataTypeœ:œGetFileCollectionNameœ,œidœ:œGetFileCollectionName-bX4aCœ,œnameœ:œcollection_nameœ,œoutput_typesœ:[œMessageœ]}",
+        "target": "DocSpaceQdrantVectorStoreComponent-KkbsA",
+        "targetHandle": "{œfieldNameœ:œcollection_nameœ,œidœ:œDocSpaceQdrantVectorStoreComponent-KkbsAœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
+      },
+      {
+        "animated": false,
+        "className": "",
+        "data": {
+          "sourceHandle": {
+            "dataType": "UserQuestion",
+            "id": "UserQuestion-0BqYE",
+            "name": "question",
+            "output_types": [
+              "Message"
+            ]
+          },
+          "targetHandle": {
+            "fieldName": "question",
+            "id": "DocSpaceQdrantVectorStoreComponent-KkbsA",
+            "inputTypes": [
+              "Message"
+            ],
+            "type": "str"
+          }
+        },
+        "id": "reactflow__edge-UserQuestion-0BqYE{œdataTypeœ:œUserQuestionœ,œidœ:œUserQuestion-0BqYEœ,œnameœ:œquestionœ,œoutput_typesœ:[œMessageœ]}-DocSpaceQdrantVectorStoreComponent-KkbsA{œfieldNameœ:œquestionœ,œidœ:œDocSpaceQdrantVectorStoreComponent-KkbsAœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "source": "UserQuestion-0BqYE",
+        "sourceHandle": "{œdataTypeœ:œUserQuestionœ,œidœ:œUserQuestion-0BqYEœ,œnameœ:œquestionœ,œoutput_typesœ:[œMessageœ]}",
+        "target": "DocSpaceQdrantVectorStoreComponent-KkbsA",
+        "targetHandle": "{œfieldNameœ:œquestionœ,œidœ:œDocSpaceQdrantVectorStoreComponent-KkbsAœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
+      },
+      {
+        "animated": false,
+        "className": "",
+        "data": {
+          "sourceHandle": {
+            "dataType": "EnvExtractor",
+            "id": "EnvExtractor-5F2jP",
+            "name": "qdrant_host",
+            "output_types": [
+              "Message"
+            ]
+          },
+          "targetHandle": {
+            "fieldName": "qdrant_host",
+            "id": "DocSpaceQdrantVectorStoreComponent-KkbsA",
+            "inputTypes": [
+              "Message"
+            ],
+            "type": "str"
+          }
+        },
+        "id": "reactflow__edge-EnvExtractor-5F2jP{œdataTypeœ:œEnvExtractorœ,œidœ:œEnvExtractor-5F2jPœ,œnameœ:œqdrant_hostœ,œoutput_typesœ:[œMessageœ]}-DocSpaceQdrantVectorStoreComponent-KkbsA{œfieldNameœ:œqdrant_hostœ,œidœ:œDocSpaceQdrantVectorStoreComponent-KkbsAœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "source": "EnvExtractor-5F2jP",
+        "sourceHandle": "{œdataTypeœ:œEnvExtractorœ,œidœ:œEnvExtractor-5F2jPœ,œnameœ:œqdrant_hostœ,œoutput_typesœ:[œMessageœ]}",
+        "target": "DocSpaceQdrantVectorStoreComponent-KkbsA",
+        "targetHandle": "{œfieldNameœ:œqdrant_hostœ,œidœ:œDocSpaceQdrantVectorStoreComponent-KkbsAœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
+      },
+      {
+        "animated": false,
+        "className": "",
+        "data": {
+          "sourceHandle": {
+            "dataType": "EnvExtractor",
+            "id": "EnvExtractor-5F2jP",
+            "name": "qdrant_port",
+            "output_types": [
+              "Message"
+            ]
+          },
+          "targetHandle": {
+            "fieldName": "qdrant_port",
+            "id": "DocSpaceQdrantVectorStoreComponent-KkbsA",
+            "inputTypes": [
+              "Message"
+            ],
+            "type": "str"
+          }
+        },
+        "id": "reactflow__edge-EnvExtractor-5F2jP{œdataTypeœ:œEnvExtractorœ,œidœ:œEnvExtractor-5F2jPœ,œnameœ:œqdrant_portœ,œoutput_typesœ:[œMessageœ]}-DocSpaceQdrantVectorStoreComponent-KkbsA{œfieldNameœ:œqdrant_portœ,œidœ:œDocSpaceQdrantVectorStoreComponent-KkbsAœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "source": "EnvExtractor-5F2jP",
+        "sourceHandle": "{œdataTypeœ:œEnvExtractorœ,œidœ:œEnvExtractor-5F2jPœ,œnameœ:œqdrant_portœ,œoutput_typesœ:[œMessageœ]}",
+        "target": "DocSpaceQdrantVectorStoreComponent-KkbsA",
+        "targetHandle": "{œfieldNameœ:œqdrant_portœ,œidœ:œDocSpaceQdrantVectorStoreComponent-KkbsAœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
+      },
+      {
+        "animated": false,
+        "className": "",
+        "data": {
+          "sourceHandle": {
+            "dataType": "TogetherAIEmbeddings",
+            "id": "TogetherAIEmbeddings-oxOrS",
+            "name": "embeddings",
+            "output_types": [
+              "Embeddings"
+            ]
+          },
+          "targetHandle": {
+            "fieldName": "embedding",
+            "id": "DocSpaceQdrantVectorStoreComponent-KkbsA",
+            "inputTypes": [
+              "Embeddings"
+            ],
+            "type": "other"
+          }
+        },
+        "id": "reactflow__edge-TogetherAIEmbeddings-oxOrS{œdataTypeœ:œTogetherAIEmbeddingsœ,œidœ:œTogetherAIEmbeddings-oxOrSœ,œnameœ:œembeddingsœ,œoutput_typesœ:[œEmbeddingsœ]}-DocSpaceQdrantVectorStoreComponent-KkbsA{œfieldNameœ:œembeddingœ,œidœ:œDocSpaceQdrantVectorStoreComponent-KkbsAœ,œinputTypesœ:[œEmbeddingsœ],œtypeœ:œotherœ}",
+        "source": "TogetherAIEmbeddings-oxOrS",
+        "sourceHandle": "{œdataTypeœ:œTogetherAIEmbeddingsœ,œidœ:œTogetherAIEmbeddings-oxOrSœ,œnameœ:œembeddingsœ,œoutput_typesœ:[œEmbeddingsœ]}",
+        "target": "DocSpaceQdrantVectorStoreComponent-KkbsA",
+        "targetHandle": "{œfieldNameœ:œembeddingœ,œidœ:œDocSpaceQdrantVectorStoreComponent-KkbsAœ,œinputTypesœ:[œEmbeddingsœ],œtypeœ:œotherœ}"
+      },
+      {
+        "animated": false,
+        "className": "",
+        "data": {
+          "sourceHandle": {
+            "dataType": "DocSpaceQdrantVectorStoreComponent",
+            "id": "DocSpaceQdrantVectorStoreComponent-KkbsA",
+            "name": "search",
+            "output_types": [
+              "Message"
+            ]
+          },
+          "targetHandle": {
+            "fieldName": "input_text",
+            "id": "ConditionalRouterList-NzrPJ",
+            "inputTypes": [
+              "Message"
+            ],
+            "type": "str"
+          }
+        },
+        "id": "reactflow__edge-DocSpaceQdrantVectorStoreComponent-KkbsA{œdataTypeœ:œDocSpaceQdrantVectorStoreComponentœ,œidœ:œDocSpaceQdrantVectorStoreComponent-KkbsAœ,œnameœ:œsearchœ,œoutput_typesœ:[œMessageœ]}-ConditionalRouterList-NzrPJ{œfieldNameœ:œinput_textœ,œidœ:œConditionalRouterList-NzrPJœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "source": "DocSpaceQdrantVectorStoreComponent-KkbsA",
+        "sourceHandle": "{œdataTypeœ:œDocSpaceQdrantVectorStoreComponentœ,œidœ:œDocSpaceQdrantVectorStoreComponent-KkbsAœ,œnameœ:œsearchœ,œoutput_typesœ:[œMessageœ]}",
+        "target": "ConditionalRouterList-NzrPJ",
+        "targetHandle": "{œfieldNameœ:œinput_textœ,œidœ:œConditionalRouterList-NzrPJœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "className": "",
         "data": {
           "sourceHandle": {
             "dataType": "ConditionalRouterList",
-            "id": "ConditionalRouter-wj6Cc",
+            "id": "ConditionalRouterList-NzrPJ",
             "name": "false_result",
             "output_types": [
               "Message"
             ]
           },
           "targetHandle": {
-            "fieldName": "TextInput-GBTqB~input_value",
-            "id": "RunFlow-iY8FD",
+            "fieldName": "FileID-oF8Vp~input_value",
+            "id": "RunFlow-ag1bx",
             "inputTypes": [
               "Message"
             ],
             "type": "str"
           }
         },
-        "id": "xy-edge__ConditionalRouter-wj6Cc{œdataTypeœ:œConditionalRouterListœ,œidœ:œConditionalRouter-wj6Ccœ,œnameœ:œfalse_resultœ,œoutput_typesœ:[œMessageœ]}-RunFlow-iY8FD{œfieldNameœ:œTextInput-GBTqB~input_valueœ,œidœ:œRunFlow-iY8FDœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
-        "source": "ConditionalRouter-wj6Cc",
-        "sourceHandle": "{œdataTypeœ:œConditionalRouterListœ,œidœ:œConditionalRouter-wj6Ccœ,œnameœ:œfalse_resultœ,œoutput_typesœ:[œMessageœ]}",
-        "target": "RunFlow-iY8FD",
-        "targetHandle": "{œfieldNameœ:œTextInput-GBTqB~input_valueœ,œidœ:œRunFlow-iY8FDœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
-      },
-      {
-        "className": "",
-        "data": {
-          "sourceHandle": {
-            "dataType": "CustomComponent1",
-            "id": "CustomComponent-YURO0",
-            "name": "output",
-            "output_types": [
-              "Message"
-            ]
-          },
-          "targetHandle": {
-            "fieldName": "input_value",
-            "id": "ChatOutput-FJ3fe",
-            "inputTypes": [
-              "Data",
-              "DataFrame",
-              "Message"
-            ],
-            "type": "other"
-          }
-        },
-        "id": "xy-edge__CustomComponent-YURO0{œdataTypeœ:œCustomComponent1œ,œidœ:œCustomComponent-YURO0œ,œnameœ:œoutputœ,œoutput_typesœ:[œMessageœ]}-ChatOutput-FJ3fe{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-FJ3feœ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œotherœ}",
-        "source": "CustomComponent-YURO0",
-        "sourceHandle": "{œdataTypeœ:œCustomComponent1œ,œidœ:œCustomComponent-YURO0œ,œnameœ:œoutputœ,œoutput_typesœ:[œMessageœ]}",
-        "target": "ChatOutput-FJ3fe",
-        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-FJ3feœ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œotherœ}"
-      },
-      {
-        "className": "",
-        "data": {
-          "sourceHandle": {
-            "dataType": "CustomComponent1",
-            "id": "CustomComponent-hIWPf",
-            "name": "output",
-            "output_types": [
-              "Message"
-            ]
-          },
-          "targetHandle": {
-            "fieldName": "input_value",
-            "id": "ChatOutput-8DAYB",
-            "inputTypes": [
-              "Data",
-              "DataFrame",
-              "Message"
-            ],
-            "type": "other"
-          }
-        },
-        "id": "xy-edge__CustomComponent-hIWPf{œdataTypeœ:œCustomComponent1œ,œidœ:œCustomComponent-hIWPfœ,œnameœ:œoutputœ,œoutput_typesœ:[œMessageœ]}-ChatOutput-8DAYB{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-8DAYBœ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œotherœ}",
-        "source": "CustomComponent-hIWPf",
-        "sourceHandle": "{œdataTypeœ:œCustomComponent1œ,œidœ:œCustomComponent-hIWPfœ,œnameœ:œoutputœ,œoutput_typesœ:[œMessageœ]}",
-        "target": "ChatOutput-8DAYB",
-        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-8DAYBœ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œotherœ}"
+        "id": "xy-edge__ConditionalRouterList-NzrPJ{œdataTypeœ:œConditionalRouterListœ,œidœ:œConditionalRouterList-NzrPJœ,œnameœ:œfalse_resultœ,œoutput_typesœ:[œMessageœ]}-RunFlow-ag1bx{œfieldNameœ:œFileID-oF8Vp~input_valueœ,œidœ:œRunFlow-ag1bxœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "source": "ConditionalRouterList-NzrPJ",
+        "sourceHandle": "{œdataTypeœ:œConditionalRouterListœ,œidœ:œConditionalRouterList-NzrPJœ,œnameœ:œfalse_resultœ,œoutput_typesœ:[œMessageœ]}",
+        "target": "RunFlow-ag1bx",
+        "targetHandle": "{œfieldNameœ:œFileID-oF8Vp~input_valueœ,œidœ:œRunFlow-ag1bxœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       }
     ],
     "nodes": [
       {
         "data": {
-          "description": "Add documents to Qdrant Vector Store",
-          "display_name": "DocsSpace Qdrant Vector Store",
-          "id": "DocSpaceQdrantVectorStoreComponent-zR8tQ",
-          "node": {
-            "base_classes": [
-              "Message"
-            ],
-            "beta": false,
-            "conditional_paths": [],
-            "custom_fields": {},
-            "description": "Add documents to Qdrant Vector Store",
-            "display_name": "DocsSpace Qdrant Vector Store",
-            "documentation": "",
-            "edited": false,
-            "field_order": [
-              "collection_name",
-              "question",
-              "restart_search",
-              "documents",
-              "files",
-              "embedding"
-            ],
-            "frozen": false,
-            "icon": "Qdrant",
-            "legacy": false,
-            "lf_version": "1.1.5",
-            "metadata": {},
-            "minimized": false,
-            "output_types": [],
-            "outputs": [
-              {
-                "allows_loop": false,
-                "cache": true,
-                "display_name": "Success",
-                "method": "vectorize_documents",
-                "name": "success",
-                "selected": "Message",
-                "tool_mode": true,
-                "types": [
-                  "Message"
-                ],
-                "value": "__UNDEFINED__"
-              },
-              {
-                "allows_loop": false,
-                "cache": true,
-                "display_name": "Search",
-                "method": "search_documents",
-                "name": "search",
-                "selected": "Message",
-                "tool_mode": true,
-                "types": [
-                  "Message"
-                ],
-                "value": "__UNDEFINED__"
-              }
-            ],
-            "pinned": false,
-            "template": {
-              "_type": "Component",
-              "code": {
-                "advanced": true,
-                "dynamic": true,
-                "fileTypes": [],
-                "file_path": "",
-                "info": "",
-                "list": false,
-                "load_from_db": false,
-                "multiline": true,
-                "name": "code",
-                "password": false,
-                "placeholder": "",
-                "required": true,
-                "show": true,
-                "title_case": false,
-                "type": "code",
-                "value": "from typing import Any, Dict, List\nfrom langchain.embeddings.base import Embeddings\nfrom langchain_community.vectorstores import Qdrant\nfrom langchain_core.documents import Document\nfrom qdrant_client import QdrantClient\nfrom qdrant_client.models import Distance, VectorParams, Filter\nfrom langflow.custom import Component\nfrom langflow.schema import Message, Data\n# from langflow.base.vectorstores.model import LCVectorStoreComponent, check_cached_vector_store\nfrom langflow.io import (\n    MessageInput,\n    DataInput,\n    HandleInput,\n    Output,\n)\n\n\nclass DocSpaceQdrantVectorStoreComponent(Component):\n    display_name = \"DocsSpace Qdrant Vector Store\"\n    description = \"Add documents to Qdrant Vector Store\"\n    icon = \"Qdrant\"\n\n    inputs = [\n        MessageInput(name=\"collection_name\",\n                     display_name=\"Collection Name\",\n                     required=True),\n        MessageInput(name=\"question\",\n                     display_name=\"Question\",\n                     ),\n        MessageInput(name=\"restart_search\",\n                     display_name=\"Restart Search\",\n                     ),\n        MessageInput(name=\"qdrant_host\",\n                     display_name=\"Qdrant Host\",\n                     ),\n        MessageInput(name=\"qdrant_port\",\n                     display_name=\"Qdrant Port\",\n                     ),\n\n        DataInput(name=\"documents\", display_name=\"Documents\"),\n        DataInput(name=\"files\", display_name=\"Files\"),\n\n        HandleInput(name=\"embedding\", display_name=\"Embedding\",\n                    input_types=[\"Embeddings\"]),\n    ]\n\n    outputs = [\n        Output(name=\"success\",\n               display_name=\"Success\",\n               method=\"vectorize_documents\"),\n        Output(name=\"search\",\n               display_name=\"Search\",\n               method=\"search_documents\"),\n    ]\n\n    def check_collection_exists(self, client: QdrantClient, collection_name: str) -> bool:\n        \"\"\"Check if collection exists in Qdrant.\"\"\"\n        try:\n            collections = client.get_collections()\n            return any(collection.name == collection_name for collection in collections.collections)\n        except Exception as e:\n            raise Exception(f\"Error checking collections list: {str(e)}\")\n\n    def create_collection(self, client: QdrantClient, collection_name: str, vector_size: int) -> bool:\n        \"\"\"Create a new collection in Qdrant.\"\"\"\n        try:\n            # Create new collection\n            client.create_collection(\n                collection_name=collection_name,\n                vectors_config=VectorParams(\n                    size=vector_size,\n                    distance=Distance.COSINE\n                )\n            )\n\n            return True\n\n        except Exception as e:\n            raise Exception(\n                f\"Failed to create collection {collection_name}: {str(e)}\")\n\n    # @check_cached_vector_store\n    def build_vector_store(self) -> Qdrant:\n        try:\n            collection_name = self.collection_name.get_text()\n            embedding: Embeddings = self.embedding\n\n            qdrant_host = self.qdrant_host.get_text()\n            qdrant_port = self.qdrant_port.get_text()\n\n            # Create QdrantClient with HTTP and timeout\n            client = QdrantClient(\n                host=qdrant_host,\n                port=qdrant_port,  # HTTP/REST API port\n                prefer_grpc=False,  # Use HTTP\n                timeout=10.0  # Add timeout\n            )\n\n            if self.files:\n                if not self.check_collection_exists(client, collection_name):\n                    return None\n\n            if self.documents:\n                documents: List[Document] = list(self.documents.data.values())\n                if not documents:\n                    raise ValueError(\"No documents provided\")\n\n                # Get vector size from first document\n                vector = embedding.embed_query(documents[0].page_content)\n                vector_size = len(vector)\n\n                # Create collection if needed\n                if not self.check_collection_exists(client, collection_name):\n                    self.create_collection(\n                        client, collection_name, vector_size)\n\n            qdrant = Qdrant(client=client,\n                            embeddings=embedding,\n                            collection_name=collection_name)\n\n            return qdrant\n\n        except Exception as e:\n            raise Exception(f\"Error building vector store: {str(e)}\")\n\n    def check_document_exists(self, qdrant: Qdrant, document: Document) -> List[Document]:\n        # Only check if document has metadata with id and version\n        if not document.metadata or 'id' not in document.metadata or 'version' not in document.metadata:\n            return []\n\n        return qdrant.similarity_search(\n            query=document.page_content,\n            k=1,\n            filter=Filter(\n                must=[\n                    {\"key\": \"metadata.id\", \"match\": {\n                        \"value\": document.metadata['id']}},\n                    {\"key\": \"metadata.version\", \"match\": {\n                        \"value\": document.metadata['version']}},\n                ]\n            )\n        )\n\n    def vectorize_documents(self) -> Message:\n        try:\n            qdrant = self.build_vector_store()\n            if not self.documents:\n                return Message(text=\"No documents to process\")\n\n            docs: Dict[str, Document] = self.documents.data\n\n            documents = list(docs.values())\n\n            if not documents:\n                return Message(text=\"No documents to process\")\n\n            # Process each document chunk\n            existing = True\n\n            for i, doc in enumerate(documents, 1):\n\n                existing_doc = self.check_document_exists(\n                    qdrant, doc)\n\n                if (existing_doc and existing):\n                    existing = True\n\n                    continue\n\n                existing = False\n                # Add document to Qdrant\n                qdrant.add_documents([doc])\n\n            msg = Message(\n                role=\"system\",\n                text=f'Document {\",\".join(str(document.metadata[\"id\"]) for document in documents)} added to Qdrant'\n            )\n\n            return msg\n\n        except Exception as e:\n            raise Exception(f\"Error vectorizing documents: {str(e)}\")\n\n    def search_documents(self) -> Message:\n        files: List[Dict[str, Any]] = self.files.data.get(\"files\", [])\n\n        if not files:\n            return Message(text=\"No files found in input\")\n\n        question: str = self.question.get_text()\n\n        if not question:\n            return Message(text=\"No question provided\")\n\n        qdrant = self.build_vector_store()\n\n        if not qdrant:\n            return Message(text=\", \".join([str(file.get('id', 'unknown')) for file in files]),\n                           data={\"docs\": []})\n\n        not_found_files = []\n\n        for file in files:\n            if self.check_document_exists(qdrant, Document(\n                page_content=question,\n                metadata={\n                    \"id\": file.get('id', 'unknown'),\n                    \"version\": file.get('version', 1),\n                }\n            )):\n                continue\n\n            not_found_files.append(file)\n\n        if len(not_found_files):\n            return Message(text=\", \".join([str(file.get('id', 'unknown')) for file in files]),\n                           data={\"docs\": []})\n\n        # Create OR conditions for each file (file_id AND version must match)\n        file_conditions = [\n            {\n                \"must\": [\n                    {\"key\": \"metadata.id\", \"match\": {\n                        \"value\": file.get('id', 'unknown')}},\n                    {\"key\": \"metadata.version\", \"match\": {\n                        \"value\": file.get('version', 1)}}\n                ]\n            } for file in files\n        ]\n\n        filter: Filter = Filter(\n            should=file_conditions\n        )\n\n        docs = qdrant.similarity_search(\n            query=question,\n            k=5,\n            filter=filter\n        )\n\n        return Message(text=\", \".join([str(file.get('id', 'unknown')) for file in files]),\n                       data={\"docs\": docs})\n"
-              },
-              "collection_name": {
-                "_input_type": "MessageInput",
-                "advanced": false,
-                "display_name": "Collection Name",
-                "dynamic": false,
-                "info": "",
-                "input_types": [
-                  "Message"
-                ],
-                "list": false,
-                "list_add_label": "Add More",
-                "load_from_db": false,
-                "name": "collection_name",
-                "placeholder": "",
-                "required": true,
-                "show": true,
-                "title_case": false,
-                "tool_mode": false,
-                "trace_as_input": true,
-                "trace_as_metadata": true,
-                "type": "str",
-                "value": ""
-              },
-              "documents": {
-                "_input_type": "DataInput",
-                "advanced": false,
-                "display_name": "Documents",
-                "dynamic": false,
-                "info": "",
-                "input_types": [
-                  "Data"
-                ],
-                "list": false,
-                "list_add_label": "Add More",
-                "name": "documents",
-                "placeholder": "",
-                "required": false,
-                "show": true,
-                "title_case": false,
-                "tool_mode": false,
-                "trace_as_input": true,
-                "trace_as_metadata": true,
-                "type": "other",
-                "value": ""
-              },
-              "embedding": {
-                "_input_type": "HandleInput",
-                "advanced": false,
-                "display_name": "Embedding",
-                "dynamic": false,
-                "info": "",
-                "input_types": [
-                  "Embeddings"
-                ],
-                "list": false,
-                "list_add_label": "Add More",
-                "name": "embedding",
-                "placeholder": "",
-                "required": false,
-                "show": true,
-                "title_case": false,
-                "trace_as_metadata": true,
-                "type": "other",
-                "value": ""
-              },
-              "files": {
-                "_input_type": "DataInput",
-                "advanced": false,
-                "display_name": "Files",
-                "dynamic": false,
-                "info": "",
-                "input_types": [
-                  "Data"
-                ],
-                "list": false,
-                "list_add_label": "Add More",
-                "name": "files",
-                "placeholder": "",
-                "required": false,
-                "show": true,
-                "title_case": false,
-                "tool_mode": false,
-                "trace_as_input": true,
-                "trace_as_metadata": true,
-                "type": "other",
-                "value": ""
-              },
-              "qdrant_host": {
-                "_input_type": "MessageInput",
-                "advanced": false,
-                "display_name": "Qdrant Host",
-                "dynamic": false,
-                "info": "",
-                "input_types": [
-                  "Message"
-                ],
-                "list": false,
-                "list_add_label": "Add More",
-                "load_from_db": false,
-                "name": "qdrant_host",
-                "placeholder": "",
-                "required": false,
-                "show": true,
-                "title_case": false,
-                "tool_mode": false,
-                "trace_as_input": true,
-                "trace_as_metadata": true,
-                "type": "str",
-                "value": ""
-              },
-              "qdrant_port": {
-                "_input_type": "MessageInput",
-                "advanced": false,
-                "display_name": "Qdrant Port",
-                "dynamic": false,
-                "info": "",
-                "input_types": [
-                  "Message"
-                ],
-                "list": false,
-                "list_add_label": "Add More",
-                "load_from_db": false,
-                "name": "qdrant_port",
-                "placeholder": "",
-                "required": false,
-                "show": true,
-                "title_case": false,
-                "tool_mode": false,
-                "trace_as_input": true,
-                "trace_as_metadata": true,
-                "type": "str",
-                "value": ""
-              },
-              "question": {
-                "_input_type": "MessageInput",
-                "advanced": false,
-                "display_name": "Question",
-                "dynamic": false,
-                "info": "",
-                "input_types": [
-                  "Message"
-                ],
-                "list": false,
-                "list_add_label": "Add More",
-                "load_from_db": false,
-                "name": "question",
-                "placeholder": "",
-                "required": false,
-                "show": true,
-                "title_case": false,
-                "tool_mode": false,
-                "trace_as_input": true,
-                "trace_as_metadata": true,
-                "type": "str",
-                "value": ""
-              },
-              "restart_search": {
-                "_input_type": "MessageInput",
-                "advanced": false,
-                "display_name": "Restart Search",
-                "dynamic": false,
-                "info": "",
-                "input_types": [
-                  "Message"
-                ],
-                "list": false,
-                "list_add_label": "Add More",
-                "load_from_db": false,
-                "name": "restart_search",
-                "placeholder": "",
-                "required": false,
-                "show": true,
-                "title_case": false,
-                "tool_mode": false,
-                "trace_as_input": true,
-                "trace_as_metadata": true,
-                "type": "str",
-                "value": ""
-              }
-            },
-            "tool_mode": false
-          },
-          "showNode": true,
-          "type": "DocSpaceQdrantVectorStoreComponent"
-        },
-        "dragging": false,
-        "id": "DocSpaceQdrantVectorStoreComponent-zR8tQ",
-        "measured": {
-          "height": 576,
-          "width": 320
-        },
-        "position": {
-          "x": 1021.7011751780153,
-          "y": 346.2461199860819
-        },
-        "selected": false,
-        "type": "genericNode"
-      },
-      {
-        "data": {
-          "id": "GetFileCollectionName-vUgcj",
+          "id": "GetFileCollectionName-bX4aC",
           "node": {
             "base_classes": [
               "Message"
@@ -936,7 +772,7 @@
           "type": "GetFileCollectionName"
         },
         "dragging": false,
-        "id": "GetFileCollectionName-vUgcj",
+        "id": "GetFileCollectionName-bX4aC",
         "measured": {
           "height": 352,
           "width": 320
@@ -950,7 +786,7 @@
       },
       {
         "data": {
-          "id": "ConditionalRouter-wj6Cc",
+          "id": "ConditionalRouterList-NzrPJ",
           "node": {
             "base_classes": [
               "Message"
@@ -968,6 +804,7 @@
             "frozen": false,
             "icon": "split",
             "legacy": false,
+            "lf_version": "1.1.5",
             "metadata": {},
             "minimized": false,
             "output_types": [],
@@ -1054,7 +891,7 @@
           "type": "ConditionalRouterList"
         },
         "dragging": false,
-        "id": "ConditionalRouter-wj6Cc",
+        "id": "ConditionalRouterList-NzrPJ",
         "measured": {
           "height": 298,
           "width": 320
@@ -1070,7 +907,7 @@
         "data": {
           "description": "Add documents to Qdrant Vector Store",
           "display_name": "DocsSpace Qdrant Vector Store",
-          "id": "DocSpaceQdrantVectorStoreComponent-Erj5a",
+          "id": "DocSpaceQdrantVectorStoreComponent-9397Q",
           "node": {
             "base_classes": [
               "Message"
@@ -1086,6 +923,8 @@
               "collection_name",
               "question",
               "restart_search",
+              "qdrant_host",
+              "qdrant_port",
               "documents",
               "files",
               "embedding"
@@ -1332,9 +1171,9 @@
           "type": "DocSpaceQdrantVectorStoreComponent"
         },
         "dragging": false,
-        "id": "DocSpaceQdrantVectorStoreComponent-Erj5a",
+        "id": "DocSpaceQdrantVectorStoreComponent-9397Q",
         "measured": {
-          "height": 576,
+          "height": 741,
           "width": 320
         },
         "position": {
@@ -1346,7 +1185,7 @@
       },
       {
         "data": {
-          "id": "ChatOutput-FJ3fe",
+          "id": "ChatOutput-5d6xT",
           "node": {
             "base_classes": [
               "Message"
@@ -1639,7 +1478,7 @@
           "type": "ChatOutput"
         },
         "dragging": false,
-        "id": "ChatOutput-FJ3fe",
+        "id": "ChatOutput-5d6xT",
         "measured": {
           "height": 66,
           "width": 192
@@ -1653,7 +1492,7 @@
       },
       {
         "data": {
-          "id": "CustomComponent-YURO0",
+          "id": "CustomComponent1-JMHYt",
           "node": {
             "base_classes": [
               "Message"
@@ -1671,6 +1510,7 @@
             "frozen": false,
             "icon": "code",
             "legacy": false,
+            "lf_version": "1.1.5",
             "metadata": {},
             "minimized": false,
             "output_types": [],
@@ -1742,7 +1582,7 @@
           "type": "CustomComponent1"
         },
         "dragging": false,
-        "id": "CustomComponent-YURO0",
+        "id": "CustomComponent1-JMHYt",
         "measured": {
           "height": 250,
           "width": 320
@@ -1756,7 +1596,7 @@
       },
       {
         "data": {
-          "id": "ConditionalRouter-vnrHa",
+          "id": "ConditionalRouterList-9L3SS",
           "node": {
             "base_classes": [
               "Data",
@@ -1775,6 +1615,7 @@
             "frozen": false,
             "icon": "split",
             "legacy": false,
+            "lf_version": "1.1.5",
             "metadata": {},
             "minimized": false,
             "output_types": [],
@@ -1860,21 +1701,21 @@
           "type": "ConditionalRouterList"
         },
         "dragging": false,
-        "id": "ConditionalRouter-vnrHa",
+        "id": "ConditionalRouterList-9L3SS",
         "measured": {
           "height": 260,
           "width": 320
         },
         "position": {
-          "x": 401.1517146196717,
-          "y": 530.6986520278564
+          "x": 386.81168798879685,
+          "y": 450.03600222918544
         },
-        "selected": true,
+        "selected": false,
         "type": "genericNode"
       },
       {
         "data": {
-          "id": "ChatOutput-0Bwdr",
+          "id": "ChatOutput-otfan",
           "node": {
             "base_classes": [
               "Message"
@@ -2167,21 +2008,21 @@
           "type": "ChatOutput"
         },
         "dragging": false,
-        "id": "ChatOutput-0Bwdr",
+        "id": "ChatOutput-otfan",
         "measured": {
           "height": 66,
           "width": 192
         },
         "position": {
-          "x": 779.7914885993777,
-          "y": 760.7773249868849
+          "x": 716.028591300522,
+          "y": 983.94746553288
         },
         "selected": false,
         "type": "genericNode"
       },
       {
         "data": {
-          "id": "GetFile-QE22W",
+          "id": "GetFile-H8CS6",
           "node": {
             "base_classes": [
               "Data"
@@ -2317,7 +2158,7 @@
           "type": "GetFile"
         },
         "dragging": false,
-        "id": "GetFile-QE22W",
+        "id": "GetFile-H8CS6",
         "measured": {
           "height": 435,
           "width": 320
@@ -2331,7 +2172,7 @@
       },
       {
         "data": {
-          "id": "CustomComponent-hIWPf",
+          "id": "CustomComponent1-KWGPF",
           "node": {
             "base_classes": [
               "Message"
@@ -2349,6 +2190,7 @@
             "frozen": false,
             "icon": "code",
             "legacy": false,
+            "lf_version": "1.1.5",
             "metadata": {},
             "minimized": false,
             "output_types": [],
@@ -2420,7 +2262,7 @@
           "type": "CustomComponent1"
         },
         "dragging": false,
-        "id": "CustomComponent-hIWPf",
+        "id": "CustomComponent1-KWGPF",
         "measured": {
           "height": 250,
           "width": 320
@@ -2434,7 +2276,7 @@
       },
       {
         "data": {
-          "id": "ChatOutput-8DAYB",
+          "id": "ChatOutput-PJjQV",
           "node": {
             "base_classes": [
               "Message"
@@ -2727,7 +2569,7 @@
           "type": "ChatOutput"
         },
         "dragging": false,
-        "id": "ChatOutput-8DAYB",
+        "id": "ChatOutput-PJjQV",
         "measured": {
           "height": 66,
           "width": 192
@@ -2741,7 +2583,7 @@
       },
       {
         "data": {
-          "id": "RunFlow-iY8FD",
+          "id": "RunFlow-ag1bx",
           "node": {
             "base_classes": [
               "Data",
@@ -2893,21 +2735,21 @@
           "type": "RunFlow"
         },
         "dragging": false,
-        "id": "RunFlow-iY8FD",
+        "id": "RunFlow-ag1bx",
         "measured": {
           "height": 352,
           "width": 320
         },
         "position": {
-          "x": 2235.710071742129,
-          "y": 783.9500587699761
+          "x": 2237.538212388193,
+          "y": 645.0113696691135
         },
         "selected": false,
         "type": "genericNode"
       },
       {
         "data": {
-          "id": "EnvExtractor-H4qFp",
+          "id": "EnvExtractor-5F2jP",
           "node": {
             "base_classes": [
               "Message"
@@ -3009,7 +2851,7 @@
           "type": "EnvExtractor"
         },
         "dragging": false,
-        "id": "EnvExtractor-H4qFp",
+        "id": "EnvExtractor-5F2jP",
         "measured": {
           "height": 311,
           "width": 320
@@ -3023,7 +2865,7 @@
       },
       {
         "data": {
-          "id": "FileID-uMsHL",
+          "id": "FileID-AvBWj",
           "node": {
             "base_classes": [
               "Message"
@@ -3105,7 +2947,7 @@
                 "trace_as_input": true,
                 "trace_as_metadata": true,
                 "type": "str",
-                "value": "1"
+                "value": "3"
               }
             },
             "tool_mode": false
@@ -3114,7 +2956,7 @@
           "type": "FileID"
         },
         "dragging": false,
-        "id": "FileID-uMsHL",
+        "id": "FileID-AvBWj",
         "measured": {
           "height": 230,
           "width": 320
@@ -3128,7 +2970,7 @@
       },
       {
         "data": {
-          "id": "UserQuestion-8GIm6",
+          "id": "UserQuestion-0BqYE",
           "node": {
             "base_classes": [
               "Message"
@@ -3219,21 +3061,21 @@
           "type": "UserQuestion"
         },
         "dragging": false,
-        "id": "UserQuestion-8GIm6",
+        "id": "UserQuestion-0BqYE",
         "measured": {
           "height": 250,
           "width": 320
         },
         "position": {
-          "x": 51.540794416076466,
-          "y": -92.33898938851257
+          "x": -753.785542001062,
+          "y": -66.36072047183069
         },
         "selected": false,
         "type": "genericNode"
       },
       {
         "data": {
-          "id": "OpenAIEmbeddings-CNUO9",
+          "id": "TogetherAIEmbeddings-oxOrS",
           "node": {
             "base_classes": [
               "Embeddings"
@@ -3241,8 +3083,8 @@
             "beta": false,
             "conditional_paths": [],
             "custom_fields": {},
-            "description": "Generate embeddings using OpenAI models.",
-            "display_name": "OpenAI Embeddings",
+            "description": "Generate embeddings using TogetherAI models.",
+            "display_name": "TogetherAI Embeddings",
             "documentation": "",
             "edited": false,
             "field_order": [
@@ -3269,7 +3111,7 @@
               "dimensions"
             ],
             "frozen": false,
-            "icon": "OpenAI",
+            "icon": "TogetherAI",
             "legacy": false,
             "lf_version": "1.1.5",
             "metadata": {},
@@ -3353,7 +3195,7 @@
                 "show": true,
                 "title_case": false,
                 "type": "code",
-                "value": "from langchain_openai import OpenAIEmbeddings\n\nfrom langflow.base.embeddings.model import LCEmbeddingsModel\nfrom langflow.base.models.openai_constants import OPENAI_EMBEDDING_MODEL_NAMES\nfrom langflow.field_typing import Embeddings\nfrom langflow.io import BoolInput, DictInput, DropdownInput, FloatInput, IntInput, MessageTextInput, SecretStrInput\n\n\nclass OpenAIEmbeddingsComponent(LCEmbeddingsModel):\n    display_name = \"OpenAI Embeddings\"\n    description = \"Generate embeddings using OpenAI models.\"\n    icon = \"OpenAI\"\n    name = \"OpenAIEmbeddings\"\n\n    inputs = [\n        DictInput(\n            name=\"default_headers\",\n            display_name=\"Default Headers\",\n            advanced=True,\n            info=\"Default headers to use for the API request.\",\n        ),\n        DictInput(\n            name=\"default_query\",\n            display_name=\"Default Query\",\n            advanced=True,\n            info=\"Default query parameters to use for the API request.\",\n        ),\n        IntInput(name=\"chunk_size\", display_name=\"Chunk Size\", advanced=True, value=1000),\n        MessageTextInput(name=\"client\", display_name=\"Client\", advanced=True),\n        MessageTextInput(name=\"deployment\", display_name=\"Deployment\", advanced=True),\n        IntInput(name=\"embedding_ctx_length\", display_name=\"Embedding Context Length\", advanced=True, value=1536),\n        IntInput(name=\"max_retries\", display_name=\"Max Retries\", value=3, advanced=True),\n        DropdownInput(\n            name=\"model\",\n            display_name=\"Model\",\n            advanced=False,\n            options=OPENAI_EMBEDDING_MODEL_NAMES,\n            value=\"text-embedding-3-small\",\n        ),\n        DictInput(name=\"model_kwargs\", display_name=\"Model Kwargs\", advanced=True),\n        SecretStrInput(name=\"openai_api_key\", display_name=\"OpenAI API Key\", value=\"OPENAI_API_KEY\", required=True),\n        MessageTextInput(name=\"openai_api_base\", display_name=\"OpenAI API Base\", advanced=True),\n        MessageTextInput(name=\"openai_api_type\", display_name=\"OpenAI API Type\", advanced=True),\n        MessageTextInput(name=\"openai_api_version\", display_name=\"OpenAI API Version\", advanced=True),\n        MessageTextInput(\n            name=\"openai_organization\",\n            display_name=\"OpenAI Organization\",\n            advanced=True,\n        ),\n        MessageTextInput(name=\"openai_proxy\", display_name=\"OpenAI Proxy\", advanced=True),\n        FloatInput(name=\"request_timeout\", display_name=\"Request Timeout\", advanced=True),\n        BoolInput(name=\"show_progress_bar\", display_name=\"Show Progress Bar\", advanced=True),\n        BoolInput(name=\"skip_empty\", display_name=\"Skip Empty\", advanced=True),\n        MessageTextInput(\n            name=\"tiktoken_model_name\",\n            display_name=\"TikToken Model Name\",\n            advanced=True,\n        ),\n        BoolInput(\n            name=\"tiktoken_enable\",\n            display_name=\"TikToken Enable\",\n            advanced=True,\n            value=True,\n            info=\"If False, you must have transformers installed.\",\n        ),\n        IntInput(\n            name=\"dimensions\",\n            display_name=\"Dimensions\",\n            info=\"The number of dimensions the resulting output embeddings should have. \"\n            \"Only supported by certain models.\",\n            advanced=True,\n        ),\n    ]\n\n    def build_embeddings(self) -> Embeddings:\n        return OpenAIEmbeddings(\n            client=self.client or None,\n            model=self.model,\n            dimensions=self.dimensions or None,\n            deployment=self.deployment or None,\n            api_version=self.openai_api_version or None,\n            base_url=self.openai_api_base or None,\n            openai_api_type=self.openai_api_type or None,\n            openai_proxy=self.openai_proxy or None,\n            embedding_ctx_length=self.embedding_ctx_length,\n            api_key=self.openai_api_key or None,\n            organization=self.openai_organization or None,\n            allowed_special=\"all\",\n            disallowed_special=\"all\",\n            chunk_size=self.chunk_size,\n            max_retries=self.max_retries,\n            timeout=self.request_timeout or None,\n            tiktoken_enabled=self.tiktoken_enable,\n            tiktoken_model_name=self.tiktoken_model_name or None,\n            show_progress_bar=self.show_progress_bar,\n            model_kwargs=self.model_kwargs,\n            skip_empty=self.skip_empty,\n            default_headers=self.default_headers or None,\n            default_query=self.default_query or None,\n        )\n"
+                "value": "from langchain_together import TogetherEmbeddings\n\nfrom langflow.base.embeddings.model import LCEmbeddingsModel\nfrom langflow.base.models.togetherai_constants import TOGETHERAI_EMBEDDING_MODEL_NAMES\nfrom langflow.field_typing import Embeddings\nfrom langflow.io import BoolInput, DictInput, DropdownInput, FloatInput, IntInput, MessageTextInput, SecretStrInput\n\n\nclass TogetherAIEmbeddingsComponent(LCEmbeddingsModel):\n    display_name = \"TogetherAI Embeddings\"\n    description = \"Generate embeddings using TogetherAI models.\"\n    icon = \"TogetherAI\"\n    name = \"TogetherAIEmbeddings\"\n\n    inputs = [\n        DictInput(\n            name=\"default_headers\",\n            display_name=\"Default Headers\",\n            advanced=True,\n            info=\"Default headers to use for the API request.\",\n        ),\n        DictInput(\n            name=\"default_query\",\n            display_name=\"Default Query\",\n            advanced=True,\n            info=\"Default query parameters to use for the API request.\",\n        ),\n        IntInput(name=\"chunk_size\", display_name=\"Chunk Size\",\n                 advanced=True, value=1000),\n        MessageTextInput(name=\"client\", display_name=\"Client\", advanced=True),\n        MessageTextInput(name=\"deployment\",\n                         display_name=\"Deployment\", advanced=True),\n        IntInput(name=\"embedding_ctx_length\",\n                 display_name=\"Embedding Context Length\", advanced=True, value=1536),\n        IntInput(name=\"max_retries\", display_name=\"Max Retries\",\n                 value=3, advanced=True),\n        DropdownInput(\n            name=\"model\",\n            display_name=\"Model\",\n            advanced=False,\n            options=TOGETHERAI_EMBEDDING_MODEL_NAMES,\n            value=TOGETHERAI_EMBEDDING_MODEL_NAMES[0],\n        ),\n        DictInput(name=\"model_kwargs\",\n                  display_name=\"Model Kwargs\", advanced=True),\n        SecretStrInput(name=\"openai_api_key\", display_name=\"OpenAI API Key\",\n                       value=\"OPENAI_API_KEY\", required=True),\n        MessageTextInput(name=\"openai_api_base\",\n                         display_name=\"OpenAI API Base\", advanced=True),\n        MessageTextInput(name=\"openai_api_type\",\n                         display_name=\"OpenAI API Type\", advanced=True),\n        MessageTextInput(name=\"openai_api_version\",\n                         display_name=\"OpenAI API Version\", advanced=True),\n        MessageTextInput(\n            name=\"openai_organization\",\n            display_name=\"OpenAI Organization\",\n            advanced=True,\n        ),\n        MessageTextInput(name=\"openai_proxy\",\n                         display_name=\"OpenAI Proxy\", advanced=True),\n        FloatInput(name=\"request_timeout\",\n                   display_name=\"Request Timeout\", advanced=True),\n        BoolInput(name=\"show_progress_bar\",\n                  display_name=\"Show Progress Bar\", advanced=True),\n        BoolInput(name=\"skip_empty\", display_name=\"Skip Empty\", advanced=True),\n        MessageTextInput(\n            name=\"tiktoken_model_name\",\n            display_name=\"TikToken Model Name\",\n            advanced=True,\n        ),\n        BoolInput(\n            name=\"tiktoken_enable\",\n            display_name=\"TikToken Enable\",\n            advanced=True,\n            value=True,\n            info=\"If False, you must have transformers installed.\",\n        ),\n        IntInput(\n            name=\"dimensions\",\n            display_name=\"Dimensions\",\n            info=\"The number of dimensions the resulting output embeddings should have. \"\n            \"Only supported by certain models.\",\n            advanced=True,\n        ),\n    ]\n\n    def build_embeddings(self) -> Embeddings:\n        return TogetherEmbeddings(\n            client=self.client or None,\n            model=self.model,\n            api_key=self.openai_api_key or None,\n        )\n"
               },
               "default_headers": {
                 "_input_type": "DictInput",
@@ -3478,9 +3320,12 @@
                 "info": "",
                 "name": "model",
                 "options": [
-                  "text-embedding-3-small",
-                  "text-embedding-3-large",
-                  "text-embedding-ada-002"
+                  "BAAI/bge-large-en-v1.5",
+                  "WhereIsAI/UAE-Large-V1",
+                  "BAAI/bge-base-en-v1.5",
+                  "togethercomputer/m2-bert-80M-2k-retrieval",
+                  "togethercomputer/m2-bert-80M-8k-retrieval",
+                  "togethercomputer/m2-bert-80M-32k-retrieval"
                 ],
                 "options_metadata": [],
                 "placeholder": "",
@@ -3490,7 +3335,7 @@
                 "tool_mode": false,
                 "trace_as_metadata": true,
                 "type": "str",
-                "value": "text-embedding-3-large"
+                "value": "togethercomputer/m2-bert-80M-8k-retrieval"
               },
               "model_kwargs": {
                 "_input_type": "DictInput",
@@ -3542,7 +3387,7 @@
                 "input_types": [
                   "Message"
                 ],
-                "load_from_db": false,
+                "load_from_db": true,
                 "name": "openai_api_key",
                 "password": true,
                 "placeholder": "",
@@ -3550,7 +3395,7 @@
                 "show": true,
                 "title_case": false,
                 "type": "str",
-                "value": ""
+                "value": "togetherai_api_key"
               },
               "openai_api_type": {
                 "_input_type": "MessageTextInput",
@@ -3743,40 +3588,318 @@
             "tool_mode": false
           },
           "showNode": true,
-          "type": "OpenAIEmbeddings"
+          "type": "TogetherAIEmbeddings"
         },
         "dragging": false,
-        "id": "OpenAIEmbeddings-CNUO9",
+        "id": "TogetherAIEmbeddings-oxOrS",
         "measured": {
-          "height": 312,
+          "height": 332,
           "width": 320
         },
         "position": {
-          "x": 412.11542569913314,
-          "y": 1178.1767041306907
+          "x": 181.54140547642723,
+          "y": 1138.6068496838939
+        },
+        "selected": false,
+        "type": "genericNode"
+      },
+      {
+        "data": {
+          "id": "DocSpaceQdrantVectorStoreComponent-KkbsA",
+          "node": {
+            "base_classes": [
+              "Message"
+            ],
+            "beta": false,
+            "conditional_paths": [],
+            "custom_fields": {},
+            "description": "Add documents to Qdrant Vector Store",
+            "display_name": "DocsSpace Qdrant Vector Store",
+            "documentation": "",
+            "edited": false,
+            "field_order": [
+              "collection_name",
+              "question",
+              "restart_search",
+              "qdrant_host",
+              "qdrant_port",
+              "documents",
+              "files",
+              "embedding"
+            ],
+            "frozen": false,
+            "icon": "Qdrant",
+            "legacy": false,
+            "lf_version": "1.1.5",
+            "metadata": {},
+            "minimized": false,
+            "output_types": [],
+            "outputs": [
+              {
+                "allows_loop": false,
+                "cache": true,
+                "display_name": "Success",
+                "method": "vectorize_documents",
+                "name": "success",
+                "selected": "Message",
+                "tool_mode": true,
+                "types": [
+                  "Message"
+                ],
+                "value": "__UNDEFINED__"
+              },
+              {
+                "allows_loop": false,
+                "cache": true,
+                "display_name": "Search",
+                "method": "search_documents",
+                "name": "search",
+                "selected": "Message",
+                "tool_mode": true,
+                "types": [
+                  "Message"
+                ],
+                "value": "__UNDEFINED__"
+              }
+            ],
+            "pinned": false,
+            "template": {
+              "_type": "Component",
+              "code": {
+                "advanced": true,
+                "dynamic": true,
+                "fileTypes": [],
+                "file_path": "",
+                "info": "",
+                "list": false,
+                "load_from_db": false,
+                "multiline": true,
+                "name": "code",
+                "password": false,
+                "placeholder": "",
+                "required": true,
+                "show": true,
+                "title_case": false,
+                "type": "code",
+                "value": "from typing import Any, Dict, List\nfrom langchain.embeddings.base import Embeddings\nfrom langchain_community.vectorstores import Qdrant\nfrom langchain_core.documents import Document\nfrom qdrant_client import QdrantClient\nfrom qdrant_client.models import Distance, VectorParams, Filter\nfrom langflow.custom import Component\nfrom langflow.schema import Message, Data\n# from langflow.base.vectorstores.model import LCVectorStoreComponent, check_cached_vector_store\nfrom langflow.io import (\n    MessageInput,\n    DataInput,\n    HandleInput,\n    Output,\n)\n\n\nclass DocSpaceQdrantVectorStoreComponent(Component):\n    display_name = \"DocsSpace Qdrant Vector Store\"\n    description = \"Add documents to Qdrant Vector Store\"\n    icon = \"Qdrant\"\n\n    inputs = [\n        MessageInput(name=\"collection_name\",\n                     display_name=\"Collection Name\",\n                     required=True),\n        MessageInput(name=\"question\",\n                     display_name=\"Question\",\n                     ),\n        MessageInput(name=\"restart_search\",\n                     display_name=\"Restart Search\",\n                     ),\n        MessageInput(name=\"qdrant_host\",\n                     display_name=\"Qdrant Host\",\n                     ),\n        MessageInput(name=\"qdrant_port\",\n                     display_name=\"Qdrant Port\",\n                     ),\n\n        DataInput(name=\"documents\", display_name=\"Documents\"),\n        DataInput(name=\"files\", display_name=\"Files\"),\n\n        HandleInput(name=\"embedding\", display_name=\"Embedding\",\n                    input_types=[\"Embeddings\"]),\n    ]\n\n    outputs = [\n        Output(name=\"success\",\n               display_name=\"Success\",\n               method=\"vectorize_documents\"),\n        Output(name=\"search\",\n               display_name=\"Search\",\n               method=\"search_documents\"),\n    ]\n\n    def check_collection_exists(self, client: QdrantClient, collection_name: str) -> bool:\n        \"\"\"Check if collection exists in Qdrant.\"\"\"\n        try:\n            collections = client.get_collections()\n            return any(collection.name == collection_name for collection in collections.collections)\n        except Exception as e:\n            raise Exception(f\"Error checking collections list: {str(e)}\")\n\n    def create_collection(self, client: QdrantClient, collection_name: str, vector_size: int) -> bool:\n        \"\"\"Create a new collection in Qdrant.\"\"\"\n        try:\n            # Create new collection\n            client.create_collection(\n                collection_name=collection_name,\n                vectors_config=VectorParams(\n                    size=vector_size,\n                    distance=Distance.COSINE\n                )\n            )\n\n            return True\n\n        except Exception as e:\n            raise Exception(\n                f\"Failed to create collection {collection_name}: {str(e)}\")\n\n    # @check_cached_vector_store\n    def build_vector_store(self) -> Qdrant:\n        try:\n            collection_name = self.collection_name.get_text()\n            embedding: Embeddings = self.embedding\n\n            qdrant_host = self.qdrant_host.get_text()\n            qdrant_port = self.qdrant_port.get_text()\n\n            # Create QdrantClient with HTTP and timeout\n            client = QdrantClient(\n                host=qdrant_host,\n                port=qdrant_port,  # HTTP/REST API port\n                prefer_grpc=False,  # Use HTTP\n                timeout=10.0  # Add timeout\n            )\n\n            if self.files:\n                if not self.check_collection_exists(client, collection_name):\n                    return None\n\n            if self.documents:\n                documents: List[Document] = list(self.documents.data.values())\n                if not documents:\n                    raise ValueError(\"No documents provided\")\n\n                # Get vector size from first document\n                vector = embedding.embed_query(documents[0].page_content)\n                vector_size = len(vector)\n\n                # Create collection if needed\n                if not self.check_collection_exists(client, collection_name):\n                    self.create_collection(\n                        client, collection_name, vector_size)\n\n            qdrant = Qdrant(client=client,\n                            embeddings=embedding,\n                            collection_name=collection_name)\n\n            return qdrant\n\n        except Exception as e:\n            raise Exception(f\"Error building vector store: {str(e)}\")\n\n    def check_document_exists(self, qdrant: Qdrant, document: Document) -> List[Document]:\n        # Only check if document has metadata with id and version\n        if not document.metadata or 'id' not in document.metadata or 'version' not in document.metadata:\n            return []\n\n        return qdrant.similarity_search(\n            query=document.page_content,\n            k=1,\n            filter=Filter(\n                must=[\n                    {\"key\": \"metadata.id\", \"match\": {\n                        \"value\": document.metadata['id']}},\n                    {\"key\": \"metadata.version\", \"match\": {\n                        \"value\": document.metadata['version']}},\n                ]\n            )\n        )\n\n    def vectorize_documents(self) -> Message:\n        try:\n            qdrant = self.build_vector_store()\n            if not self.documents:\n                return Message(text=\"No documents to process\")\n\n            docs: Dict[str, Document] = self.documents.data\n\n            documents = list(docs.values())\n\n            if not documents:\n                return Message(text=\"No documents to process\")\n\n            # Process each document chunk\n            existing = True\n\n            for i, doc in enumerate(documents, 1):\n\n                existing_doc = self.check_document_exists(\n                    qdrant, doc)\n\n                if (existing_doc and existing):\n                    existing = True\n\n                    continue\n\n                existing = False\n                # Add document to Qdrant\n                qdrant.add_documents([doc])\n\n            msg = Message(\n                role=\"system\",\n                text=f'Document {\",\".join(str(document.metadata[\"id\"]) for document in documents)} added to Qdrant'\n            )\n\n            return msg\n\n        except Exception as e:\n            raise Exception(f\"Error vectorizing documents: {str(e)}\")\n\n    def search_documents(self) -> Message:\n        files: List[Dict[str, Any]] = self.files.data.get(\"files\", [])\n\n        if not files:\n            return Message(text=\"No files found in input\")\n\n        question: str = self.question.get_text()\n\n        if not question:\n            return Message(text=\"No question provided\")\n\n        qdrant = self.build_vector_store()\n\n        if not qdrant:\n            return Message(text=\", \".join([str(file.get('id', 'unknown')) for file in files]),\n                           data={\"docs\": []})\n\n        not_found_files = []\n\n        for file in files:\n            if self.check_document_exists(qdrant, Document(\n                page_content=question,\n                metadata={\n                    \"id\": file.get('id', 'unknown'),\n                    \"version\": file.get('version', 1),\n                }\n            )):\n                continue\n\n            not_found_files.append(file)\n\n        if len(not_found_files):\n            return Message(text=\", \".join([str(file.get('id', 'unknown')) for file in files]),\n                           data={\"docs\": []})\n\n        # Create OR conditions for each file (file_id AND version must match)\n        file_conditions = [\n            {\n                \"must\": [\n                    {\"key\": \"metadata.id\", \"match\": {\n                        \"value\": file.get('id', 'unknown')}},\n                    {\"key\": \"metadata.version\", \"match\": {\n                        \"value\": file.get('version', 1)}}\n                ]\n            } for file in files\n        ]\n\n        filter: Filter = Filter(\n            should=file_conditions\n        )\n\n        docs = qdrant.similarity_search(\n            query=question,\n            k=5,\n            filter=filter\n        )\n\n        return Message(text=\", \".join([str(file.get('id', 'unknown')) for file in files]),\n                       data={\"docs\": docs})\n"
+              },
+              "collection_name": {
+                "_input_type": "MessageInput",
+                "advanced": false,
+                "display_name": "Collection Name",
+                "dynamic": false,
+                "info": "",
+                "input_types": [
+                  "Message"
+                ],
+                "list": false,
+                "list_add_label": "Add More",
+                "load_from_db": false,
+                "name": "collection_name",
+                "placeholder": "",
+                "required": true,
+                "show": true,
+                "title_case": false,
+                "tool_mode": false,
+                "trace_as_input": true,
+                "trace_as_metadata": true,
+                "type": "str",
+                "value": ""
+              },
+              "documents": {
+                "_input_type": "DataInput",
+                "advanced": false,
+                "display_name": "Documents",
+                "dynamic": false,
+                "info": "",
+                "input_types": [
+                  "Data"
+                ],
+                "list": false,
+                "list_add_label": "Add More",
+                "name": "documents",
+                "placeholder": "",
+                "required": false,
+                "show": true,
+                "title_case": false,
+                "tool_mode": false,
+                "trace_as_input": true,
+                "trace_as_metadata": true,
+                "type": "other",
+                "value": ""
+              },
+              "embedding": {
+                "_input_type": "HandleInput",
+                "advanced": false,
+                "display_name": "Embedding",
+                "dynamic": false,
+                "info": "",
+                "input_types": [
+                  "Embeddings"
+                ],
+                "list": false,
+                "list_add_label": "Add More",
+                "name": "embedding",
+                "placeholder": "",
+                "required": false,
+                "show": true,
+                "title_case": false,
+                "trace_as_metadata": true,
+                "type": "other",
+                "value": ""
+              },
+              "files": {
+                "_input_type": "DataInput",
+                "advanced": false,
+                "display_name": "Files",
+                "dynamic": false,
+                "info": "",
+                "input_types": [
+                  "Data"
+                ],
+                "list": false,
+                "list_add_label": "Add More",
+                "name": "files",
+                "placeholder": "",
+                "required": false,
+                "show": true,
+                "title_case": false,
+                "tool_mode": false,
+                "trace_as_input": true,
+                "trace_as_metadata": true,
+                "type": "other",
+                "value": ""
+              },
+              "qdrant_host": {
+                "_input_type": "MessageInput",
+                "advanced": false,
+                "display_name": "Qdrant Host",
+                "dynamic": false,
+                "info": "",
+                "input_types": [
+                  "Message"
+                ],
+                "list": false,
+                "list_add_label": "Add More",
+                "load_from_db": false,
+                "name": "qdrant_host",
+                "placeholder": "",
+                "required": false,
+                "show": true,
+                "title_case": false,
+                "tool_mode": false,
+                "trace_as_input": true,
+                "trace_as_metadata": true,
+                "type": "str",
+                "value": ""
+              },
+              "qdrant_port": {
+                "_input_type": "MessageInput",
+                "advanced": false,
+                "display_name": "Qdrant Port",
+                "dynamic": false,
+                "info": "",
+                "input_types": [
+                  "Message"
+                ],
+                "list": false,
+                "list_add_label": "Add More",
+                "load_from_db": false,
+                "name": "qdrant_port",
+                "placeholder": "",
+                "required": false,
+                "show": true,
+                "title_case": false,
+                "tool_mode": false,
+                "trace_as_input": true,
+                "trace_as_metadata": true,
+                "type": "str",
+                "value": ""
+              },
+              "question": {
+                "_input_type": "MessageInput",
+                "advanced": false,
+                "display_name": "Question",
+                "dynamic": false,
+                "info": "",
+                "input_types": [
+                  "Message"
+                ],
+                "list": false,
+                "list_add_label": "Add More",
+                "load_from_db": false,
+                "name": "question",
+                "placeholder": "",
+                "required": false,
+                "show": true,
+                "title_case": false,
+                "tool_mode": false,
+                "trace_as_input": true,
+                "trace_as_metadata": true,
+                "type": "str",
+                "value": ""
+              },
+              "restart_search": {
+                "_input_type": "MessageInput",
+                "advanced": false,
+                "display_name": "Restart Search",
+                "dynamic": false,
+                "info": "",
+                "input_types": [
+                  "Message"
+                ],
+                "list": false,
+                "list_add_label": "Add More",
+                "load_from_db": false,
+                "name": "restart_search",
+                "placeholder": "",
+                "required": false,
+                "show": true,
+                "title_case": false,
+                "tool_mode": false,
+                "trace_as_input": true,
+                "trace_as_metadata": true,
+                "type": "str",
+                "value": ""
+              }
+            },
+            "tool_mode": false
+          },
+          "showNode": true,
+          "type": "DocSpaceQdrantVectorStoreComponent"
+        },
+        "dragging": false,
+        "id": "DocSpaceQdrantVectorStoreComponent-KkbsA",
+        "measured": {
+          "height": 741,
+          "width": 320
+        },
+        "position": {
+          "x": 1022.2633553391545,
+          "y": 343.7066331093747
         },
         "selected": false,
         "type": "genericNode"
       }
     ],
     "viewport": {
-      "x": 391.7984870314276,
-      "y": 116.7742315642351,
-      "zoom": 0.3459540008949101
+      "x": -706.7535044958013,
+      "y": -154.20305837925315,
+      "zoom": 0.5470038654591577
     }
   },
   "description": "Get file content depend on user query.",
   "endpoint_name": null,
-  "folder_id": "75587cbc-6526-4bc3-a1ea-161a0baa475c",
+  "folder_id": "0fb0cca9-69b4-4105-8b4b-968d7280bb1d",
   "gradient": null,
   "icon": null,
   "icon_bg_color": null,
-  "id": "e129e548-b228-4f5b-b557-06a80a2b9733",
+  "id": "6fe1c28f-5139-44be-af97-d26d194cf910",
   "is_component": false,
   "locked": false,
   "name": "Get context from files",
   "tags": null,
-  "updated_at": "2025-03-18T07:28:48+00:00",
-  "user_id": "c7e96ef2-ec8a-49e4-8883-d50f44f53acc",
+  "updated_at": "2025-03-19T12:26:55+00:00",
+  "user_id": "1fc8ed86-86be-487e-80a5-49f983bfb40a",
   "webhook": false
 }
