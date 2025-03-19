@@ -506,6 +506,49 @@ async def webhook_run_flow(
     return {"message": "Task started in the background", "status": "in progress"}
 
 
+@router.head("/webhook/{flow_id_or_name}", status_code=HTTPStatus.OK)
+async def webhook_validate(
+    flow: Annotated[Flow, Depends(get_flow_by_id_or_endpoint_name)],
+    user: Annotated[User, Depends(get_user_by_flow_id_or_endpoint_name)],
+):
+    """Validate a webhook endpoint without executing the flow.
+
+    This endpoint checks if the webhook is valid by verifying that:
+    1. The flow exists
+    2. The user has access to the flow
+    3. The flow contains webhook components
+
+    Args:
+        flow (Flow): The flow to be validated. Resolved via dependency.
+        user (User): The flow user. Resolved via dependency.
+
+    Returns:
+        None: Returns a 200 OK status code if the webhook is valid.
+
+    Raises:
+        HTTPException: If the flow is not found, if the user doesn't have access,
+                      or if the flow doesn't contain webhook components.
+    """
+    
+    # Check if the user has access to the flow
+    if flow.user_id != user.id:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="You don't have access to this flow"
+        )
+    
+    # Check if the flow contains webhook components
+    webhook_components = get_all_webhook_components_in_flow(flow.data)
+    if not webhook_components:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Flow does not contain any webhook components"
+        )
+    
+    # If we get here, the webhook is valid
+    return None
+
+
 @router.post(
     "/run/advanced/{flow_id}",
     response_model=RunResponse,
