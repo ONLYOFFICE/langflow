@@ -104,15 +104,16 @@ class Client:
         wrapper: Response
 
         try:
-            response = self._opener.open(request)
-            content = response.read()
-            wrapper = SuccessResponse(request, response)
-            wrapper.payload = SuccessPayload.model_validate_json(content)
+            with self._opener.open(request) as response:
+                content = response.read()
+                wrapper = SuccessResponse(request, response)
+                wrapper.payload = SuccessPayload.model_validate_json(content)
 
         except HTTPError as error:
-            content = error.read()
-            wrapper = ErrorResponse(request, error)
-            wrapper.payload = ErrorPayload.model_validate_json(content)
+            with error:
+                content = error.read()
+                wrapper = ErrorResponse(request, error)
+                wrapper.payload = ErrorPayload.model_validate_json(content)
 
         except URLError as error:
             wrapper = ErrorResponse(request, error)
