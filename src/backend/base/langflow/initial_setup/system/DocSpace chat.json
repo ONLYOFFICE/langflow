@@ -9,12 +9,16 @@
             "dataType": "ParseReferences",
             "id": "ParseReferences-PmPM8",
             "name": "parsed_references",
-            "output_types": ["Data"]
+            "output_types": [
+              "Data"
+            ]
           },
           "targetHandle": {
             "fieldName": "data",
             "id": "TextInput-MXNgg",
-            "inputTypes": ["Data"],
+            "inputTypes": [
+              "Data"
+            ],
             "type": "other"
           }
         },
@@ -32,12 +36,16 @@
             "dataType": "ParseReferences",
             "id": "ParseReferences-PmPM8",
             "name": "parsed_references",
-            "output_types": ["Data"]
+            "output_types": [
+              "Data"
+            ]
           },
           "targetHandle": {
             "fieldName": "data",
             "id": "GetFilesFromFolders-cfjz8",
-            "inputTypes": ["Data"],
+            "inputTypes": [
+              "Data"
+            ],
             "type": "other"
           }
         },
@@ -55,12 +63,16 @@
             "dataType": "GetFilesFromFolders",
             "id": "GetFilesFromFolders-cfjz8",
             "name": "files",
-            "output_types": ["Data"]
+            "output_types": [
+              "Data"
+            ]
           },
           "targetHandle": {
             "fieldName": "data",
             "id": "ConditionalRouter-ovaNy",
-            "inputTypes": ["Data"],
+            "inputTypes": [
+              "Data"
+            ],
             "type": "other"
           }
         },
@@ -78,12 +90,16 @@
             "dataType": "RunFlow",
             "id": "RunFlow-2Uiy3",
             "name": "flow_outputs_message",
-            "output_types": ["Message"]
+            "output_types": [
+              "Message"
+            ]
           },
           "targetHandle": {
             "fieldName": "document_context",
             "id": "RagPrompt-qmyvE",
-            "inputTypes": ["Message"],
+            "inputTypes": [
+              "Message"
+            ],
             "type": "str"
           }
         },
@@ -101,12 +117,16 @@
             "dataType": "TextInput",
             "id": "TextInput-aWQth",
             "name": "text",
-            "output_types": ["Message"]
+            "output_types": [
+              "Message"
+            ]
           },
           "targetHandle": {
             "fieldName": "data",
             "id": "GetFoldersContent-BB14L",
-            "inputTypes": ["Data"],
+            "inputTypes": [
+              "Data"
+            ],
             "type": "other"
           }
         },
@@ -124,12 +144,16 @@
             "dataType": "EnvExtractor",
             "id": "EnvExtractor-8LUE4",
             "name": "files_host",
-            "output_types": ["Message"]
+            "output_types": [
+              "Message"
+            ]
           },
           "targetHandle": {
             "fieldName": "files_host",
             "id": "GetFoldersContent-BB14L",
-            "inputTypes": ["Message"],
+            "inputTypes": [
+              "Message"
+            ],
             "type": "str"
           }
         },
@@ -147,12 +171,16 @@
             "dataType": "Memory",
             "id": "Memory-SWisu",
             "name": "messages_text",
-            "output_types": ["Message"]
+            "output_types": [
+              "Message"
+            ]
           },
           "targetHandle": {
             "fieldName": "memory",
             "id": "SystemPrompt-jJI3d",
-            "inputTypes": ["Message"],
+            "inputTypes": [
+              "Message"
+            ],
             "type": "str"
           }
         },
@@ -170,12 +198,16 @@
             "dataType": "Memory",
             "id": "Memory-SWisu",
             "name": "messages_text",
-            "output_types": ["Message"]
+            "output_types": [
+              "Message"
+            ]
           },
           "targetHandle": {
             "fieldName": "memory",
             "id": "RagPrompt-qmyvE",
-            "inputTypes": ["Message"],
+            "inputTypes": [
+              "Message"
+            ],
             "type": "str"
           }
         },
@@ -193,12 +225,16 @@
             "dataType": "RunFlow",
             "id": "RunFlow-OqJHt",
             "name": "flow_outputs_message",
-            "output_types": ["Message"]
+            "output_types": [
+              "Message"
+            ]
           },
           "targetHandle": {
             "fieldName": "document_context",
             "id": "RagPrompt-SR3ZC",
-            "inputTypes": ["Message"],
+            "inputTypes": [
+              "Message"
+            ],
             "type": "str"
           }
         },
@@ -216,12 +252,16 @@
             "dataType": "Memory",
             "id": "Memory-SWisu",
             "name": "messages_text",
-            "output_types": ["Message"]
+            "output_types": [
+              "Message"
+            ]
           },
           "targetHandle": {
             "fieldName": "memory",
             "id": "RagPrompt-SR3ZC",
-            "inputTypes": ["Message"],
+            "inputTypes": [
+              "Message"
+            ],
             "type": "str"
           }
         },
@@ -239,12 +279,16 @@
             "dataType": "ChatInput",
             "id": "ChatInput-78qPN",
             "name": "message",
-            "output_types": ["Message"]
+            "output_types": [
+              "Message"
+            ]
           },
           "targetHandle": {
             "fieldName": "input",
             "id": "InputParser-lGm6i",
-            "inputTypes": ["Message"],
+            "inputTypes": [
+              "Message"
+            ],
             "type": "str"
           }
         },
@@ -262,12 +306,16 @@
             "dataType": "InputParser",
             "id": "InputParser-lGm6i",
             "name": "parsed_data",
-            "output_types": ["Data"]
+            "output_types": [
+              "Data"
+            ]
           },
           "targetHandle": {
             "fieldName": "data",
             "id": "ConditionalRouter-BiG8Y",
-            "inputTypes": ["Data"],
+            "inputTypes": [
+              "Data"
+            ],
             "type": "other"
           }
         },
@@ -285,12 +333,16 @@
             "dataType": "ChatInput",
             "id": "ChatInput-78qPN",
             "name": "message",
-            "output_types": ["Message"]
+            "output_types": [
+              "Message"
+            ]
           },
           "targetHandle": {
             "fieldName": "input_value",
             "id": "OpenAIModel-Ral8S",
-            "inputTypes": ["Message"],
+            "inputTypes": [
+              "Message"
+            ],
             "type": "str"
           }
         },
@@ -308,12 +360,16 @@
             "dataType": "RagPrompt",
             "id": "RagPrompt-SR3ZC",
             "name": "rag_prompt",
-            "output_types": ["Message"]
+            "output_types": [
+              "Message"
+            ]
           },
           "targetHandle": {
             "fieldName": "system_message",
             "id": "OpenAIModel-Ral8S",
-            "inputTypes": ["Message"],
+            "inputTypes": [
+              "Message"
+            ],
             "type": "str"
           }
         },
@@ -331,12 +387,18 @@
             "dataType": "OpenAIModel",
             "id": "OpenAIModel-Ral8S",
             "name": "text_output",
-            "output_types": ["Message"]
+            "output_types": [
+              "Message"
+            ]
           },
           "targetHandle": {
             "fieldName": "input_value",
             "id": "ChatOutput-MwOz3",
-            "inputTypes": ["Data", "DataFrame", "Message"],
+            "inputTypes": [
+              "Data",
+              "DataFrame",
+              "Message"
+            ],
             "type": "other"
           }
         },
@@ -354,12 +416,16 @@
             "dataType": "RagPrompt",
             "id": "RagPrompt-qmyvE",
             "name": "rag_prompt",
-            "output_types": ["Message"]
+            "output_types": [
+              "Message"
+            ]
           },
           "targetHandle": {
             "fieldName": "system_message",
             "id": "OpenAIModel-cNRSz",
-            "inputTypes": ["Message"],
+            "inputTypes": [
+              "Message"
+            ],
             "type": "str"
           }
         },
@@ -377,12 +443,16 @@
             "dataType": "TextInput",
             "id": "TextInput-MXNgg",
             "name": "text",
-            "output_types": ["Message"]
+            "output_types": [
+              "Message"
+            ]
           },
           "targetHandle": {
             "fieldName": "input_value",
             "id": "OpenAIModel-cNRSz",
-            "inputTypes": ["Message"],
+            "inputTypes": [
+              "Message"
+            ],
             "type": "str"
           }
         },
@@ -400,12 +470,18 @@
             "dataType": "OpenAIModel",
             "id": "OpenAIModel-cNRSz",
             "name": "text_output",
-            "output_types": ["Message"]
+            "output_types": [
+              "Message"
+            ]
           },
           "targetHandle": {
             "fieldName": "input_value",
             "id": "ChatOutput-xiNof",
-            "inputTypes": ["Data", "DataFrame", "Message"],
+            "inputTypes": [
+              "Data",
+              "DataFrame",
+              "Message"
+            ],
             "type": "other"
           }
         },
@@ -423,12 +499,16 @@
             "dataType": "OpenAIModel",
             "id": "OpenAIModel-nFwIp",
             "name": "text_output",
-            "output_types": ["Message"]
+            "output_types": [
+              "Message"
+            ]
           },
           "targetHandle": {
             "fieldName": "input_value",
             "id": "CustomComponent-b69hZ",
-            "inputTypes": ["Message"],
+            "inputTypes": [
+              "Message"
+            ],
             "type": "str"
           }
         },
@@ -446,12 +526,16 @@
             "dataType": "CustomComponent",
             "id": "CustomComponent-b69hZ",
             "name": "output",
-            "output_types": ["Data"]
+            "output_types": [
+              "Data"
+            ]
           },
           "targetHandle": {
             "fieldName": "TextInput-ywIxf~input_value",
             "id": "RunFlow-OqJHt",
-            "inputTypes": ["Message"],
+            "inputTypes": [
+              "Message"
+            ],
             "type": "str"
           }
         },
@@ -469,12 +553,16 @@
             "dataType": "ChatInput",
             "id": "ChatInput-78qPN",
             "name": "message",
-            "output_types": ["Message"]
+            "output_types": [
+              "Message"
+            ]
           },
           "targetHandle": {
             "fieldName": "TextInput-9IOWc~input_value",
             "id": "RunFlow-OqJHt",
-            "inputTypes": ["Message"],
+            "inputTypes": [
+              "Message"
+            ],
             "type": "str"
           }
         },
@@ -492,12 +580,16 @@
             "dataType": "TextInput",
             "id": "TextInput-MXNgg",
             "name": "text",
-            "output_types": ["Message"]
+            "output_types": [
+              "Message"
+            ]
           },
           "targetHandle": {
             "fieldName": "TextInput-9IOWc~input_value",
             "id": "RunFlow-2Uiy3",
-            "inputTypes": ["Message"],
+            "inputTypes": [
+              "Message"
+            ],
             "type": "str"
           }
         },
@@ -514,12 +606,16 @@
             "dataType": "SystemPrompt",
             "id": "SystemPrompt-jJI3d",
             "name": "system_prompt",
-            "output_types": ["Message"]
+            "output_types": [
+              "Message"
+            ]
           },
           "targetHandle": {
             "fieldName": "system_message",
             "id": "OpenAIModel-nFwIp",
-            "inputTypes": ["Message"],
+            "inputTypes": [
+              "Message"
+            ],
             "type": "str"
           }
         },
@@ -536,12 +632,16 @@
             "dataType": "GetFoldersContent",
             "id": "GetFoldersContent-BB14L",
             "name": "folder_content",
-            "output_types": ["Data"]
+            "output_types": [
+              "Data"
+            ]
           },
           "targetHandle": {
             "fieldName": "document_context",
             "id": "SystemPrompt-jJI3d",
-            "inputTypes": ["Data"],
+            "inputTypes": [
+              "Data"
+            ],
             "type": "other"
           }
         },
@@ -558,12 +658,16 @@
             "dataType": "ConditionalRouterList",
             "id": "ConditionalRouter-BiG8Y",
             "name": "true_result",
-            "output_types": ["Data"]
+            "output_types": [
+              "Data"
+            ]
           },
           "targetHandle": {
             "fieldName": "input",
             "id": "ParseReferences-PmPM8",
-            "inputTypes": ["Data"],
+            "inputTypes": [
+              "Data"
+            ],
             "type": "other"
           }
         },
@@ -580,12 +684,16 @@
             "dataType": "ConditionalRouterList",
             "id": "ConditionalRouter-ovaNy",
             "name": "true_result",
-            "output_types": ["Message"]
+            "output_types": [
+              "Message"
+            ]
           },
           "targetHandle": {
             "fieldName": "TextInput-ywIxf~input_value",
             "id": "RunFlow-2Uiy3",
-            "inputTypes": ["Message"],
+            "inputTypes": [
+              "Message"
+            ],
             "type": "str"
           }
         },
@@ -602,12 +710,16 @@
             "dataType": "ConditionalRouterList",
             "id": "ConditionalRouter-BiG8Y",
             "name": "false_result",
-            "output_types": ["Message"]
+            "output_types": [
+              "Message"
+            ]
           },
           "targetHandle": {
             "fieldName": "input_value",
             "id": "OpenAIModel-nFwIp",
-            "inputTypes": ["Message"],
+            "inputTypes": [
+              "Message"
+            ],
             "type": "str"
           }
         },
@@ -623,7 +735,9 @@
         "data": {
           "id": "ChatInput-78qPN",
           "node": {
-            "base_classes": ["Message"],
+            "base_classes": [
+              "Message"
+            ],
             "beta": false,
             "conditional_paths": [],
             "custom_fields": {},
@@ -658,7 +772,9 @@
                 "name": "message",
                 "selected": "Message",
                 "tool_mode": true,
-                "types": ["Message"],
+                "types": [
+                  "Message"
+                ],
                 "value": "__UNDEFINED__"
               }
             ],
@@ -671,7 +787,9 @@
                 "display_name": "Background Color",
                 "dynamic": false,
                 "info": "The background color of the icon.",
-                "input_types": ["Message"],
+                "input_types": [
+                  "Message"
+                ],
                 "list": false,
                 "list_add_label": "Add More",
                 "load_from_db": false,
@@ -692,7 +810,9 @@
                 "display_name": "Icon",
                 "dynamic": false,
                 "info": "The icon of the message.",
-                "input_types": ["Message"],
+                "input_types": [
+                  "Message"
+                ],
                 "list": false,
                 "list_add_label": "Add More",
                 "load_from_db": false,
@@ -799,7 +919,10 @@
                 "dynamic": false,
                 "info": "Type of sender.",
                 "name": "sender",
-                "options": ["Machine", "User"],
+                "options": [
+                  "Machine",
+                  "User"
+                ],
                 "options_metadata": [],
                 "placeholder": "",
                 "required": false,
@@ -816,7 +939,9 @@
                 "display_name": "Sender Name",
                 "dynamic": false,
                 "info": "Name of the sender.",
-                "input_types": ["Message"],
+                "input_types": [
+                  "Message"
+                ],
                 "list": false,
                 "list_add_label": "Add More",
                 "load_from_db": false,
@@ -837,7 +962,9 @@
                 "display_name": "Session ID",
                 "dynamic": false,
                 "info": "The session ID of the chat. If empty, the current session ID parameter will be used.",
-                "input_types": ["Message"],
+                "input_types": [
+                  "Message"
+                ],
                 "list": false,
                 "list_add_label": "Add More",
                 "load_from_db": false,
@@ -876,7 +1003,9 @@
                 "display_name": "Text Color",
                 "dynamic": false,
                 "info": "The text color of the name",
-                "input_types": ["Message"],
+                "input_types": [
+                  "Message"
+                ],
                 "list": false,
                 "list_add_label": "Add More",
                 "load_from_db": false,
@@ -914,7 +1043,10 @@
         "data": {
           "id": "ConditionalRouter-BiG8Y",
           "node": {
-            "base_classes": ["Data", "Message"],
+            "base_classes": [
+              "Data",
+              "Message"
+            ],
             "beta": false,
             "conditional_paths": [],
             "custom_fields": {},
@@ -922,7 +1054,9 @@
             "display_name": "If-Else",
             "documentation": "",
             "edited": true,
-            "field_order": ["data"],
+            "field_order": [
+              "data"
+            ],
             "frozen": false,
             "icon": "split",
             "legacy": false,
@@ -940,7 +1074,9 @@
                 "required_inputs": null,
                 "selected": "Data",
                 "tool_mode": true,
-                "types": ["Data"],
+                "types": [
+                  "Data"
+                ],
                 "value": "__UNDEFINED__"
               },
               {
@@ -953,7 +1089,9 @@
                 "required_inputs": null,
                 "selected": "Message",
                 "tool_mode": true,
-                "types": ["Message"],
+                "types": [
+                  "Message"
+                ],
                 "value": "__UNDEFINED__"
               }
             ],
@@ -984,7 +1122,9 @@
                 "display_name": "Parsed data",
                 "dynamic": false,
                 "info": "Parsed data",
-                "input_types": ["Data"],
+                "input_types": [
+                  "Data"
+                ],
                 "list": false,
                 "list_add_label": "Add More",
                 "name": "data",
@@ -1021,7 +1161,11 @@
         "data": {
           "id": "RunFlow-2Uiy3",
           "node": {
-            "base_classes": ["Data", "DataFrame", "Message"],
+            "base_classes": [
+              "Data",
+              "DataFrame",
+              "Message"
+            ],
             "beta": true,
             "conditional_paths": [],
             "custom_fields": {},
@@ -1029,7 +1173,10 @@
             "display_name": "Run Flow",
             "documentation": "",
             "edited": false,
-            "field_order": ["flow_name_selected", "session_id"],
+            "field_order": [
+              "flow_name_selected",
+              "session_id"
+            ],
             "frozen": false,
             "icon": "Workflow",
             "legacy": false,
@@ -1048,7 +1195,9 @@
                 "required_inputs": [],
                 "selected": "Data",
                 "tool_mode": true,
-                "types": ["Data"],
+                "types": [
+                  "Data"
+                ],
                 "value": "__UNDEFINED__"
               },
               {
@@ -1061,7 +1210,9 @@
                 "required_inputs": [],
                 "selected": "DataFrame",
                 "tool_mode": true,
-                "types": ["DataFrame"],
+                "types": [
+                  "DataFrame"
+                ],
                 "value": "__UNDEFINED__"
               },
               {
@@ -1073,7 +1224,9 @@
                 "required_inputs": [],
                 "selected": "Message",
                 "tool_mode": true,
-                "types": ["Message"],
+                "types": [
+                  "Message"
+                ],
                 "value": "__UNDEFINED__"
               }
             ],
@@ -1126,7 +1279,9 @@
                 "display_name": "Session ID",
                 "dynamic": false,
                 "info": "The session ID to run the flow in.",
-                "input_types": ["Message"],
+                "input_types": [
+                  "Message"
+                ],
                 "list": false,
                 "list_add_label": "Add More",
                 "load_from_db": false,
@@ -1172,7 +1327,9 @@
         "data": {
           "id": "ParseReferences-PmPM8",
           "node": {
-            "base_classes": ["Data"],
+            "base_classes": [
+              "Data"
+            ],
             "beta": false,
             "conditional_paths": [],
             "custom_fields": {},
@@ -1180,7 +1337,9 @@
             "display_name": "Parse References",
             "documentation": "",
             "edited": false,
-            "field_order": ["input"],
+            "field_order": [
+              "input"
+            ],
             "frozen": false,
             "icon": "braces",
             "legacy": false,
@@ -1197,7 +1356,9 @@
                 "name": "parsed_references",
                 "selected": "Data",
                 "tool_mode": true,
-                "types": ["Data"],
+                "types": [
+                  "Data"
+                ],
                 "value": "__UNDEFINED__"
               }
             ],
@@ -1228,7 +1389,9 @@
                 "display_name": "Data",
                 "dynamic": false,
                 "info": "Input data containing references",
-                "input_types": ["Data"],
+                "input_types": [
+                  "Data"
+                ],
                 "list": false,
                 "list_add_label": "Add More",
                 "name": "input",
@@ -1265,7 +1428,9 @@
         "data": {
           "id": "ConditionalRouter-ovaNy",
           "node": {
-            "base_classes": ["Message"],
+            "base_classes": [
+              "Message"
+            ],
             "beta": false,
             "conditional_paths": [],
             "custom_fields": {},
@@ -1273,7 +1438,9 @@
             "display_name": "If-Else Files",
             "documentation": "",
             "edited": true,
-            "field_order": ["data"],
+            "field_order": [
+              "data"
+            ],
             "frozen": false,
             "icon": "split",
             "legacy": false,
@@ -1291,7 +1458,9 @@
                 "required_inputs": null,
                 "selected": "Message",
                 "tool_mode": true,
-                "types": ["Message"],
+                "types": [
+                  "Message"
+                ],
                 "value": "__UNDEFINED__"
               },
               {
@@ -1304,7 +1473,9 @@
                 "required_inputs": null,
                 "selected": "Message",
                 "tool_mode": true,
-                "types": ["Message"],
+                "types": [
+                  "Message"
+                ],
                 "value": "__UNDEFINED__"
               }
             ],
@@ -1335,7 +1506,9 @@
                 "display_name": "Parsed data",
                 "dynamic": false,
                 "info": "Parsed data",
-                "input_types": ["Data"],
+                "input_types": [
+                  "Data"
+                ],
                 "list": false,
                 "list_add_label": "Add More",
                 "name": "data",
@@ -1372,7 +1545,9 @@
         "data": {
           "id": "TextInput-MXNgg",
           "node": {
-            "base_classes": ["Message"],
+            "base_classes": [
+              "Message"
+            ],
             "beta": false,
             "conditional_paths": [],
             "custom_fields": {},
@@ -1380,7 +1555,9 @@
             "display_name": "Question",
             "documentation": "",
             "edited": false,
-            "field_order": ["data"],
+            "field_order": [
+              "data"
+            ],
             "frozen": false,
             "icon": "type",
             "legacy": false,
@@ -1397,7 +1574,9 @@
                 "name": "text",
                 "selected": "Message",
                 "tool_mode": true,
-                "types": ["Message"],
+                "types": [
+                  "Message"
+                ],
                 "value": "__UNDEFINED__"
               }
             ],
@@ -1428,7 +1607,9 @@
                 "display_name": "Text",
                 "dynamic": false,
                 "info": "Text to be passed as input.",
-                "input_types": ["Message"],
+                "input_types": [
+                  "Message"
+                ],
                 "list": false,
                 "list_add_label": "Add More",
                 "load_from_db": false,
@@ -1467,7 +1648,9 @@
         "data": {
           "id": "GetFilesFromFolders-cfjz8",
           "node": {
-            "base_classes": ["Data"],
+            "base_classes": [
+              "Data"
+            ],
             "beta": false,
             "conditional_paths": [],
             "custom_fields": {},
@@ -1475,7 +1658,10 @@
             "display_name": "Get Files From Folders",
             "documentation": "",
             "edited": false,
-            "field_order": ["data", "asc_auth_key"],
+            "field_order": [
+              "data",
+              "asc_auth_key"
+            ],
             "frozen": false,
             "icon": "file-search",
             "legacy": false,
@@ -1492,7 +1678,9 @@
                 "name": "files",
                 "selected": "Data",
                 "tool_mode": true,
-                "types": ["Data"],
+                "types": [
+                  "Data"
+                ],
                 "value": "__UNDEFINED__"
               }
             ],
@@ -1505,7 +1693,9 @@
                 "display_name": "Auth key",
                 "dynamic": false,
                 "info": "Auth key to use",
-                "input_types": ["Message"],
+                "input_types": [
+                  "Message"
+                ],
                 "list": false,
                 "list_add_label": "Add More",
                 "load_from_db": true,
@@ -1544,7 +1734,9 @@
                 "display_name": "Folders and Files IDs",
                 "dynamic": false,
                 "info": "IDs of the folders and files to get",
-                "input_types": ["Data"],
+                "input_types": [
+                  "Data"
+                ],
                 "list": false,
                 "list_add_label": "Add More",
                 "name": "data",
@@ -1581,7 +1773,9 @@
         "data": {
           "id": "TextInput-aWQth",
           "node": {
-            "base_classes": ["Data"],
+            "base_classes": [
+              "Data"
+            ],
             "beta": false,
             "conditional_paths": [],
             "custom_fields": {},
@@ -1589,7 +1783,9 @@
             "display_name": "Current folder",
             "documentation": "",
             "edited": false,
-            "field_order": ["current_folder"],
+            "field_order": [
+              "current_folder"
+            ],
             "frozen": false,
             "icon": "type",
             "legacy": false,
@@ -1606,7 +1802,9 @@
                 "name": "text",
                 "selected": "Message",
                 "tool_mode": true,
-                "types": ["Message"],
+                "types": [
+                  "Message"
+                ],
                 "value": "__UNDEFINED__"
               }
             ],
@@ -1637,7 +1835,9 @@
                 "display_name": "Text",
                 "dynamic": false,
                 "info": "Text to be passed as input.",
-                "input_types": ["Message"],
+                "input_types": [
+                  "Message"
+                ],
                 "list": false,
                 "list_add_label": "Add More",
                 "load_from_db": false,
@@ -1676,7 +1876,9 @@
         "data": {
           "id": "RagPrompt-qmyvE",
           "node": {
-            "base_classes": ["Message"],
+            "base_classes": [
+              "Message"
+            ],
             "beta": false,
             "conditional_paths": [],
             "custom_fields": {},
@@ -1684,7 +1886,10 @@
             "display_name": "RAG Prompt",
             "documentation": "",
             "edited": false,
-            "field_order": ["document_context", "memory"],
+            "field_order": [
+              "document_context",
+              "memory"
+            ],
             "frozen": false,
             "icon": "file-text",
             "legacy": false,
@@ -1701,7 +1906,9 @@
                 "name": "rag_prompt",
                 "selected": "Message",
                 "tool_mode": true,
-                "types": ["Message"],
+                "types": [
+                  "Message"
+                ],
                 "value": "__UNDEFINED__"
               }
             ],
@@ -1724,7 +1931,7 @@
                 "show": true,
                 "title_case": false,
                 "type": "code",
-                "value": "from langflow.custom import Component\nfrom langflow.io import MessageInput, Output\nfrom langflow.schema.message import Message\n\nRAG_PROMPT = \"\"\" \nDOCUMENTS:\n{document}\n\nINSTRUCTIONS:\nAnswer the users QUESTION using the DOCUMENTS text above.\nKeep your answer ground in the facts of the DOCUMENTS.\nIf the DOCUMENTS doesn't contain the facts to answer the QUESTION return 'Not known'\n\"\"\"\n\n\nclass RagPromptComponent(Component):\n    \"\"\"\n    Component that formats a RAG prompt with document context.\n    Creates a structured prompt for retrieval-augmented generation.\n    \"\"\"\n\n    display_name = \"RAG Prompt\"\n    description = \"Creates a structured RAG prompt with document context for retrieval-augmented generation.\"\n    icon = \"file-text\"\n    name = \"RagPrompt\"\n\n    inputs = [\n        MessageInput(\n            name=\"document_context\",\n            display_name=\"Document context\",\n            info=\"The context of the document to combine with others\",\n            required=True,\n        ),\n    ]\n\n    outputs = [\n        Output(\n            display_name=\"RAG Prompt\",\n            name=\"rag_prompt\",\n            method=\"format_rag_prompt\",\n        ),\n    ]\n\n    def format_rag_prompt(self) -> Message:\n        \"\"\"\n        Formats a RAG prompt with the provided document context.\n\n        Returns:\n            Message: A message containing the formatted RAG prompt\n        \"\"\"\n        # Get the document context\n        doc_msg = self.document_context\n        document_content = doc_msg.get_text() if doc_msg else \"\"\n\n        # Format the RAG prompt template with the document context\n        formatted_prompt = RAG_PROMPT.format(document=document_content)\n\n        # Create a new message with the formatted prompt\n        # Preserve metadata from the document context message\n        rag_prompt_msg = Message(\n            text=formatted_prompt,\n            sender=doc_msg.sender if doc_msg else None,\n            sender_name=doc_msg.sender_name if doc_msg else None,\n            session_id=doc_msg.session_id if doc_msg else None,\n            flow_id=doc_msg.flow_id if doc_msg else None,\n        )\n\n        return rag_prompt_msg\n"
+                "value": "from langflow.custom import Component\nfrom langflow.io import MessageInput, Output\nfrom langflow.schema.message import Message\n\nRAG_PROMPT = \"\"\" \nDOCUMENTS:\n{document}\n\nHISTORY:\n{memory}\n\nINSTRUCTIONS:\nAnswer the users QUESTION using the DOCUMENTS text above.\nKeep your answer ground in the facts of the DOCUMENTS.\nIf the DOCUMENTS doesn't contain the facts to answer the QUESTION return 'Not known'\nPrefer use DOCUMENTS. If DOCUMENTS are empty or not contain answer - use HISTORY.\n\"\"\"\n\n\nclass RagPromptComponent(Component):\n    \"\"\"\n    Component that formats a RAG prompt with document context.\n    Creates a structured prompt for retrieval-augmented generation.\n    \"\"\"\n\n    display_name = \"RAG Prompt\"\n    description = \"Creates a structured RAG prompt with document context for retrieval-augmented generation.\"\n    icon = \"file-text\"\n    name = \"RagPrompt\"\n\n    inputs = [\n        MessageInput(\n            name=\"document_context\",\n            display_name=\"Document context\",\n            info=\"The context of the document to combine with others\",\n            required=True,\n        ),\n        MessageInput(\n            name=\"memory\",\n            display_name=\"Chat memory\",\n            info=\"Chat memory\"\n        )\n    ]\n\n    outputs = [\n        Output(\n            display_name=\"RAG Prompt\",\n            name=\"rag_prompt\",\n            method=\"format_rag_prompt\",\n        ),\n    ]\n\n    def format_rag_prompt(self) -> Message:\n        \"\"\"\n        Formats a RAG prompt with the provided document context.\n\n        Returns:\n            Message: A message containing the formatted RAG prompt\n        \"\"\"\n        # Get the document context\n        doc_msg = self.document_context\n        document_content = doc_msg.get_text() if doc_msg else \"\"\n\n        # Format the RAG prompt template with the document context\n        formatted_prompt = RAG_PROMPT.format(\n            document=document_content, memory=self.memory.get_text())\n\n        # Create a new message with the formatted prompt\n        # Preserve metadata from the document context message\n        rag_prompt_msg = Message(\n            text=formatted_prompt,\n            sender=doc_msg.sender if doc_msg else None,\n            sender_name=doc_msg.sender_name if doc_msg else None,\n            session_id=doc_msg.session_id if doc_msg else None,\n            flow_id=doc_msg.flow_id if doc_msg else None,\n        )\n\n        return rag_prompt_msg\n"
               },
               "document_context": {
                 "_input_type": "MessageInput",
@@ -1732,13 +1939,38 @@
                 "display_name": "Document context",
                 "dynamic": false,
                 "info": "The context of the document to combine with others",
-                "input_types": ["Message"],
+                "input_types": [
+                  "Message"
+                ],
                 "list": false,
                 "list_add_label": "Add More",
                 "load_from_db": false,
                 "name": "document_context",
                 "placeholder": "",
                 "required": true,
+                "show": true,
+                "title_case": false,
+                "tool_mode": false,
+                "trace_as_input": true,
+                "trace_as_metadata": true,
+                "type": "str",
+                "value": ""
+              },
+              "memory": {
+                "_input_type": "MessageInput",
+                "advanced": false,
+                "display_name": "Chat memory",
+                "dynamic": false,
+                "info": "Chat memory",
+                "input_types": [
+                  "Message"
+                ],
+                "list": false,
+                "list_add_label": "Add More",
+                "load_from_db": false,
+                "name": "memory",
+                "placeholder": "",
+                "required": false,
                 "show": true,
                 "title_case": false,
                 "tool_mode": false,
@@ -1770,7 +2002,9 @@
         "data": {
           "id": "SystemPrompt-jJI3d",
           "node": {
-            "base_classes": ["Message"],
+            "base_classes": [
+              "Message"
+            ],
             "beta": false,
             "conditional_paths": [],
             "custom_fields": {},
@@ -1778,7 +2012,10 @@
             "display_name": "System Prompt",
             "documentation": "",
             "edited": false,
-            "field_order": ["document_context", "memory"],
+            "field_order": [
+              "document_context",
+              "memory"
+            ],
             "frozen": false,
             "icon": "terminal",
             "legacy": false,
@@ -1795,7 +2032,9 @@
                 "name": "system_prompt",
                 "selected": "Message",
                 "tool_mode": true,
-                "types": ["Message"],
+                "types": [
+                  "Message"
+                ],
                 "value": "__UNDEFINED__"
               }
             ],
@@ -1818,7 +2057,7 @@
                 "show": true,
                 "title_case": false,
                 "type": "code",
-                "value": "from langflow.custom import Component\nfrom langflow.io import DataInput, Output\nfrom langflow.schema.message import Message\n\nSYSTEM_PROMPT = \"\"\" \nYou are a helpful assistant that can use tools to answer questions and perform tasks.\nInside input found title of documents or folders. Later your need use tools with this ids.\nIf name of folders or documents not available - do not use tools.\nIf extensions is empty - it is folder. This folder can has subfolders or files \nfrom user query.\n\nList of available folders and documents:\n{folders_and_documents}\n\"\"\"\n\n\nclass SystemPromptComponent(Component):\n    \"\"\"\n    Component that formats a system prompt with available folders and documents.\n    Creates a structured prompt that instructs an AI assistant about available documents and folders.\n    \"\"\"\n\n    display_name = \"System Prompt\"\n    description = \"Creates a system prompt that informs the AI assistant about available folders and documents.\"\n    icon = \"terminal\"\n    name = \"SystemPrompt\"\n\n    inputs = [\n        DataInput(\n            name=\"document_context\",\n            display_name=\"Folders and Documents\",\n            info=\"List of available folders and documents to include in the system prompt\",\n            required=True,\n        ),\n    ]\n\n    outputs = [\n        Output(\n            display_name=\"System Prompt\",\n            name=\"system_prompt\",\n            method=\"format_system_prompt\",\n        ),\n    ]\n\n    def format_system_prompt(self) -> Message:\n        \"\"\"\n        Formats a system prompt with the provided folders and documents information.\n\n        Returns:\n            Message: A message containing the formatted system prompt\n        \"\"\"\n        # Get the document context\n        folders_and_documents = self.document_context.data.get(\"content\", [])\n\n        formated_content = \"\\n\".join(\n            f'Title: {str(item.get('title'))} id: {str(item.get('id'))} extension: {str(item.get('fileExst', ''))}' for item in folders_and_documents)\n\n        # Format the system prompt template with the document context\n        formatted_prompt = SYSTEM_PROMPT.format(\n            folders_and_documents=formated_content)\n\n        # Create a new message with the formatted prompt\n        # Preserve metadata from the document context message\n        system_prompt_msg = Message(\n            text=formatted_prompt,\n        )\n\n        return system_prompt_msg\n"
+                "value": "from langflow.custom import Component\nfrom langflow.io import DataInput, Output, MessageInput\nfrom langflow.schema.message import Message\n\nSYSTEM_PROMPT = \"\"\" \nYou are a helpful assistant that can use tools to answer questions and perform tasks.\nInside input found title of documents or folders. Later your need use tools with this ids.\nIf name of folders or documents not available - do not use tools.\nIf you dont see file or folder from user question - just return user question.\nIf extensions is empty - it is folder. This folder can has subfolders or files \nfrom user query. Your asnwer ONLY id for file or files that ACCEPT USER.\nFile or folder ID or title MAY BE inside HISTORY with @ID.\n@1 - is it file with id 1.\n@folder-1 - is it folder with id 1.\nExample: 1,2,3,4 \nWithout spaces. No need to use @.\n\nList of available folders and documents:\n{folders_and_documents}\n\nHISTORY:\n{memory}\n\"\"\"\n\n\nclass SystemPromptComponent(Component):\n    \"\"\"\n    Component that formats a system prompt with available folders and documents.\n    Creates a structured prompt that instructs an AI assistant about available documents and folders.\n    \"\"\"\n\n    display_name = \"System Prompt\"\n    description = \"Creates a system prompt that informs the AI assistant about available folders and documents.\"\n    icon = \"terminal\"\n    name = \"SystemPrompt\"\n\n    inputs = [\n        DataInput(\n            name=\"document_context\",\n            display_name=\"Folders and Documents\",\n            info=\"List of available folders and documents to include in the system prompt\",\n            required=True,\n        ),\n        MessageInput(\n            name=\"memory\",\n            display_name=\"Chat memory\",\n            info=\"Chat memory\"\n        )\n    ]\n\n    outputs = [\n        Output(\n            display_name=\"System Prompt\",\n            name=\"system_prompt\",\n            method=\"format_system_prompt\",\n        ),\n    ]\n\n    def format_system_prompt(self) -> Message:\n        \"\"\"\n        Formats a system prompt with the provided folders and documents information.\n\n        Returns:\n            Message: A message containing the formatted system prompt\n        \"\"\"\n        # Get the document context\n        folders_and_documents = self.document_context.data.get(\"content\", [])\n\n        formated_content = \"\\n\".join(\n            f'Title: {str(item.get('title'))} id: {str(item.get('id'))} extension: {str(item.get('fileExst', ''))}' for item in folders_and_documents)\n\n        # Format the system prompt template with the document context\n        formatted_prompt = SYSTEM_PROMPT.format(\n            folders_and_documents=formated_content,\n            memory=self.memory.get_text()\n        )\n\n        # Create a new message with the formatted prompt\n        # Preserve metadata from the document context message\n        system_prompt_msg = Message(\n            text=formatted_prompt,\n        )\n\n        return system_prompt_msg\n"
               },
               "document_context": {
                 "_input_type": "DataInput",
@@ -1826,7 +2065,9 @@
                 "display_name": "Folders and Documents",
                 "dynamic": false,
                 "info": "List of available folders and documents to include in the system prompt",
-                "input_types": ["Data"],
+                "input_types": [
+                  "Data"
+                ],
                 "list": false,
                 "list_add_label": "Add More",
                 "name": "document_context",
@@ -1838,6 +2079,29 @@
                 "trace_as_input": true,
                 "trace_as_metadata": true,
                 "type": "other",
+                "value": ""
+              },
+              "memory": {
+                "_input_type": "MessageInput",
+                "advanced": false,
+                "display_name": "Chat memory",
+                "dynamic": false,
+                "info": "Chat memory",
+                "input_types": [
+                  "Message"
+                ],
+                "list": false,
+                "list_add_label": "Add More",
+                "load_from_db": false,
+                "name": "memory",
+                "placeholder": "",
+                "required": false,
+                "show": true,
+                "title_case": false,
+                "tool_mode": false,
+                "trace_as_input": true,
+                "trace_as_metadata": true,
+                "type": "str",
                 "value": ""
               }
             },
@@ -1863,7 +2127,9 @@
         "data": {
           "id": "GetFoldersContent-BB14L",
           "node": {
-            "base_classes": ["Data"],
+            "base_classes": [
+              "Data"
+            ],
             "beta": false,
             "conditional_paths": [],
             "custom_fields": {},
@@ -1871,7 +2137,11 @@
             "display_name": "Get Folder Content",
             "documentation": "",
             "edited": false,
-            "field_order": ["data", "asc_auth_key", "files_host"],
+            "field_order": [
+              "data",
+              "asc_auth_key",
+              "files_host"
+            ],
             "frozen": false,
             "icon": "folder-open",
             "legacy": false,
@@ -1888,7 +2158,9 @@
                 "name": "folder_content",
                 "selected": "Data",
                 "tool_mode": true,
-                "types": ["Data"],
+                "types": [
+                  "Data"
+                ],
                 "value": "__UNDEFINED__"
               }
             ],
@@ -1901,7 +2173,9 @@
                 "display_name": "Auth key",
                 "dynamic": false,
                 "info": "Auth key to use",
-                "input_types": ["Message"],
+                "input_types": [
+                  "Message"
+                ],
                 "list": false,
                 "list_add_label": "Add More",
                 "load_from_db": true,
@@ -1940,7 +2214,9 @@
                 "display_name": "Folders and Files IDs",
                 "dynamic": false,
                 "info": "IDs of the folders and files to get",
-                "input_types": ["Data"],
+                "input_types": [
+                  "Data"
+                ],
                 "list": false,
                 "list_add_label": "Add More",
                 "name": "data",
@@ -1960,7 +2236,9 @@
                 "display_name": "Files Service Host",
                 "dynamic": false,
                 "info": "Host URL for the files service",
-                "input_types": ["Message"],
+                "input_types": [
+                  "Message"
+                ],
                 "list": false,
                 "list_add_label": "Add More",
                 "load_from_db": false,
@@ -1998,7 +2276,11 @@
         "data": {
           "id": "RunFlow-OqJHt",
           "node": {
-            "base_classes": ["Data", "DataFrame", "Message"],
+            "base_classes": [
+              "Data",
+              "DataFrame",
+              "Message"
+            ],
             "beta": true,
             "conditional_paths": [],
             "custom_fields": {},
@@ -2006,7 +2288,10 @@
             "display_name": "Run Flow",
             "documentation": "",
             "edited": false,
-            "field_order": ["flow_name_selected", "session_id"],
+            "field_order": [
+              "flow_name_selected",
+              "session_id"
+            ],
             "frozen": false,
             "icon": "Workflow",
             "legacy": false,
@@ -2025,7 +2310,9 @@
                 "required_inputs": [],
                 "selected": "Data",
                 "tool_mode": true,
-                "types": ["Data"],
+                "types": [
+                  "Data"
+                ],
                 "value": "__UNDEFINED__"
               },
               {
@@ -2038,7 +2325,9 @@
                 "required_inputs": [],
                 "selected": "DataFrame",
                 "tool_mode": true,
-                "types": ["DataFrame"],
+                "types": [
+                  "DataFrame"
+                ],
                 "value": "__UNDEFINED__"
               },
               {
@@ -2050,7 +2339,9 @@
                 "required_inputs": [],
                 "selected": "Message",
                 "tool_mode": true,
-                "types": ["Message"],
+                "types": [
+                  "Message"
+                ],
                 "value": "__UNDEFINED__"
               }
             ],
@@ -2103,7 +2394,9 @@
                 "display_name": "Session ID",
                 "dynamic": false,
                 "info": "The session ID to run the flow in.",
-                "input_types": ["Message"],
+                "input_types": [
+                  "Message"
+                ],
                 "list": false,
                 "list_add_label": "Add More",
                 "load_from_db": false,
@@ -2149,7 +2442,9 @@
         "data": {
           "id": "CustomComponent-b69hZ",
           "node": {
-            "base_classes": ["Message"],
+            "base_classes": [
+              "Message"
+            ],
             "beta": false,
             "conditional_paths": [],
             "custom_fields": {},
@@ -2157,7 +2452,9 @@
             "display_name": "Custom Component",
             "documentation": "https://docs.langflow.org/components-custom-components",
             "edited": false,
-            "field_order": ["input_value"],
+            "field_order": [
+              "input_value"
+            ],
             "frozen": false,
             "icon": "code",
             "legacy": false,
@@ -2174,7 +2471,9 @@
                 "name": "output",
                 "selected": "Data",
                 "tool_mode": true,
-                "types": ["Data"],
+                "types": [
+                  "Data"
+                ],
                 "value": "__UNDEFINED__"
               }
             ],
@@ -2205,7 +2504,9 @@
                 "display_name": "Input Value",
                 "dynamic": false,
                 "info": "This is a custom component Input",
-                "input_types": ["Message"],
+                "input_types": [
+                  "Message"
+                ],
                 "list": false,
                 "list_add_label": "Add More",
                 "load_from_db": false,
@@ -2243,7 +2544,9 @@
         "data": {
           "id": "ChatOutput-MwOz3",
           "node": {
-            "base_classes": ["Message"],
+            "base_classes": [
+              "Message"
+            ],
             "beta": false,
             "conditional_paths": [],
             "custom_fields": {},
@@ -2279,7 +2582,9 @@
                 "name": "message",
                 "selected": "Message",
                 "tool_mode": true,
-                "types": ["Message"],
+                "types": [
+                  "Message"
+                ],
                 "value": "__UNDEFINED__"
               }
             ],
@@ -2292,7 +2597,9 @@
                 "display_name": "Background Color",
                 "dynamic": false,
                 "info": "The background color of the icon.",
-                "input_types": ["Message"],
+                "input_types": [
+                  "Message"
+                ],
                 "list": false,
                 "list_add_label": "Add More",
                 "load_from_db": false,
@@ -2313,7 +2620,9 @@
                 "display_name": "Icon",
                 "dynamic": false,
                 "info": "The icon of the message.",
-                "input_types": ["Message"],
+                "input_types": [
+                  "Message"
+                ],
                 "list": false,
                 "list_add_label": "Add More",
                 "load_from_db": false,
@@ -2370,7 +2679,9 @@
                 "display_name": "Data Template",
                 "dynamic": false,
                 "info": "Template to convert Data to Text. If left empty, it will be dynamically set to the Data's text key.",
-                "input_types": ["Message"],
+                "input_types": [
+                  "Message"
+                ],
                 "list": false,
                 "list_add_label": "Add More",
                 "load_from_db": false,
@@ -2391,7 +2702,11 @@
                 "display_name": "Text",
                 "dynamic": false,
                 "info": "Message to be passed as output.",
-                "input_types": ["Data", "DataFrame", "Message"],
+                "input_types": [
+                  "Data",
+                  "DataFrame",
+                  "Message"
+                ],
                 "list": false,
                 "list_add_label": "Add More",
                 "name": "input_value",
@@ -2412,7 +2727,10 @@
                 "dynamic": false,
                 "info": "Type of sender.",
                 "name": "sender",
-                "options": ["Machine", "User"],
+                "options": [
+                  "Machine",
+                  "User"
+                ],
                 "options_metadata": [],
                 "placeholder": "",
                 "required": false,
@@ -2429,7 +2747,9 @@
                 "display_name": "Sender Name",
                 "dynamic": false,
                 "info": "Name of the sender.",
-                "input_types": ["Message"],
+                "input_types": [
+                  "Message"
+                ],
                 "list": false,
                 "list_add_label": "Add More",
                 "load_from_db": false,
@@ -2450,7 +2770,9 @@
                 "display_name": "Session ID",
                 "dynamic": false,
                 "info": "The session ID of the chat. If empty, the current session ID parameter will be used.",
-                "input_types": ["Message"],
+                "input_types": [
+                  "Message"
+                ],
                 "list": false,
                 "list_add_label": "Add More",
                 "load_from_db": false,
@@ -2489,7 +2811,9 @@
                 "display_name": "Text Color",
                 "dynamic": false,
                 "info": "The text color of the name",
-                "input_types": ["Message"],
+                "input_types": [
+                  "Message"
+                ],
                 "list": false,
                 "list_add_label": "Add More",
                 "load_from_db": false,
@@ -2527,7 +2851,9 @@
         "data": {
           "id": "EnvExtractor-8LUE4",
           "node": {
-            "base_classes": ["Message"],
+            "base_classes": [
+              "Message"
+            ],
             "beta": false,
             "conditional_paths": [],
             "custom_fields": {},
@@ -2552,7 +2878,9 @@
                 "name": "api_host",
                 "selected": "Message",
                 "tool_mode": true,
-                "types": ["Message"],
+                "types": [
+                  "Message"
+                ],
                 "value": "__UNDEFINED__"
               },
               {
@@ -2563,7 +2891,9 @@
                 "name": "files_host",
                 "selected": "Message",
                 "tool_mode": true,
-                "types": ["Message"],
+                "types": [
+                  "Message"
+                ],
                 "value": "__UNDEFINED__"
               },
               {
@@ -2574,7 +2904,9 @@
                 "name": "qdrant_host",
                 "selected": "Message",
                 "tool_mode": true,
-                "types": ["Message"],
+                "types": [
+                  "Message"
+                ],
                 "value": "__UNDEFINED__"
               },
               {
@@ -2585,7 +2917,9 @@
                 "name": "qdrant_port",
                 "selected": "Message",
                 "tool_mode": true,
-                "types": ["Message"],
+                "types": [
+                  "Message"
+                ],
                 "value": "__UNDEFINED__"
               }
             ],
@@ -2632,7 +2966,10 @@
         "data": {
           "id": "Memory-SWisu",
           "node": {
-            "base_classes": ["Data", "Message"],
+            "base_classes": [
+              "Data",
+              "Message"
+            ],
             "beta": false,
             "conditional_paths": [],
             "custom_fields": {},
@@ -2665,7 +3002,9 @@
                 "name": "messages",
                 "selected": "Data",
                 "tool_mode": true,
-                "types": ["Data"],
+                "types": [
+                  "Data"
+                ],
                 "value": "__UNDEFINED__"
               },
               {
@@ -2676,7 +3015,9 @@
                 "name": "messages_text",
                 "selected": "Message",
                 "tool_mode": true,
-                "types": ["Message"],
+                "types": [
+                  "Message"
+                ],
                 "value": "__UNDEFINED__"
               }
             ],
@@ -2707,7 +3048,9 @@
                 "display_name": "External Memory",
                 "dynamic": false,
                 "info": "Retrieve messages from an external memory. If empty, it will use the Langflow tables.",
-                "input_types": ["Memory"],
+                "input_types": [
+                  "Memory"
+                ],
                 "list": false,
                 "list_add_label": "Add More",
                 "name": "memory",
@@ -2746,7 +3089,10 @@
                 "dynamic": false,
                 "info": "Order of the messages.",
                 "name": "order",
-                "options": ["Ascending", "Descending"],
+                "options": [
+                  "Ascending",
+                  "Descending"
+                ],
                 "options_metadata": [],
                 "placeholder": "",
                 "required": false,
@@ -2766,7 +3112,11 @@
                 "dynamic": false,
                 "info": "Filter by sender type.",
                 "name": "sender",
-                "options": ["Machine", "User", "Machine and User"],
+                "options": [
+                  "Machine",
+                  "User",
+                  "Machine and User"
+                ],
                 "options_metadata": [],
                 "placeholder": "",
                 "required": false,
@@ -2783,7 +3133,9 @@
                 "display_name": "Sender Name",
                 "dynamic": false,
                 "info": "Filter by sender name.",
-                "input_types": ["Message"],
+                "input_types": [
+                  "Message"
+                ],
                 "list": false,
                 "list_add_label": "Add More",
                 "load_from_db": false,
@@ -2804,7 +3156,9 @@
                 "display_name": "Session ID",
                 "dynamic": false,
                 "info": "The session ID of the chat. If empty, the current session ID parameter will be used.",
-                "input_types": ["Message"],
+                "input_types": [
+                  "Message"
+                ],
                 "list": false,
                 "list_add_label": "Add More",
                 "load_from_db": false,
@@ -2825,7 +3179,9 @@
                 "display_name": "Template",
                 "dynamic": false,
                 "info": "The template to use for formatting the data. It can contain the keys {text}, {sender} or any other key in the message data.",
-                "input_types": ["Message"],
+                "input_types": [
+                  "Message"
+                ],
                 "list": false,
                 "list_add_label": "Add More",
                 "load_from_db": false,
@@ -2863,7 +3219,9 @@
         "data": {
           "id": "RagPrompt-SR3ZC",
           "node": {
-            "base_classes": ["Message"],
+            "base_classes": [
+              "Message"
+            ],
             "beta": false,
             "conditional_paths": [],
             "custom_fields": {},
@@ -2871,7 +3229,10 @@
             "display_name": "RAG Prompt",
             "documentation": "",
             "edited": false,
-            "field_order": ["document_context", "memory"],
+            "field_order": [
+              "document_context",
+              "memory"
+            ],
             "frozen": false,
             "icon": "file-text",
             "legacy": false,
@@ -2888,7 +3249,9 @@
                 "name": "rag_prompt",
                 "selected": "Message",
                 "tool_mode": true,
-                "types": ["Message"],
+                "types": [
+                  "Message"
+                ],
                 "value": "__UNDEFINED__"
               }
             ],
@@ -2911,7 +3274,7 @@
                 "show": true,
                 "title_case": false,
                 "type": "code",
-                "value": "from langflow.custom import Component\nfrom langflow.io import MessageInput, Output\nfrom langflow.schema.message import Message\n\nRAG_PROMPT = \"\"\" \nDOCUMENTS:\n{document}\n\nINSTRUCTIONS:\nAnswer the users QUESTION using the DOCUMENTS text above.\nKeep your answer ground in the facts of the DOCUMENTS.\nIf the DOCUMENTS doesn't contain the facts to answer the QUESTION return 'Not known'\n\"\"\"\n\n\nclass RagPromptComponent(Component):\n    \"\"\"\n    Component that formats a RAG prompt with document context.\n    Creates a structured prompt for retrieval-augmented generation.\n    \"\"\"\n\n    display_name = \"RAG Prompt\"\n    description = \"Creates a structured RAG prompt with document context for retrieval-augmented generation.\"\n    icon = \"file-text\"\n    name = \"RagPrompt\"\n\n    inputs = [\n        MessageInput(\n            name=\"document_context\",\n            display_name=\"Document context\",\n            info=\"The context of the document to combine with others\",\n            required=True,\n        ),\n    ]\n\n    outputs = [\n        Output(\n            display_name=\"RAG Prompt\",\n            name=\"rag_prompt\",\n            method=\"format_rag_prompt\",\n        ),\n    ]\n\n    def format_rag_prompt(self) -> Message:\n        \"\"\"\n        Formats a RAG prompt with the provided document context.\n\n        Returns:\n            Message: A message containing the formatted RAG prompt\n        \"\"\"\n        # Get the document context\n        doc_msg = self.document_context\n        document_content = doc_msg.get_text() if doc_msg else \"\"\n\n        # Format the RAG prompt template with the document context\n        formatted_prompt = RAG_PROMPT.format(document=document_content)\n\n        # Create a new message with the formatted prompt\n        # Preserve metadata from the document context message\n        rag_prompt_msg = Message(\n            text=formatted_prompt,\n            sender=doc_msg.sender if doc_msg else None,\n            sender_name=doc_msg.sender_name if doc_msg else None,\n            session_id=doc_msg.session_id if doc_msg else None,\n            flow_id=doc_msg.flow_id if doc_msg else None,\n        )\n\n        return rag_prompt_msg\n"
+                "value": "from langflow.custom import Component\nfrom langflow.io import MessageInput, Output\nfrom langflow.schema.message import Message\n\nRAG_PROMPT = \"\"\" \nDOCUMENTS:\n{document}\n\nHISTORY:\n{memory}\n\nINSTRUCTIONS:\nAnswer the users QUESTION using the DOCUMENTS text above.\nKeep your answer ground in the facts of the DOCUMENTS.\nIf the DOCUMENTS doesn't contain the facts to answer the QUESTION return 'Not known'\nPrefer use DOCUMENTS. If DOCUMENTS are empty or not contain answer - use HISTORY.\n\"\"\"\n\n\nclass RagPromptComponent(Component):\n    \"\"\"\n    Component that formats a RAG prompt with document context.\n    Creates a structured prompt for retrieval-augmented generation.\n    \"\"\"\n\n    display_name = \"RAG Prompt\"\n    description = \"Creates a structured RAG prompt with document context for retrieval-augmented generation.\"\n    icon = \"file-text\"\n    name = \"RagPrompt\"\n\n    inputs = [\n        MessageInput(\n            name=\"document_context\",\n            display_name=\"Document context\",\n            info=\"The context of the document to combine with others\",\n            required=True,\n        ),\n        MessageInput(\n            name=\"memory\",\n            display_name=\"Chat memory\",\n            info=\"Chat memory\"\n        )\n    ]\n\n    outputs = [\n        Output(\n            display_name=\"RAG Prompt\",\n            name=\"rag_prompt\",\n            method=\"format_rag_prompt\",\n        ),\n    ]\n\n    def format_rag_prompt(self) -> Message:\n        \"\"\"\n        Formats a RAG prompt with the provided document context.\n\n        Returns:\n            Message: A message containing the formatted RAG prompt\n        \"\"\"\n        # Get the document context\n        doc_msg = self.document_context\n        document_content = doc_msg.get_text() if doc_msg else \"\"\n\n        # Format the RAG prompt template with the document context\n        formatted_prompt = RAG_PROMPT.format(\n            document=document_content, memory=self.memory.get_text())\n\n        # Create a new message with the formatted prompt\n        # Preserve metadata from the document context message\n        rag_prompt_msg = Message(\n            text=formatted_prompt,\n            sender=doc_msg.sender if doc_msg else None,\n            sender_name=doc_msg.sender_name if doc_msg else None,\n            session_id=doc_msg.session_id if doc_msg else None,\n            flow_id=doc_msg.flow_id if doc_msg else None,\n        )\n\n        return rag_prompt_msg\n"
               },
               "document_context": {
                 "_input_type": "MessageInput",
@@ -2919,13 +3282,38 @@
                 "display_name": "Document context",
                 "dynamic": false,
                 "info": "The context of the document to combine with others",
-                "input_types": ["Message"],
+                "input_types": [
+                  "Message"
+                ],
                 "list": false,
                 "list_add_label": "Add More",
                 "load_from_db": false,
                 "name": "document_context",
                 "placeholder": "",
                 "required": true,
+                "show": true,
+                "title_case": false,
+                "tool_mode": false,
+                "trace_as_input": true,
+                "trace_as_metadata": true,
+                "type": "str",
+                "value": ""
+              },
+              "memory": {
+                "_input_type": "MessageInput",
+                "advanced": false,
+                "display_name": "Chat memory",
+                "dynamic": false,
+                "info": "Chat memory",
+                "input_types": [
+                  "Message"
+                ],
+                "list": false,
+                "list_add_label": "Add More",
+                "load_from_db": false,
+                "name": "memory",
+                "placeholder": "",
+                "required": false,
                 "show": true,
                 "title_case": false,
                 "tool_mode": false,
@@ -2957,7 +3345,9 @@
         "data": {
           "id": "InputParser-lGm6i",
           "node": {
-            "base_classes": ["Data"],
+            "base_classes": [
+              "Data"
+            ],
             "beta": false,
             "conditional_paths": [],
             "custom_fields": {},
@@ -2965,7 +3355,9 @@
             "display_name": "Parse input",
             "documentation": "",
             "edited": false,
-            "field_order": ["input"],
+            "field_order": [
+              "input"
+            ],
             "frozen": false,
             "icon": "braces",
             "legacy": false,
@@ -2982,7 +3374,9 @@
                 "name": "parsed_data",
                 "selected": "Data",
                 "tool_mode": true,
-                "types": ["Data"],
+                "types": [
+                  "Data"
+                ],
                 "value": "__UNDEFINED__"
               }
             ],
@@ -3013,7 +3407,9 @@
                 "display_name": "Input",
                 "dynamic": false,
                 "info": "User input to parse",
-                "input_types": ["Message"],
+                "input_types": [
+                  "Message"
+                ],
                 "list": false,
                 "list_add_label": "Add More",
                 "load_from_db": false,
@@ -3051,7 +3447,10 @@
         "data": {
           "id": "OpenAIModel-nFwIp",
           "node": {
-            "base_classes": ["LanguageModel", "Message"],
+            "base_classes": [
+              "LanguageModel",
+              "Message"
+            ],
             "beta": false,
             "conditional_paths": [],
             "custom_fields": {},
@@ -3091,7 +3490,9 @@
                 "required_inputs": [],
                 "selected": "Message",
                 "tool_mode": true,
-                "types": ["Message"],
+                "types": [
+                  "Message"
+                ],
                 "value": "__UNDEFINED__"
               },
               {
@@ -3100,10 +3501,14 @@
                 "display_name": "Language Model",
                 "method": "build_model",
                 "name": "model_output",
-                "required_inputs": ["api_key"],
+                "required_inputs": [
+                  "api_key"
+                ],
                 "selected": "LanguageModel",
                 "tool_mode": true,
-                "types": ["LanguageModel"],
+                "types": [
+                  "LanguageModel"
+                ],
                 "value": "__UNDEFINED__"
               }
             ],
@@ -3116,7 +3521,9 @@
                 "display_name": "OpenAI API Key",
                 "dynamic": false,
                 "info": "The OpenAI API Key to use for the OpenAI model.",
-                "input_types": ["Message"],
+                "input_types": [
+                  "Message"
+                ],
                 "load_from_db": false,
                 "name": "api_key",
                 "password": true,
@@ -3151,7 +3558,9 @@
                 "display_name": "Input",
                 "dynamic": false,
                 "info": "",
-                "input_types": ["Message"],
+                "input_types": [
+                  "Message"
+                ],
                 "list": false,
                 "list_add_label": "Add More",
                 "load_from_db": false,
@@ -3333,7 +3742,9 @@
                 "display_name": "System Message",
                 "dynamic": false,
                 "info": "System message to pass to the model.",
-                "input_types": ["Message"],
+                "input_types": [
+                  "Message"
+                ],
                 "list": false,
                 "list_add_label": "Add More",
                 "load_from_db": false,
@@ -3418,7 +3829,10 @@
         "data": {
           "id": "OpenAIModel-Ral8S",
           "node": {
-            "base_classes": ["LanguageModel", "Message"],
+            "base_classes": [
+              "LanguageModel",
+              "Message"
+            ],
             "beta": false,
             "conditional_paths": [],
             "custom_fields": {},
@@ -3458,7 +3872,9 @@
                 "required_inputs": [],
                 "selected": "Message",
                 "tool_mode": true,
-                "types": ["Message"],
+                "types": [
+                  "Message"
+                ],
                 "value": "__UNDEFINED__"
               },
               {
@@ -3467,10 +3883,14 @@
                 "display_name": "Language Model",
                 "method": "build_model",
                 "name": "model_output",
-                "required_inputs": ["api_key"],
+                "required_inputs": [
+                  "api_key"
+                ],
                 "selected": "LanguageModel",
                 "tool_mode": true,
-                "types": ["LanguageModel"],
+                "types": [
+                  "LanguageModel"
+                ],
                 "value": "__UNDEFINED__"
               }
             ],
@@ -3483,7 +3903,9 @@
                 "display_name": "OpenAI API Key",
                 "dynamic": false,
                 "info": "The OpenAI API Key to use for the OpenAI model.",
-                "input_types": ["Message"],
+                "input_types": [
+                  "Message"
+                ],
                 "load_from_db": false,
                 "name": "api_key",
                 "password": true,
@@ -3518,7 +3940,9 @@
                 "display_name": "Input",
                 "dynamic": false,
                 "info": "",
-                "input_types": ["Message"],
+                "input_types": [
+                  "Message"
+                ],
                 "list": false,
                 "list_add_label": "Add More",
                 "load_from_db": false,
@@ -3700,7 +4124,9 @@
                 "display_name": "System Message",
                 "dynamic": false,
                 "info": "System message to pass to the model.",
-                "input_types": ["Message"],
+                "input_types": [
+                  "Message"
+                ],
                 "list": false,
                 "list_add_label": "Add More",
                 "load_from_db": false,
@@ -3785,7 +4211,10 @@
         "data": {
           "id": "OpenAIModel-cNRSz",
           "node": {
-            "base_classes": ["LanguageModel", "Message"],
+            "base_classes": [
+              "LanguageModel",
+              "Message"
+            ],
             "beta": false,
             "conditional_paths": [],
             "custom_fields": {},
@@ -3825,7 +4254,9 @@
                 "required_inputs": [],
                 "selected": "Message",
                 "tool_mode": true,
-                "types": ["Message"],
+                "types": [
+                  "Message"
+                ],
                 "value": "__UNDEFINED__"
               },
               {
@@ -3834,10 +4265,14 @@
                 "display_name": "Language Model",
                 "method": "build_model",
                 "name": "model_output",
-                "required_inputs": ["api_key"],
+                "required_inputs": [
+                  "api_key"
+                ],
                 "selected": "LanguageModel",
                 "tool_mode": true,
-                "types": ["LanguageModel"],
+                "types": [
+                  "LanguageModel"
+                ],
                 "value": "__UNDEFINED__"
               }
             ],
@@ -3850,7 +4285,9 @@
                 "display_name": "OpenAI API Key",
                 "dynamic": false,
                 "info": "The OpenAI API Key to use for the OpenAI model.",
-                "input_types": ["Message"],
+                "input_types": [
+                  "Message"
+                ],
                 "load_from_db": false,
                 "name": "api_key",
                 "password": true,
@@ -3885,7 +4322,9 @@
                 "display_name": "Input",
                 "dynamic": false,
                 "info": "",
-                "input_types": ["Message"],
+                "input_types": [
+                  "Message"
+                ],
                 "list": false,
                 "list_add_label": "Add More",
                 "load_from_db": false,
@@ -4068,7 +4507,9 @@
                 "display_name": "System Message",
                 "dynamic": false,
                 "info": "System message to pass to the model.",
-                "input_types": ["Message"],
+                "input_types": [
+                  "Message"
+                ],
                 "list": false,
                 "list_add_label": "Add More",
                 "load_from_db": false,
@@ -4153,7 +4594,9 @@
         "data": {
           "id": "ChatOutput-xiNof",
           "node": {
-            "base_classes": ["Message"],
+            "base_classes": [
+              "Message"
+            ],
             "beta": false,
             "conditional_paths": [],
             "custom_fields": {},
@@ -4189,7 +4632,9 @@
                 "name": "message",
                 "selected": "Message",
                 "tool_mode": true,
-                "types": ["Message"],
+                "types": [
+                  "Message"
+                ],
                 "value": "__UNDEFINED__"
               }
             ],
@@ -4202,7 +4647,9 @@
                 "display_name": "Background Color",
                 "dynamic": false,
                 "info": "The background color of the icon.",
-                "input_types": ["Message"],
+                "input_types": [
+                  "Message"
+                ],
                 "list": false,
                 "list_add_label": "Add More",
                 "load_from_db": false,
@@ -4223,7 +4670,9 @@
                 "display_name": "Icon",
                 "dynamic": false,
                 "info": "The icon of the message.",
-                "input_types": ["Message"],
+                "input_types": [
+                  "Message"
+                ],
                 "list": false,
                 "list_add_label": "Add More",
                 "load_from_db": false,
@@ -4280,7 +4729,9 @@
                 "display_name": "Data Template",
                 "dynamic": false,
                 "info": "Template to convert Data to Text. If left empty, it will be dynamically set to the Data's text key.",
-                "input_types": ["Message"],
+                "input_types": [
+                  "Message"
+                ],
                 "list": false,
                 "list_add_label": "Add More",
                 "load_from_db": false,
@@ -4301,7 +4752,11 @@
                 "display_name": "Text",
                 "dynamic": false,
                 "info": "Message to be passed as output.",
-                "input_types": ["Data", "DataFrame", "Message"],
+                "input_types": [
+                  "Data",
+                  "DataFrame",
+                  "Message"
+                ],
                 "list": false,
                 "list_add_label": "Add More",
                 "name": "input_value",
@@ -4322,7 +4777,10 @@
                 "dynamic": false,
                 "info": "Type of sender.",
                 "name": "sender",
-                "options": ["Machine", "User"],
+                "options": [
+                  "Machine",
+                  "User"
+                ],
                 "options_metadata": [],
                 "placeholder": "",
                 "required": false,
@@ -4339,7 +4797,9 @@
                 "display_name": "Sender Name",
                 "dynamic": false,
                 "info": "Name of the sender.",
-                "input_types": ["Message"],
+                "input_types": [
+                  "Message"
+                ],
                 "list": false,
                 "list_add_label": "Add More",
                 "load_from_db": false,
@@ -4360,7 +4820,9 @@
                 "display_name": "Session ID",
                 "dynamic": false,
                 "info": "The session ID of the chat. If empty, the current session ID parameter will be used.",
-                "input_types": ["Message"],
+                "input_types": [
+                  "Message"
+                ],
                 "list": false,
                 "list_add_label": "Add More",
                 "load_from_db": false,
@@ -4399,7 +4861,9 @@
                 "display_name": "Text Color",
                 "dynamic": false,
                 "info": "The text color of the name",
-                "input_types": ["Message"],
+                "input_types": [
+                  "Message"
+                ],
                 "list": false,
                 "list_add_label": "Add More",
                 "load_from_db": false,

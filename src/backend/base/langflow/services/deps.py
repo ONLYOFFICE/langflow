@@ -169,12 +169,13 @@ async def session_scope() -> AsyncGenerator[AsyncSession, None]:
 
     """
     db_service = get_db_service()
+    session_id = id(db_service)
+
     async with db_service.with_session() as session:
         try:
             yield session
             await session.commit()
-        except Exception:
-            logger.exception("An error occurred during the session scope.")
+        except Exception as e:
             await session.rollback()
             raise
 

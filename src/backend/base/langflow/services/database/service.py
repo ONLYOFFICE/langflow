@@ -111,10 +111,12 @@ class DatabaseService(Service):
 
         # Override individual settings if explicitly set
         if "pool_size" in settings.model_fields_set:
-            logger.warning("pool_size is deprecated. Use db_connection_settings['pool_size'] instead.")
+            logger.warning(
+                "pool_size is deprecated. Use db_connection_settings['pool_size'] instead.")
             connection_kwargs["pool_size"] = settings.pool_size
         if "max_overflow" in settings.model_fields_set:
-            logger.warning("max_overflow is deprecated. Use db_connection_settings['max_overflow'] instead.")
+            logger.warning(
+                "max_overflow is deprecated. Use db_connection_settings['max_overflow'] instead.")
             connection_kwargs["max_overflow"] = settings.max_overflow
 
         return connection_kwargs
@@ -131,7 +133,8 @@ class DatabaseService(Service):
                 logger.debug(f"Using poolclass: {poolclass_key}.")
                 kwargs["poolclass"] = pool_class
             else:
-                logger.error(f"Invalid poolclass '{poolclass_key}' specified. Using default pool class.")
+                logger.error(
+                    f"Invalid poolclass '{poolclass_key}' specified. Using default pool class.")
 
         return create_async_engine(
             self.database_url,
@@ -165,7 +168,8 @@ class DatabaseService(Service):
             for key, val in pragmas.items():
                 pragmas_list.append(f"PRAGMA {key} = {val}")
             if not self._logged_pragma:
-                logger.debug(f"sqlite connection, setting pragmas: {pragmas_list}")
+                logger.debug(
+                    f"sqlite connection, setting pragmas: {pragmas_list}")
                 self._logged_pragma = True
             if pragmas_list:
                 cursor = dbapi_connection.cursor()
@@ -180,13 +184,37 @@ class DatabaseService(Service):
 
     @asynccontextmanager
     async def with_session(self):
+        session_id = id(self)
+
         async with AsyncSession(self.engine, expire_on_commit=False) as session:
             # Start of Selection
             try:
+
+                # Intercept query execution with event listener
+                original_execute = session.execute
+
+                async def log_execute(stmt, *args, **kwargs):
+                    stmt_str = str(stmt).replace('\n', ' ').strip()
+                    # Limit log length for very long statements
+                    if len(stmt_str) > 500:
+                        stmt_str = stmt_str[:500] + "..."
+                    try:
+                        result = await original_execute(stmt, *args, **kwargs)
+                        return result
+                    except Exception as qe:
+                        raise
+
+                # Replace the execute method with our logging version
+                session.execute = log_execute
                 yield session
+
             except exc.SQLAlchemyError as db_exc:
-                logger.error(f"Database error during session scope: {db_exc}")
                 await session.rollback()
+                raise
+            except Exception as e:
+
+                await session.rollback()
+
                 raise
 
     async def assign_orphaned_flows_to_superuser(self) -> None:
@@ -230,13 +258,15 @@ class DatabaseService(Service):
             # Process orphaned flows
             for flow in orphaned_flows:
                 flow.user_id = superuser.id
-                flow.name = self._generate_unique_flow_name(flow.name, existing_names)
+                flow.name = self._generate_unique_flow_name(
+                    flow.name, existing_names)
                 existing_names.add(flow.name)
                 session.add(flow)
 
             # Commit changes
             await session.commit()
-            logger.debug("Successfully assigned orphaned flows to the default superuser")
+            logger.debug(
+                "Successfully assigned orphaned flows to the default superuser")
 
     @staticmethod
     def _generate_unique_flow_name(original_name: str, existing_names: set[str]) -> str:
@@ -282,7 +312,8 @@ class DatabaseService(Service):
             expected_columns = list(model.model_fields.keys())
 
             try:
-                available_columns = [col["name"] for col in inspector.get_columns(table)]
+                available_columns = [col["name"]
+                                     for col in inspector.get_columns(table)]
             except sa.exc.NoSuchTableError:
                 logger.debug(f"Missing table: {table}")
                 return False
@@ -323,8 +354,10 @@ class DatabaseService(Service):
         with self.alembic_log_path.open("w", encoding="utf-8") as buffer:
             alembic_cfg = Config(stdout=buffer)
             # alembic_cfg.attributes["connection"] = session
-            alembic_cfg.set_main_option("script_location", str(self.script_location))
-            alembic_cfg.set_main_option("sqlalchemy.url", self.database_url.replace("%", "%%"))
+            alembic_cfg.set_main_option(
+                "script_location", str(self.script_location))
+            alembic_cfg.set_main_option(
+                "sqlalchemy.url", self.database_url.replace("%", "%%"))
 
             if should_initialize_alembic:
                 try:
@@ -339,7 +372,8 @@ class DatabaseService(Service):
             logger.info(f"Running DB migrations in {self.script_location}")
 
             try:
-                buffer.write(f"{datetime.now(tz=timezone.utc).astimezone().isoformat()}: Checking migrations\n")
+                buffer.write(
+                    f"{datetime.now(tz=timezone.utc).astimezone().isoformat()}: Checking migrations\n")
                 command.check(alembic_cfg)
             except Exception as exc:  # noqa: BLE001
                 logger.debug(f"Error checking migrations: {exc}")
@@ -348,7 +382,8 @@ class DatabaseService(Service):
                     time.sleep(3)
 
             try:
-                buffer.write(f"{datetime.now(tz=timezone.utc).astimezone()}: Checking migrations\n")
+                buffer.write(
+                    f"{datetime.now(tz=timezone.utc).astimezone()}: Checking migrations\n")
                 command.check(alembic_cfg)
             except util.exc.AutogenerateDiffsDetected as exc:
                 logger.exception("Error checking migrations")
@@ -409,18 +444,22 @@ class DatabaseService(Service):
         expected_columns = list(model.__fields__.keys())
         available_columns = []
         try:
-            available_columns = [col["name"] for col in inspector.get_columns(table_name)]
+            available_columns = [col["name"]
+                                 for col in inspector.get_columns(table_name)]
             results.append(Result(name=table_name, type="table", success=True))
         except sa.exc.NoSuchTableError:
             logger.exception(f"Missing table: {table_name}")
-            results.append(Result(name=table_name, type="table", success=False))
+            results.append(
+                Result(name=table_name, type="table", success=False))
 
         for column in expected_columns:
             if column not in available_columns:
                 logger.error(f"Missing column: {column} in table {table_name}")
-                results.append(Result(name=column, type="column", success=False))
+                results.append(
+                    Result(name=column, type="column", success=False))
             else:
-                results.append(Result(name=column, type="column", success=True))
+                results.append(
+                    Result(name=column, type="column", success=True))
         return results
 
     @staticmethod
@@ -429,7 +468,8 @@ class DatabaseService(Service):
 
         inspector = inspect(connection)
         table_names = inspector.get_table_names()
-        current_tables = ["flow", "user", "apikey", "folder", "message", "variable", "transaction", "vertex_build"]
+        current_tables = ["flow", "user", "apikey", "folder",
+                          "message", "variable", "transaction", "vertex_build"]
 
         if table_names and all(table in table_names for table in current_tables):
             logger.debug("Database and tables already exist")
@@ -441,7 +481,8 @@ class DatabaseService(Service):
             try:
                 table.create(connection, checkfirst=True)
             except OperationalError as oe:
-                logger.warning(f"Table {table} already exists, skipping. Exception: {oe}")
+                logger.warning(
+                    f"Table {table} already exists, skipping. Exception: {oe}")
             except Exception as exc:
                 msg = f"Error creating table {table}"
                 logger.exception(msg)
@@ -452,7 +493,8 @@ class DatabaseService(Service):
         table_names = inspector.get_table_names()
         for table in current_tables:
             if table not in table_names:
-                logger.error("Something went wrong creating the database and tables.")
+                logger.error(
+                    "Something went wrong creating the database and tables.")
                 logger.error("Please check your database settings.")
                 msg = "Something went wrong creating the database and tables."
                 raise RuntimeError(msg)

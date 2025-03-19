@@ -2,11 +2,10 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, cast
 from uuid import UUID
-
 from fastapi import HTTPException
 from loguru import logger
 from pydantic.v1 import BaseModel, Field, create_model
-from sqlmodel import select
+from sqlmodel import select, or_
 
 from langflow.schema.schema import INPUT_FIELD_NAME
 from langflow.services.database.models.flow import Flow
@@ -34,11 +33,24 @@ async def list_flows(*, user_id: str | None = None) -> list[Data]:
         raise ValueError(msg)
     try:
         async with session_scope() as session:
-            uuid_user_id = UUID(user_id) if isinstance(user_id, str) else user_id
-            stmt = select(Flow).where(Flow.user_id == uuid_user_id).where(Flow.is_component == False)  # noqa: E712
+            from sqlmodel import or_
+
+            uuid_user_id = UUID(user_id) if isinstance(
+                user_id, str) else user_id
+
+            # Get flows where user_id matches OR user_id is null
+            stmt = select(Flow).where(
+                or_(
+                    Flow.user_id == uuid_user_id,
+                    Flow.user_id.is_(None)
+                )
+            ).where(Flow.is_component == False)  # noqa: E712
+
             flows = (await session.exec(stmt)).all()
 
-            return [flow.to_data() for flow in flows]
+            flow_data = [flow.to_data() for flow in flows]
+
+            return flow_data
     except Exception as e:
         msg = f"Error listing flows: {e}"
         raise ValueError(msg) from e
@@ -60,21 +72,40 @@ async def load_flow(
             raise ValueError(msg)
 
     async with session_scope() as session:
-        graph_data = flow.data if (flow := await session.get(Flow, flow_id)) else None
+        flow = await session.get(Flow, flow_id)
+        if flow:
+            graph_data = flow.data
+        else:
+            graph_data = None
+
     if not graph_data:
         msg = f"Flow {flow_id} not found"
         raise ValueError(msg)
+
     if tweaks:
         graph_data = process_tweaks(graph_data=graph_data, tweaks=tweaks)
+
     return Graph.from_payload(graph_data, flow_id=flow_id, user_id=user_id)
 
 
 async def find_flow(flow_name: str, user_id: str) -> str | None:
     async with session_scope() as session:
+        from sqlmodel import or_
+
         uuid_user_id = UUID(user_id) if isinstance(user_id, str) else user_id
-        stmt = select(Flow).where(Flow.name == flow_name).where(Flow.user_id == uuid_user_id)
+
+        stmt = select(Flow).where(Flow.name == flow_name).where(
+            or_(
+                Flow.user_id == uuid_user_id,
+                Flow.user_id.is_(None)
+            ))
+
         flow = (await session.exec(stmt)).first()
-        return flow.id if flow else None
+
+        if flow:
+            return flow.id
+        else:
+            return None
 
 
 async def run_flow(
@@ -108,7 +139,8 @@ async def run_flow(
     inputs_components = []
     types = []
     for input_dict in inputs:
-        inputs_list.append({INPUT_FIELD_NAME: cast("str", input_dict.get("input_value"))})
+        inputs_list.append({INPUT_FIELD_NAME: cast(
+            "str", input_dict.get("input_value"))})
         inputs_components.append(input_dict.get("components", []))
         types.append(input_dict.get("type", "chat"))
 
@@ -117,7 +149,9 @@ async def run_flow(
         for vertex in graph.vertices
         if output_type == "debug"
         or (
-            vertex.is_output and (output_type == "any" or output_type in vertex.id.lower())  # type: ignore[operator]
+            # type: ignore[operator]
+            vertex.is_output and (
+                output_type == "any" or output_type in vertex.id.lower())
         )
     ]
 
@@ -223,7 +257,8 @@ def build_function_and_schema(
     """
     flow_id = flow_data.id
     inputs = get_flow_inputs(graph)
-    dynamic_flow_function = generate_function_for_flow(inputs, flow_id, user_id=user_id)
+    dynamic_flow_function = generate_function_for_flow(
+        inputs, flow_id, user_id=user_id)
     schema = build_schema_from_inputs(flow_data.name, inputs)
     return dynamic_flow_function, schema
 
@@ -271,26 +306,42 @@ def get_arg_names(inputs: list[Vertex]) -> list[dict[str, str]]:
             argument name.
     """
     return [
-        {"component_name": input_.display_name, "arg_name": input_.display_name.lower().replace(" ", "_")}
+        {"component_name": input_.display_name,
+            "arg_name": input_.display_name.lower().replace(" ", "_")}
         for input_ in inputs
     ]
 
 
 async def get_flow_by_id_or_endpoint_name(flow_id_or_name: str, user_id: str | UUID | None = None) -> FlowRead | None:
+
     async with session_scope() as session:
+
         endpoint_name = None
         try:
             flow_id = UUID(flow_id_or_name)
+
             flow = await session.get(Flow, flow_id)
+
         except ValueError:
             endpoint_name = flow_id_or_name
+
             stmt = select(Flow).where(Flow.endpoint_name == endpoint_name)
             if user_id:
-                uuid_user_id = UUID(user_id) if isinstance(user_id, str) else user_id
-                stmt = stmt.where(Flow.user_id == uuid_user_id)
+                uuid_user_id = UUID(user_id) if isinstance(
+                    user_id, str) else user_id
+
+                stmt = stmt.where(
+                    or_(
+                        Flow.user_id == uuid_user_id,
+                        Flow.user_id.is_(None)
+                    )
+                )
+
             flow = (await session.exec(stmt)).first()
+
         if flow is None:
-            raise HTTPException(status_code=404, detail=f"Flow identifier {flow_id_or_name} not found")
+            raise HTTPException(
+                status_code=404, detail=f"Flow identifier {flow_id_or_name} not found")
         return FlowRead.model_validate(flow, from_attributes=True)
 
 
@@ -350,7 +401,8 @@ def json_schema_from_flow(flow: Flow) -> dict:
                 elif field_type == "bool":
                     field_type = "boolean"
                 else:
-                    logger.warning(f"Unknown field type: {field_type} defaulting to string")
+                    logger.warning(
+                        f"Unknown field type: {field_type} defaulting to string")
                     field_type = "string"
                 properties[field_name]["type"] = field_type
 

@@ -15,6 +15,7 @@ from loguru._file_sink import FileSink
 from loguru._simple_sinks import AsyncSink
 from platformdirs import user_cache_dir
 from rich.logging import RichHandler
+from rich.console import Console
 from typing_extensions import NotRequired, override
 
 from langflow.settings import DEV
@@ -110,7 +111,8 @@ class SizedLogBuffer:
     def max(self) -> int:
         # Get it dynamically to allow for env variable changes
         if self._max == 0:
-            env_buffer_size = os.getenv("LANGFLOW_LOG_RETRIEVER_BUFFER_SIZE", "0")
+            env_buffer_size = os.getenv(
+                "LANGFLOW_LOG_RETRIEVER_BUFFER_SIZE", "0")
             if env_buffer_size.isdigit():
                 self._max = int(env_buffer_size)
         return self._max
@@ -161,15 +163,37 @@ class AsyncFileSink(AsyncSink):
             rotation="10 MB",  # Log rotation based on file size
             delay=True,
         )
+        self._closed = False
         super().__init__(self.write_async, None, ErrorInterceptor(_defaults.LOGURU_CATCH, -1))
 
     async def complete(self):
-        await asyncio.to_thread(self._sink.stop)
-        for task in self._tasks:
-            await self._complete_task(task)
+        self._closed = True
+        try:
+            await asyncio.to_thread(self._sink.stop)
+            for task in self._tasks:
+                await self._complete_task(task)
+        except Exception:
+            # Ignore errors during shutdown
+            pass
 
     async def write_async(self, message):
-        await asyncio.to_thread(self._sink.write, message)
+        if self._closed:
+            return  # Skip writing if we're already closed
+            
+        try:
+            await asyncio.to_thread(self._sink.write, message)
+        except (ValueError, OSError) as e:
+            # Handle common file errors that occur during shutdown
+            if any(err_msg in str(e) for err_msg in [
+                "write to closed file", 
+                "seek of closed file",
+                "Bad file descriptor",
+                "I/O operation on closed file"
+            ]):
+                self._closed = True  # Mark as closed if we get one of these errors
+                return
+            # Re-raise if it's a different type of error
+            raise
 
 
 def is_valid_log_format(format_string) -> bool:
@@ -224,7 +248,8 @@ def configure(
     if log_env.lower() == "container" or log_env.lower() == "container_json":
         logger.add(sys.stdout, format="{message}", serialize=True)
     elif log_env.lower() == "container_csv":
-        logger.add(sys.stdout, format="{time:YYYY-MM-DD HH:mm:ss.SSS} {level} {file} {line} {function} {message}")
+        logger.add(
+            sys.stdout, format="{time:YYYY-MM-DD HH:mm:ss.SSS} {level} {file} {line} {function} {message}")
     else:
         if os.getenv("LANGFLOW_LOG_FORMAT") and log_format is None:
             log_format = os.getenv("LANGFLOW_LOG_FORMAT")
@@ -232,16 +257,47 @@ def configure(
         if log_format is None or not is_valid_log_format(log_format):
             log_format = DEFAULT_LOG_FORMAT
 
-        # Configure loguru to use RichHandler
-        logger.configure(
-            handlers=[
-                {
-                    "sink": RichHandler(rich_tracebacks=True, markup=True),
-                    "format": log_format,
-                    "level": log_level.upper(),
-                }
-            ]
-        )
+        # Configure loguru to use RichHandler with enhanced error handling
+        try:
+            # Use sys.stdout with exception handling to prevent blocking errors
+            logger.configure(
+                handlers=[
+                    {
+                        "sink": RichHandler(
+                            rich_tracebacks=True,
+                            markup=True,
+                            # Custom console to handle errors
+                            console=Console(file=sys.stdout, stderr=False)
+                        ),
+                        "format": log_format,
+                        "level": log_level.upper(),
+                        "backtrace": False,  # Don't include variable values in tracebacks
+                        "diagnose": False,  # Disable exception diagnose
+                        "catch": True,  # Catch exceptions raised during logging
+                    },
+                    # Fallback handler if rich console fails
+                    {
+                        "sink": sys.stderr,
+                        "format": "[{time}] {level}: {message}",
+                        "level": log_level.upper(),
+                        "backtrace": False,
+                        "catch": True,
+                    }
+                ]
+            )
+        except Exception as e:
+            # If configuring Rich fails, fall back to a simple stderr logger
+            print(
+                f"Error configuring Rich logger: {e}. Falling back to basic logger.")
+            logger.configure(
+                handlers=[
+                    {
+                        "sink": sys.stderr,
+                        "format": "[{time}] {level}: {message}",
+                        "level": log_level.upper(),
+                    }
+                ]
+            )
 
         if not log_file:
             cache_dir = Path(user_cache_dir("langflow"))
@@ -259,7 +315,8 @@ def configure(
             logger.exception("Error setting up log file")
 
     if log_buffer.enabled():
-        logger.add(sink=log_buffer.write, format="{time} {level} {message}", serialize=True)
+        logger.add(sink=log_buffer.write,
+                   format="{time} {level} {message}", serialize=True)
 
     logger.debug(f"Logger set up with log level: {log_level}")
 
@@ -268,7 +325,8 @@ def configure(
 
 
 def setup_uvicorn_logger() -> None:
-    loggers = (logging.getLogger(name) for name in logging.root.manager.loggerDict if name.startswith("uvicorn."))
+    loggers = (logging.getLogger(name)
+               for name in logging.root.manager.loggerDict if name.startswith("uvicorn."))
     for uvicorn_logger in loggers:
         uvicorn_logger.handlers = []
     logging.getLogger("uvicorn").handlers = [InterceptHandler()]
@@ -299,4 +357,5 @@ class InterceptHandler(logging.Handler):
             frame = frame.f_back
             depth += 1
 
-        logger.opt(depth=depth, exception=record.exc_info).log(level, record.getMessage())
+        logger.opt(depth=depth, exception=record.exc_info).log(
+            level, record.getMessage())

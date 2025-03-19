@@ -41,9 +41,11 @@ class ResultData(BaseModel):
 
                 if "stream_url" in message and "type" in message:
                     stream_url = StreamURL(location=message["stream_url"])
-                    values["outputs"].update({key: OutputValue(message=stream_url, type=message["type"])})
+                    values["outputs"].update(
+                        {key: OutputValue(message=stream_url, type=message["type"])})
                 elif "type" in message:
-                    values["outputs"].update({key: OutputValue(message=message, type=message["type"])})
+                    values["outputs"].update(
+                        {key: OutputValue(message=message, type=message["type"])})
         return values
 
 
@@ -54,16 +56,21 @@ class InterfaceComponentTypes(str, Enum, metaclass=ContainsEnumMeta):
     TextOutput = "TextOutput"
     DataOutput = "DataOutput"
     DataInput = "DataInput"
+    FileID = "FileID"
+    UserQuestion = "UserQuestion"
     WebhookInput = "Webhook"
 
 
-CHAT_COMPONENTS = [InterfaceComponentTypes.ChatInput, InterfaceComponentTypes.ChatOutput]
+CHAT_COMPONENTS = [InterfaceComponentTypes.ChatInput,
+                   InterfaceComponentTypes.ChatOutput]
 RECORDS_COMPONENTS = [InterfaceComponentTypes.DataOutput]
 INPUT_COMPONENTS = [
     InterfaceComponentTypes.ChatInput,
     InterfaceComponentTypes.WebhookInput,
     InterfaceComponentTypes.TextInput,
     InterfaceComponentTypes.DataInput,
+    InterfaceComponentTypes.FileID,
+    InterfaceComponentTypes.UserQuestion,
 ]
 OUTPUT_COMPONENTS = [
     InterfaceComponentTypes.ChatOutput,

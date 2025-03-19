@@ -6,10 +6,14 @@ RAG_PROMPT = """
 DOCUMENTS:
 {document}
 
+HISTORY:
+{memory}
+
 INSTRUCTIONS:
 Answer the users QUESTION using the DOCUMENTS text above.
 Keep your answer ground in the facts of the DOCUMENTS.
 If the DOCUMENTS doesn't contain the facts to answer the QUESTION return 'Not known'
+Prefer use DOCUMENTS. If DOCUMENTS are empty or not contain answer - use HISTORY.
 """
 
 
@@ -31,6 +35,11 @@ class RagPromptComponent(Component):
             info="The context of the document to combine with others",
             required=True,
         ),
+        MessageInput(
+            name="memory",
+            display_name="Chat memory",
+            info="Chat memory"
+        )
     ]
 
     outputs = [
@@ -53,7 +62,8 @@ class RagPromptComponent(Component):
         document_content = doc_msg.get_text() if doc_msg else ""
 
         # Format the RAG prompt template with the document context
-        formatted_prompt = RAG_PROMPT.format(document=document_content)
+        formatted_prompt = RAG_PROMPT.format(
+            document=document_content, memory=self.memory.get_text())
 
         # Create a new message with the formatted prompt
         # Preserve metadata from the document context message

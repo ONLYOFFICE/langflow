@@ -1,16 +1,25 @@
 from langflow.custom import Component
-from langflow.io import DataInput, Output
+from langflow.io import DataInput, Output, MessageInput
 from langflow.schema.message import Message
 
 SYSTEM_PROMPT = """ 
 You are a helpful assistant that can use tools to answer questions and perform tasks.
 Inside input found title of documents or folders. Later your need use tools with this ids.
 If name of folders or documents not available - do not use tools.
+If you dont see file or folder from user question - just return user question.
 If extensions is empty - it is folder. This folder can has subfolders or files 
-from user query.
+from user query. Your asnwer ONLY id for file or files that ACCEPT USER.
+File or folder ID or title MAY BE inside HISTORY with @ID.
+@1 - is it file with id 1.
+@folder-1 - is it folder with id 1.
+Example: 1,2,3,4 
+Without spaces. No need to use @.
 
 List of available folders and documents:
 {folders_and_documents}
+
+HISTORY:
+{memory}
 """
 
 
@@ -32,6 +41,11 @@ class SystemPromptComponent(Component):
             info="List of available folders and documents to include in the system prompt",
             required=True,
         ),
+        MessageInput(
+            name="memory",
+            display_name="Chat memory",
+            info="Chat memory"
+        )
     ]
 
     outputs = [
@@ -57,7 +71,9 @@ class SystemPromptComponent(Component):
 
         # Format the system prompt template with the document context
         formatted_prompt = SYSTEM_PROMPT.format(
-            folders_and_documents=formated_content)
+            folders_and_documents=formated_content,
+            memory=self.memory.get_text()
+        )
 
         # Create a new message with the formatted prompt
         # Preserve metadata from the document context message
