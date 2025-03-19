@@ -27,6 +27,12 @@ class FilesService(Service):
         )
 
 
+    def get_file_download_link(self, file_id: int) -> Tuple[Any, Response]:
+        return self._client.get(
+            f"api/2.0/files/file/{file_id}/presigneduri",
+        )
+
+
     def create_room(self, options: CreateRoomOptions) -> Tuple[Any, Response]:
         return self._client.post(
             "api/2.0/files/rooms",
