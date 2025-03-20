@@ -23,9 +23,10 @@ from emoji import demojize, purely_emoji
 from loguru import logger
 from sqlalchemy.exc import NoResultFound
 from sqlalchemy.orm import selectinload
-from sqlmodel import select
+from sqlmodel import select, delete
 from sqlmodel.ext.asyncio.session import AsyncSession
 
+from langflow.services.database.models.transactions.model import TransactionTable
 from langflow.base.constants import FIELD_FORMAT_ATTRIBUTES, NODE_FORMAT_ATTRIBUTES, ORJSON_OPTIONS
 from langflow.initial_setup.constants import STARTER_FOLDER_DESCRIPTION, STARTER_FOLDER_NAME, SYSTEM_FOLDER_DESCRIPTION, SYSTEM_FOLDER_ID, SYSTEM_FOLDER_NAME
 from langflow.services.auth.utils import create_super_user
@@ -821,6 +822,12 @@ async def create_or_update_starter_projects(all_types_dict: dict, *, do_create: 
         do_create (bool, optional): Whether to create new projects. Defaults to True.
     """
     async with session_scope() as session:
+
+        # TODO: Remove this when we have a way to clean up transactions
+        # Need for fix update system flow, it crash when transaction table is not empty
+        delete_stmt = delete(TransactionTable)
+        await session.exec(delete_stmt)
+
         new_folder = await create_starter_folder(session)
         system_folder = await create_system_folder(session)
 
