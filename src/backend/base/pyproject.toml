@@ -82,7 +82,7 @@ dependencies = [
     "aiosqlite>=0.20.0",
     "greenlet>=3.1.1",
     "jsonquerylang>=1.1.1",
-    "sqlalchemy[aiosqlite]>=2.0.38,<3.0.0",
+    "sqlalchemy[aiosqlite,postgresql_psycopg2binary,postgresql_psycopgbinary]>=2.0.38,<3.0.0",
     "elevenlabs>=1.54.0",
     "webrtcvad>=2.0.10",
 ]
@@ -230,11 +230,7 @@ Documentation = "https://docs.langflow.org"
 # Optional dependencies for uv
 [project.optional-dependencies]
 
-postgresql = [
-  "sqlalchemy[postgresql_psycopg2binary]",
-    "sqlalchemy[postgresql_psycopg]",
 
-]
 deploy = [
     "celery>=5.3.1",
     "redis>=4.6.0",
