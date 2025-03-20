@@ -21,6 +21,7 @@ export default defineConfig(({ mode }) => {
   ];
 
   const BASE_URL_API = joinPaths(BASENAME, "/api/v1/");
+  const BASE_URL_API_V2 = joinPaths(BASENAME, "/api/v2/");
   const HEALTH_CHECK_URL = joinPaths(BASENAME, "/health_check");
 
   const proxyTargets = API_ROUTES.reduce((proxyObj, route) => {
@@ -54,6 +55,7 @@ export default defineConfig(({ mode }) => {
       "process.env.CI": JSON.stringify(env.CI),
       __BASENAME__: JSON.stringify(BASENAME),
       __BASE_URL_API__: JSON.stringify(BASE_URL_API),
+      __BASE_URL_API_V2__: JSON.stringify(BASE_URL_API_V2),
       __HEALTH_CHECK_URL__: JSON.stringify(HEALTH_CHECK_URL),
       "process.env.LANGFLOW_AUTO_LOGIN": JSON.stringify(
         env.LANGFLOW_AUTO_LOGIN ?? true,
