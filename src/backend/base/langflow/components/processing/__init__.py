@@ -15,6 +15,7 @@ from .regex import RegexExtractorComponent
 from .select_data import SelectDataComponent
 from .split_text import SplitTextComponent
 from .update_data import UpdateDataComponent
+from .data_mapper import DataMapper
 
 __all__ = [
     "AlterMetadataComponent",
@@ -35,4 +36,5 @@ __all__ = [
     "SelectDataComponent",
     "SplitTextComponent",
     "UpdateDataComponent",
+    "DataMapper",
 ]
