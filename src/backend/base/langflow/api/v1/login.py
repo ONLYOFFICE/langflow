@@ -99,22 +99,23 @@ async def auto_login(request: Request, response: Response, db: DbSession):
                 if asc_auth_key:
                     from langflow.services.deps import get_variable_service
                     from langflow.services.variable.constants import CREDENTIAL_TYPE
-                    
+
                     logger.debug(f"Saving asc_auth_key for user {user.id}")
                     variable_service = get_variable_service()
-                    
+
                     # Check if variable already exists for this user
                     existing_variables = await variable_service.list_variables(user_id=user.id, session=db)
-                    
+
                     if "asc_auth_key" in existing_variables:
                         # Update existing variable
                         await variable_service.update_variable(
                             user_id=user.id,
-                            name="asc_auth_key", 
+                            name="asc_auth_key",
                             value=asc_auth_key,
                             session=db
                         )
-                        logger.debug(f"Updated asc_auth_key variable for user {user.id}")
+                        logger.debug(
+                            f"Updated asc_auth_key variable for user {user.id}")
                     else:
                         # Create new variable
                         await variable_service.create_variable(
@@ -124,7 +125,44 @@ async def auto_login(request: Request, response: Response, db: DbSession):
                             type_=CREDENTIAL_TYPE,
                             session=db
                         )
-                        logger.debug(f"Created asc_auth_key variable for user {user.id}")
+                        logger.debug(
+                            f"Created asc_auth_key variable for user {user.id}")
+
+                # Save the OPENAI_API_KEY from environment variables to the user variables
+                import os
+                OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
+                if OPENAI_API_KEY:
+                    # We already imported the variable service earlier
+                    if not 'variable_service' in locals():
+                        from langflow.services.deps import get_variable_service
+                        from langflow.services.variable.constants import CREDENTIAL_TYPE
+                        variable_service = get_variable_service()
+
+                    # Check if openai_api_key already exists for this user
+                    if not 'existing_variables' in locals():
+                        existing_variables = await variable_service.list_variables(user_id=user.id, session=db)
+
+                    if "openai_api_key" in existing_variables:
+                        # Update existing variable
+                        await variable_service.update_variable(
+                            user_id=user.id,
+                            name="openai_api_key",
+                            value=OPENAI_API_KEY,
+                            session=db
+                        )
+                        logger.debug(
+                            f"Updated openai_api_key variable for user {user.id}")
+                    else:
+                        # Create new variable
+                        await variable_service.create_variable(
+                            user_id=user.id,
+                            name="openai_api_key",
+                            value=OPENAI_API_KEY,
+                            type_=CREDENTIAL_TYPE,
+                            session=db
+                        )
+                        logger.debug(
+                            f"Created openai_api_key variable for user {user.id}")
 
                 # Set authentication cookies including chat_api_key and chat_id_key if present
                 await set_auth_cookies(response, tokens, chat_api_key, chat_id_key)

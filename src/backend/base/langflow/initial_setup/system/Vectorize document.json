@@ -7,7 +7,7 @@
         "data": {
           "sourceHandle": {
             "dataType": "GetFilesTextContent",
-            "id": "GetFilesTextContent-PNGnI",
+            "id": "GetFilesTextContent-wqRNl",
             "name": "documents",
             "output_types": [
               "Data"
@@ -15,18 +15,18 @@
           },
           "targetHandle": {
             "fieldName": "data_inputs",
-            "id": "SplitTextToDocuments-nl8KP",
+            "id": "SplitTextToDocuments-np6uR",
             "inputTypes": [
               "Data"
             ],
             "type": "other"
           }
         },
-        "id": "reactflow__edge-GetFilesTextContent-PNGnI{œdataTypeœ:œGetFilesTextContentœ,œidœ:œGetFilesTextContent-PNGnIœ,œnameœ:œdocumentsœ,œoutput_typesœ:[œDataœ]}-SplitTextToDocuments-nl8KP{œfieldNameœ:œdata_inputsœ,œidœ:œSplitTextToDocuments-nl8KPœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}",
-        "source": "GetFilesTextContent-PNGnI",
-        "sourceHandle": "{œdataTypeœ:œGetFilesTextContentœ,œidœ:œGetFilesTextContent-PNGnIœ,œnameœ:œdocumentsœ,œoutput_typesœ:[œDataœ]}",
-        "target": "SplitTextToDocuments-nl8KP",
-        "targetHandle": "{œfieldNameœ:œdata_inputsœ,œidœ:œSplitTextToDocuments-nl8KPœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}"
+        "id": "reactflow__edge-GetFilesTextContent-wqRNl{œdataTypeœ:œGetFilesTextContentœ,œidœ:œGetFilesTextContent-wqRNlœ,œnameœ:œdocumentsœ,œoutput_typesœ:[œDataœ]}-SplitTextToDocuments-np6uR{œfieldNameœ:œdata_inputsœ,œidœ:œSplitTextToDocuments-np6uRœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}",
+        "source": "GetFilesTextContent-wqRNl",
+        "sourceHandle": "{œdataTypeœ:œGetFilesTextContentœ,œidœ:œGetFilesTextContent-wqRNlœ,œnameœ:œdocumentsœ,œoutput_typesœ:[œDataœ]}",
+        "target": "SplitTextToDocuments-np6uR",
+        "targetHandle": "{œfieldNameœ:œdata_inputsœ,œidœ:œSplitTextToDocuments-np6uRœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}"
       },
       {
         "animated": false,
@@ -34,7 +34,7 @@
         "data": {
           "sourceHandle": {
             "dataType": "DownloadFiles",
-            "id": "DownloadFiles-dehpk",
+            "id": "DownloadFiles-RgrMV",
             "name": "files",
             "output_types": [
               "Data"
@@ -42,18 +42,18 @@
           },
           "targetHandle": {
             "fieldName": "files",
-            "id": "ConditionalRouterCustom-rSfKj",
+            "id": "ConditionalRouterCustom-dH5wy",
             "inputTypes": [
               "Data"
             ],
             "type": "other"
           }
         },
-        "id": "reactflow__edge-DownloadFiles-dehpk{œdataTypeœ:œDownloadFilesœ,œidœ:œDownloadFiles-dehpkœ,œnameœ:œfilesœ,œoutput_typesœ:[œDataœ]}-ConditionalRouterCustom-rSfKj{œfieldNameœ:œfilesœ,œidœ:œConditionalRouterCustom-rSfKjœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}",
-        "source": "DownloadFiles-dehpk",
-        "sourceHandle": "{œdataTypeœ:œDownloadFilesœ,œidœ:œDownloadFiles-dehpkœ,œnameœ:œfilesœ,œoutput_typesœ:[œDataœ]}",
-        "target": "ConditionalRouterCustom-rSfKj",
-        "targetHandle": "{œfieldNameœ:œfilesœ,œidœ:œConditionalRouterCustom-rSfKjœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}"
+        "id": "reactflow__edge-DownloadFiles-RgrMV{œdataTypeœ:œDownloadFilesœ,œidœ:œDownloadFiles-RgrMVœ,œnameœ:œfilesœ,œoutput_typesœ:[œDataœ]}-ConditionalRouterCustom-dH5wy{œfieldNameœ:œfilesœ,œidœ:œConditionalRouterCustom-dH5wyœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}",
+        "source": "DownloadFiles-RgrMV",
+        "sourceHandle": "{œdataTypeœ:œDownloadFilesœ,œidœ:œDownloadFiles-RgrMVœ,œnameœ:œfilesœ,œoutput_typesœ:[œDataœ]}",
+        "target": "ConditionalRouterCustom-dH5wy",
+        "targetHandle": "{œfieldNameœ:œfilesœ,œidœ:œConditionalRouterCustom-dH5wyœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}"
       },
       {
         "animated": false,
@@ -61,7 +61,7 @@
         "data": {
           "sourceHandle": {
             "dataType": "EnvExtractor",
-            "id": "EnvExtractor-LEk1M",
+            "id": "EnvExtractor-tAhpF",
             "name": "api_host",
             "output_types": [
               "Message"
@@ -69,18 +69,18 @@
           },
           "targetHandle": {
             "fieldName": "api_host",
-            "id": "GetFileCollectionName-dQeV0",
+            "id": "GetFileCollectionName-NbnyD",
             "inputTypes": [
               "Message"
             ],
             "type": "str"
           }
         },
-        "id": "reactflow__edge-EnvExtractor-LEk1M{œdataTypeœ:œEnvExtractorœ,œidœ:œEnvExtractor-LEk1Mœ,œnameœ:œapi_hostœ,œoutput_typesœ:[œMessageœ]}-GetFileCollectionName-dQeV0{œfieldNameœ:œapi_hostœ,œidœ:œGetFileCollectionName-dQeV0œ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
-        "source": "EnvExtractor-LEk1M",
-        "sourceHandle": "{œdataTypeœ:œEnvExtractorœ,œidœ:œEnvExtractor-LEk1Mœ,œnameœ:œapi_hostœ,œoutput_typesœ:[œMessageœ]}",
-        "target": "GetFileCollectionName-dQeV0",
-        "targetHandle": "{œfieldNameœ:œapi_hostœ,œidœ:œGetFileCollectionName-dQeV0œ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
+        "id": "reactflow__edge-EnvExtractor-tAhpF{œdataTypeœ:œEnvExtractorœ,œidœ:œEnvExtractor-tAhpFœ,œnameœ:œapi_hostœ,œoutput_typesœ:[œMessageœ]}-GetFileCollectionName-NbnyD{œfieldNameœ:œapi_hostœ,œidœ:œGetFileCollectionName-NbnyDœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "source": "EnvExtractor-tAhpF",
+        "sourceHandle": "{œdataTypeœ:œEnvExtractorœ,œidœ:œEnvExtractor-tAhpFœ,œnameœ:œapi_hostœ,œoutput_typesœ:[œMessageœ]}",
+        "target": "GetFileCollectionName-NbnyD",
+        "targetHandle": "{œfieldNameœ:œapi_hostœ,œidœ:œGetFileCollectionName-NbnyDœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "animated": false,
@@ -88,7 +88,7 @@
         "data": {
           "sourceHandle": {
             "dataType": "SplitTextToDocuments",
-            "id": "SplitTextToDocuments-nl8KP",
+            "id": "SplitTextToDocuments-np6uR",
             "name": "documents",
             "output_types": [
               "Data"
@@ -96,18 +96,18 @@
           },
           "targetHandle": {
             "fieldName": "documents",
-            "id": "DocSpaceQdrantVectorStoreComponent-dDtLv",
+            "id": "DocSpaceQdrantVectorStoreComponent-UEMhS",
             "inputTypes": [
               "Data"
             ],
             "type": "other"
           }
         },
-        "id": "reactflow__edge-SplitTextToDocuments-nl8KP{œdataTypeœ:œSplitTextToDocumentsœ,œidœ:œSplitTextToDocuments-nl8KPœ,œnameœ:œdocumentsœ,œoutput_typesœ:[œDataœ]}-DocSpaceQdrantVectorStoreComponent-dDtLv{œfieldNameœ:œdocumentsœ,œidœ:œDocSpaceQdrantVectorStoreComponent-dDtLvœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}",
-        "source": "SplitTextToDocuments-nl8KP",
-        "sourceHandle": "{œdataTypeœ:œSplitTextToDocumentsœ,œidœ:œSplitTextToDocuments-nl8KPœ,œnameœ:œdocumentsœ,œoutput_typesœ:[œDataœ]}",
-        "target": "DocSpaceQdrantVectorStoreComponent-dDtLv",
-        "targetHandle": "{œfieldNameœ:œdocumentsœ,œidœ:œDocSpaceQdrantVectorStoreComponent-dDtLvœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}"
+        "id": "reactflow__edge-SplitTextToDocuments-np6uR{œdataTypeœ:œSplitTextToDocumentsœ,œidœ:œSplitTextToDocuments-np6uRœ,œnameœ:œdocumentsœ,œoutput_typesœ:[œDataœ]}-DocSpaceQdrantVectorStoreComponent-UEMhS{œfieldNameœ:œdocumentsœ,œidœ:œDocSpaceQdrantVectorStoreComponent-UEMhSœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}",
+        "source": "SplitTextToDocuments-np6uR",
+        "sourceHandle": "{œdataTypeœ:œSplitTextToDocumentsœ,œidœ:œSplitTextToDocuments-np6uRœ,œnameœ:œdocumentsœ,œoutput_typesœ:[œDataœ]}",
+        "target": "DocSpaceQdrantVectorStoreComponent-UEMhS",
+        "targetHandle": "{œfieldNameœ:œdocumentsœ,œidœ:œDocSpaceQdrantVectorStoreComponent-UEMhSœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}"
       },
       {
         "animated": false,
@@ -115,7 +115,7 @@
         "data": {
           "sourceHandle": {
             "dataType": "GetFileCollectionName",
-            "id": "GetFileCollectionName-dQeV0",
+            "id": "GetFileCollectionName-NbnyD",
             "name": "collection_name",
             "output_types": [
               "Message"
@@ -123,18 +123,18 @@
           },
           "targetHandle": {
             "fieldName": "collection_name",
-            "id": "DocSpaceQdrantVectorStoreComponent-dDtLv",
+            "id": "DocSpaceQdrantVectorStoreComponent-UEMhS",
             "inputTypes": [
               "Message"
             ],
             "type": "str"
           }
         },
-        "id": "reactflow__edge-GetFileCollectionName-dQeV0{œdataTypeœ:œGetFileCollectionNameœ,œidœ:œGetFileCollectionName-dQeV0œ,œnameœ:œcollection_nameœ,œoutput_typesœ:[œMessageœ]}-DocSpaceQdrantVectorStoreComponent-dDtLv{œfieldNameœ:œcollection_nameœ,œidœ:œDocSpaceQdrantVectorStoreComponent-dDtLvœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
-        "source": "GetFileCollectionName-dQeV0",
-        "sourceHandle": "{œdataTypeœ:œGetFileCollectionNameœ,œidœ:œGetFileCollectionName-dQeV0œ,œnameœ:œcollection_nameœ,œoutput_typesœ:[œMessageœ]}",
-        "target": "DocSpaceQdrantVectorStoreComponent-dDtLv",
-        "targetHandle": "{œfieldNameœ:œcollection_nameœ,œidœ:œDocSpaceQdrantVectorStoreComponent-dDtLvœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
+        "id": "reactflow__edge-GetFileCollectionName-NbnyD{œdataTypeœ:œGetFileCollectionNameœ,œidœ:œGetFileCollectionName-NbnyDœ,œnameœ:œcollection_nameœ,œoutput_typesœ:[œMessageœ]}-DocSpaceQdrantVectorStoreComponent-UEMhS{œfieldNameœ:œcollection_nameœ,œidœ:œDocSpaceQdrantVectorStoreComponent-UEMhSœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "source": "GetFileCollectionName-NbnyD",
+        "sourceHandle": "{œdataTypeœ:œGetFileCollectionNameœ,œidœ:œGetFileCollectionName-NbnyDœ,œnameœ:œcollection_nameœ,œoutput_typesœ:[œMessageœ]}",
+        "target": "DocSpaceQdrantVectorStoreComponent-UEMhS",
+        "targetHandle": "{œfieldNameœ:œcollection_nameœ,œidœ:œDocSpaceQdrantVectorStoreComponent-UEMhSœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "animated": false,
@@ -142,7 +142,7 @@
         "data": {
           "sourceHandle": {
             "dataType": "EnvExtractor",
-            "id": "EnvExtractor-LEk1M",
+            "id": "EnvExtractor-tAhpF",
             "name": "qdrant_host",
             "output_types": [
               "Message"
@@ -150,18 +150,18 @@
           },
           "targetHandle": {
             "fieldName": "qdrant_host",
-            "id": "DocSpaceQdrantVectorStoreComponent-dDtLv",
+            "id": "DocSpaceQdrantVectorStoreComponent-UEMhS",
             "inputTypes": [
               "Message"
             ],
             "type": "str"
           }
         },
-        "id": "reactflow__edge-EnvExtractor-LEk1M{œdataTypeœ:œEnvExtractorœ,œidœ:œEnvExtractor-LEk1Mœ,œnameœ:œqdrant_hostœ,œoutput_typesœ:[œMessageœ]}-DocSpaceQdrantVectorStoreComponent-dDtLv{œfieldNameœ:œqdrant_hostœ,œidœ:œDocSpaceQdrantVectorStoreComponent-dDtLvœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
-        "source": "EnvExtractor-LEk1M",
-        "sourceHandle": "{œdataTypeœ:œEnvExtractorœ,œidœ:œEnvExtractor-LEk1Mœ,œnameœ:œqdrant_hostœ,œoutput_typesœ:[œMessageœ]}",
-        "target": "DocSpaceQdrantVectorStoreComponent-dDtLv",
-        "targetHandle": "{œfieldNameœ:œqdrant_hostœ,œidœ:œDocSpaceQdrantVectorStoreComponent-dDtLvœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
+        "id": "reactflow__edge-EnvExtractor-tAhpF{œdataTypeœ:œEnvExtractorœ,œidœ:œEnvExtractor-tAhpFœ,œnameœ:œqdrant_hostœ,œoutput_typesœ:[œMessageœ]}-DocSpaceQdrantVectorStoreComponent-UEMhS{œfieldNameœ:œqdrant_hostœ,œidœ:œDocSpaceQdrantVectorStoreComponent-UEMhSœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "source": "EnvExtractor-tAhpF",
+        "sourceHandle": "{œdataTypeœ:œEnvExtractorœ,œidœ:œEnvExtractor-tAhpFœ,œnameœ:œqdrant_hostœ,œoutput_typesœ:[œMessageœ]}",
+        "target": "DocSpaceQdrantVectorStoreComponent-UEMhS",
+        "targetHandle": "{œfieldNameœ:œqdrant_hostœ,œidœ:œDocSpaceQdrantVectorStoreComponent-UEMhSœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "animated": false,
@@ -169,7 +169,7 @@
         "data": {
           "sourceHandle": {
             "dataType": "EnvExtractor",
-            "id": "EnvExtractor-LEk1M",
+            "id": "EnvExtractor-tAhpF",
             "name": "qdrant_port",
             "output_types": [
               "Message"
@@ -177,18 +177,18 @@
           },
           "targetHandle": {
             "fieldName": "qdrant_port",
-            "id": "DocSpaceQdrantVectorStoreComponent-dDtLv",
+            "id": "DocSpaceQdrantVectorStoreComponent-UEMhS",
             "inputTypes": [
               "Message"
             ],
             "type": "str"
           }
         },
-        "id": "reactflow__edge-EnvExtractor-LEk1M{œdataTypeœ:œEnvExtractorœ,œidœ:œEnvExtractor-LEk1Mœ,œnameœ:œqdrant_portœ,œoutput_typesœ:[œMessageœ]}-DocSpaceQdrantVectorStoreComponent-dDtLv{œfieldNameœ:œqdrant_portœ,œidœ:œDocSpaceQdrantVectorStoreComponent-dDtLvœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
-        "source": "EnvExtractor-LEk1M",
-        "sourceHandle": "{œdataTypeœ:œEnvExtractorœ,œidœ:œEnvExtractor-LEk1Mœ,œnameœ:œqdrant_portœ,œoutput_typesœ:[œMessageœ]}",
-        "target": "DocSpaceQdrantVectorStoreComponent-dDtLv",
-        "targetHandle": "{œfieldNameœ:œqdrant_portœ,œidœ:œDocSpaceQdrantVectorStoreComponent-dDtLvœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
+        "id": "reactflow__edge-EnvExtractor-tAhpF{œdataTypeœ:œEnvExtractorœ,œidœ:œEnvExtractor-tAhpFœ,œnameœ:œqdrant_portœ,œoutput_typesœ:[œMessageœ]}-DocSpaceQdrantVectorStoreComponent-UEMhS{œfieldNameœ:œqdrant_portœ,œidœ:œDocSpaceQdrantVectorStoreComponent-UEMhSœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "source": "EnvExtractor-tAhpF",
+        "sourceHandle": "{œdataTypeœ:œEnvExtractorœ,œidœ:œEnvExtractor-tAhpFœ,œnameœ:œqdrant_portœ,œoutput_typesœ:[œMessageœ]}",
+        "target": "DocSpaceQdrantVectorStoreComponent-UEMhS",
+        "targetHandle": "{œfieldNameœ:œqdrant_portœ,œidœ:œDocSpaceQdrantVectorStoreComponent-UEMhSœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "animated": false,
@@ -196,7 +196,7 @@
         "data": {
           "sourceHandle": {
             "dataType": "DocSpaceQdrantVectorStoreComponent",
-            "id": "DocSpaceQdrantVectorStoreComponent-dDtLv",
+            "id": "DocSpaceQdrantVectorStoreComponent-UEMhS",
             "name": "success",
             "output_types": [
               "Message"
@@ -204,7 +204,7 @@
           },
           "targetHandle": {
             "fieldName": "input_value",
-            "id": "ChatOutput-fiwX3",
+            "id": "ChatOutput-g5wsW",
             "inputTypes": [
               "Data",
               "DataFrame",
@@ -213,11 +213,11 @@
             "type": "other"
           }
         },
-        "id": "reactflow__edge-DocSpaceQdrantVectorStoreComponent-dDtLv{œdataTypeœ:œDocSpaceQdrantVectorStoreComponentœ,œidœ:œDocSpaceQdrantVectorStoreComponent-dDtLvœ,œnameœ:œsuccessœ,œoutput_typesœ:[œMessageœ]}-ChatOutput-fiwX3{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-fiwX3œ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œotherœ}",
-        "source": "DocSpaceQdrantVectorStoreComponent-dDtLv",
-        "sourceHandle": "{œdataTypeœ:œDocSpaceQdrantVectorStoreComponentœ,œidœ:œDocSpaceQdrantVectorStoreComponent-dDtLvœ,œnameœ:œsuccessœ,œoutput_typesœ:[œMessageœ]}",
-        "target": "ChatOutput-fiwX3",
-        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-fiwX3œ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œotherœ}"
+        "id": "reactflow__edge-DocSpaceQdrantVectorStoreComponent-UEMhS{œdataTypeœ:œDocSpaceQdrantVectorStoreComponentœ,œidœ:œDocSpaceQdrantVectorStoreComponent-UEMhSœ,œnameœ:œsuccessœ,œoutput_typesœ:[œMessageœ]}-ChatOutput-g5wsW{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-g5wsWœ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œotherœ}",
+        "source": "DocSpaceQdrantVectorStoreComponent-UEMhS",
+        "sourceHandle": "{œdataTypeœ:œDocSpaceQdrantVectorStoreComponentœ,œidœ:œDocSpaceQdrantVectorStoreComponent-UEMhSœ,œnameœ:œsuccessœ,œoutput_typesœ:[œMessageœ]}",
+        "target": "ChatOutput-g5wsW",
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-g5wsWœ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œotherœ}"
       },
       {
         "animated": false,
@@ -225,7 +225,7 @@
         "data": {
           "sourceHandle": {
             "dataType": "GetFile",
-            "id": "GetFile-kC1Hc",
+            "id": "GetFile-RtlKB",
             "name": "files",
             "output_types": [
               "Data"
@@ -233,18 +233,18 @@
           },
           "targetHandle": {
             "fieldName": "files",
-            "id": "ConditionalRouterList-rgoDO",
+            "id": "ConditionalRouterList-6EQmA",
             "inputTypes": [
               "Data"
             ],
             "type": "other"
           }
         },
-        "id": "reactflow__edge-GetFile-kC1Hc{œdataTypeœ:œGetFileœ,œidœ:œGetFile-kC1Hcœ,œnameœ:œfilesœ,œoutput_typesœ:[œDataœ]}-ConditionalRouterList-rgoDO{œfieldNameœ:œfilesœ,œidœ:œConditionalRouterList-rgoDOœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}",
-        "source": "GetFile-kC1Hc",
-        "sourceHandle": "{œdataTypeœ:œGetFileœ,œidœ:œGetFile-kC1Hcœ,œnameœ:œfilesœ,œoutput_typesœ:[œDataœ]}",
-        "target": "ConditionalRouterList-rgoDO",
-        "targetHandle": "{œfieldNameœ:œfilesœ,œidœ:œConditionalRouterList-rgoDOœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}"
+        "id": "reactflow__edge-GetFile-RtlKB{œdataTypeœ:œGetFileœ,œidœ:œGetFile-RtlKBœ,œnameœ:œfilesœ,œoutput_typesœ:[œDataœ]}-ConditionalRouterList-6EQmA{œfieldNameœ:œfilesœ,œidœ:œConditionalRouterList-6EQmAœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}",
+        "source": "GetFile-RtlKB",
+        "sourceHandle": "{œdataTypeœ:œGetFileœ,œidœ:œGetFile-RtlKBœ,œnameœ:œfilesœ,œoutput_typesœ:[œDataœ]}",
+        "target": "ConditionalRouterList-6EQmA",
+        "targetHandle": "{œfieldNameœ:œfilesœ,œidœ:œConditionalRouterList-6EQmAœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}"
       },
       {
         "animated": false,
@@ -252,7 +252,7 @@
         "data": {
           "sourceHandle": {
             "dataType": "EnvExtractor",
-            "id": "EnvExtractor-LEk1M",
+            "id": "EnvExtractor-tAhpF",
             "name": "files_host",
             "output_types": [
               "Message"
@@ -260,18 +260,18 @@
           },
           "targetHandle": {
             "fieldName": "files_host",
-            "id": "GetFile-kC1Hc",
+            "id": "GetFile-RtlKB",
             "inputTypes": [
               "Message"
             ],
             "type": "str"
           }
         },
-        "id": "reactflow__edge-EnvExtractor-LEk1M{œdataTypeœ:œEnvExtractorœ,œidœ:œEnvExtractor-LEk1Mœ,œnameœ:œfiles_hostœ,œoutput_typesœ:[œMessageœ]}-GetFile-kC1Hc{œfieldNameœ:œfiles_hostœ,œidœ:œGetFile-kC1Hcœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
-        "source": "EnvExtractor-LEk1M",
-        "sourceHandle": "{œdataTypeœ:œEnvExtractorœ,œidœ:œEnvExtractor-LEk1Mœ,œnameœ:œfiles_hostœ,œoutput_typesœ:[œMessageœ]}",
-        "target": "GetFile-kC1Hc",
-        "targetHandle": "{œfieldNameœ:œfiles_hostœ,œidœ:œGetFile-kC1Hcœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
+        "id": "reactflow__edge-EnvExtractor-tAhpF{œdataTypeœ:œEnvExtractorœ,œidœ:œEnvExtractor-tAhpFœ,œnameœ:œfiles_hostœ,œoutput_typesœ:[œMessageœ]}-GetFile-RtlKB{œfieldNameœ:œfiles_hostœ,œidœ:œGetFile-RtlKBœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "source": "EnvExtractor-tAhpF",
+        "sourceHandle": "{œdataTypeœ:œEnvExtractorœ,œidœ:œEnvExtractor-tAhpFœ,œnameœ:œfiles_hostœ,œoutput_typesœ:[œMessageœ]}",
+        "target": "GetFile-RtlKB",
+        "targetHandle": "{œfieldNameœ:œfiles_hostœ,œidœ:œGetFile-RtlKBœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "animated": false,
@@ -279,7 +279,7 @@
         "data": {
           "sourceHandle": {
             "dataType": "FileID",
-            "id": "FileID-oF8Vp",
+            "id": "FileID-z02z5",
             "name": "file",
             "output_types": [
               "Message"
@@ -287,18 +287,18 @@
           },
           "targetHandle": {
             "fieldName": "files_ids",
-            "id": "GetFile-kC1Hc",
+            "id": "GetFile-RtlKB",
             "inputTypes": [
               "Message"
             ],
             "type": "str"
           }
         },
-        "id": "reactflow__edge-FileID-oF8Vp{œdataTypeœ:œFileIDœ,œidœ:œFileID-oF8Vpœ,œnameœ:œfileœ,œoutput_typesœ:[œMessageœ]}-GetFile-kC1Hc{œfieldNameœ:œfiles_idsœ,œidœ:œGetFile-kC1Hcœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
-        "source": "FileID-oF8Vp",
-        "sourceHandle": "{œdataTypeœ:œFileIDœ,œidœ:œFileID-oF8Vpœ,œnameœ:œfileœ,œoutput_typesœ:[œMessageœ]}",
-        "target": "GetFile-kC1Hc",
-        "targetHandle": "{œfieldNameœ:œfiles_idsœ,œidœ:œGetFile-kC1Hcœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
+        "id": "reactflow__edge-FileID-z02z5{œdataTypeœ:œFileIDœ,œidœ:œFileID-z02z5œ,œnameœ:œfileœ,œoutput_typesœ:[œMessageœ]}-GetFile-RtlKB{œfieldNameœ:œfiles_idsœ,œidœ:œGetFile-RtlKBœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "source": "FileID-z02z5",
+        "sourceHandle": "{œdataTypeœ:œFileIDœ,œidœ:œFileID-z02z5œ,œnameœ:œfileœ,œoutput_typesœ:[œMessageœ]}",
+        "target": "GetFile-RtlKB",
+        "targetHandle": "{œfieldNameœ:œfiles_idsœ,œidœ:œGetFile-RtlKBœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "animated": false,
@@ -306,7 +306,7 @@
         "data": {
           "sourceHandle": {
             "dataType": "ConditionalRouterCustom",
-            "id": "ConditionalRouterCustom-rSfKj",
+            "id": "ConditionalRouterCustom-dH5wy",
             "name": "true_result",
             "output_types": [
               "Data"
@@ -314,18 +314,18 @@
           },
           "targetHandle": {
             "fieldName": "files",
-            "id": "GetFilesTextContent-PNGnI",
+            "id": "GetFilesTextContent-wqRNl",
             "inputTypes": [
               "Data"
             ],
             "type": "other"
           }
         },
-        "id": "reactflow__edge-ConditionalRouterCustom-rSfKj{œdataTypeœ:œConditionalRouterCustomœ,œidœ:œConditionalRouterCustom-rSfKjœ,œnameœ:œtrue_resultœ,œoutput_typesœ:[œDataœ]}-GetFilesTextContent-PNGnI{œfieldNameœ:œfilesœ,œidœ:œGetFilesTextContent-PNGnIœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}",
-        "source": "ConditionalRouterCustom-rSfKj",
-        "sourceHandle": "{œdataTypeœ:œConditionalRouterCustomœ,œidœ:œConditionalRouterCustom-rSfKjœ,œnameœ:œtrue_resultœ,œoutput_typesœ:[œDataœ]}",
-        "target": "GetFilesTextContent-PNGnI",
-        "targetHandle": "{œfieldNameœ:œfilesœ,œidœ:œGetFilesTextContent-PNGnIœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}"
+        "id": "reactflow__edge-ConditionalRouterCustom-dH5wy{œdataTypeœ:œConditionalRouterCustomœ,œidœ:œConditionalRouterCustom-dH5wyœ,œnameœ:œtrue_resultœ,œoutput_typesœ:[œDataœ]}-GetFilesTextContent-wqRNl{œfieldNameœ:œfilesœ,œidœ:œGetFilesTextContent-wqRNlœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}",
+        "source": "ConditionalRouterCustom-dH5wy",
+        "sourceHandle": "{œdataTypeœ:œConditionalRouterCustomœ,œidœ:œConditionalRouterCustom-dH5wyœ,œnameœ:œtrue_resultœ,œoutput_typesœ:[œDataœ]}",
+        "target": "GetFilesTextContent-wqRNl",
+        "targetHandle": "{œfieldNameœ:œfilesœ,œidœ:œGetFilesTextContent-wqRNlœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}"
       },
       {
         "animated": false,
@@ -333,7 +333,7 @@
         "data": {
           "sourceHandle": {
             "dataType": "ConditionalRouterCustom",
-            "id": "ConditionalRouterCustom-rSfKj",
+            "id": "ConditionalRouterCustom-dH5wy",
             "name": "false_result",
             "output_types": [
               "Message"
@@ -341,7 +341,7 @@
           },
           "targetHandle": {
             "fieldName": "input_value",
-            "id": "ChatOutput-pUkhU",
+            "id": "ChatOutput-oWpnF",
             "inputTypes": [
               "Data",
               "DataFrame",
@@ -350,11 +350,11 @@
             "type": "other"
           }
         },
-        "id": "reactflow__edge-ConditionalRouterCustom-rSfKj{œdataTypeœ:œConditionalRouterCustomœ,œidœ:œConditionalRouterCustom-rSfKjœ,œnameœ:œfalse_resultœ,œoutput_typesœ:[œMessageœ]}-ChatOutput-pUkhU{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-pUkhUœ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œotherœ}",
-        "source": "ConditionalRouterCustom-rSfKj",
-        "sourceHandle": "{œdataTypeœ:œConditionalRouterCustomœ,œidœ:œConditionalRouterCustom-rSfKjœ,œnameœ:œfalse_resultœ,œoutput_typesœ:[œMessageœ]}",
-        "target": "ChatOutput-pUkhU",
-        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-pUkhUœ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œotherœ}"
+        "id": "reactflow__edge-ConditionalRouterCustom-dH5wy{œdataTypeœ:œConditionalRouterCustomœ,œidœ:œConditionalRouterCustom-dH5wyœ,œnameœ:œfalse_resultœ,œoutput_typesœ:[œMessageœ]}-ChatOutput-oWpnF{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-oWpnFœ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œotherœ}",
+        "source": "ConditionalRouterCustom-dH5wy",
+        "sourceHandle": "{œdataTypeœ:œConditionalRouterCustomœ,œidœ:œConditionalRouterCustom-dH5wyœ,œnameœ:œfalse_resultœ,œoutput_typesœ:[œMessageœ]}",
+        "target": "ChatOutput-oWpnF",
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-oWpnFœ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œotherœ}"
       },
       {
         "animated": false,
@@ -362,7 +362,7 @@
         "data": {
           "sourceHandle": {
             "dataType": "ConditionalRouterList",
-            "id": "ConditionalRouterList-rgoDO",
+            "id": "ConditionalRouterList-6EQmA",
             "name": "true_result",
             "output_types": [
               "Data"
@@ -370,18 +370,18 @@
           },
           "targetHandle": {
             "fieldName": "files_info",
-            "id": "DownloadFiles-dehpk",
+            "id": "DownloadFiles-RgrMV",
             "inputTypes": [
               "Data"
             ],
             "type": "other"
           }
         },
-        "id": "reactflow__edge-ConditionalRouterList-rgoDO{œdataTypeœ:œConditionalRouterListœ,œidœ:œConditionalRouterList-rgoDOœ,œnameœ:œtrue_resultœ,œoutput_typesœ:[œDataœ]}-DownloadFiles-dehpk{œfieldNameœ:œfiles_infoœ,œidœ:œDownloadFiles-dehpkœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}",
-        "source": "ConditionalRouterList-rgoDO",
-        "sourceHandle": "{œdataTypeœ:œConditionalRouterListœ,œidœ:œConditionalRouterList-rgoDOœ,œnameœ:œtrue_resultœ,œoutput_typesœ:[œDataœ]}",
-        "target": "DownloadFiles-dehpk",
-        "targetHandle": "{œfieldNameœ:œfiles_infoœ,œidœ:œDownloadFiles-dehpkœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}"
+        "id": "reactflow__edge-ConditionalRouterList-6EQmA{œdataTypeœ:œConditionalRouterListœ,œidœ:œConditionalRouterList-6EQmAœ,œnameœ:œtrue_resultœ,œoutput_typesœ:[œDataœ]}-DownloadFiles-RgrMV{œfieldNameœ:œfiles_infoœ,œidœ:œDownloadFiles-RgrMVœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}",
+        "source": "ConditionalRouterList-6EQmA",
+        "sourceHandle": "{œdataTypeœ:œConditionalRouterListœ,œidœ:œConditionalRouterList-6EQmAœ,œnameœ:œtrue_resultœ,œoutput_typesœ:[œDataœ]}",
+        "target": "DownloadFiles-RgrMV",
+        "targetHandle": "{œfieldNameœ:œfiles_infoœ,œidœ:œDownloadFiles-RgrMVœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}"
       },
       {
         "animated": false,
@@ -389,7 +389,7 @@
         "data": {
           "sourceHandle": {
             "dataType": "ConditionalRouterList",
-            "id": "ConditionalRouterList-rgoDO",
+            "id": "ConditionalRouterList-6EQmA",
             "name": "false_result",
             "output_types": [
               "Message"
@@ -397,7 +397,7 @@
           },
           "targetHandle": {
             "fieldName": "input_value",
-            "id": "ChatOutput-DA5nt",
+            "id": "ChatOutput-Vzdzz",
             "inputTypes": [
               "Data",
               "DataFrame",
@@ -406,19 +406,18 @@
             "type": "other"
           }
         },
-        "id": "reactflow__edge-ConditionalRouterList-rgoDO{œdataTypeœ:œConditionalRouterListœ,œidœ:œConditionalRouterList-rgoDOœ,œnameœ:œfalse_resultœ,œoutput_typesœ:[œMessageœ]}-ChatOutput-DA5nt{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-DA5ntœ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œotherœ}",
-        "source": "ConditionalRouterList-rgoDO",
-        "sourceHandle": "{œdataTypeœ:œConditionalRouterListœ,œidœ:œConditionalRouterList-rgoDOœ,œnameœ:œfalse_resultœ,œoutput_typesœ:[œMessageœ]}",
-        "target": "ChatOutput-DA5nt",
-        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-DA5ntœ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œotherœ}"
+        "id": "reactflow__edge-ConditionalRouterList-6EQmA{œdataTypeœ:œConditionalRouterListœ,œidœ:œConditionalRouterList-6EQmAœ,œnameœ:œfalse_resultœ,œoutput_typesœ:[œMessageœ]}-ChatOutput-Vzdzz{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-Vzdzzœ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œotherœ}",
+        "source": "ConditionalRouterList-6EQmA",
+        "sourceHandle": "{œdataTypeœ:œConditionalRouterListœ,œidœ:œConditionalRouterList-6EQmAœ,œnameœ:œfalse_resultœ,œoutput_typesœ:[œMessageœ]}",
+        "target": "ChatOutput-Vzdzz",
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-Vzdzzœ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œotherœ}"
       },
       {
-        "animated": false,
         "className": "",
         "data": {
           "sourceHandle": {
-            "dataType": "TogetherAIEmbeddings",
-            "id": "TogetherAIEmbeddings-5Rext",
+            "dataType": "OpenAIEmbeddings",
+            "id": "OpenAIEmbeddings-6T9cG",
             "name": "embeddings",
             "output_types": [
               "Embeddings"
@@ -426,24 +425,24 @@
           },
           "targetHandle": {
             "fieldName": "embedding",
-            "id": "DocSpaceQdrantVectorStoreComponent-dDtLv",
+            "id": "DocSpaceQdrantVectorStoreComponent-UEMhS",
             "inputTypes": [
               "Embeddings"
             ],
             "type": "other"
           }
         },
-        "id": "reactflow__edge-TogetherAIEmbeddings-5Rext{œdataTypeœ:œTogetherAIEmbeddingsœ,œidœ:œTogetherAIEmbeddings-5Rextœ,œnameœ:œembeddingsœ,œoutput_typesœ:[œEmbeddingsœ]}-DocSpaceQdrantVectorStoreComponent-dDtLv{œfieldNameœ:œembeddingœ,œidœ:œDocSpaceQdrantVectorStoreComponent-dDtLvœ,œinputTypesœ:[œEmbeddingsœ],œtypeœ:œotherœ}",
-        "source": "TogetherAIEmbeddings-5Rext",
-        "sourceHandle": "{œdataTypeœ:œTogetherAIEmbeddingsœ,œidœ:œTogetherAIEmbeddings-5Rextœ,œnameœ:œembeddingsœ,œoutput_typesœ:[œEmbeddingsœ]}",
-        "target": "DocSpaceQdrantVectorStoreComponent-dDtLv",
-        "targetHandle": "{œfieldNameœ:œembeddingœ,œidœ:œDocSpaceQdrantVectorStoreComponent-dDtLvœ,œinputTypesœ:[œEmbeddingsœ],œtypeœ:œotherœ}"
+        "id": "xy-edge__OpenAIEmbeddings-6T9cG{œdataTypeœ:œOpenAIEmbeddingsœ,œidœ:œOpenAIEmbeddings-6T9cGœ,œnameœ:œembeddingsœ,œoutput_typesœ:[œEmbeddingsœ]}-DocSpaceQdrantVectorStoreComponent-UEMhS{œfieldNameœ:œembeddingœ,œidœ:œDocSpaceQdrantVectorStoreComponent-UEMhSœ,œinputTypesœ:[œEmbeddingsœ],œtypeœ:œotherœ}",
+        "source": "OpenAIEmbeddings-6T9cG",
+        "sourceHandle": "{œdataTypeœ:œOpenAIEmbeddingsœ,œidœ:œOpenAIEmbeddings-6T9cGœ,œnameœ:œembeddingsœ,œoutput_typesœ:[œEmbeddingsœ]}",
+        "target": "DocSpaceQdrantVectorStoreComponent-UEMhS",
+        "targetHandle": "{œfieldNameœ:œembeddingœ,œidœ:œDocSpaceQdrantVectorStoreComponent-UEMhSœ,œinputTypesœ:[œEmbeddingsœ],œtypeœ:œotherœ}"
       }
     ],
     "nodes": [
       {
         "data": {
-          "id": "DownloadFiles-dehpk",
+          "id": "DownloadFiles-RgrMV",
           "node": {
             "base_classes": [
               "Data"
@@ -554,7 +553,7 @@
           "type": "DownloadFiles"
         },
         "dragging": false,
-        "id": "DownloadFiles-dehpk",
+        "id": "DownloadFiles-RgrMV",
         "measured": {
           "height": 294,
           "width": 320
@@ -570,7 +569,7 @@
         "data": {
           "description": "Extract text content from files (PDF, DOCX, XLSX, etc)",
           "display_name": "Get File Text Content",
-          "id": "GetFilesTextContent-PNGnI",
+          "id": "GetFilesTextContent-wqRNl",
           "node": {
             "base_classes": [
               "Data"
@@ -657,7 +656,7 @@
           "type": "GetFilesTextContent"
         },
         "dragging": false,
-        "id": "GetFilesTextContent-PNGnI",
+        "id": "GetFilesTextContent-wqRNl",
         "measured": {
           "height": 212,
           "width": 320
@@ -671,7 +670,7 @@
       },
       {
         "data": {
-          "id": "SplitTextToDocuments-nl8KP",
+          "id": "SplitTextToDocuments-np6uR",
           "node": {
             "base_classes": [
               "Data"
@@ -821,7 +820,7 @@
           "type": "SplitTextToDocuments"
         },
         "dragging": false,
-        "id": "SplitTextToDocuments-nl8KP",
+        "id": "SplitTextToDocuments-np6uR",
         "measured": {
           "height": 459,
           "width": 320
@@ -835,7 +834,7 @@
       },
       {
         "data": {
-          "id": "GetFileCollectionName-dQeV0",
+          "id": "GetFileCollectionName-NbnyD",
           "node": {
             "base_classes": [
               "Message"
@@ -854,7 +853,6 @@
             "frozen": false,
             "icon": "database",
             "legacy": false,
-            "lf_version": "1.1.5",
             "metadata": {},
             "minimized": false,
             "output_types": [],
@@ -947,21 +945,21 @@
           "type": "GetFileCollectionName"
         },
         "dragging": false,
-        "id": "GetFileCollectionName-dQeV0",
+        "id": "GetFileCollectionName-NbnyD",
         "measured": {
           "height": 352,
           "width": 320
         },
         "position": {
-          "x": 1348.3881496655952,
-          "y": -213.5523751105334
+          "x": 1274.4145070982588,
+          "y": 40.35715478275591
         },
-        "selected": false,
+        "selected": true,
         "type": "genericNode"
       },
       {
         "data": {
-          "id": "ChatOutput-fiwX3",
+          "id": "ChatOutput-g5wsW",
           "node": {
             "base_classes": [
               "Message"
@@ -1254,7 +1252,7 @@
           "type": "ChatOutput"
         },
         "dragging": false,
-        "id": "ChatOutput-fiwX3",
+        "id": "ChatOutput-g5wsW",
         "measured": {
           "height": 66,
           "width": 192
@@ -1268,7 +1266,7 @@
       },
       {
         "data": {
-          "id": "ConditionalRouterList-rgoDO",
+          "id": "ConditionalRouterList-6EQmA",
           "node": {
             "base_classes": [
               "Data",
@@ -1373,7 +1371,7 @@
           "type": "ConditionalRouterList"
         },
         "dragging": false,
-        "id": "ConditionalRouterList-rgoDO",
+        "id": "ConditionalRouterList-6EQmA",
         "measured": {
           "height": 260,
           "width": 320
@@ -1387,7 +1385,7 @@
       },
       {
         "data": {
-          "id": "ChatOutput-DA5nt",
+          "id": "ChatOutput-Vzdzz",
           "node": {
             "base_classes": [
               "Message"
@@ -1680,7 +1678,7 @@
           "type": "ChatOutput"
         },
         "dragging": false,
-        "id": "ChatOutput-DA5nt",
+        "id": "ChatOutput-Vzdzz",
         "measured": {
           "height": 66,
           "width": 192
@@ -1694,7 +1692,7 @@
       },
       {
         "data": {
-          "id": "ConditionalRouterCustom-rSfKj",
+          "id": "ConditionalRouterCustom-dH5wy",
           "node": {
             "base_classes": [
               "Data",
@@ -1799,7 +1797,7 @@
           "type": "ConditionalRouterCustom"
         },
         "dragging": false,
-        "id": "ConditionalRouterCustom-rSfKj",
+        "id": "ConditionalRouterCustom-dH5wy",
         "measured": {
           "height": 260,
           "width": 320
@@ -1813,7 +1811,7 @@
       },
       {
         "data": {
-          "id": "ChatOutput-pUkhU",
+          "id": "ChatOutput-oWpnF",
           "node": {
             "base_classes": [
               "Message"
@@ -2106,7 +2104,7 @@
           "type": "ChatOutput"
         },
         "dragging": false,
-        "id": "ChatOutput-pUkhU",
+        "id": "ChatOutput-oWpnF",
         "measured": {
           "height": 66,
           "width": 192
@@ -2120,7 +2118,7 @@
       },
       {
         "data": {
-          "id": "EnvExtractor-LEk1M",
+          "id": "EnvExtractor-tAhpF",
           "node": {
             "base_classes": [
               "Message"
@@ -2222,7 +2220,7 @@
           "type": "EnvExtractor"
         },
         "dragging": false,
-        "id": "EnvExtractor-LEk1M",
+        "id": "EnvExtractor-tAhpF",
         "measured": {
           "height": 311,
           "width": 320
@@ -2236,7 +2234,7 @@
       },
       {
         "data": {
-          "id": "DocSpaceQdrantVectorStoreComponent-dDtLv",
+          "id": "DocSpaceQdrantVectorStoreComponent-UEMhS",
           "node": {
             "base_classes": [
               "Message"
@@ -2500,7 +2498,7 @@
           "type": "DocSpaceQdrantVectorStoreComponent"
         },
         "dragging": false,
-        "id": "DocSpaceQdrantVectorStoreComponent-dDtLv",
+        "id": "DocSpaceQdrantVectorStoreComponent-UEMhS",
         "measured": {
           "height": 741,
           "width": 320
@@ -2509,12 +2507,12 @@
           "x": 2047.9770157391888,
           "y": 284.5390658573117
         },
-        "selected": true,
+        "selected": false,
         "type": "genericNode"
       },
       {
         "data": {
-          "id": "GetFile-kC1Hc",
+          "id": "GetFile-RtlKB",
           "node": {
             "base_classes": [
               "Data"
@@ -2650,7 +2648,7 @@
           "type": "GetFile"
         },
         "dragging": false,
-        "id": "GetFile-kC1Hc",
+        "id": "GetFile-RtlKB",
         "measured": {
           "height": 435,
           "width": 320
@@ -2664,7 +2662,7 @@
       },
       {
         "data": {
-          "id": "FileID-oF8Vp",
+          "id": "FileID-z02z5",
           "node": {
             "base_classes": [
               "Message"
@@ -2746,7 +2744,7 @@
                 "trace_as_input": true,
                 "trace_as_metadata": true,
                 "type": "str",
-                "value": "2"
+                "value": "9"
               }
             },
             "tool_mode": false
@@ -2755,7 +2753,7 @@
           "type": "FileID"
         },
         "dragging": false,
-        "id": "FileID-oF8Vp",
+        "id": "FileID-z02z5",
         "measured": {
           "height": 230,
           "width": 320
@@ -2769,7 +2767,7 @@
       },
       {
         "data": {
-          "id": "TogetherAIEmbeddings-5Rext",
+          "id": "OpenAIEmbeddings-6T9cG",
           "node": {
             "base_classes": [
               "Embeddings"
@@ -2777,8 +2775,8 @@
             "beta": false,
             "conditional_paths": [],
             "custom_fields": {},
-            "description": "Generate embeddings using TogetherAI models.",
-            "display_name": "TogetherAI Embeddings",
+            "description": "Generate embeddings using OpenAI models.",
+            "display_name": "OpenAI Embeddings",
             "documentation": "",
             "edited": false,
             "field_order": [
@@ -2805,9 +2803,8 @@
               "dimensions"
             ],
             "frozen": false,
-            "icon": "TogetherAI",
+            "icon": "OpenAI",
             "legacy": false,
-            "lf_version": "1.1.5",
             "metadata": {},
             "minimized": false,
             "output_types": [],
@@ -2889,7 +2886,7 @@
                 "show": true,
                 "title_case": false,
                 "type": "code",
-                "value": "from langchain_together import TogetherEmbeddings\n\nfrom langflow.base.embeddings.model import LCEmbeddingsModel\nfrom langflow.base.models.togetherai_constants import TOGETHERAI_EMBEDDING_MODEL_NAMES\nfrom langflow.field_typing import Embeddings\nfrom langflow.io import BoolInput, DictInput, DropdownInput, FloatInput, IntInput, MessageTextInput, SecretStrInput\n\n\nclass TogetherAIEmbeddingsComponent(LCEmbeddingsModel):\n    display_name = \"TogetherAI Embeddings\"\n    description = \"Generate embeddings using TogetherAI models.\"\n    icon = \"TogetherAI\"\n    name = \"TogetherAIEmbeddings\"\n\n    inputs = [\n        DictInput(\n            name=\"default_headers\",\n            display_name=\"Default Headers\",\n            advanced=True,\n            info=\"Default headers to use for the API request.\",\n        ),\n        DictInput(\n            name=\"default_query\",\n            display_name=\"Default Query\",\n            advanced=True,\n            info=\"Default query parameters to use for the API request.\",\n        ),\n        IntInput(name=\"chunk_size\", display_name=\"Chunk Size\",\n                 advanced=True, value=1000),\n        MessageTextInput(name=\"client\", display_name=\"Client\", advanced=True),\n        MessageTextInput(name=\"deployment\",\n                         display_name=\"Deployment\", advanced=True),\n        IntInput(name=\"embedding_ctx_length\",\n                 display_name=\"Embedding Context Length\", advanced=True, value=1536),\n        IntInput(name=\"max_retries\", display_name=\"Max Retries\",\n                 value=3, advanced=True),\n        DropdownInput(\n            name=\"model\",\n            display_name=\"Model\",\n            advanced=False,\n            options=TOGETHERAI_EMBEDDING_MODEL_NAMES,\n            value=TOGETHERAI_EMBEDDING_MODEL_NAMES[0],\n        ),\n        DictInput(name=\"model_kwargs\",\n                  display_name=\"Model Kwargs\", advanced=True),\n        SecretStrInput(name=\"openai_api_key\", display_name=\"OpenAI API Key\",\n                       value=\"OPENAI_API_KEY\", required=True),\n        MessageTextInput(name=\"openai_api_base\",\n                         display_name=\"OpenAI API Base\", advanced=True),\n        MessageTextInput(name=\"openai_api_type\",\n                         display_name=\"OpenAI API Type\", advanced=True),\n        MessageTextInput(name=\"openai_api_version\",\n                         display_name=\"OpenAI API Version\", advanced=True),\n        MessageTextInput(\n            name=\"openai_organization\",\n            display_name=\"OpenAI Organization\",\n            advanced=True,\n        ),\n        MessageTextInput(name=\"openai_proxy\",\n                         display_name=\"OpenAI Proxy\", advanced=True),\n        FloatInput(name=\"request_timeout\",\n                   display_name=\"Request Timeout\", advanced=True),\n        BoolInput(name=\"show_progress_bar\",\n                  display_name=\"Show Progress Bar\", advanced=True),\n        BoolInput(name=\"skip_empty\", display_name=\"Skip Empty\", advanced=True),\n        MessageTextInput(\n            name=\"tiktoken_model_name\",\n            display_name=\"TikToken Model Name\",\n            advanced=True,\n        ),\n        BoolInput(\n            name=\"tiktoken_enable\",\n            display_name=\"TikToken Enable\",\n            advanced=True,\n            value=True,\n            info=\"If False, you must have transformers installed.\",\n        ),\n        IntInput(\n            name=\"dimensions\",\n            display_name=\"Dimensions\",\n            info=\"The number of dimensions the resulting output embeddings should have. \"\n            \"Only supported by certain models.\",\n            advanced=True,\n        ),\n    ]\n\n    def build_embeddings(self) -> Embeddings:\n        return TogetherEmbeddings(\n            client=self.client or None,\n            model=self.model,\n            api_key=self.openai_api_key or None,\n        )\n"
+                "value": "from langchain_openai import OpenAIEmbeddings\n\nfrom langflow.base.embeddings.model import LCEmbeddingsModel\nfrom langflow.base.models.openai_constants import OPENAI_EMBEDDING_MODEL_NAMES\nfrom langflow.field_typing import Embeddings\nfrom langflow.io import BoolInput, DictInput, DropdownInput, FloatInput, IntInput, MessageTextInput, SecretStrInput\n\n\nclass OpenAIEmbeddingsComponent(LCEmbeddingsModel):\n    display_name = \"OpenAI Embeddings\"\n    description = \"Generate embeddings using OpenAI models.\"\n    icon = \"OpenAI\"\n    name = \"OpenAIEmbeddings\"\n\n    inputs = [\n        DictInput(\n            name=\"default_headers\",\n            display_name=\"Default Headers\",\n            advanced=True,\n            info=\"Default headers to use for the API request.\",\n        ),\n        DictInput(\n            name=\"default_query\",\n            display_name=\"Default Query\",\n            advanced=True,\n            info=\"Default query parameters to use for the API request.\",\n        ),\n        IntInput(name=\"chunk_size\", display_name=\"Chunk Size\", advanced=True, value=1000),\n        MessageTextInput(name=\"client\", display_name=\"Client\", advanced=True),\n        MessageTextInput(name=\"deployment\", display_name=\"Deployment\", advanced=True),\n        IntInput(name=\"embedding_ctx_length\", display_name=\"Embedding Context Length\", advanced=True, value=1536),\n        IntInput(name=\"max_retries\", display_name=\"Max Retries\", value=3, advanced=True),\n        DropdownInput(\n            name=\"model\",\n            display_name=\"Model\",\n            advanced=False,\n            options=OPENAI_EMBEDDING_MODEL_NAMES,\n            value=\"text-embedding-3-small\",\n        ),\n        DictInput(name=\"model_kwargs\", display_name=\"Model Kwargs\", advanced=True),\n        SecretStrInput(name=\"openai_api_key\", display_name=\"OpenAI API Key\", value=\"OPENAI_API_KEY\", required=True),\n        MessageTextInput(name=\"openai_api_base\", display_name=\"OpenAI API Base\", advanced=True),\n        MessageTextInput(name=\"openai_api_type\", display_name=\"OpenAI API Type\", advanced=True),\n        MessageTextInput(name=\"openai_api_version\", display_name=\"OpenAI API Version\", advanced=True),\n        MessageTextInput(\n            name=\"openai_organization\",\n            display_name=\"OpenAI Organization\",\n            advanced=True,\n        ),\n        MessageTextInput(name=\"openai_proxy\", display_name=\"OpenAI Proxy\", advanced=True),\n        FloatInput(name=\"request_timeout\", display_name=\"Request Timeout\", advanced=True),\n        BoolInput(name=\"show_progress_bar\", display_name=\"Show Progress Bar\", advanced=True),\n        BoolInput(name=\"skip_empty\", display_name=\"Skip Empty\", advanced=True),\n        MessageTextInput(\n            name=\"tiktoken_model_name\",\n            display_name=\"TikToken Model Name\",\n            advanced=True,\n        ),\n        BoolInput(\n            name=\"tiktoken_enable\",\n            display_name=\"TikToken Enable\",\n            advanced=True,\n            value=True,\n            info=\"If False, you must have transformers installed.\",\n        ),\n        IntInput(\n            name=\"dimensions\",\n            display_name=\"Dimensions\",\n            info=\"The number of dimensions the resulting output embeddings should have. \"\n            \"Only supported by certain models.\",\n            advanced=True,\n        ),\n    ]\n\n    def build_embeddings(self) -> Embeddings:\n        return OpenAIEmbeddings(\n            client=self.client or None,\n            model=self.model,\n            dimensions=self.dimensions or None,\n            deployment=self.deployment or None,\n            api_version=self.openai_api_version or None,\n            base_url=self.openai_api_base or None,\n            openai_api_type=self.openai_api_type or None,\n            openai_proxy=self.openai_proxy or None,\n            embedding_ctx_length=self.embedding_ctx_length,\n            api_key=self.openai_api_key or None,\n            organization=self.openai_organization or None,\n            allowed_special=\"all\",\n            disallowed_special=\"all\",\n            chunk_size=self.chunk_size,\n            max_retries=self.max_retries,\n            timeout=self.request_timeout or None,\n            tiktoken_enabled=self.tiktoken_enable,\n            tiktoken_model_name=self.tiktoken_model_name or None,\n            show_progress_bar=self.show_progress_bar,\n            model_kwargs=self.model_kwargs,\n            skip_empty=self.skip_empty,\n            default_headers=self.default_headers or None,\n            default_query=self.default_query or None,\n        )\n"
               },
               "default_headers": {
                 "_input_type": "DictInput",
@@ -3014,12 +3011,9 @@
                 "info": "",
                 "name": "model",
                 "options": [
-                  "BAAI/bge-large-en-v1.5",
-                  "WhereIsAI/UAE-Large-V1",
-                  "BAAI/bge-base-en-v1.5",
-                  "togethercomputer/m2-bert-80M-2k-retrieval",
-                  "togethercomputer/m2-bert-80M-8k-retrieval",
-                  "togethercomputer/m2-bert-80M-32k-retrieval"
+                  "text-embedding-3-small",
+                  "text-embedding-3-large",
+                  "text-embedding-ada-002"
                 ],
                 "options_metadata": [],
                 "placeholder": "",
@@ -3029,7 +3023,7 @@
                 "tool_mode": false,
                 "trace_as_metadata": true,
                 "type": "str",
-                "value": "togethercomputer/m2-bert-80M-8k-retrieval"
+                "value": "text-embedding-3-large"
               },
               "model_kwargs": {
                 "_input_type": "DictInput",
@@ -3089,7 +3083,7 @@
                 "show": true,
                 "title_case": false,
                 "type": "str",
-                "value": "togetherai_api_key"
+                "value": "openai_api_key"
               },
               "openai_api_type": {
                 "_input_type": "MessageTextInput",
@@ -3282,40 +3276,40 @@
             "tool_mode": false
           },
           "showNode": true,
-          "type": "TogetherAIEmbeddings"
+          "type": "OpenAIEmbeddings"
         },
         "dragging": false,
-        "id": "TogetherAIEmbeddings-5Rext",
+        "id": "OpenAIEmbeddings-6T9cG",
         "measured": {
-          "height": 332,
+          "height": 312,
           "width": 320
         },
         "position": {
-          "x": 1307.5274902517908,
-          "y": 1067.555508612537
+          "x": 1285.039179967473,
+          "y": 1058.0505777761928
         },
         "selected": false,
         "type": "genericNode"
       }
     ],
     "viewport": {
-      "x": 228.39455059678846,
-      "y": 9.346973364742837,
-      "zoom": 0.35363237694155375
+      "x": 101.94143812338234,
+      "y": 206.88575311153934,
+      "zoom": 0.4172710750178024
     }
   },
   "description": "Language Models, Mapped and Mastered.",
   "endpoint_name": null,
-  "folder_id": "0fb0cca9-69b4-4105-8b4b-968d7280bb1d",
+  "folder_id": "b3523c0c-10b1-4e32-bd76-83ea83968717",
   "gradient": null,
   "icon": null,
   "icon_bg_color": null,
-  "id": "f995a893-0cce-4fcd-b866-cfb8feb09a48",
+  "id": "e139a6f2-8f8e-49a9-babc-ff16d103c224",
   "is_component": false,
   "locked": false,
   "name": "Vectorize document",
   "tags": null,
-  "updated_at": "2025-03-19T12:24:25+00:00",
-  "user_id": "1fc8ed86-86be-487e-80a5-49f983bfb40a",
+  "updated_at": "2025-03-20T14:32:46+00:00",
+  "user_id": "089b014b-0150-433f-9b08-250352f61d4d",
   "webhook": false
 }
