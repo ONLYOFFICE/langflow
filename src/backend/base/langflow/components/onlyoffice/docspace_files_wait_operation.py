@@ -1,12 +1,11 @@
-import json
+from typing import Any
 import time
-from urllib.parse import urljoin
 
 from langchain.tools import StructuredTool
 from pydantic import BaseModel, Field
-import requests
 
-from langflow.custom.custom_component.component_with_cache import ComponentWithCache
+from langflow.base.onlyoffice.docspace.client import ErrorResponse
+from langflow.base.onlyoffice.docspace.component import Component
 from langflow.field_typing import Tool
 from langflow.inputs import MessageTextInput, SecretStrInput
 from langflow.io import Output
@@ -14,10 +13,9 @@ from langflow.schema import Data
 from langflow.template import Output
 
 
-class OnlyofficeDocspaceWaitOperation(ComponentWithCache):
+class OnlyofficeDocspaceWaitOperation(Component):
     display_name = "Wait Operation"
     description = "Wait for an operation to finish in ONLYOFFICE DocSpace."
-    icon = "onlyoffice"
     name = "OnlyofficeDocspaceWaitOperation"
 
 
@@ -26,10 +24,7 @@ class OnlyofficeDocspaceWaitOperation(ComponentWithCache):
             name="auth_text",
             display_name="Text from Basic Authentication",
             info="Text output from the Basic Authentication component.",
-            value="""{
-                "base_url": "",
-                "token": ""
-            }""",
+            advanced=True,
         ),
         MessageTextInput(
             name="operation_id",
@@ -82,9 +77,9 @@ class OnlyofficeDocspaceWaitOperation(ComponentWithCache):
         )
 
 
-    def build_data(self) -> Data:
+    async def build_data(self) -> Data:
         schema = self._create_schema()
-        data = self._wait_operation(schema)
+        data = await self._wait_operation(schema)
         return Data(data=data)
 
 
@@ -97,21 +92,25 @@ class OnlyofficeDocspaceWaitOperation(ComponentWithCache):
         )
 
 
-    def _tool_func(self, **kwargs) -> dict:
+    async def _tool_func(self, **kwargs) -> Any:
         schema = self.Schema(**kwargs)
-        return self._wait_operation(schema)
+        return await self._wait_operation(schema)
 
 
-    def _wait_operation(self, schema: Schema) -> dict:
+    async def _wait_operation(self, schema: Schema) -> Any:
+        client = await self._get_client()
+
         finished = False
         body = {}
 
         retries = schema.max_retries
 
         while retries > 0:
-            body = self._list_operations()
+            body, response = client.files.list_operations()
+            if isinstance(response, ErrorResponse):
+                raise response.exception
 
-            for item in body["response"]:
+            for item in body:
                 if item["id"] == schema.id and item["finished"]:
                     finished = True
                     break
@@ -126,15 +125,3 @@ class OnlyofficeDocspaceWaitOperation(ComponentWithCache):
             raise ValueError(f"Operation {schema.id} did not finish in time")
 
         return body
-
-
-    def _list_operations(self) -> dict:
-        data = json.loads(self.auth_text)
-        url = urljoin(data["base_url"], "api/2.0/files/fileops")
-        headers = {
-            "Accept": "application/json",
-            "Authorization": f"{data["token"]}",
-        }
-        response = requests.get(url, headers=headers)
-        response.raise_for_status()
-        return response.json()

@@ -1,12 +1,11 @@
-import json
+from typing import Any
 import time
-from urllib.parse import urljoin
 
 from langchain.tools import StructuredTool
 from pydantic import BaseModel, Field
-import requests
 
-from langflow.custom.custom_component.component_with_cache import ComponentWithCache
+from langflow.base.onlyoffice.docspace.client import Client, ErrorResponse
+from langflow.base.onlyoffice.docspace.component import Component
 from langflow.field_typing import Tool
 from langflow.inputs import MessageTextInput, SecretStrInput
 from langflow.io import Output
@@ -14,11 +13,10 @@ from langflow.schema import Data
 from langflow.template import Output
 
 
-class OnlyofficeDocspaceDownloadAsText(ComponentWithCache):
+class OnlyofficeDocspaceDownloadAsText(Component):
     display_name = "Download As Text"
     description = "Download a file from the ONLYOFFICE DocSpace as text."
     documentation = "https://api.onlyoffice.com/openapi/docspace/api-backend/usage-api/bulk-download/"
-    icon = "onlyoffice"
     name = "OnlyofficeDocspaceDownloadAsText"
 
 
@@ -27,10 +25,7 @@ class OnlyofficeDocspaceDownloadAsText(ComponentWithCache):
             name="auth_text",
             display_name="Text from Basic Authentication",
             info="Text output from the Basic Authentication component.",
-            value="""{
-                "base_url": "",
-                "token": ""
-            }""",
+            advanced=True,
         ),
         MessageTextInput(
             name="file_id",
@@ -65,9 +60,9 @@ class OnlyofficeDocspaceDownloadAsText(ComponentWithCache):
         )
 
 
-    def build_data(self) -> Data:
+    async def build_data(self) -> Data:
         schema = self._create_schema()
-        text = self._download_as_text(schema)
+        text = await self._download_as_text(schema)
         return Data(data={"text": text})
 
 
@@ -80,37 +75,42 @@ class OnlyofficeDocspaceDownloadAsText(ComponentWithCache):
         )
 
 
-    def _tool_func(self, **kwargs) -> dict:
+    async def _tool_func(self, **kwargs) -> dict:
         schema = self.Schema(**kwargs)
-        text = self._download_as_text(schema)
+        text = await self._download_as_text(schema)
         return {"text": text}
 
 
-    def _download_as_text(self, schema: Schema) -> str:
-        body = self._get_file(schema)
-        type = body["response"]["fileType"]
+    async def _download_as_text(self, schema: Schema) -> str:
+        client = await self._get_client()
+
+        result, response = client.files.get_file(schema.file_id)
+        if isinstance(response, ErrorResponse):
+            raise response.exception
+
+        type = result["fileType"]
         ext = self._get_ext(type)
-        body = self._start_downloading(schema, ext)
-        id = body["response"][0]["id"]
-        operations = self._wait_operation(id)
+        options = {"fileIds": [{"key": schema.file_id, "value": ext}]}
+
+        result, response = client.files.bulk_download(options)
+        if isinstance(response, ErrorResponse):
+            raise response.exception
+
+        id = result[0]["id"]
+        result = self._wait_operation(client, id)
         url = ""
-        for item in operations["response"]:
+        for item in result:
             if item["id"] == id:
                 url = item["url"]
                 break
-        return self._download_file(url)
 
+        request = client.create_request("GET", url)
+        request.headers["Accept"] = "text/plain"
 
-    def _get_file(self, schema: Schema) -> dict:
-        data = json.loads(self.auth_text)
-        url = urljoin(data["base_url"], f"api/2.0/files/file/{schema.file_id}")
-        headers = {
-            "Accept": "application/json",
-            "Authorization": f"{data["token"]}",
-        }
-        response = requests.get(url, headers=headers)
-        response.raise_for_status()
-        return response.json()
+        with client.opener.open(request) as response:
+            content = response.read()
+
+        return content.decode("utf-8")
 
 
     def _get_ext(self, type: str) -> str:
@@ -126,42 +126,7 @@ class OnlyofficeDocspaceDownloadAsText(ComponentWithCache):
             raise ValueError(f"Unsupported file type: {type}")
 
 
-    def _start_downloading(self, schema: Schema, ext: str) -> dict:
-        data = json.loads(self.auth_text)
-        url = urljoin(data["base_url"], "api/2.0/files/fileops/bulkdownload")
-        headers = {
-            "Accept": "application/json",
-            "Authorization": f"{data["token"]}",
-        }
-        body = {
-            "fileIds": [
-                {
-                    "key": schema.file_id,
-                    "value": ext,
-                },
-            ],
-        }
-        response = requests.put(url, headers=headers, json=body)
-        response.raise_for_status()
-        return response.json()
-
-
-    def _download_file(self, url: str) -> str:
-        data = json.loads(self.auth_text)
-        headers = {
-            "Accept": "text/plain",
-            "Authorization": f"{data["token"]}",
-        }
-        response = requests.get(url, headers=headers)
-        response.raise_for_status()
-        response.encoding = "utf-8"
-        return response.text
-
-    #
-    # async
-    #
-
-    def _wait_operation(self, id: int) -> dict:
+    def _wait_operation(self, client: Client, id: int) -> Any:
         finished = False
         body = {}
 
@@ -169,9 +134,11 @@ class OnlyofficeDocspaceDownloadAsText(ComponentWithCache):
         limit = 100
 
         while limit > 0:
-            body = self._list_operations()
+            body, response = client.files.list_operations()
+            if isinstance(response, ErrorResponse):
+                raise response.exception
 
-            for item in body["response"]:
+            for item in body:
                 if item["id"] == id and item["finished"]:
                     finished = True
                     break
@@ -186,15 +153,3 @@ class OnlyofficeDocspaceDownloadAsText(ComponentWithCache):
             raise ValueError(f"Operation {id} did not finish in time")
 
         return body
-
-
-    def _list_operations(self) -> dict:
-        data = json.loads(self.auth_text)
-        url = urljoin(data["base_url"], "api/2.0/files/fileops")
-        headers = {
-            "Accept": "application/json",
-            "Authorization": f"{data["token"]}",
-        }
-        response = requests.get(url, headers=headers)
-        response.raise_for_status()
-        return response.json()

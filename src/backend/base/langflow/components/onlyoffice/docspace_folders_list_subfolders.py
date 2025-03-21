@@ -1,11 +1,10 @@
-import json
-from urllib.parse import urljoin
+from typing import Any
 
 from langchain.tools import StructuredTool
 from pydantic import BaseModel, Field
-import requests
 
-from langflow.custom.custom_component.component_with_cache import ComponentWithCache
+from langflow.base.onlyoffice.docspace.client import ErrorResponse
+from langflow.base.onlyoffice.docspace.component import Component
 from langflow.field_typing import Tool
 from langflow.inputs import MessageTextInput, SecretStrInput
 from langflow.io import Output
@@ -13,10 +12,9 @@ from langflow.schema import Data
 from langflow.template import Output
 
 
-class OnlyofficeDocspaceListSubfolders(ComponentWithCache):
+class OnlyofficeDocspaceListSubfolders(Component):
     display_name = "List Subfolders"
     description = "List subfolders in ONLYOFFICE DocSpace."
-    icon = "onlyoffice"
     name = "OnlyofficeDocspaceListSubfolders"
 
 
@@ -25,10 +23,7 @@ class OnlyofficeDocspaceListSubfolders(ComponentWithCache):
             name="auth_text",
             display_name="Text from Basic Authentication",
             info="Text output from the Basic Authentication component.",
-            value="""{
-                "base_url": "",
-                "token": ""
-            }""",
+            advanced=True,
         ),
         MessageTextInput(
             name="folder_id",
@@ -63,9 +58,9 @@ class OnlyofficeDocspaceListSubfolders(ComponentWithCache):
         )
 
 
-    def build_data(self) -> Data:
+    async def build_data(self) -> Data:
         schema = self._create_schema()
-        data = self._list_subfolders(schema)
+        data = await self._list_subfolders(schema)
         return Data(data=data)
 
 
@@ -78,18 +73,16 @@ class OnlyofficeDocspaceListSubfolders(ComponentWithCache):
         )
 
 
-    def _tool_func(self, **kwargs) -> dict:
+    async def _tool_func(self, **kwargs) -> Any:
         schema = self.Schema(**kwargs)
-        return self._get_room(schema)
+        return await self._get_room(schema)
 
 
-    def _list_subfolders(self, schema: Schema) -> dict:
-        data = json.loads(self.auth_text)
-        url = urljoin(data["base_url"], f"api/2.0/files/{schema.folder_id}/subfolders")
-        headers = {
-            "Accept": "application/json",
-            "Authorization": f"{data["token"]}",
-        }
-        response = requests.get(url, headers=headers)
-        response.raise_for_status()
-        return response.json()
+    async def _list_subfolders(self, schema: Schema) -> Any:
+        client = await self._get_client()
+
+        result, response = client.files.get_subfolders(schema.folder_id)
+        if isinstance(response, ErrorResponse):
+            raise Exception(response.message)
+
+        return result

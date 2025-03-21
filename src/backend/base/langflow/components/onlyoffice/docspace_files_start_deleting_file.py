@@ -1,11 +1,10 @@
-import json
-from urllib.parse import urljoin
+from typing import Any
 
 from langchain.tools import StructuredTool
 from pydantic import BaseModel, Field
-import requests
 
-from langflow.custom.custom_component.component_with_cache import ComponentWithCache
+from langflow.base.onlyoffice.docspace.client import DeleteFileOptions, ErrorResponse
+from langflow.base.onlyoffice.docspace.component import Component
 from langflow.field_typing import Tool
 from langflow.inputs import MessageTextInput, SecretStrInput
 from langflow.io import Output
@@ -13,10 +12,9 @@ from langflow.schema import Data
 from langflow.template import Output
 
 
-class OnlyofficeDocspaceStartDeletingFile(ComponentWithCache):
+class OnlyofficeDocspaceStartDeletingFile(Component):
     display_name = "Start Deleting File"
     description = "Start asynchronous operation to delete a file from ONLYOFFICE DocSpace."
-    icon = "onlyoffice"
     name = "OnlyofficeDocspaceStartDeletingFile"
 
 
@@ -25,10 +23,7 @@ class OnlyofficeDocspaceStartDeletingFile(ComponentWithCache):
             name="auth_text",
             display_name="Text from Basic Authentication",
             info="Text output from the Basic Authentication component.",
-            value="""{
-                "base_url": "",
-                "token": ""
-            }""",
+            advanced=True,
         ),
         MessageTextInput(
             name="file_id",
@@ -63,9 +58,9 @@ class OnlyofficeDocspaceStartDeletingFile(ComponentWithCache):
         )
 
 
-    def build_data(self) -> Data:
+    async def build_data(self) -> Data:
         schema = self._create_schema()
-        data = self._delete_file(schema)
+        data = await self._delete_file(schema)
         return Data(data=data)
 
 
@@ -78,22 +73,18 @@ class OnlyofficeDocspaceStartDeletingFile(ComponentWithCache):
         )
 
 
-    def _tool_func(self, **kwargs) -> dict:
+    async def _tool_func(self, **kwargs) -> Any:
         schema = self.Schema(**kwargs)
-        return self._start_deleting_file(schema)
+        return await self._start_deleting_file(schema)
 
 
-    def _start_deleting_file(self, schema: Schema) -> dict:
-        data = json.loads(self.auth_text)
-        url = urljoin(data["base_url"], f"api/2.0/files/file/{schema.file_id}")
-        headers = {
-            "Accept": "application/json",
-            "Authorization": f"{data["token"]}",
-        }
-        body = {
-            "deleteAfter": True,
-            "immediately": True,
-        }
-        response = requests.delete(url, headers=headers, json=body)
-        response.raise_for_status()
-        return response.json()
+    async def _start_deleting_file(self, schema: Schema) -> Any:
+        client = await self._get_client()
+
+        options = DeleteFileOptions(DeleteAfter=True, immediately=True)
+
+        result, response = client.files.delete_file(schema.file_id, options)
+        if isinstance(response, ErrorResponse):
+            raise response.exception
+
+        return result

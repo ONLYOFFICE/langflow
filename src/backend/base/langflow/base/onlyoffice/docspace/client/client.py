@@ -2,7 +2,7 @@ from __future__ import annotations
 from typing import Self
 from .base import Client as Base, Opener
 from .services import AuthService, FilesService
-from .transformers import AuthTokenTransformer
+from .transformers import AuthTokenTransformer, OriginTransformer
 
 
 class Client(Base):
@@ -14,4 +14,9 @@ class Client(Base):
 
     def with_auth_token(self, token: str) -> Self:
         transformer = AuthTokenTransformer(token)
+        return self._with_transformer(transformer)
+
+
+    def with_origin(self, origin: str) -> Self:
+        transformer = OriginTransformer(origin)
         return self._with_transformer(transformer)
