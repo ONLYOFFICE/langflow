@@ -1,12 +1,11 @@
-import json
+from typing import Any
 import time
-from urllib.parse import urljoin
 
 from langchain.tools import StructuredTool
 from pydantic import BaseModel, Field
-import requests
 
-from langflow.custom.custom_component.component_with_cache import ComponentWithCache
+from langflow.base.onlyoffice.docspace.client import ArchiveRoomOptions, Client, ErrorResponse
+from langflow.base.onlyoffice.docspace.component import Component
 from langflow.field_typing import Tool
 from langflow.inputs import MessageTextInput, SecretStrInput
 from langflow.io import Output
@@ -14,10 +13,9 @@ from langflow.schema import Data
 from langflow.template import Output
 
 
-class OnlyofficeDocspaceArchiveRoom(ComponentWithCache):
+class OnlyofficeDocspaceArchiveRoom(Component):
     display_name = "Archive Room"
     description = "Archive a room in ONLYOFFICE DocSpace."
-    icon = "onlyoffice"
     name = "OnlyofficeDocspaceArchiveRoom"
 
 
@@ -26,10 +24,7 @@ class OnlyofficeDocspaceArchiveRoom(ComponentWithCache):
             name="auth_text",
             display_name="Text from Basic Authentication",
             info="Text output from the Basic Authentication component.",
-            value="""{
-                "base_url": "",
-                "token": ""
-            }""",
+            advanced=True,
         ),
         MessageTextInput(
             name="room_id",
@@ -64,9 +59,9 @@ class OnlyofficeDocspaceArchiveRoom(ComponentWithCache):
         )
 
 
-    def build_data(self) -> Data:
+    async def build_data(self) -> Data:
         schema = self._create_schema()
-        data = self._archive_room(schema)
+        data = await self._archive_room(schema)
         return Data(data=data)
 
 
@@ -79,37 +74,24 @@ class OnlyofficeDocspaceArchiveRoom(ComponentWithCache):
         )
 
 
-    def _tool_func(self, **kwargs) -> dict:
+    async def _tool_func(self, **kwargs) -> Any:
         schema = self.Schema(**kwargs)
-        return self._archive_room(schema)
+        return await self._archive_room(schema)
 
 
-    def _archive_room(self, room_id: int) -> dict:
-        body = self._start_archiving_room(room_id=room_id)
-        id = body["response"]["id"]
-        return self._wait_operation(id)
+    async def _archive_room(self, schema: Schema) -> Any:
+        client = await self._get_client()
+
+        options = ArchiveRoomOptions(DeleteAfter=True)
+
+        result, response = client.files.archive_room(schema.room_id, options)
+        if isinstance(response, ErrorResponse):
+            raise response.exception
+
+        return self._wait_operation(client, result["id"])
 
 
-    def _start_archiving_room(self, schema: Schema) -> dict:
-        data = json.loads(self.auth_text)
-        url = urljoin(data["base_url"], f"api/2.0/files/rooms/{schema.room_id}/archive")
-        headers = {
-            "Accept": "application/json",
-            "Authorization": f"{data["token"]}",
-        }
-        body = {
-            "deleteAfter": True,
-        }
-        response = requests.put(url, headers=headers, json=body)
-        response.raise_for_status()
-        return response.json()
-
-
-    #
-    # async
-    #
-
-    def _wait_operation(self, id: int) -> dict:
+    def _wait_operation(self, client: Client, id: int) -> Any:
         finished = False
         body = {}
 
@@ -117,9 +99,11 @@ class OnlyofficeDocspaceArchiveRoom(ComponentWithCache):
         limit = 100
 
         while limit > 0:
-            body = self._list_operations()
+            body, response = client.files.list_operations()
+            if isinstance(response, ErrorResponse):
+                raise response.exception
 
-            for item in body["response"]:
+            for item in body:
                 if item["id"] == id and item["finished"]:
                     finished = True
                     break
@@ -134,15 +118,3 @@ class OnlyofficeDocspaceArchiveRoom(ComponentWithCache):
             raise ValueError(f"Operation {id} did not finish in time")
 
         return body
-
-
-    def _list_operations(self) -> dict:
-        data = json.loads(self.auth_text)
-        url = urljoin(data["base_url"], "api/2.0/files/fileops")
-        headers = {
-            "Accept": "application/json",
-            "Authorization": f"{data["token"]}",
-        }
-        response = requests.get(url, headers=headers)
-        response.raise_for_status()
-        return response.json()

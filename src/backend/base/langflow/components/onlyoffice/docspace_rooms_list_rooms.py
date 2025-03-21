@@ -1,10 +1,10 @@
-import json
+from typing import Any
 
 from langchain.tools import StructuredTool
 from pydantic import BaseModel
 
-from langflow.base.onlyoffice.docspace.client import ErrorResponse, Client
-from langflow.custom.custom_component.component_with_cache import ComponentWithCache
+from langflow.base.onlyoffice.docspace.client import ErrorResponse
+from langflow.base.onlyoffice.docspace.component import Component
 from langflow.field_typing import Tool
 from langflow.inputs import SecretStrInput
 from langflow.io import Output
@@ -12,10 +12,9 @@ from langflow.schema import Data
 from langflow.template import Output
 
 
-class OnlyofficeDocspaceListRooms(ComponentWithCache):
+class OnlyofficeDocspaceListRooms(Component):
     display_name = "List Rooms"
     description = "List rooms in ONLYOFFICE DocSpace."
-    icon = "onlyoffice"
     name = "OnlyofficeDocspaceListRooms"
 
 
@@ -24,10 +23,7 @@ class OnlyofficeDocspaceListRooms(ComponentWithCache):
             name="auth_text",
             display_name="Text from Basic Authentication",
             info="Text output from the Basic Authentication component.",
-            value="""{
-                "base_url": "",
-                "token": ""
-            }""",
+            advanced=True,
         ),
     ]
 
@@ -51,8 +47,8 @@ class OnlyofficeDocspaceListRooms(ComponentWithCache):
         pass
 
 
-    def build_data(self) -> Data:
-        data = self._list_rooms()
+    async def build_data(self) -> Data:
+        data = await self._list_rooms()
         return Data(data=data)
 
 
@@ -65,12 +61,8 @@ class OnlyofficeDocspaceListRooms(ComponentWithCache):
         )
 
 
-    def _list_rooms(self) -> dict:
-        data = json.loads(self.auth_text)
-
-        client = Client()
-        client.base_url = data["base_url"]
-        client = client.with_auth_token(data["token"])
+    async def _list_rooms(self) -> Any:
+        client = await self._get_client()
 
         list, response = client.files.list_rooms()
         if isinstance(response, ErrorResponse):

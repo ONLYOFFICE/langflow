@@ -1,12 +1,11 @@
-import json
+from typing import Any
 import time
-from urllib.parse import urljoin
 
 from langchain.tools import StructuredTool
 from pydantic import BaseModel, Field
-import requests
 
-from langflow.custom.custom_component.component_with_cache import ComponentWithCache
+from langflow.base.onlyoffice.docspace.client import Client, DeleteFileOptions, ErrorResponse
+from langflow.base.onlyoffice.docspace.component import Component
 from langflow.field_typing import Tool
 from langflow.inputs import MessageTextInput, SecretStrInput
 from langflow.io import Output
@@ -14,10 +13,9 @@ from langflow.schema import Data
 from langflow.template import Output
 
 
-class OnlyofficeDocspaceDeleteFile(ComponentWithCache):
+class OnlyofficeDocspaceDeleteFile(Component):
     display_name = "Delete File"
     description = "Delete a file from ONLYOFFICE DocSpace."
-    icon = "onlyoffice"
     name = "OnlyofficeDocspaceDeleteFile"
 
 
@@ -26,10 +24,7 @@ class OnlyofficeDocspaceDeleteFile(ComponentWithCache):
             name="auth_text",
             display_name="Text from Basic Authentication",
             info="Text output from the Basic Authentication component.",
-            value="""{
-                "base_url": "",
-                "token": ""
-            }""",
+            advanced=True,
         ),
         MessageTextInput(
             name="file_id",
@@ -64,9 +59,9 @@ class OnlyofficeDocspaceDeleteFile(ComponentWithCache):
         )
 
 
-    def build_data(self) -> Data:
+    async def build_data(self) -> Data:
         schema = self._create_schema()
-        data = self._delete_file(schema)
+        data = await self._delete_file(schema)
         return Data(data=data)
 
 
@@ -79,38 +74,24 @@ class OnlyofficeDocspaceDeleteFile(ComponentWithCache):
         )
 
 
-    def _tool_func(self, **kwargs) -> dict:
+    async def _tool_func(self, **kwargs) -> Any:
         schema = self.Schema(**kwargs)
-        return self._delete_file(schema)
+        return await self._delete_file(schema)
 
 
-    def _delete_file(self, schema: Schema) -> dict:
-        body = self._start_deleting_file(schema)
-        id = body["response"]["id"]
-        return self._wait_operation(id)
+    async def _delete_file(self, schema: Schema) -> Any:
+        client = await self._get_client()
+
+        options = DeleteFileOptions(DeleteAfter=True, immediately=True)
+
+        result, response = client.files.delete_file(schema.file_id, options)
+        if isinstance(response, ErrorResponse):
+            raise response.exception
+
+        return self._wait_operation(client, result["id"])
 
 
-    def _start_deleting_file(self, schema: Schema) -> dict:
-        data = json.loads(self.auth_text)
-        url = urljoin(data["base_url"], f"api/2.0/files/file/{schema.file_id}")
-        headers = {
-            "Accept": "application/json",
-            "Authorization": f"{data["token"]}",
-        }
-        body = {
-            "deleteAfter": True,
-            "immediately": True,
-        }
-        response = requests.delete(url, headers=headers, json=body)
-        response.raise_for_status()
-        return response.json()
-
-
-    #
-    # async
-    #
-
-    def _wait_operation(self, id: int) -> dict:
+    def _wait_operation(self, client: Client, id: int) -> dict:
         finished = False
         body = {}
 
@@ -118,9 +99,11 @@ class OnlyofficeDocspaceDeleteFile(ComponentWithCache):
         limit = 100
 
         while limit > 0:
-            body = self._list_operations()
+            body, response = client.files.list_operations()
+            if isinstance(response, ErrorResponse):
+                raise response.exception
 
-            for item in body["response"]:
+            for item in body:
                 if item["id"] == id and item["finished"]:
                     finished = True
                     break
@@ -135,15 +118,3 @@ class OnlyofficeDocspaceDeleteFile(ComponentWithCache):
             raise ValueError(f"Operation {id} did not finish in time")
 
         return body
-
-
-    def _list_operations(self) -> dict:
-        data = json.loads(self.auth_text)
-        url = urljoin(data["base_url"], "api/2.0/files/fileops")
-        headers = {
-            "Accept": "application/json",
-            "Authorization": f"{data["token"]}",
-        }
-        response = requests.get(url, headers=headers)
-        response.raise_for_status()
-        return response.json()

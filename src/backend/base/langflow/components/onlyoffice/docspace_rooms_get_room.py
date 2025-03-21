@@ -1,10 +1,10 @@
-import json
+from typing import Any
 
 from langchain.tools import StructuredTool
 from pydantic import BaseModel, Field
 
-from langflow.base.onlyoffice.docspace.client import ErrorResponse, Client
-from langflow.custom.custom_component.component_with_cache import ComponentWithCache
+from langflow.base.onlyoffice.docspace.client import ErrorResponse
+from langflow.base.onlyoffice.docspace.component import Component
 from langflow.field_typing import Tool
 from langflow.inputs import MessageTextInput, SecretStrInput
 from langflow.io import Output
@@ -12,10 +12,9 @@ from langflow.schema import Data
 from langflow.template import Output
 
 
-class OnlyofficeDocspaceGetRoom(ComponentWithCache):
+class OnlyofficeDocspaceGetRoom(Component):
     display_name = "Get Room"
     description = "Get a room from ONLYOFFICE DocSpace."
-    icon = "onlyoffice"
     name = "OnlyofficeDocspaceGetRoom"
 
 
@@ -24,10 +23,7 @@ class OnlyofficeDocspaceGetRoom(ComponentWithCache):
             name="auth_text",
             display_name="Text from Basic Authentication",
             info="Text output from the Basic Authentication component.",
-            value="""{
-                "base_url": "",
-                "token": ""
-            }""",
+            advanced=True,
         ),
         MessageTextInput(
             name="room_id",
@@ -62,9 +58,9 @@ class OnlyofficeDocspaceGetRoom(ComponentWithCache):
         )
 
 
-    def build_data(self) -> Data:
+    async def build_data(self) -> Data:
         schema = self._create_schema()
-        data = self._get_room(schema)
+        data = await self._get_room(schema)
         return Data(data=data)
 
 
@@ -77,17 +73,13 @@ class OnlyofficeDocspaceGetRoom(ComponentWithCache):
         )
 
 
-    def _tool_func(self, **kwargs) -> dict:
+    async def _tool_func(self, **kwargs) -> Any:
         schema = self.Schema(**kwargs)
-        return self._get_room(schema)
+        return await self._get_room(schema)
 
 
-    def _get_room(self, schema: Schema) -> dict:
-        data = json.loads(self.auth_text)
-
-        client = Client()
-        client.base_url = data["base_url"]
-        client = client.with_auth_token(data["token"])
+    async def _get_room(self, schema: Schema) -> Any:
+        client = await self._get_client()
 
         room, response = client.files.get_room(schema.room_id)
         if isinstance(response, ErrorResponse):

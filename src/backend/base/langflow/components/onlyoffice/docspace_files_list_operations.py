@@ -1,11 +1,10 @@
-import json
-from urllib.parse import urljoin
+from typing import Any
 
 from langchain.tools import StructuredTool
 from pydantic import BaseModel
-import requests
 
-from langflow.custom.custom_component.component_with_cache import ComponentWithCache
+from langflow.base.onlyoffice.docspace.client import ErrorResponse
+from langflow.base.onlyoffice.docspace.component import Component
 from langflow.field_typing import Tool
 from langflow.inputs import SecretStrInput
 from langflow.io import Output
@@ -13,10 +12,9 @@ from langflow.schema import Data
 from langflow.template import Output
 
 
-class OnlyofficeDocspaceListOperations(ComponentWithCache):
+class OnlyofficeDocspaceListOperations(Component):
     display_name = "List Operations"
     description = "List active operations in ONLYOFFICE DocSpace."
-    icon = "onlyoffice"
     name = "OnlyofficeDocspaceListOperations"
 
 
@@ -25,10 +23,7 @@ class OnlyofficeDocspaceListOperations(ComponentWithCache):
             name="auth_text",
             display_name="Text from Basic Authentication",
             info="Text output from the Basic Authentication component.",
-            value="""{
-                "base_url": "",
-                "token": ""
-            }""",
+            advanced=True,
         ),
     ]
 
@@ -52,8 +47,8 @@ class OnlyofficeDocspaceListOperations(ComponentWithCache):
         pass
 
 
-    def build_data(self) -> Data:
-        data = self._list_operations()
+    async def build_data(self) -> Data:
+        data = await self._list_operations()
         return Data(data=data)
 
 
@@ -66,13 +61,11 @@ class OnlyofficeDocspaceListOperations(ComponentWithCache):
         )
 
 
-    def _list_operations(self) -> dict:
-        data = json.loads(self.auth_text)
-        url = urljoin(data["base_url"], "api/2.0/files/fileops")
-        headers = {
-            "Accept": "application/json",
-            "Authorization": f"{data["token"]}",
-        }
-        response = requests.get(url, headers=headers)
-        response.raise_for_status()
-        return response.json()
+    async def _list_operations(self) -> Any:
+        client = await self._get_client()
+
+        result, response = client.files.list_operations()
+        if isinstance(response, ErrorResponse):
+            raise response.exception
+
+        return result

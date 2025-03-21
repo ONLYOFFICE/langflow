@@ -1,20 +1,18 @@
-import json
 from urllib.request import Request
 
 from pydantic import BaseModel, Field
 
-from langflow.base.onlyoffice.docspace.client import ErrorResponse, Client
-from langflow.custom.custom_component.component_with_cache import ComponentWithCache
+from langflow.base.onlyoffice.docspace.client import ErrorResponse
+from langflow.base.onlyoffice.docspace.component import Component
 from langflow.inputs import MessageTextInput, SecretStrInput
 from langflow.io import Output
 from langflow.schema import Message
 from langflow.template import Output
 
 
-class OnlyofficeDocspaceDownloadFile(ComponentWithCache):
+class OnlyofficeDocspaceDownloadFile(Component):
     display_name = "Download File"
     description = "Download a file from ONLYOFFICE DocSpace."
-    icon = "onlyoffice"
     name = "OnlyofficeDocspaceDownloadFile"
 
 
@@ -23,10 +21,7 @@ class OnlyofficeDocspaceDownloadFile(ComponentWithCache):
             name="auth_text",
             display_name="Text from Basic Authentication",
             info="Text output from the Basic Authentication component.",
-            value="""{
-                "base_url": "",
-                "token": ""
-            }""",
+            advanced=True,
         ),
         MessageTextInput(
             name="file_id",
@@ -69,25 +64,21 @@ class OnlyofficeDocspaceDownloadFile(ComponentWithCache):
         )
 
 
-    def build_content(self) -> Message:
+    async def build_content(self) -> Message:
         schema = self._create_schema()
-        chunk = self._download_file(schema)
+        chunk = await self._download_file(schema)
         return Message(content=chunk)
 
 
-    def build_text(self) -> Message:
+    async def build_text(self) -> Message:
         schema = self._create_schema()
-        chunk = self._download_file(schema)
+        chunk = await self._download_file(schema)
         text = chunk.decode("utf-8")
         return Message(text=text)
 
 
-    def _download_file(self, schema: Schema):
-        data = json.loads(self.auth_text)
-
-        client = Client()
-        client.base_url = data["base_url"]
-        client = client.with_auth_token(data["token"])
+    async def _download_file(self, schema: Schema):
+        client = await self._get_client()
 
         url, response = client.files.get_file_download_link(schema.file_id)
         if isinstance(response, ErrorResponse):

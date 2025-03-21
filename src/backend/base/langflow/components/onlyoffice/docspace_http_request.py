@@ -4,8 +4,8 @@ from typing import Any
 from langchain.tools import StructuredTool
 from pydantic import BaseModel, Field
 
-from langflow.base.onlyoffice.docspace.client import ErrorResponse, Client
-from langflow.custom.custom_component.component_with_cache import ComponentWithCache
+from langflow.base.onlyoffice.docspace.client import ErrorResponse
+from langflow.base.onlyoffice.docspace.component import Component
 from langflow.field_typing import Tool
 from langflow.inputs import MessageTextInput, SecretStrInput
 from langflow.io import Output
@@ -13,10 +13,9 @@ from langflow.schema import Data
 from langflow.template import Output
 
 
-class OnlyofficeDocspaceHttpRequest(ComponentWithCache):
+class OnlyofficeDocspaceHttpRequest(Component):
     display_name = "HTTP Request"
     description = "Make an HTTP request using ONLYOFFICE DocSpace client."
-    icon = "onlyoffice"
     name = "OnlyofficeDocspaceHttpRequest"
 
 
@@ -25,10 +24,6 @@ class OnlyofficeDocspaceHttpRequest(ComponentWithCache):
             name="auth_text",
             display_name="Text from Basic Authentication",
             info="Text output from the Basic Authentication component.",
-            value="""{
-                "base_url": "",
-                "token": ""
-            }""",
         ),
         MessageTextInput(
             name="method",
@@ -92,9 +87,9 @@ class OnlyofficeDocspaceHttpRequest(ComponentWithCache):
         )
 
 
-    def build_data(self) -> Data:
+    async def build_data(self) -> Data:
         schema = self._create_schema()
-        data = self._send_request(schema)
+        data = await self._send_request(schema)
         return Data(data=data)
 
 
@@ -107,17 +102,13 @@ class OnlyofficeDocspaceHttpRequest(ComponentWithCache):
         )
 
 
-    def _tool_func(self, **kwargs) -> dict:
+    async def _tool_func(self, **kwargs) -> dict:
         schema = self.Schema(**kwargs)
-        return self._send_request(schema)
+        return await self._send_request(schema)
 
 
-    def _send_request(self, schema: Schema) -> Any:
-        data = json.loads(self.auth_text)
-
-        client = Client()
-        client.base_url = data["base_url"]
-        client = client.with_auth_token(data["token"])
+    async def _send_request(self, schema: Schema) -> Any:
+        client = await self._get_client()
 
         payload, response = client.request(
             schema.method,
