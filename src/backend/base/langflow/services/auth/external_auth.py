@@ -128,21 +128,17 @@ async def verify_external_auth(request: Request, db: AsyncSession, external_api_
                         # For existing keys, we need to create a new one because we can't get
                         # the unmasked value of an existing key for security reasons
                         # First delete the existing key
-                        await delete_api_key(db, existing_chat_keys[0].id, existing_user.id)
-                        
-                        # Then create a new one
-                        api_key_create = ApiKeyCreate(name="chat_api_key")
-                        unmasked_key = await create_api_key(db, api_key_create, user_id=existing_user.id)
-                        chat_api_key_value = unmasked_key.api_key  # Store the actual API key value
+                        await delete_api_key(db, existing_chat_keys[0].id)
+
                         logger.info(
                             f"Recreated chat_api_key for user {username} to get unmasked value")
-                    else:
-                        # Create new chat_api_key
-                        api_key_create = ApiKeyCreate(name="chat_api_key")
-                        unmasked_key = await create_api_key(db, api_key_create, user_id=existing_user.id)
-                        chat_api_key_value = unmasked_key.api_key  # Store the actual API key value
-                        logger.info(
-                            f"Created chat_api_key for existing user {username}")
+
+                    # Create new chat_api_key
+                    api_key_create = ApiKeyCreate(name="chat_api_key")
+                    unmasked_key = await create_api_key(db, api_key_create, user_id=existing_user.id)
+                    chat_api_key_value = unmasked_key.api_key  # Store the actual API key value
+                    logger.info(
+                        f"Created chat_api_key for existing user {username}")
                 except Exception as e:
                     logger.error(
                         f"Error checking/creating chat_api_key for existing user: {str(e)}")
