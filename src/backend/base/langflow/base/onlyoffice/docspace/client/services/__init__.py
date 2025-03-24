@@ -5,6 +5,7 @@ from .files import (
     CreateRoomOptions,
     DeleteFileOptions,
     FilesService,
+    RoomType,
     UpdateFileOptions,
     UpdateRoomOptions,
 )
@@ -19,6 +20,7 @@ __all__ = [
     "CreateRoomOptions",
     "DeleteFileOptions",
     "FilesService",
+    "RoomType",
     "UpdateFileOptions",
     "UpdateRoomOptions",
 ]

@@ -1,7 +1,24 @@
 from __future__ import annotations
-from typing import Any, Tuple
+from typing import Any, Literal, Tuple
 from pydantic import BaseModel, Field
 from ..base import Response, Service
+
+
+RoomType = \
+    Literal[
+        "FillingFormsRoom",
+        "EditingRoom",
+        "CustomRoom",
+        "PublicRoom",
+        "VirtualDataRoom",
+    ] | \
+    Literal[
+        1,
+        2,
+        5,
+        6,
+        8,
+    ]
 
 
 class CreateFolderOptions(BaseModel):
@@ -18,6 +35,7 @@ class UpdateFileOptions(BaseModel):
 
 
 class CreateRoomOptions(BaseModel):
+    room_type: RoomType | None = Field(None, alias="roomType")
     title: str | None = Field(None)
 
 
@@ -101,6 +119,28 @@ class FilesService(Service):
 
 
     def create_room(self, options: CreateRoomOptions) -> Tuple[Any, Response]:
+        # There is a bug on the DocSpace that does not allow using string cases
+        # of the RoomType enum.
+
+        room_type = options.room_type
+
+        if room_type is not None and isinstance(room_type, str):
+            if room_type == "FillingFormsRoom":
+                room_type = 1
+            elif room_type == "EditingRoom":
+                room_type = 2
+            elif room_type == "CustomRoom":
+                room_type = 5
+            elif room_type == "PublicRoom":
+                room_type = 6
+            elif room_type == "VirtualDataRoom":
+                room_type = 8
+
+        options = CreateRoomOptions(
+            roomType=room_type,
+            title=options.title,
+        )
+
         return self._client.post(
             "api/2.0/files/rooms",
             body=options.model_dump(),
