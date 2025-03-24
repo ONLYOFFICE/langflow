@@ -18,6 +18,7 @@ from .services import (
     CreateRoomOptions,
     DeleteFileOptions,
     FilesService,
+    RoomType,
     UpdateFileOptions,
     UpdateRoomOptions,
 )
@@ -40,6 +41,7 @@ __all__ = [
     "Response",
     "ResponseError",
     "ResponseLink",
+    "RoomType",
     "Service",
     "SuccessPayload",
     "SuccessResponse",
