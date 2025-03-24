@@ -1,5 +1,7 @@
+from cgitb import text
 from langflow.template.field.base import Output
 from langflow.schema.data import Data
+from langflow.schema.message import Message
 from langflow.custom import Component
 from langflow.inputs.inputs import DataInput, StrInput
 import json
@@ -97,10 +99,10 @@ class DataMapper(Component):
         result_data = self._map_data()
         return Data(data=result_data)
     
-    def build_message(self) -> str:
+    def build_message(self) -> Message:
         result_data = self._map_data()
         try:
             json_string = json.dumps(result_data, indent=2, default=str)
-            return json_string
+            return Message(text=json_string)
         except Exception as e:
-            return f"Error converting to JSON: {str(e)}"
+            return Message(text=f"Error converting to JSON: {str(e)}", error=True)
