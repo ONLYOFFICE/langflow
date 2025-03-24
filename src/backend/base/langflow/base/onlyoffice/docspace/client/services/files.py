@@ -76,7 +76,7 @@ class FilesService(Service):
     def create_folder(self, parent_id: int, options: CreateFolderOptions) -> Tuple[Any, Response]:
         return self._client.post(
             f"api/2.0/files/folder/{parent_id}",
-            body=options.model_dump(),
+            body=options.model_dump(by_alias=True),
         )
 
 
@@ -101,14 +101,14 @@ class FilesService(Service):
     def delete_file(self, file_id: int, options: DeleteFileOptions) -> Tuple[Any, Response]:
         return self._client.delete(
             f"api/2.0/files/file/{file_id}",
-            body=options.model_dump(),
+            body=options.model_dump(by_alias=True),
         )
 
 
     def update_file(self, file_id: int, options: UpdateFileOptions) -> Tuple[Any, Response]:
         return self._client.put(
             f"api/2.0/files/file/{file_id}",
-            body=options.model_dump(),
+            body=options.model_dump(by_alias=True),
         )
 
 
@@ -143,7 +143,7 @@ class FilesService(Service):
 
         return self._client.post(
             "api/2.0/files/rooms",
-            body=options.model_dump(),
+            body=options.model_dump(by_alias=True),
         )
 
 
@@ -162,12 +162,12 @@ class FilesService(Service):
     def update_room(self, room_id: int, options: UpdateRoomOptions) -> Tuple[Any, Response]:
         return self._client.put(
             f"api/2.0/files/rooms/{room_id}",
-            body=options.model_dump(),
+            body=options.model_dump(by_alias=True),
         )
 
 
     def archive_room(self, room_id: int, options: ArchiveRoomOptions) -> Tuple[Any, Response]:
         return self._client.put(
             f"api/2.0/files/rooms/{room_id}/archive",
-            body=options.model_dump(),
+            body=options.model_dump(by_alias=True),
         )
