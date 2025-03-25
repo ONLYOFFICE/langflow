@@ -42,6 +42,11 @@ class OnlyofficeDocspaceHttpRequest(Component):
             info="The query parameters of the request in JSON format.",
         ),
         MessageTextInput(
+            name="headers",
+            display_name="Headers",
+            info="The headers of the request in JSON format.",
+        ),
+        MessageTextInput(
             name="body",
             display_name="Body",
             info="The body of the request in JSON format.",
@@ -67,6 +72,7 @@ class OnlyofficeDocspaceHttpRequest(Component):
         method: str | None = Field(None, description="The HTTP method to use.")
         path: str | None = Field(None, description="The path to make the request to.")
         query: dict[str, str] | None = Field(None, description="The query parameters of the request.")
+        headers: dict[str, str] | None = Field(None, description="The headers of the request.")
         body: dict[str, str] | None = Field(None, description="The body of the request.")
 
 
@@ -74,6 +80,10 @@ class OnlyofficeDocspaceHttpRequest(Component):
         query: dict[str, str] | None = None
         if self.query:
             query = json.loads(self.query)
+
+        headers: dict[str, str] | None = None
+        if self.headers:
+            headers = json.loads(self.headers)
 
         body: dict[str, str] | None = None
         if self.body:
@@ -83,6 +93,7 @@ class OnlyofficeDocspaceHttpRequest(Component):
             method=self.method,
             path=self.path,
             query=query,
+            headers=headers,
             body=body,
         )
 
@@ -114,6 +125,7 @@ class OnlyofficeDocspaceHttpRequest(Component):
             schema.method,
             schema.path,
             schema.query,
+            schema.headers,
             schema.body,
         )
 
