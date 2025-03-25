@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any, Literal, Tuple
 from pydantic import BaseModel, Field
-from ..base import Response, Service
+from ..base import Response, Service, encode_multipart_formdata
 
 
 RoomType = \
@@ -19,6 +19,13 @@ RoomType = \
         6,
         8,
     ]
+
+
+class CreateSessionOptions(BaseModel):
+    folder_id: int | None = Field(None, alias="folderId")
+    file_name: str | None = Field(None, alias="FileName")
+    file_size: int | None = Field(None, alias="FileSize")
+    create_on: str | None = Field(None, alias="CreateOn")
 
 
 class CreateFolderOptions(BaseModel):
@@ -47,6 +54,11 @@ class ArchiveRoomOptions(BaseModel):
     delete_after: bool | None = Field(None, alias="DeleteAfter")
 
 
+class UploadChunkOptions(BaseModel):
+    filename: str | None = Field(None)
+    chunk: bytes | None = Field(None)
+
+
 class FilesService(Service):
     def list_my(self) -> Tuple[Any, Response]:
         return self._client.get(
@@ -64,6 +76,13 @@ class FilesService(Service):
         return self._client.put(
             "api/2.0/files/fileops/bulkdownload",
             body=options,
+        )
+
+
+    def create_session(self, folder_id: int, options: CreateSessionOptions) -> Tuple[Any, Response]:
+        return self._client.post(
+            f"api/2.0/files/{folder_id}/upload/create_session",
+            body=options.model_dump(exclude_none=True, by_alias=True),
         )
 
 
@@ -171,3 +190,12 @@ class FilesService(Service):
             f"api/2.0/files/rooms/{room_id}/archive",
             body=options.model_dump(exclude_none=True, by_alias=True),
         )
+
+
+    def upload_chunk(self, session_id: int, options: UploadChunkOptions) -> Tuple[Any, Response]:
+        url = self._client.create_url(f"ChunkedUploader.ashx?uid={session_id}")
+        content_type, data = encode_multipart_formdata(options.filename, options.chunk)
+        req = self._client.create_request("POST", url)
+        req.headers["Content-Type"] = content_type
+        req.data = data
+        return self._client.send_request(req)

@@ -3,11 +3,13 @@ from .files import (
     ArchiveRoomOptions,
     CreateFolderOptions,
     CreateRoomOptions,
+    CreateSessionOptions,
     DeleteFileOptions,
     FilesService,
     RoomType,
     UpdateFileOptions,
     UpdateRoomOptions,
+    UploadChunkOptions,
 )
 
 
@@ -18,9 +20,11 @@ __all__ = [
     "AuthService",
     "CreateFolderOptions",
     "CreateRoomOptions",
+    "CreateSessionOptions",
     "DeleteFileOptions",
     "FilesService",
     "RoomType",
     "UpdateFileOptions",
     "UpdateRoomOptions",
+    "UploadChunkOptions",
 ]
