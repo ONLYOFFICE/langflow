@@ -69,7 +69,7 @@ class OnlyofficeDocspaceDeleteFile(Component):
         return StructuredTool.from_function(
             name="onlyoffice_docspace_delete_file",
             description="Delete a file from ONLYOFFICE DocSpace.",
-            func=self._tool_func,
+            coroutine=self._tool_func,
             args_schema=self.Schema,
         )
 

@@ -97,7 +97,7 @@ class OnlyofficeDocspaceHttpRequest(Component):
         return StructuredTool.from_function(
             name="onlyoffice_docspace_http_request",
             description="Make an HTTP request using ONLYOFFICE DocSpace client.",
-            func=self._tool_func,
+            coroutine=self._tool_func,
             args_schema=self.Schema,
         )
 

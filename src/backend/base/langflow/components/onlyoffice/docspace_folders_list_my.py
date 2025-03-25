@@ -56,7 +56,7 @@ class OnlyofficeDocspaceListMy(Component):
         return StructuredTool.from_function(
             name="onlyoffice_docspace_list_my",
             description="List folders and files from ONLYOFFICE DocSpace 'My Documents' section.",
-            func=self._list_my,
+            coroutine=self._list_my,
             args_schema=self.Schema,
         )
 

@@ -87,7 +87,7 @@ class OnlyofficeDocspaceWaitOperation(Component):
         return StructuredTool.from_function(
             name="onlyoffice_docspace_wait_operation",
             description="Wait for an operation to finish in ONLYOFFICE DocSpace.",
-            func=self._tool_func,
+            coroutine=self._tool_func,
             args_schema=self.Schema,
         )
 

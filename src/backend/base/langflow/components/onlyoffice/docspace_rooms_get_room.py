@@ -68,7 +68,7 @@ class OnlyofficeDocspaceGetRoom(Component):
         return StructuredTool.from_function(
             name="onlyoffice_docspace_get_room",
             description="Get a room from ONLYOFFICE DocSpace.",
-            func=self._tool_func,
+            coroutine=self._tool_func,
             args_schema=self.Schema,
         )
 

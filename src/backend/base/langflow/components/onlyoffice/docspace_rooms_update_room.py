@@ -75,7 +75,7 @@ class OnlyofficeDocspaceUpdateRoom(Component):
         return StructuredTool.from_function(
             name="onlyoffice_docspace_update_room",
             description="Update a room in ONLYOFFICE DocSpace.",
-            func=self._tool_func,
+            coroutine=self._tool_func,
             args_schema=self.Schema,
         )
 

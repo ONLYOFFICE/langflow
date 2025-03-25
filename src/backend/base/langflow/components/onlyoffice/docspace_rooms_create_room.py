@@ -83,7 +83,7 @@ class OnlyofficeDocspaceCreateRoom(Component):
         return StructuredTool.from_function(
             name="onlyoffice_docspace_create_room",
             description="Create a room in ONLYOFFICE DocSpace.",
-            func=self._tool_func,
+            coroutine=self._tool_func,
             args_schema=self.Schema,
         )
 
