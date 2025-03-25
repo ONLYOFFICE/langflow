@@ -62,7 +62,7 @@ class UploadChunkOptions(BaseModel):
 class FilesService(Service):
     def list_my(self) -> Tuple[Any, Response]:
         return self._client.get(
-            "api/2.0/files/my",
+            "api/2.0/files/@my",
         )
 
 
