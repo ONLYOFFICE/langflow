@@ -65,6 +65,9 @@ async def _new_flow(
         """Create a new flow."""
         if flow.user_id is None:
             flow.user_id = user_id
+            
+        # If ID is not provided, we'll set it to None, and the model will generate a UUID
+        # This allows custom IDs to be passed from imported flows while still generating UUIDs for new flows
 
         # First check if the flow.name is unique
         # there might be flows with name like: "MyFlow", "MyFlow (1)", "MyFlow (2)"
@@ -117,7 +120,11 @@ async def _new_flow(
             else:
                 flow.endpoint_name = f"{flow.endpoint_name}-1"
 
-        db_flow = Flow.model_validate(flow, from_attributes=True)
+        # Convert FlowCreate to dict and exclude id if it's None to avoid validation errors
+        flow_data = flow.model_dump(exclude_none=True)
+        
+        # Create a Flow instance using the filtered data
+        db_flow = Flow.model_validate(flow_data)
         db_flow.updated_at = datetime.now(timezone.utc)
 
         if db_flow.folder_id is None:
@@ -147,6 +154,11 @@ async def create_flow(
     flow: FlowCreate,
     current_user: CurrentActiveUser,
 ):
+    # Ensure id is not None - will be generated in the Flow model
+    if hasattr(flow, 'id') and flow.id is None:
+        flow_dict = flow.model_dump()
+        flow_dict.pop('id', None)
+        flow = FlowCreate.model_validate(flow_dict)
     try:
         db_flow = await _new_flow(session=session, flow=flow, user_id=current_user.id)
         await session.commit()

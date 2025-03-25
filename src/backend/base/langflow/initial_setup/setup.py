@@ -615,6 +615,13 @@ async def copy_profile_pictures() -> None:
 
 
 def get_project_data(project):
+    project_id = project.get("id")
+    if project_id and isinstance(project_id, str):
+        try:
+            project_id = UUID(project_id)
+        except ValueError:
+            # If the ID is not a valid UUID, set it to None
+            project_id = None
     project_name = project.get("name")
     project_description = project.get("description")
     project_is_component = project.get("is_component")
@@ -632,6 +639,7 @@ def get_project_data(project):
     project_gradient = project.get("gradient")
     project_tags = project.get("tags")
     return (
+        project_id,
         project_name,
         project_description,
         project_is_component,
@@ -673,6 +681,7 @@ def update_existing_project(
 
 def create_new_project(
     session,
+    project_id,
     project_name,
     project_description,
     project_is_component,
@@ -686,6 +695,7 @@ def create_new_project(
 ) -> None:
     logger.debug(f"Creating starter project {project_name}")
     new_project = FlowCreate(
+        id=project_id,  # Use the ID from the project file if provided
         name=project_name,
         description=project_description,
         icon=project_icon,
@@ -967,6 +977,7 @@ async def create_or_update_starter_projects(all_types_dict: dict, *, do_create: 
         await copy_profile_pictures()
         for project_path, project in starter_projects:
             (
+                project_id,
                 project_name,
                 project_description,
                 project_is_component,
@@ -996,6 +1007,7 @@ async def create_or_update_starter_projects(all_types_dict: dict, *, do_create: 
 
                 create_new_project(
                     session=session,
+                    project_id=project_id,
                     project_name=project_name,
                     project_description=project_description,
                     project_is_component=project_is_component,
@@ -1013,6 +1025,7 @@ async def create_or_update_starter_projects(all_types_dict: dict, *, do_create: 
         await delete_system_projects(session, system_folder.id)
         for project_path, project in system_projects:
             (
+                project_id,
                 project_name,
                 project_description,
                 project_is_component,
@@ -1050,6 +1063,7 @@ async def create_or_update_starter_projects(all_types_dict: dict, *, do_create: 
 
                 create_new_project(
                     session=session,
+                    project_id=project_id,
                     project_name=project_name,
                     project_description=project_description,
                     project_is_component=project_is_component,
