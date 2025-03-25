@@ -121,7 +121,7 @@ class OnlyofficeDocspaceHttpRequest(Component):
     async def _send_request(self, schema: Schema) -> Any:
         client = await self._get_client()
 
-        payload, response = client.request(
+        result, response = client.request(
             schema.method,
             schema.path,
             schema.query,
@@ -130,6 +130,6 @@ class OnlyofficeDocspaceHttpRequest(Component):
         )
 
         if isinstance(response, ErrorResponse):
-            raise Exception(response.error)
+            raise response.exception
 
-        return payload
+        return result
