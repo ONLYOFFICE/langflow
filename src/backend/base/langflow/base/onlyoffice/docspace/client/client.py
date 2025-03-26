@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Self
 from .base import Client as Base, Opener
-from .services import AuthService, FilesService
+from .services import AuthService, FilesService, PortalService
 from .transformers import AuthTokenTransformer, OriginTransformer
 
 
@@ -10,6 +10,7 @@ class Client(Base):
         super().__init__(opener)
         self.auth = AuthService(self)
         self.files = FilesService(self)
+        self.portal = PortalService(self)
 
 
     def with_auth_token(self, token: str) -> Self:

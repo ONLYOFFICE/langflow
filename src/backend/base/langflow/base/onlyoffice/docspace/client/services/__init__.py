@@ -13,6 +13,7 @@ from .files import (
     UpdateRoomOptions,
     UploadChunkOptions,
 )
+from .portal import PortalService
 
 
 __all__ = [
@@ -27,6 +28,7 @@ __all__ = [
     "FilesService",
     "MoveOptions",
     "Operation",
+    "PortalService",
     "RoomType",
     "UpdateFileOptions",
     "UpdateRoomOptions",
