@@ -43,25 +43,55 @@ class Client:
         return client
 
 
-    def delete(self, path: str, query: dict[str, Any] | None = None, body: dict[str, Any] | None = None) -> Tuple[Any, Response]:
-        return self.request("DELETE", path, query, body)
+    def delete(
+        self,
+        path: str,
+        query: dict[str, Any] | None = None,
+        headers: dict[str, str] | None = None,
+        body: dict[str, Any] | None = None,
+    ) -> Tuple[Any, Response]:
+        return self.request("DELETE", path, query, headers, body)
 
 
-    def get(self, path: str, query: dict[str, Any] | None = None) -> Tuple[Any, Response]:
-        return self.request("GET", path, query)
+    def get(
+        self,
+        path: str,
+        query: dict[str, Any] | None = None,
+        headers: dict[str, str] | None = None,
+    ) -> Tuple[Any, Response]:
+        return self.request("GET", path, query, headers)
 
 
-    def post(self, path: str, query: dict[str, Any] | None = None, body: dict[str, Any] | None = None) -> Tuple[Any, Response]:
-        return self.request("POST", path, query, body)
+    def post(
+        self,
+        path: str,
+        query: dict[str, Any] | None = None,
+        headers: dict[str, str] | None = None,
+        body: dict[str, Any] | None = None,
+    ) -> Tuple[Any, Response]:
+        return self.request("POST", path, query, headers, body)
 
 
-    def put(self, path: str, query: dict[str, Any] | None = None, body: dict[str, Any] | None = None) -> Tuple[Any, Response]:
-        return self.request("PUT", path, query, body)
+    def put(
+        self,
+        path: str,
+        query: dict[str, Any] | None = None,
+        headers: dict[str, str] | None = None,
+        body: dict[str, Any] | None = None,
+    ) -> Tuple[Any, Response]:
+        return self.request("PUT", path, query, headers, body)
 
 
-    def request(self, method: str, path: str, query: dict[str, Any] | None = None, body: dict[str, Any] | None = None) -> Tuple[Any, Response]:
+    def request(
+        self,
+        method: str,
+        path: str,
+        query: dict[str, Any] | None = None,
+        headers: dict[str, str] | None = None,
+        body: dict[str, Any] | None = None,
+    ) -> Tuple[Any, Response]:
         url = self.create_url(path, query)
-        request = self.create_request(method, url, body)
+        request = self.create_request(method, url, headers, body)
         body, response = self.send_request(request)
         return body, response
 
@@ -81,7 +111,13 @@ class Client:
         return url
 
 
-    def create_request(self, method: str, url: str, body: dict[str, Any] | None = None) -> HTTPRequest:
+    def create_request(
+        self,
+        method: str,
+        url: str,
+        headers: dict[str, str] | None = None,
+        body: dict[str, Any] | None = None,
+    ) -> HTTPRequest:
         if body:
             data = json.dumps(body).encode("utf-8")
         else:
@@ -96,6 +132,10 @@ class Client:
 
         if self.user_agent:
             request.add_header("User-Agent", self.user_agent)
+
+        if headers:
+            for key, value in headers.items():
+                request.add_header(key, value)
 
         return request
 

@@ -56,7 +56,7 @@ class OnlyofficeDocspaceListRooms(Component):
         return StructuredTool.from_function(
             name="onlyoffice_docspace_list_rooms",
             description="List rooms in ONLYOFFICE DocSpace.",
-            func=self._list_rooms,
+            coroutine=self._list_rooms,
             args_schema=self.Schema,
         )
 

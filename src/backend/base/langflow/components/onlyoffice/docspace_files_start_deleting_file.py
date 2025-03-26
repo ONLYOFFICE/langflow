@@ -68,7 +68,7 @@ class OnlyofficeDocspaceStartDeletingFile(Component):
         return StructuredTool.from_function(
             name="onlyoffice_docspace_start_deleting_file",
             description="Start asynchronous operation to delete a file from ONLYOFFICE DocSpace.",
-            func=self._tool_func,
+            coroutine=self._tool_func,
             args_schema=self.Schema,
         )
 

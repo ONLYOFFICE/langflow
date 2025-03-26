@@ -181,6 +181,24 @@ class FlowBase(SQLModel):
 
 class Flow(FlowBase, table=True):  # type: ignore[call-arg]
     id: UUID = Field(default_factory=uuid4, primary_key=True, unique=True)
+    
+    @field_validator('id', mode='before')
+    @classmethod
+    def validate_id(cls, value):
+        # If the value is None, use default_factory to generate a UUID
+        if value is None:
+            return uuid4()
+        # If it's already a UUID, return it
+        if isinstance(value, UUID):
+            return value
+        # If it's a string that looks like a UUID, convert it
+        if isinstance(value, str):
+            try:
+                return UUID(value)
+            except ValueError:
+                pass
+        # If all else fails, generate a new UUID
+        return uuid4()
     data: dict | None = Field(default=None, sa_column=Column(JSON))
     user_id: UUID | None = Field(index=True, foreign_key="user.id", nullable=True)
     user: "User" = Relationship(back_populates="flows")
@@ -212,9 +230,10 @@ class Flow(FlowBase, table=True):  # type: ignore[call-arg]
 
 
 class FlowCreate(FlowBase):
-    user_id: UUID | None = None
-    folder_id: UUID | None = None
-    fs_path: str | None = None
+    id: UUID | None = Field(default=None)
+    user_id: UUID | None = Field(default=None)
+    folder_id: UUID | None = Field(default=None)
+    fs_path: str | None = Field(default=None)
 
 
 class FlowRead(FlowBase):

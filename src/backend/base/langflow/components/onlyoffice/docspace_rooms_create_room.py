@@ -3,7 +3,7 @@ from typing import Any
 from langchain.tools import StructuredTool
 from pydantic import BaseModel, Field
 
-from langflow.base.onlyoffice.docspace.client import CreateRoomOptions, ErrorResponse
+from langflow.base.onlyoffice.docspace.client import CreateRoomOptions, ErrorResponse, RoomType
 from langflow.base.onlyoffice.docspace.component import Component
 from langflow.field_typing import Tool
 from langflow.inputs import MessageTextInput, SecretStrInput
@@ -24,6 +24,13 @@ class OnlyofficeDocspaceCreateRoom(Component):
             display_name="Text from Basic Authentication",
             info="Text output from the Basic Authentication component.",
             advanced=True,
+        ),
+        MessageTextInput(
+            name="room_type",
+            display_name="Room Type",
+            info="The type of the room. The available types are: FillingFormsRoom (1), EditingRoom (2), CustomRoom (5), PublicRoom (6), VirtualDataRoom (8).",
+            advanced=True,
+            value="PublicRoom",
         ),
         MessageTextInput(
             name="title",
@@ -49,11 +56,19 @@ class OnlyofficeDocspaceCreateRoom(Component):
 
 
     class Schema(BaseModel):
+        room_type: RoomType = Field("PublicRoom", description="The type of the room.")
         title: str = Field(..., description="The title of the room.")
 
 
     def _create_schema(self) -> Schema:
+        room_type = self.room_type
+        try:
+            room_type = int(self.room_type)
+        except:
+            room_type = self.room_type
+
         return self.Schema(
+            room_type=room_type,
             title=self.title,
         )
 
@@ -68,7 +83,7 @@ class OnlyofficeDocspaceCreateRoom(Component):
         return StructuredTool.from_function(
             name="onlyoffice_docspace_create_room",
             description="Create a room in ONLYOFFICE DocSpace.",
-            func=self._tool_func,
+            coroutine=self._tool_func,
             args_schema=self.Schema,
         )
 
@@ -81,7 +96,10 @@ class OnlyofficeDocspaceCreateRoom(Component):
     async def _create_room(self, schema: Schema) -> Any:
         client = await self._get_client()
 
-        options = CreateRoomOptions(title=schema.title)
+        options = CreateRoomOptions(
+            roomType=schema.room_type,
+            title=schema.title,
+        )
 
         room, response = client.files.create_room(options)
         if isinstance(response, ErrorResponse):

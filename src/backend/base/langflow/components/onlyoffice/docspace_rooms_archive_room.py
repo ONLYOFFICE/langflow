@@ -69,7 +69,7 @@ class OnlyofficeDocspaceArchiveRoom(Component):
         return StructuredTool.from_function(
             name="onlyoffice_docspace_archive_room",
             description="Archive a room in ONLYOFFICE DocSpace.",
-            func=self._tool_func,
+            coroutine=self._tool_func,
             args_schema=self.Schema,
         )
 

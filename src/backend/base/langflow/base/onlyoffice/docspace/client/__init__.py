@@ -16,10 +16,13 @@ from .services import (
     AuthService,
     CreateFolderOptions,
     CreateRoomOptions,
+    CreateSessionOptions,
     DeleteFileOptions,
     FilesService,
+    RoomType,
     UpdateFileOptions,
     UpdateRoomOptions,
+    UploadChunkOptions,
 )
 from .client import Client
 
@@ -32,6 +35,7 @@ __all__ = [
     "Client",
     "CreateFolderOptions",
     "CreateRoomOptions",
+    "CreateSessionOptions",
     "DeleteFileOptions",
     "ErrorPayload",
     "ErrorResponse",
@@ -40,9 +44,11 @@ __all__ = [
     "Response",
     "ResponseError",
     "ResponseLink",
+    "RoomType",
     "Service",
     "SuccessPayload",
     "SuccessResponse",
     "UpdateFileOptions",
     "UpdateRoomOptions",
+    "UploadChunkOptions",
 ]

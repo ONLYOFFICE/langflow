@@ -56,7 +56,7 @@ class OnlyofficeDocspaceListOperations(Component):
         return StructuredTool.from_function(
             name="onlyoffice_docspace_list_operations",
             description="List active operations in ONLYOFFICE DocSpace.",
-            func=self._list_operations,
+            coroutine=self._list_operations,
             args_schema=self.Schema,
         )
 

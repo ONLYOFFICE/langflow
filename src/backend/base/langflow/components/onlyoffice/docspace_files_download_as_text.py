@@ -70,7 +70,7 @@ class OnlyofficeDocspaceDownloadAsText(Component):
         return StructuredTool.from_function(
             name="onlyoffice_docspace_download_as_text",
             description="Download a file from ONLYOFFICE DocSpace as text.",
-            func=self._tool_func,
+            coroutine=self._tool_func,
             args_schema=self.Schema,
         )
 
