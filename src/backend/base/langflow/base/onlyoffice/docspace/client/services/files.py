@@ -29,6 +29,7 @@ class Operation(BaseModel):
     finished: bool | None = Field(None)
     percents: int | None = Field(None)
     progress: int | None = Field(None)
+    url: str | None = Field(None)
 
 
 class MoveOptions(BaseModel):
