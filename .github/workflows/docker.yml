@@ -41,5 +41,7 @@ jobs:
           push: true
           tags: ${{ matrix.tags }}
           platforms: linux/amd64
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          cache-from: |
+            type=gha,scope=${{ github.ref }}-${{ github.sha }}
+          cache-to: |
+            type=gha,scope=${{ github.ref }}-${{ github.sha }},mode=max
