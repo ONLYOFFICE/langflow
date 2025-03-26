@@ -102,7 +102,7 @@ class FilesService(Service):
         )
 
 
-    def move(self, options) -> Tuple[list[Operation], Response]:
+    def move(self, options: MoveOptions) -> Tuple[list[Operation], Response]:
         payload, response = self._client.put(
             "api/2.0/files/fileops/move",
             body=options.model_dump(exclude_none=True, by_alias=True),
