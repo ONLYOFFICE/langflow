@@ -100,8 +100,8 @@ class OnlyofficeDocspaceDownloadAsText(Component):
         result = self._wait_operation(client, id)
         url = ""
         for item in result:
-            if item["id"] == id:
-                url = item["url"]
+            if item.id == id:
+                url = item.url
                 break
 
         request = client.create_request("GET", url)
@@ -139,7 +139,7 @@ class OnlyofficeDocspaceDownloadAsText(Component):
                 raise response.exception
 
             for item in body:
-                if item["id"] == id and item["finished"]:
+                if item.id == id and item.finished:
                     finished = True
                     break
 

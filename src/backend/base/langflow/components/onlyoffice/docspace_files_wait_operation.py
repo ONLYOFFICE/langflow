@@ -111,7 +111,7 @@ class OnlyofficeDocspaceWaitOperation(Component):
                 raise response.exception
 
             for item in body:
-                if item["id"] == schema.id and item["finished"]:
+                if item.id == schema.id and item.finished:
                     finished = True
                     break
 
