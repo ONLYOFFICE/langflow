@@ -104,7 +104,7 @@ class OnlyofficeDocspaceArchiveRoom(Component):
                 raise response.exception
 
             for item in body:
-                if item["id"] == id and item["finished"]:
+                if item.id == id and item.finished:
                     finished = True
                     break
 
