@@ -31,6 +31,12 @@ class Operation(BaseModel):
     progress: int | None = Field(None)
 
 
+class MoveOptions(BaseModel):
+    folder_ids: list[int | str] | None = Field(None, alias="folderIds")
+    file_ids: list[int | str] | None = Field(None, alias="fileIds")
+    dest_folder_id: int | str | None = Field(None, alias="destFolderId")
+
+
 class CreateSessionOptions(BaseModel):
     folder_id: int | None = Field(None, alias="folderId")
     file_name: str | None = Field(None, alias="FileName")
@@ -94,6 +100,20 @@ class FilesService(Service):
             "api/2.0/files/fileops/bulkdownload",
             body=options,
         )
+
+
+    def move(self, options) -> Tuple[list[Operation], Response]:
+        payload, response = self._client.put(
+            "api/2.0/files/fileops/move",
+            body=options.model_dump(exclude_none=True, by_alias=True),
+        )
+
+        ls: list[Operation] = []
+        if isinstance(response, SuccessResponse):
+            for item in payload:
+                ls.append(Operation.model_validate(item))
+
+        return ls, response
 
 
     def create_session(self, folder_id: int, options: CreateSessionOptions) -> Tuple[Any, Response]:
