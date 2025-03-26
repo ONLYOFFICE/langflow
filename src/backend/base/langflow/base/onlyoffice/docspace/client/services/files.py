@@ -1,7 +1,9 @@
 from __future__ import annotations
 from typing import Any, Literal, Tuple
 from pydantic import BaseModel, Field
-from ..base import Response, Service, encode_multipart_formdata
+from ..base import Response, Service, SuccessResponse, encode_multipart_formdata
+
+# https://github.com/ONLYOFFICE/onlyoffice-zapier/blob/v1.1.0/app/docspace/files/files.js#L126
 
 
 RoomType = \
@@ -19,6 +21,20 @@ RoomType = \
         6,
         8,
     ]
+
+
+class Operation(BaseModel):
+    id: str | None = Field(None)
+    error: str | None = Field(None)
+    finished: bool | None = Field(None)
+    percents: int | None = Field(None)
+    progress: int | None = Field(None)
+
+
+class MoveOptions(BaseModel):
+    folder_ids: list[int | str] | None = Field(None, alias="folderIds")
+    file_ids: list[int | str] | None = Field(None, alias="fileIds")
+    dest_folder_id: int | str | None = Field(None, alias="destFolderId")
 
 
 class CreateSessionOptions(BaseModel):
@@ -66,10 +82,17 @@ class FilesService(Service):
         )
 
 
-    def list_operations(self) -> Tuple[Any, Response]:
-        return self._client.get(
+    def list_operations(self) -> Tuple[list[Operation], Response]:
+        payload, response = self._client.get(
             "api/2.0/files/fileops",
         )
+
+        ls: list[Operation] = []
+        if isinstance(response, SuccessResponse):
+            for item in payload:
+                ls.append(Operation.model_validate(item))
+
+        return ls, response
 
 
     def bulk_download(self, options: dict) -> Tuple[Any, Response]:
@@ -77,6 +100,34 @@ class FilesService(Service):
             "api/2.0/files/fileops/bulkdownload",
             body=options,
         )
+
+
+    def copy(self, options: MoveOptions) -> Tuple[list[Operation], Response]:
+        payload, response = self._client.put(
+            "api/2.0/files/fileops/copy",
+            body=options.model_dump(exclude_none=True, by_alias=True),
+        )
+
+        ls: list[Operation] = []
+        if isinstance(response, SuccessResponse):
+            for item in payload:
+                ls.append(Operation.model_validate(item))
+
+        return ls, response
+
+
+    def move(self, options: MoveOptions) -> Tuple[list[Operation], Response]:
+        payload, response = self._client.put(
+            "api/2.0/files/fileops/move",
+            body=options.model_dump(exclude_none=True, by_alias=True),
+        )
+
+        ls: list[Operation] = []
+        if isinstance(response, SuccessResponse):
+            for item in payload:
+                ls.append(Operation.model_validate(item))
+
+        return ls, response
 
 
     def create_session(self, folder_id: int, options: CreateSessionOptions) -> Tuple[Any, Response]:
