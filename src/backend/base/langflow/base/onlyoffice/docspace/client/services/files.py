@@ -102,6 +102,20 @@ class FilesService(Service):
         )
 
 
+    def copy(self, options: MoveOptions) -> Tuple[list[Operation], Response]:
+        payload, response = self._client.put(
+            "api/2.0/files/fileops/copy",
+            body=options.model_dump(exclude_none=True, by_alias=True),
+        )
+
+        ls: list[Operation] = []
+        if isinstance(response, SuccessResponse):
+            for item in payload:
+                ls.append(Operation.model_validate(item))
+
+        return ls, response
+
+
     def move(self, options: MoveOptions) -> Tuple[list[Operation], Response]:
         payload, response = self._client.put(
             "api/2.0/files/fileops/move",
