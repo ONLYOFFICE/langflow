@@ -1227,6 +1227,54 @@
             ],
             "pinned": false,
             "template": {
+              "FileID-AvBWj~input_value": {
+                "_input_type": "MultilineInput",
+                "advanced": false,
+                "display_name": "File id - File id",
+                "dynamic": false,
+                "info": "File id for start flow.",
+                "input_types": [
+                  "Message"
+                ],
+                "list": false,
+                "list_add_label": "Add More",
+                "load_from_db": false,
+                "multiline": true,
+                "name": "FileID-AvBWj~input_value",
+                "placeholder": "",
+                "required": false,
+                "show": true,
+                "title_case": false,
+                "tool_mode": true,
+                "trace_as_input": true,
+                "trace_as_metadata": true,
+                "type": "str",
+                "value": "3"
+              },
+              "UserQuestion-0BqYE~input_value": {
+                "_input_type": "MultilineInput",
+                "advanced": false,
+                "display_name": "User Question - Question",
+                "dynamic": false,
+                "info": "Enter your question to search for relevant information in documents.",
+                "input_types": [
+                  "Message"
+                ],
+                "list": false,
+                "list_add_label": "Add More",
+                "load_from_db": false,
+                "multiline": true,
+                "name": "UserQuestion-0BqYE~input_value",
+                "placeholder": "",
+                "required": false,
+                "show": true,
+                "title_case": false,
+                "tool_mode": true,
+                "trace_as_input": true,
+                "trace_as_metadata": true,
+                "type": "str",
+                "value": "Write summary"
+              },
               "_type": "Component",
               "code": {
                 "advanced": true,
@@ -2345,6 +2393,54 @@
             ],
             "pinned": false,
             "template": {
+              "FileID-AvBWj~input_value": {
+                "_input_type": "MultilineInput",
+                "advanced": false,
+                "display_name": "File id - File id",
+                "dynamic": false,
+                "info": "File id for start flow.",
+                "input_types": [
+                  "Message"
+                ],
+                "list": false,
+                "list_add_label": "Add More",
+                "load_from_db": false,
+                "multiline": true,
+                "name": "FileID-AvBWj~input_value",
+                "placeholder": "",
+                "required": false,
+                "show": true,
+                "title_case": false,
+                "tool_mode": true,
+                "trace_as_input": true,
+                "trace_as_metadata": true,
+                "type": "str",
+                "value": "3"
+              },
+              "UserQuestion-0BqYE~input_value": {
+                "_input_type": "MultilineInput",
+                "advanced": false,
+                "display_name": "User Question - Question",
+                "dynamic": false,
+                "info": "Enter your question to search for relevant information in documents.",
+                "input_types": [
+                  "Message"
+                ],
+                "list": false,
+                "list_add_label": "Add More",
+                "load_from_db": false,
+                "multiline": true,
+                "name": "UserQuestion-0BqYE~input_value",
+                "placeholder": "",
+                "required": false,
+                "show": true,
+                "title_case": false,
+                "tool_mode": true,
+                "trace_as_input": true,
+                "trace_as_metadata": true,
+                "type": "str",
+                "value": "Write summary"
+              },
               "_type": "Component",
               "code": {
                 "advanced": true,

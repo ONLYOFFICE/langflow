@@ -2673,6 +2673,30 @@
             ],
             "pinned": false,
             "template": {
+              "FileID-oF8Vp~input_value": {
+                "_input_type": "MultilineInput",
+                "advanced": false,
+                "display_name": "File id - File id",
+                "dynamic": false,
+                "info": "File id for start flow.",
+                "input_types": [
+                  "Message"
+                ],
+                "list": false,
+                "list_add_label": "Add More",
+                "load_from_db": false,
+                "multiline": true,
+                "name": "FileID-oF8Vp~input_value",
+                "placeholder": "",
+                "required": false,
+                "show": true,
+                "title_case": false,
+                "tool_mode": true,
+                "trace_as_input": true,
+                "trace_as_metadata": true,
+                "type": "str",
+                "value": "2"
+              },
               "_type": "Component",
               "code": {
                 "advanced": true,
