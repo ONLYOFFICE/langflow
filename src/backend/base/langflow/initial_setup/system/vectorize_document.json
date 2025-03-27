@@ -1,5 +1,4 @@
 {
-  "access_type": "PRIVATE",
   "data": {
     "edges": [
       {
@@ -548,7 +547,7 @@
                 "show": true,
                 "title_case": false,
                 "type": "str",
-                "value": "openai_api_key"
+                "value": ""
               },
               "openai_api_type": {
                 "_input_type": "MessageTextInput",
@@ -884,7 +883,6 @@
             "frozen": false,
             "icon": "onlyoffice",
             "legacy": false,
-            "lf_version": "1.2.0",
             "metadata": {},
             "minimized": false,
             "output_types": [],
@@ -959,7 +957,7 @@
                 "show": true,
                 "title_case": false,
                 "type": "code",
-                "value": "from typing import Any\nimport time\n\nfrom langchain.tools import StructuredTool\nfrom pydantic import BaseModel, Field\n\nfrom langflow.base.onlyoffice.docspace.client import Client, ErrorResponse\nfrom langflow.base.onlyoffice.docspace.component import Component\nfrom langflow.field_typing import Tool\nfrom langflow.inputs import MessageTextInput, SecretStrInput\nfrom langflow.io import Output\nfrom langflow.schema import Data\nfrom langflow.template import Output\n\n\nclass OnlyofficeDocspaceDownloadAsText(Component):\n    display_name = \"Download As Text\"\n    description = \"Download a file from the ONLYOFFICE DocSpace as text.\"\n    documentation = \"https://api.onlyoffice.com/openapi/docspace/api-backend/usage-api/bulk-download/\"\n    name = \"OnlyofficeDocspaceDownloadAsText\"\n\n\n    inputs = [\n        SecretStrInput(\n            name=\"auth_text\",\n            display_name=\"Text from Basic Authentication\",\n            info=\"Text output from the Basic Authentication component.\",\n            advanced=True,\n        ),\n        MessageTextInput(\n            name=\"file_id\",\n            display_name=\"File ID\",\n            info=\"The ID of the file to download as text.\",\n        ),\n    ]\n\n\n    outputs = [\n        Output(\n            display_name=\"Data\",\n            name=\"api_build_data\",\n            method=\"build_data\",\n        ),\n        Output(\n            display_name=\"Tool\",\n            name=\"api_build_tool\",\n            method=\"build_tool\",\n            hidden=True,\n        ),\n    ]\n\n\n    class Schema(BaseModel):\n        file_id: int = Field(..., description=\"The ID of the file to download as text.\")\n\n\n    def _create_schema(self) -> Schema:\n        return self.Schema(\n            file_id=self.file_id,\n        )\n\n\n    async def build_data(self) -> Data:\n        schema = self._create_schema()\n        text = await self._download_as_text(schema)\n        return Data(data={\"text\": text})\n\n\n    def build_tool(self) -> Tool:\n        return StructuredTool.from_function(\n            name=\"onlyoffice_docspace_download_as_text\",\n            description=\"Download a file from ONLYOFFICE DocSpace as text.\",\n            coroutine=self._tool_func,\n            args_schema=self.Schema,\n        )\n\n\n    async def _tool_func(self, **kwargs) -> dict:\n        schema = self.Schema(**kwargs)\n        text = await self._download_as_text(schema)\n        return {\"text\": text}\n\n\n    async def _download_as_text(self, schema: Schema) -> str:\n        client = await self._get_client()\n\n        result, response = client.files.get_file(schema.file_id)\n        if isinstance(response, ErrorResponse):\n            raise response.exception\n\n        type = result[\"fileType\"]\n        ext = self._get_ext(type)\n        options = {\"fileIds\": [{\"key\": schema.file_id, \"value\": ext}]}\n\n        result, response = client.files.bulk_download(options)\n        if isinstance(response, ErrorResponse):\n            raise response.exception\n\n        id = result[0][\"id\"]\n        result = self._wait_operation(client, id)\n        url = \"\"\n        for item in result:\n            if item[\"id\"] == id:\n                url = item[\"url\"]\n                break\n\n        request = client.create_request(\"GET\", url)\n        request.headers[\"Accept\"] = \"text/plain\"\n\n        with client.opener.open(request) as response:\n            content = response.read()\n\n        return content.decode(\"utf-8\")\n\n\n    def _get_ext(self, type: str) -> str:\n        if type == \"Spreadsheet\" or type == 5:\n            return \".csv\"\n        elif type == \"Presentation\" or type == 6:\n            return \".txt\"\n        elif type == \"Document\" or type == 7:\n            return \".txt\"\n        elif type == \"Pdf\" or type == 10:\n            return \".txt\"\n        else:\n            raise ValueError(f\"Unsupported file type: {type}\")\n\n\n    def _wait_operation(self, client: Client, id: int) -> Any:\n        finished = False\n        body = {}\n\n        delay = 100 / 1000\n        limit = 100\n\n        while limit > 0:\n            body, response = client.files.list_operations()\n            if isinstance(response, ErrorResponse):\n                raise response.exception\n\n            for item in body:\n                if item[\"id\"] == id and item[\"finished\"]:\n                    finished = True\n                    break\n\n            if finished:\n                break\n\n            limit -= 1\n            time.sleep(delay)\n\n        if not finished:\n            raise ValueError(f\"Operation {id} did not finish in time\")\n\n        return body\n"
+                "value": "from typing import Any\nimport time\n\nfrom langchain.tools import StructuredTool\nfrom pydantic import BaseModel, Field\n\nfrom langflow.base.onlyoffice.docspace.client import Client, ErrorResponse\nfrom langflow.base.onlyoffice.docspace.component import Component\nfrom langflow.field_typing import Tool\nfrom langflow.inputs import MessageTextInput, SecretStrInput\nfrom langflow.io import Output\nfrom langflow.schema import Data\nfrom langflow.template import Output\n\n\nclass OnlyofficeDocspaceDownloadAsText(Component):\n    display_name = \"Download As Text\"\n    description = \"Download a file from the ONLYOFFICE DocSpace as text.\"\n    documentation = \"https://api.onlyoffice.com/openapi/docspace/api-backend/usage-api/bulk-download/\"\n    name = \"OnlyofficeDocspaceDownloadAsText\"\n\n\n    inputs = [\n        SecretStrInput(\n            name=\"auth_text\",\n            display_name=\"Text from Basic Authentication\",\n            info=\"Text output from the Basic Authentication component.\",\n            advanced=True,\n        ),\n        MessageTextInput(\n            name=\"file_id\",\n            display_name=\"File ID\",\n            info=\"The ID of the file to download as text.\",\n        ),\n    ]\n\n\n    outputs = [\n        Output(\n            display_name=\"Data\",\n            name=\"api_build_data\",\n            method=\"build_data\",\n        ),\n        Output(\n            display_name=\"Tool\",\n            name=\"api_build_tool\",\n            method=\"build_tool\",\n            hidden=True,\n        ),\n    ]\n\n\n    class Schema(BaseModel):\n        file_id: int = Field(..., description=\"The ID of the file to download as text.\")\n\n\n    def _create_schema(self) -> Schema:\n        return self.Schema(\n            file_id=self.file_id,\n        )\n\n\n    async def build_data(self) -> Data:\n        schema = self._create_schema()\n        text = await self._download_as_text(schema)\n        return Data(data={\"text\": text})\n\n\n    def build_tool(self) -> Tool:\n        return StructuredTool.from_function(\n            name=\"onlyoffice_docspace_download_as_text\",\n            description=\"Download a file from ONLYOFFICE DocSpace as text.\",\n            coroutine=self._tool_func,\n            args_schema=self.Schema,\n        )\n\n\n    async def _tool_func(self, **kwargs) -> dict:\n        schema = self.Schema(**kwargs)\n        text = await self._download_as_text(schema)\n        return {\"text\": text}\n\n\n    async def _download_as_text(self, schema: Schema) -> str:\n        client = await self._get_client()\n\n        result, response = client.files.get_file(schema.file_id)\n        if isinstance(response, ErrorResponse):\n            raise response.exception\n\n        type = result[\"fileType\"]\n        ext = self._get_ext(type)\n        options = {\"fileIds\": [{\"key\": schema.file_id, \"value\": ext}]}\n\n        result, response = client.files.bulk_download(options)\n        if isinstance(response, ErrorResponse):\n            raise response.exception\n\n        id = result[0][\"id\"]\n        result = self._wait_operation(client, id)\n        url = \"\"\n        for item in result:\n            if item.id == id:\n                url = item.url\n                break\n\n        request = client.create_request(\"GET\", url)\n        request.headers[\"Accept\"] = \"text/plain\"\n\n        with client.opener.open(request) as response:\n            content = response.read()\n\n        return content.decode(\"utf-8\")\n\n\n    def _get_ext(self, type: str) -> str:\n        if type == \"Spreadsheet\" or type == 5:\n            return \".csv\"\n        elif type == \"Presentation\" or type == 6:\n            return \".txt\"\n        elif type == \"Document\" or type == 7:\n            return \".txt\"\n        elif type == \"Pdf\" or type == 10:\n            return \".txt\"\n        else:\n            raise ValueError(f\"Unsupported file type: {type}\")\n\n\n    def _wait_operation(self, client: Client, id: int) -> Any:\n        finished = False\n        body = {}\n\n        delay = 100 / 1000\n        limit = 100\n\n        while limit > 0:\n            body, response = client.files.list_operations()\n            if isinstance(response, ErrorResponse):\n                raise response.exception\n\n            for item in body:\n                if item.id == id and item.finished:\n                    finished = True\n                    break\n\n            if finished:\n                break\n\n            limit -= 1\n            time.sleep(delay)\n\n        if not finished:\n            raise ValueError(f\"Operation {id} did not finish in time\")\n\n        return body\n"
               },
               "file_id": {
                 "_input_type": "MessageTextInput",
@@ -1683,7 +1681,7 @@
           "x": -163.34379399185468,
           "y": 1228.4817072684943
         },
-        "selected": true,
+        "selected": false,
         "type": "genericNode"
       },
       {
@@ -2001,24 +1999,16 @@
       }
     ],
     "viewport": {
-      "x": 539.1109914736592,
-      "y": -448.7771838409948,
-      "zoom": 0.46878544842175496
+      "x": 1146.312667833141,
+      "y": -861.2134983446713,
+      "zoom": 0.6992043694622406
     }
   },
   "description": "Flow for vectorize document. Use for adding new file inside RAG system.",
   "endpoint_name": null,
-  "folder_id": "73766c2d-c4df-4c78-9640-b2f8ec4b637c",
-  "fs_path": null,
-  "gradient": null,
-  "icon": null,
-  "icon_bg_color": null,
   "id": "899936c5-a3fd-484f-af39-c98ea11b7fc1",
   "is_component": false,
-  "locked": false,
+  "last_tested_version": "1.2.0",
   "name": "vectorize_document",
-  "tags": [],
-  "updated_at": "2025-03-26T13:02:00+00:00",
-  "user_id": "04c82b7c-b144-4515-bbf4-8216de2feb02",
-  "webhook": false
+  "tags": []
 }

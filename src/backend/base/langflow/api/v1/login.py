@@ -88,7 +88,7 @@ async def auto_login(request: Request, response: Response, db: DbSession):
 
         try:
             logger.debug("Auto login with external authentication")
-            user, tokens, chat_api_key, chat_id_key = await verify_external_auth(request=request, db=db)
+            user, tokens, chat_api_key, id_keys = await verify_external_auth(request=request, db=db)
 
             logger.debug(f"User: {user}")
             logger.debug(f"Tokens: {tokens}")
@@ -165,7 +165,7 @@ async def auto_login(request: Request, response: Response, db: DbSession):
                             f"Created openai_api_key variable for user {user.id}")
 
                 # Set authentication cookies including chat_api_key and chat_id_key if present
-                await set_auth_cookies(response, tokens, chat_api_key, chat_id_key)
+                await set_auth_cookies(response, tokens, chat_api_key, id_keys)
 
                 # Set API key cookie if available
                 if user.store_api_key is not None:

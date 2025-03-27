@@ -6,7 +6,7 @@ by checking for a specific cookie and validating it against an external API.
 
 import httpx
 from fastapi import Request, Response, HTTPException, status
-from typing import Dict, Optional, Tuple
+from typing import Dict, Optional, Tuple, List
 from uuid import UUID
 
 from sqlmodel.ext.asyncio.session import AsyncSession
@@ -22,15 +22,16 @@ from langflow.services.auth.utils import create_user_tokens
 from langflow.services.deps import get_settings_service
 
 
-async def find_docspace_chat_flow(db: AsyncSession) -> Optional[str]:
+async def find_systems_flow_by_name(db: AsyncSession, names: List[str]) -> Dict[str, str]:
     """
-    Find the DocSpace chat flow among system flows where user_id is null.
+    Find the system flow by name.
 
     Args:
         db (AsyncSession): Database session
+        names (List[str]): List of names of the flows
 
     Returns:
-        Optional[str]: The ID of the DocSpace chat flow if found, None otherwise
+        List[str]: List of IDs of the flows if found, empty list otherwise
     """
     from sqlmodel import select
     from langflow.services.database.models.flow.model import Flow
@@ -40,18 +41,20 @@ async def find_docspace_chat_flow(db: AsyncSession) -> Optional[str]:
         stmt = select(Flow).where(Flow.user_id == None)  # noqa: E711
         flows = (await db.exec(stmt)).all()
 
+        flows_id = {}
+
         # Find the DocSpace chat flow
         for flow in flows:
-            if flow.name == "DocSpace chat":
-                return str(flow.id)
+            if flow.name in names:
+                flows_id[flow.name] = str(flow.id)
 
-        return None
+        return flows_id
     except Exception as e:
-        logger.error(f"Error finding DocSpace chat flow: {str(e)}")
-        return None
+        logger.error(f"Error finding system flow: {str(e)}")
+        return []
 
 
-async def verify_external_auth(request: Request, db: AsyncSession, external_api_url: Optional[str] = None) -> Tuple[Optional[User], Optional[Dict], Optional[str], Optional[str]]:
+async def verify_external_auth(request: Request, db: AsyncSession, external_api_url: Optional[str] = None) -> Tuple[Optional[User], Optional[Dict], Optional[str], Optional[Dict[str, str]]]:
     """
     Verify external authentication by checking for asc_auth_key cookie
     and validating it against the external API.
@@ -144,22 +147,28 @@ async def verify_external_auth(request: Request, db: AsyncSession, external_api_
                         f"Error checking/creating chat_api_key for existing user: {str(e)}")
 
                 # Find the DocSpace chat flow ID
-                chat_id_key = await find_docspace_chat_flow(db)
-                if chat_id_key:
+                id_keys = await find_systems_flow_by_name(db,
+                                                          names=["docspace_rag_chat",
+                                                                 "docspace_ai_chat",
+                                                                 "vectorize_document",
+                                                                 "check_vectorize_document",
+                                                                 "summarize_to_file"]
+                                                          )
+                if id_keys:
                     try:
                         logger.debug(
-                            f"Found DocSpace chat flow with ID: {chat_id_key}")
+                            f"Found system flows: {id_keys}")
                     except BlockingIOError:
                         # Skip logging if IO blocks to prevent application errors
                         pass
                 else:
                     try:
-                        logger.debug("DocSpace chat flow not found")
+                        logger.debug("System flows not found")
                     except BlockingIOError:
                         # Skip logging if IO blocks to prevent application errors
                         pass
 
-                return existing_user, tokens, chat_api_key_value, chat_id_key
+                return existing_user, tokens, chat_api_key_value, id_keys
             else:
                 # Create new user
                 # Generate a random password since we'll authenticate via the external system
@@ -201,22 +210,15 @@ async def verify_external_auth(request: Request, db: AsyncSession, external_api_
                             f"Error creating chat_api_key for new user: {str(e)}")
 
                     # Find the DocSpace chat flow ID
-                    chat_id_key = await find_docspace_chat_flow(db)
-                    if chat_id_key:
-                        try:
-                            logger.debug(
-                                f"Found DocSpace chat flow with ID: {chat_id_key}")
-                        except BlockingIOError:
-                            # Skip logging if IO blocks to prevent application errors
-                            pass
-                    else:
-                        try:
-                            logger.debug("DocSpace chat flow not found")
-                        except BlockingIOError:
-                            # Skip logging if IO blocks to prevent application errors
-                            pass
+                    id_keys = await find_systems_flow_by_name(db,
+                                                              names=["docspace_rag_chat",
+                                                                     "docspace_ai_chat",
+                                                                     "vectorize_document",
+                                                                     "check_vectorize_document",
+                                                                     "summarize_to_file"]
+                                                              )
 
-                    return new_user, tokens, chat_api_key_value, chat_id_key
+                    return new_user, tokens, chat_api_key_value, id_keys
                 except Exception as e:
                     await db.rollback()
                     logger.error(
@@ -228,7 +230,7 @@ async def verify_external_auth(request: Request, db: AsyncSession, external_api_
         return None, None, None
 
 
-async def set_auth_cookies(response: Response, tokens: Dict, chat_api_key: Optional[str] = None, chat_id_key: Optional[str] = None) -> None:
+async def set_auth_cookies(response: Response, tokens: Dict, chat_api_key: Optional[str] = None, id_keys: Optional[Dict[str, str]] = None) -> None:
     """
     Set authentication cookies in the response based on tokens and API keys.
 
@@ -272,15 +274,16 @@ async def set_auth_cookies(response: Response, tokens: Dict, chat_api_key: Optio
             domain=auth_settings.COOKIE_DOMAIN,
         )
 
-    # Set chat_id_key cookie if provided
-    if chat_id_key:
-        response.set_cookie(
-            "chat_id_key",
-            chat_id_key,
-            httponly=auth_settings.ACCESS_HTTPONLY,  # Using same settings as access token
-            samesite=auth_settings.ACCESS_SAME_SITE,
-            secure=auth_settings.ACCESS_SECURE,
-            expires=auth_settings.ACCESS_TOKEN_EXPIRE_SECONDS,
-            domain=auth_settings.COOKIE_DOMAIN,
-        )
-        logger.debug("Set chat_api_key cookie")
+    # Set id_keys cookies if provided
+    if id_keys:
+        for key, value in id_keys.items():
+            response.set_cookie(
+                key,
+                value,
+                httponly=auth_settings.ACCESS_HTTPONLY,  # Using same settings as access token
+                samesite=auth_settings.ACCESS_SAME_SITE,
+                secure=auth_settings.ACCESS_SECURE,
+                expires=auth_settings.ACCESS_TOKEN_EXPIRE_SECONDS,
+                domain=auth_settings.COOKIE_DOMAIN,
+            )
+        logger.debug("Set id_keys cookies")

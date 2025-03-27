@@ -1,3 +1,4 @@
+import os
 from typing import Any, Dict, List
 from langchain.embeddings.base import Embeddings
 from langchain_community.vectorstores import Qdrant
@@ -5,8 +6,7 @@ from langchain_core.documents import Document
 from qdrant_client import QdrantClient
 from qdrant_client.models import Distance, VectorParams, Filter
 from langflow.custom import Component
-from langflow.schema import Message, Data
-# from langflow.base.vectorstores.model import LCVectorStoreComponent, check_cached_vector_store
+from langflow.schema import Message
 from langflow.io import (
     MessageInput,
     DataInput,
@@ -21,36 +21,59 @@ class DocSpaceQdrantVectorStoreComponent(Component):
     icon = "Qdrant"
 
     inputs = [
-        MessageInput(name="collection_name",
-                     display_name="Collection Name",
-                     required=True),
-        MessageInput(name="question",
-                     display_name="Question",
-                     ),
-        MessageInput(name="restart_search",
-                     display_name="Restart Search",
-                     ),
-        MessageInput(name="qdrant_host",
-                     display_name="Qdrant Host",
-                     ),
-        MessageInput(name="qdrant_port",
-                     display_name="Qdrant Port",
-                     ),
+        MessageInput(
+            name="collection_name",
+            display_name="Collection Name",
+            required=True
+        ),
+        MessageInput(
+            name="question",
+            display_name="Question",
+        ),
+        MessageInput(
+            name="restart_search",
+            display_name="Restart Search",
+        ),
+        MessageInput(
+            name="qdrant_host",
+            display_name="Qdrant Host",
+        ),
+        MessageInput(
+            name="qdrant_port",
+            display_name="Qdrant Port",
+        ),
 
-        DataInput(name="documents", display_name="Documents"),
-        DataInput(name="files", display_name="Files"),
+        DataInput(
+            name="documents",
+            display_name="Documents",
+            list=True,
+        ),
+        DataInput(
+            name="files",
+            display_name="Files"
+        ),
+        DataInput(
+            name='metadata',
+            display_name="Metadata"
+        ),
 
-        HandleInput(name="embedding", display_name="Embedding",
-                    input_types=["Embeddings"]),
+        HandleInput(
+            name="embedding",
+            display_name="Embedding",
+            input_types=["Embeddings"]
+        ),
     ]
 
     outputs = [
-        Output(name="success",
-               display_name="Success",
+        Output(name="vectorize",
+               display_name="Vectorize",
                method="vectorize_documents"),
         Output(name="search",
                display_name="Search",
                method="search_documents"),
+        Output(name="check",
+               display_name="Check document",
+               method="check_document")
     ]
 
     def check_collection_exists(self, client: QdrantClient, collection_name: str) -> bool:
@@ -85,8 +108,19 @@ class DocSpaceQdrantVectorStoreComponent(Component):
             collection_name = self.collection_name.get_text()
             embedding: Embeddings = self.embedding
 
-            qdrant_host = self.qdrant_host.get_text()
-            qdrant_port = self.qdrant_port.get_text()
+            # Get host and port from inputs or environment variables
+            qdrant_host = self.qdrant_host.get_text() if hasattr(
+                self, 'qdrant_host') and self.qdrant_host else None
+            qdrant_port = self.qdrant_port.get_text() if hasattr(
+                self, 'qdrant_port') and self.qdrant_port else None
+
+            # If not provided in inputs, check environment variables
+            if not qdrant_host:
+                qdrant_host = os.getenv(
+                    'HOST_QDRANT_SERVICE', 'onlyoffice-qdrant')
+
+            if not qdrant_port:
+                qdrant_port = os.getenv('HOST_QDRANT_PORT', "6333")
 
             # Create QdrantClient with HTTP and timeout
             client = QdrantClient(
@@ -101,12 +135,14 @@ class DocSpaceQdrantVectorStoreComponent(Component):
                     return None
 
             if self.documents:
-                documents: List[Document] = list(self.documents.data.values())
+                documents: List[str] = [
+                    i.data.get('text') for i in self.documents]
+
                 if not documents:
                     raise ValueError("No documents provided")
 
                 # Get vector size from first document
-                vector = embedding.embed_query(documents[0].page_content)
+                vector = embedding.embed_query(documents[0])
                 vector_size = len(vector)
 
                 # Create collection if needed
@@ -141,39 +177,44 @@ class DocSpaceQdrantVectorStoreComponent(Component):
             )
         )
 
+    def check_document(self) -> Message:
+        qdrant = self.build_vector_store()
+
+        if not self.metadata:
+            return Message(text="No metadata provided")
+
+        doc = Document(page_content="", metadata={**self.metadata.data})
+
+        if self.check_document_exists(qdrant, doc):
+            return Message(text="exist")
+
+        return Message(text="not_found")
+
     def vectorize_documents(self) -> Message:
         try:
             qdrant = self.build_vector_store()
+
             if not self.documents:
                 return Message(text="No documents to process")
 
-            docs: Dict[str, Document] = self.documents.data
+            metadata = self.metadata.data
 
-            documents = list(docs.values())
+            docs: Dict[str, str] = [
+                Document(page_content=doc.data.get('text'), metadata={**metadata, "page": i}) for i, doc in enumerate(self.documents)]
 
-            if not documents:
+            if not docs:
                 return Message(text="No documents to process")
 
-            # Process each document chunk
-            existing = True
+            if not metadata:
+                return Message(text="No metadata provided")
 
-            for i, doc in enumerate(documents, 1):
+            if self.check_document_exists(qdrant, docs[0]):
+                return Message(text="exist")
 
-                existing_doc = self.check_document_exists(
-                    qdrant, doc)
-
-                if (existing_doc and existing):
-                    existing = True
-
-                    continue
-
-                existing = False
-                # Add document to Qdrant
-                qdrant.add_documents([doc])
+            qdrant.add_documents(docs)
 
             msg = Message(
-                role="system",
-                text=f'Document {",".join(str(document.metadata["id"]) for document in documents)} added to Qdrant'
+                text=f'added'
             )
 
             return msg
@@ -198,9 +239,22 @@ class DocSpaceQdrantVectorStoreComponent(Component):
             return Message(text=", ".join([str(file.get('id', 'unknown')) for file in files]),
                            data={"docs": []})
 
-        not_found_files = []
+        # Create a unique list of files based on id and version
+        unique_files = []
+        file_keys = set()
 
         for file in files:
+            file_id = file.get('id', 'unknown')
+            file_version = file.get('version', 1)
+            file_key = f"{file_id}_{file_version}"
+
+            if file_key not in file_keys:
+                file_keys.add(file_key)
+                unique_files.append(file)
+
+        not_found_files = []
+
+        for file in unique_files:
             if self.check_document_exists(qdrant, Document(
                 page_content=question,
                 metadata={

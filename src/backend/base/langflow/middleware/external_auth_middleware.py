@@ -33,7 +33,7 @@ class ExternalAuthMiddleware(BaseHTTPMiddleware):
 
             try:
                 # Use external auth to verify and get the user
-                user, tokens, chat_api_key, chat_id_key = await verify_external_auth(request=request, db=session)
+                user, tokens, chat_api_key, id_keys = await verify_external_auth(request=request, db=session)
 
                 # If authentication succeeded, return tokens
                 if user and tokens:
@@ -41,7 +41,7 @@ class ExternalAuthMiddleware(BaseHTTPMiddleware):
                     response = JSONResponse(content=tokens)
 
                     # Set authentication cookies including chat_api_key and chat_id_key if present
-                    await set_auth_cookies(response, tokens, chat_api_key, chat_id_key)
+                    await set_auth_cookies(response, tokens, chat_api_key, id_keys)
 
                     return response
                 else:
@@ -101,11 +101,11 @@ class ExternalAuthMiddleware(BaseHTTPMiddleware):
 
                 try:
                     # Check for external authentication
-                    user, tokens, chat_api_key, chat_id_key = await verify_external_auth(request, session)
+                    user, tokens, chat_api_key, id_keys = await verify_external_auth(request, session)
 
                     # If we have tokens from external auth, set cookies including chat_api_key and chat_id_key if present
                     if tokens:
-                        await set_auth_cookies(response, tokens, chat_api_key, chat_id_key)
+                        await set_auth_cookies(response, tokens, chat_api_key, id_keys)
                 except Exception as e:
                     # Log the error but don't interrupt the request flow
                     from loguru import logger

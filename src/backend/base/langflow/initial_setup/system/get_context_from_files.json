@@ -1,5 +1,4 @@
 {
-  "access_type": "PRIVATE",
   "data": {
     "edges": [
       {
@@ -165,6 +164,7 @@
           }
         },
         "id": "xy-edge__CustomComponent1-GXz5a{œdataTypeœ:œCustomComponent1œ,œidœ:œCustomComponent1-GXz5aœ,œnameœ:œoutputœ,œoutput_typesœ:[œMessageœ]}-ChatOutput-t2HjL{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-t2HjLœ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œotherœ}",
+        "selected": false,
         "source": "CustomComponent1-GXz5a",
         "sourceHandle": "{œdataTypeœ:œCustomComponent1œ,œidœ:œCustomComponent1-GXz5aœ,œnameœ:œoutputœ,œoutput_typesœ:[œMessageœ]}",
         "target": "ChatOutput-t2HjL",
@@ -1269,7 +1269,7 @@
                 "show": true,
                 "title_case": false,
                 "type": "str",
-                "value": "openai_api_key"
+                "value": ""
               },
               "openai_api_type": {
                 "_input_type": "MessageTextInput",
@@ -1780,7 +1780,7 @@
           "x": 1383.6126265957037,
           "y": 1030.0457456563431
         },
-        "selected": true,
+        "selected": false,
         "type": "genericNode"
       }
     ],
@@ -1792,17 +1792,9 @@
   },
   "description": "Get file content depend on user query.",
   "endpoint_name": null,
-  "folder_id": "73766c2d-c4df-4c78-9640-b2f8ec4b637c",
-  "fs_path": null,
-  "gradient": null,
-  "icon": null,
-  "icon_bg_color": null,
   "id": "4db3ea45-476c-4c40-8a15-cc5963aa4c89",
   "is_component": false,
-  "locked": false,
+  "last_tested_version": "1.2.0",
   "name": "get_context_from_files",
-  "tags": [],
-  "updated_at": "2025-03-26T13:17:00+00:00",
-  "user_id": "04c82b7c-b144-4515-bbf4-8216de2feb02",
-  "webhook": false
+  "tags": []
 }

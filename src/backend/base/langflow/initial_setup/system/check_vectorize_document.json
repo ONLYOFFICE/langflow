@@ -1,5 +1,4 @@
 {
-  "access_type": "PRIVATE",
   "data": {
     "edges": [
       {
@@ -772,7 +771,7 @@
                 "show": true,
                 "title_case": false,
                 "type": "str",
-                "value": "openai_api_key"
+                "value": ""
               },
               "openai_api_type": {
                 "_input_type": "MessageTextInput",
@@ -1222,7 +1221,7 @@
           "x": 1018.6256464149867,
           "y": 1223.344206126441
         },
-        "selected": true,
+        "selected": false,
         "type": "genericNode"
       },
       {
@@ -1633,7 +1632,9 @@
                 "tool_mode": false,
                 "trace_as_input": true,
                 "type": "dict",
-                "value": {}
+                "value": {
+                  "id": "{id}"
+                }
               },
               "field_2": {
                 "_input_type": "DictInput",
@@ -1654,7 +1655,9 @@
                 "tool_mode": false,
                 "trace_as_input": true,
                 "type": "dict",
-                "value": {}
+                "value": {
+                  "version": "{version}"
+                }
               },
               "field_3": {
                 "_input_type": "DictInput",
@@ -1675,7 +1678,9 @@
                 "tool_mode": false,
                 "trace_as_input": true,
                 "type": "dict",
-                "value": {}
+                "value": {
+                  "title": "{title}"
+                }
               },
               "input_data": {
                 "_input_type": "DataInput",
@@ -1745,24 +1750,16 @@
       }
     ],
     "viewport": {
-      "x": -146.41295740665566,
-      "y": -19.086504533559378,
-      "zoom": 0.3078710368796221
+      "x": -304.02690609032334,
+      "y": -352.3626870095768,
+      "zoom": 0.6392950492582317
     }
   },
   "description": "Flow for check vectorizing state of document.",
   "endpoint_name": null,
-  "folder_id": "73766c2d-c4df-4c78-9640-b2f8ec4b637c",
-  "fs_path": null,
-  "gradient": null,
-  "icon": null,
-  "icon_bg_color": null,
   "id": "ddd67110-cce7-4df9-886a-feb71b2bebaa",
   "is_component": false,
-  "locked": false,
+  "last_tested_version": "1.2.0",
   "name": "check_vectorize_document",
-  "tags": [],
-  "updated_at": "2025-03-26T13:08:10+00:00",
-  "user_id": "04c82b7c-b144-4515-bbf4-8216de2feb02",
-  "webhook": false
+  "tags": []
 }

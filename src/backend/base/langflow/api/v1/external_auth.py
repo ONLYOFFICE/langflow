@@ -23,16 +23,16 @@ async def login_with_external_credentials(
 ):
     """
     Authenticate using credentials from an external system.
-    
+
     This endpoint checks for the asc_auth_key cookie and validates it against
     the external API. If valid, it creates a user (if new) or logs in an existing user.
-    
+
     Args:
         request: The FastAPI request object
         response: The FastAPI response object for setting cookies
         db: Database session
         external_api_url: Optional override for the external API URL
-        
+
     Returns:
         Token object with access and refresh tokens
     """
@@ -43,23 +43,23 @@ async def login_with_external_credentials(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="No external authentication cookie found",
         )
-    
+
     # Attempt to verify with the external system and get user info
-    user, tokens, chat_api_key, chat_id_key = await verify_external_auth(
-        request=request, 
-        db=db, 
+    user, tokens, chat_api_key, id_keys = await verify_external_auth(
+        request=request,
+        db=db,
         external_api_url=external_api_url
     )
-    
+
     if not user or not tokens:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="External authentication failed",
         )
-    
-    # Set authentication cookies in the response including chat_api_key and chat_id_key if present
-    await set_auth_cookies(response, tokens, chat_api_key, chat_id_key)
-    
+
+    # Set authentication cookies in the response including chat_api_key and id_keys if present
+    await set_auth_cookies(response, tokens, chat_api_key, id_keys)
+
     return tokens
 
 
@@ -67,10 +67,10 @@ async def login_with_external_credentials(
 async def check_external_auth_status(request: Request) -> Dict[str, Any]:
     """
     Check if external authentication is available based on cookie presence.
-    
+
     Args:
         request: The FastAPI request object
-        
+
     Returns:
         Dictionary with status information
     """

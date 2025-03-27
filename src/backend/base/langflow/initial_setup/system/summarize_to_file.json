@@ -7,35 +7,7 @@
         "data": {
           "sourceHandle": {
             "dataType": "TextInput",
-            "id": "TextInput-XnJNX",
-            "name": "text",
-            "output_types": [
-              "Message"
-            ]
-          },
-          "targetHandle": {
-            "fieldName": "TextInput-NK7Kx~input_value",
-            "id": "RunFlow-jntfN",
-            "inputTypes": [
-              "Message"
-            ],
-            "type": "str"
-          }
-        },
-        "id": "xy-edge__TextInput-XnJNX{œdataTypeœ:œTextInputœ,œidœ:œTextInput-XnJNXœ,œnameœ:œtextœ,œoutput_typesœ:[œMessageœ]}-RunFlow-jntfN{œfieldNameœ:œTextInput-NK7Kx~input_valueœ,œidœ:œRunFlow-jntfNœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
-        "selected": false,
-        "source": "TextInput-XnJNX",
-        "sourceHandle": "{œdataTypeœ:œTextInputœ,œidœ:œTextInput-XnJNXœ,œnameœ:œtextœ,œoutput_typesœ:[œMessageœ]}",
-        "target": "RunFlow-jntfN",
-        "targetHandle": "{œfieldNameœ:œTextInput-NK7Kx~input_valueœ,œidœ:œRunFlow-jntfNœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
-      },
-      {
-        "animated": false,
-        "className": "",
-        "data": {
-          "sourceHandle": {
-            "dataType": "TextInput",
-            "id": "TextInput-XnJNX",
+            "id": "TextInput-leas2",
             "name": "text",
             "output_types": [
               "Message"
@@ -43,19 +15,19 @@
           },
           "targetHandle": {
             "fieldName": "file_id",
-            "id": "OnlyofficeDocspaceGetFile-Qo8ky",
+            "id": "OnlyofficeDocspaceGetFile-4RmSb",
             "inputTypes": [
               "Message"
             ],
             "type": "str"
           }
         },
-        "id": "xy-edge__TextInput-XnJNX{œdataTypeœ:œTextInputœ,œidœ:œTextInput-XnJNXœ,œnameœ:œtextœ,œoutput_typesœ:[œMessageœ]}-OnlyofficeDocspaceGetFile-Qo8ky{œfieldNameœ:œfile_idœ,œidœ:œOnlyofficeDocspaceGetFile-Qo8kyœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "id": "reactflow__edge-TextInput-leas2{œdataTypeœ:œTextInputœ,œidœ:œTextInput-leas2œ,œnameœ:œtextœ,œoutput_typesœ:[œMessageœ]}-OnlyofficeDocspaceGetFile-4RmSb{œfieldNameœ:œfile_idœ,œidœ:œOnlyofficeDocspaceGetFile-4RmSbœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "selected": false,
-        "source": "TextInput-XnJNX",
-        "sourceHandle": "{œdataTypeœ:œTextInputœ,œidœ:œTextInput-XnJNXœ,œnameœ:œtextœ,œoutput_typesœ:[œMessageœ]}",
-        "target": "OnlyofficeDocspaceGetFile-Qo8ky",
-        "targetHandle": "{œfieldNameœ:œfile_idœ,œidœ:œOnlyofficeDocspaceGetFile-Qo8kyœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
+        "source": "TextInput-leas2",
+        "sourceHandle": "{œdataTypeœ:œTextInputœ,œidœ:œTextInput-leas2œ,œnameœ:œtextœ,œoutput_typesœ:[œMessageœ]}",
+        "target": "OnlyofficeDocspaceGetFile-4RmSb",
+        "targetHandle": "{œfieldNameœ:œfile_idœ,œidœ:œOnlyofficeDocspaceGetFile-4RmSbœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "animated": false,
@@ -63,7 +35,7 @@
         "data": {
           "sourceHandle": {
             "dataType": "OnlyofficeDocspaceGetFile",
-            "id": "OnlyofficeDocspaceGetFile-Qo8ky",
+            "id": "OnlyofficeDocspaceGetFile-4RmSb",
             "name": "api_build_data",
             "output_types": [
               "Data"
@@ -71,19 +43,19 @@
           },
           "targetHandle": {
             "fieldName": "data",
-            "id": "ParseData-px0Vt",
+            "id": "ParseData-AXCBh",
             "inputTypes": [
               "Data"
             ],
             "type": "other"
           }
         },
-        "id": "xy-edge__OnlyofficeDocspaceGetFile-Qo8ky{œdataTypeœ:œOnlyofficeDocspaceGetFileœ,œidœ:œOnlyofficeDocspaceGetFile-Qo8kyœ,œnameœ:œapi_build_dataœ,œoutput_typesœ:[œDataœ]}-ParseData-px0Vt{œfieldNameœ:œdataœ,œidœ:œParseData-px0Vtœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}",
+        "id": "reactflow__edge-OnlyofficeDocspaceGetFile-4RmSb{œdataTypeœ:œOnlyofficeDocspaceGetFileœ,œidœ:œOnlyofficeDocspaceGetFile-4RmSbœ,œnameœ:œapi_build_dataœ,œoutput_typesœ:[œDataœ]}-ParseData-AXCBh{œfieldNameœ:œdataœ,œidœ:œParseData-AXCBhœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}",
         "selected": false,
-        "source": "OnlyofficeDocspaceGetFile-Qo8ky",
-        "sourceHandle": "{œdataTypeœ:œOnlyofficeDocspaceGetFileœ,œidœ:œOnlyofficeDocspaceGetFile-Qo8kyœ,œnameœ:œapi_build_dataœ,œoutput_typesœ:[œDataœ]}",
-        "target": "ParseData-px0Vt",
-        "targetHandle": "{œfieldNameœ:œdataœ,œidœ:œParseData-px0Vtœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}"
+        "source": "OnlyofficeDocspaceGetFile-4RmSb",
+        "sourceHandle": "{œdataTypeœ:œOnlyofficeDocspaceGetFileœ,œidœ:œOnlyofficeDocspaceGetFile-4RmSbœ,œnameœ:œapi_build_dataœ,œoutput_typesœ:[œDataœ]}",
+        "target": "ParseData-AXCBh",
+        "targetHandle": "{œfieldNameœ:œdataœ,œidœ:œParseData-AXCBhœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}"
       },
       {
         "animated": false,
@@ -91,7 +63,7 @@
         "data": {
           "sourceHandle": {
             "dataType": "OnlyofficeDocspaceGetFile",
-            "id": "OnlyofficeDocspaceGetFile-Qo8ky",
+            "id": "OnlyofficeDocspaceGetFile-4RmSb",
             "name": "api_build_data",
             "output_types": [
               "Data"
@@ -99,19 +71,19 @@
           },
           "targetHandle": {
             "fieldName": "data",
-            "id": "ParseData-M6ezS",
+            "id": "ParseData-D2m4J",
             "inputTypes": [
               "Data"
             ],
             "type": "other"
           }
         },
-        "id": "xy-edge__OnlyofficeDocspaceGetFile-Qo8ky{œdataTypeœ:œOnlyofficeDocspaceGetFileœ,œidœ:œOnlyofficeDocspaceGetFile-Qo8kyœ,œnameœ:œapi_build_dataœ,œoutput_typesœ:[œDataœ]}-ParseData-M6ezS{œfieldNameœ:œdataœ,œidœ:œParseData-M6ezSœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}",
+        "id": "reactflow__edge-OnlyofficeDocspaceGetFile-4RmSb{œdataTypeœ:œOnlyofficeDocspaceGetFileœ,œidœ:œOnlyofficeDocspaceGetFile-4RmSbœ,œnameœ:œapi_build_dataœ,œoutput_typesœ:[œDataœ]}-ParseData-D2m4J{œfieldNameœ:œdataœ,œidœ:œParseData-D2m4Jœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}",
         "selected": false,
-        "source": "OnlyofficeDocspaceGetFile-Qo8ky",
-        "sourceHandle": "{œdataTypeœ:œOnlyofficeDocspaceGetFileœ,œidœ:œOnlyofficeDocspaceGetFile-Qo8kyœ,œnameœ:œapi_build_dataœ,œoutput_typesœ:[œDataœ]}",
-        "target": "ParseData-M6ezS",
-        "targetHandle": "{œfieldNameœ:œdataœ,œidœ:œParseData-M6ezSœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}"
+        "source": "OnlyofficeDocspaceGetFile-4RmSb",
+        "sourceHandle": "{œdataTypeœ:œOnlyofficeDocspaceGetFileœ,œidœ:œOnlyofficeDocspaceGetFile-4RmSbœ,œnameœ:œapi_build_dataœ,œoutput_typesœ:[œDataœ]}",
+        "target": "ParseData-D2m4J",
+        "targetHandle": "{œfieldNameœ:œdataœ,œidœ:œParseData-D2m4Jœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}"
       },
       {
         "animated": false,
@@ -119,7 +91,7 @@
         "data": {
           "sourceHandle": {
             "dataType": "RunFlow",
-            "id": "RunFlow-jntfN",
+            "id": "RunFlow-CBCxw",
             "name": "flow_outputs_message",
             "output_types": [
               "Message"
@@ -127,19 +99,19 @@
           },
           "targetHandle": {
             "fieldName": "content",
-            "id": "OnlyofficeDocspaceUploadFile-psBNn",
+            "id": "OnlyofficeDocspaceUploadFile-PjLJ7",
             "inputTypes": [
               "Message"
             ],
             "type": "str"
           }
         },
-        "id": "xy-edge__RunFlow-jntfN{œdataTypeœ:œRunFlowœ,œidœ:œRunFlow-jntfNœ,œnameœ:œflow_outputs_messageœ,œoutput_typesœ:[œMessageœ]}-OnlyofficeDocspaceUploadFile-psBNn{œfieldNameœ:œcontentœ,œidœ:œOnlyofficeDocspaceUploadFile-psBNnœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "id": "reactflow__edge-RunFlow-CBCxw{œdataTypeœ:œRunFlowœ,œidœ:œRunFlow-CBCxwœ,œnameœ:œflow_outputs_messageœ,œoutput_typesœ:[œMessageœ]}-OnlyofficeDocspaceUploadFile-PjLJ7{œfieldNameœ:œcontentœ,œidœ:œOnlyofficeDocspaceUploadFile-PjLJ7œ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "selected": false,
-        "source": "RunFlow-jntfN",
-        "sourceHandle": "{œdataTypeœ:œRunFlowœ,œidœ:œRunFlow-jntfNœ,œnameœ:œflow_outputs_messageœ,œoutput_typesœ:[œMessageœ]}",
-        "target": "OnlyofficeDocspaceUploadFile-psBNn",
-        "targetHandle": "{œfieldNameœ:œcontentœ,œidœ:œOnlyofficeDocspaceUploadFile-psBNnœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
+        "source": "RunFlow-CBCxw",
+        "sourceHandle": "{œdataTypeœ:œRunFlowœ,œidœ:œRunFlow-CBCxwœ,œnameœ:œflow_outputs_messageœ,œoutput_typesœ:[œMessageœ]}",
+        "target": "OnlyofficeDocspaceUploadFile-PjLJ7",
+        "targetHandle": "{œfieldNameœ:œcontentœ,œidœ:œOnlyofficeDocspaceUploadFile-PjLJ7œ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "animated": false,
@@ -147,7 +119,7 @@
         "data": {
           "sourceHandle": {
             "dataType": "ParseData",
-            "id": "ParseData-px0Vt",
+            "id": "ParseData-AXCBh",
             "name": "text",
             "output_types": [
               "Message"
@@ -155,19 +127,19 @@
           },
           "targetHandle": {
             "fieldName": "folder_id",
-            "id": "OnlyofficeDocspaceUploadFile-psBNn",
+            "id": "OnlyofficeDocspaceUploadFile-PjLJ7",
             "inputTypes": [
               "Message"
             ],
             "type": "str"
           }
         },
-        "id": "xy-edge__ParseData-px0Vt{œdataTypeœ:œParseDataœ,œidœ:œParseData-px0Vtœ,œnameœ:œtextœ,œoutput_typesœ:[œMessageœ]}-OnlyofficeDocspaceUploadFile-psBNn{œfieldNameœ:œfolder_idœ,œidœ:œOnlyofficeDocspaceUploadFile-psBNnœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "id": "reactflow__edge-ParseData-AXCBh{œdataTypeœ:œParseDataœ,œidœ:œParseData-AXCBhœ,œnameœ:œtextœ,œoutput_typesœ:[œMessageœ]}-OnlyofficeDocspaceUploadFile-PjLJ7{œfieldNameœ:œfolder_idœ,œidœ:œOnlyofficeDocspaceUploadFile-PjLJ7œ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "selected": false,
-        "source": "ParseData-px0Vt",
-        "sourceHandle": "{œdataTypeœ:œParseDataœ,œidœ:œParseData-px0Vtœ,œnameœ:œtextœ,œoutput_typesœ:[œMessageœ]}",
-        "target": "OnlyofficeDocspaceUploadFile-psBNn",
-        "targetHandle": "{œfieldNameœ:œfolder_idœ,œidœ:œOnlyofficeDocspaceUploadFile-psBNnœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
+        "source": "ParseData-AXCBh",
+        "sourceHandle": "{œdataTypeœ:œParseDataœ,œidœ:œParseData-AXCBhœ,œnameœ:œtextœ,œoutput_typesœ:[œMessageœ]}",
+        "target": "OnlyofficeDocspaceUploadFile-PjLJ7",
+        "targetHandle": "{œfieldNameœ:œfolder_idœ,œidœ:œOnlyofficeDocspaceUploadFile-PjLJ7œ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "animated": false,
@@ -175,7 +147,7 @@
         "data": {
           "sourceHandle": {
             "dataType": "ParseData",
-            "id": "ParseData-M6ezS",
+            "id": "ParseData-D2m4J",
             "name": "text",
             "output_types": [
               "Message"
@@ -183,25 +155,52 @@
           },
           "targetHandle": {
             "fieldName": "filename",
-            "id": "OnlyofficeDocspaceUploadFile-psBNn",
+            "id": "OnlyofficeDocspaceUploadFile-PjLJ7",
             "inputTypes": [
               "Message"
             ],
             "type": "str"
           }
         },
-        "id": "xy-edge__ParseData-M6ezS{œdataTypeœ:œParseDataœ,œidœ:œParseData-M6ezSœ,œnameœ:œtextœ,œoutput_typesœ:[œMessageœ]}-OnlyofficeDocspaceUploadFile-psBNn{œfieldNameœ:œfilenameœ,œidœ:œOnlyofficeDocspaceUploadFile-psBNnœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "id": "reactflow__edge-ParseData-D2m4J{œdataTypeœ:œParseDataœ,œidœ:œParseData-D2m4Jœ,œnameœ:œtextœ,œoutput_typesœ:[œMessageœ]}-OnlyofficeDocspaceUploadFile-PjLJ7{œfieldNameœ:œfilenameœ,œidœ:œOnlyofficeDocspaceUploadFile-PjLJ7œ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "selected": false,
-        "source": "ParseData-M6ezS",
-        "sourceHandle": "{œdataTypeœ:œParseDataœ,œidœ:œParseData-M6ezSœ,œnameœ:œtextœ,œoutput_typesœ:[œMessageœ]}",
-        "target": "OnlyofficeDocspaceUploadFile-psBNn",
-        "targetHandle": "{œfieldNameœ:œfilenameœ,œidœ:œOnlyofficeDocspaceUploadFile-psBNnœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
+        "source": "ParseData-D2m4J",
+        "sourceHandle": "{œdataTypeœ:œParseDataœ,œidœ:œParseData-D2m4Jœ,œnameœ:œtextœ,œoutput_typesœ:[œMessageœ]}",
+        "target": "OnlyofficeDocspaceUploadFile-PjLJ7",
+        "targetHandle": "{œfieldNameœ:œfilenameœ,œidœ:œOnlyofficeDocspaceUploadFile-PjLJ7œ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
+      },
+      {
+        "className": "",
+        "data": {
+          "sourceHandle": {
+            "dataType": "TextInput",
+            "id": "TextInput-leas2",
+            "name": "text",
+            "output_types": [
+              "Message"
+            ]
+          },
+          "targetHandle": {
+            "fieldName": "TextInput-pQkY2~input_value",
+            "id": "RunFlow-CBCxw",
+            "inputTypes": [
+              "Message"
+            ],
+            "type": "str"
+          }
+        },
+        "id": "xy-edge__TextInput-leas2{œdataTypeœ:œTextInputœ,œidœ:œTextInput-leas2œ,œnameœ:œtextœ,œoutput_typesœ:[œMessageœ]}-RunFlow-CBCxw{œfieldNameœ:œTextInput-pQkY2~input_valueœ,œidœ:œRunFlow-CBCxwœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "selected": false,
+        "source": "TextInput-leas2",
+        "sourceHandle": "{œdataTypeœ:œTextInputœ,œidœ:œTextInput-leas2œ,œnameœ:œtextœ,œoutput_typesœ:[œMessageœ]}",
+        "target": "RunFlow-CBCxw",
+        "targetHandle": "{œfieldNameœ:œTextInput-pQkY2~input_valueœ,œidœ:œRunFlow-CBCxwœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       }
     ],
     "nodes": [
       {
         "data": {
-          "id": "RunFlow-jntfN",
+          "id": "RunFlow-CBCxw",
           "node": {
             "base_classes": [
               "Data",
@@ -277,7 +276,7 @@
             "pinned": false,
             "score": 0.007568328950209746,
             "template": {
-              "TextInput-NK7Kx~input_value": {
+              "TextInput-pQkY2~input_value": {
                 "_input_type": "MultilineInput",
                 "advanced": false,
                 "copy_field": false,
@@ -291,7 +290,7 @@
                 "list_add_label": "Add More",
                 "load_from_db": false,
                 "multiline": true,
-                "name": "TextInput-NK7Kx~input_value",
+                "name": "TextInput-pQkY2~input_value",
                 "placeholder": "",
                 "required": false,
                 "show": true,
@@ -300,7 +299,7 @@
                 "trace_as_input": true,
                 "trace_as_metadata": true,
                 "type": "str",
-                "value": "2"
+                "value": ""
               },
               "_type": "Component",
               "code": {
@@ -399,7 +398,7 @@
           "type": "RunFlow"
         },
         "dragging": false,
-        "id": "RunFlow-jntfN",
+        "id": "RunFlow-CBCxw",
         "measured": {
           "height": 351,
           "width": 320
@@ -413,7 +412,7 @@
       },
       {
         "data": {
-          "id": "TextInput-XnJNX",
+          "id": "TextInput-leas2",
           "node": {
             "base_classes": [
               "Message"
@@ -506,7 +505,7 @@
           "type": "TextInput"
         },
         "dragging": false,
-        "id": "TextInput-XnJNX",
+        "id": "TextInput-leas2",
         "measured": {
           "height": 229,
           "width": 320
@@ -520,7 +519,7 @@
       },
       {
         "data": {
-          "id": "OnlyofficeDocspaceGetFile-Qo8ky",
+          "id": "OnlyofficeDocspaceGetFile-4RmSb",
           "node": {
             "base_classes": [
               "Data",
@@ -646,7 +645,7 @@
           "type": "OnlyofficeDocspaceGetFile"
         },
         "dragging": false,
-        "id": "OnlyofficeDocspaceGetFile-Qo8ky",
+        "id": "OnlyofficeDocspaceGetFile-4RmSb",
         "measured": {
           "height": 229,
           "width": 320
@@ -660,7 +659,7 @@
       },
       {
         "data": {
-          "id": "ParseData-px0Vt",
+          "id": "ParseData-AXCBh",
           "node": {
             "base_classes": [
               "Data",
@@ -812,7 +811,7 @@
           "type": "ParseData"
         },
         "dragging": false,
-        "id": "ParseData-px0Vt",
+        "id": "ParseData-AXCBh",
         "measured": {
           "height": 341,
           "width": 320
@@ -826,7 +825,7 @@
       },
       {
         "data": {
-          "id": "ParseData-M6ezS",
+          "id": "ParseData-D2m4J",
           "node": {
             "base_classes": [
               "Data",
@@ -978,7 +977,7 @@
           "type": "ParseData"
         },
         "dragging": false,
-        "id": "ParseData-M6ezS",
+        "id": "ParseData-D2m4J",
         "measured": {
           "height": 341,
           "width": 320
@@ -992,7 +991,7 @@
       },
       {
         "data": {
-          "id": "OnlyofficeDocspaceUploadFile-psBNn",
+          "id": "OnlyofficeDocspaceUploadFile-PjLJ7",
           "node": {
             "base_classes": [
               "Data"
@@ -1151,7 +1150,7 @@
           "type": "OnlyofficeDocspaceUploadFile"
         },
         "dragging": false,
-        "id": "OnlyofficeDocspaceUploadFile-psBNn",
+        "id": "OnlyofficeDocspaceUploadFile-PjLJ7",
         "measured": {
           "height": 393,
           "width": 320
@@ -1165,14 +1164,14 @@
       }
     ],
     "viewport": {
-      "x": -53.3302697241528,
-      "y": 448.75989195727624,
-      "zoom": 0.5000000000000014
+      "x": 78.69170742281995,
+      "y": 75.81526558426634,
+      "zoom": 0.455107149018668
     }
   },
-  "description": "",
+  "description": "Summarize file and save inside txt file",
   "endpoint_name": null,
-  "id": "ec1c6e89-fa31-41a4-9311-9c93125262b3",
+  "id": "1eab033d-b8db-43e1-b257-fdd3f6750ca8",
   "is_component": false,
   "last_tested_version": "1.2.0",
   "name": "summarize_to_file",

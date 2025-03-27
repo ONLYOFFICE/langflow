@@ -26,6 +26,7 @@ from sqlalchemy.orm import selectinload
 from sqlmodel import col, select, delete
 from sqlmodel.ext.asyncio.session import AsyncSession
 
+from langflow.services.database.models.vertex_builds.model import VertexBuildTable
 from langflow.services.database.models.transactions.model import TransactionTable
 from langflow.base.constants import FIELD_FORMAT_ATTRIBUTES, NODE_FORMAT_ATTRIBUTES, ORJSON_OPTIONS
 from langflow.initial_setup.constants import STARTER_FOLDER_DESCRIPTION, STARTER_FOLDER_NAME, SYSTEM_FOLDER_DESCRIPTION, SYSTEM_FOLDER_ID, SYSTEM_FOLDER_NAME
@@ -693,7 +694,7 @@ def create_new_project(
     project_icon_bg_color,
     new_folder_id,
 ) -> None:
-    logger.debug(f"Creating starter project {project_name}")
+
     new_project = FlowCreate(
         id=project_id,  # Use the ID from the project file if provided
         name=project_name,
@@ -967,6 +968,8 @@ async def create_or_update_starter_projects(all_types_dict: dict, *, do_create: 
         # Need for fix update system flow, it crash when transaction table is not empty
         delete_stmt = delete(TransactionTable)
         await session.exec(delete_stmt)
+        delete_vertex_stmt = delete(VertexBuildTable)
+        await session.exec(delete_vertex_stmt)
 
         new_folder = await create_starter_folder(session)
         system_folder = await create_system_folder(session)
