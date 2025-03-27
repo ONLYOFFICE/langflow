@@ -106,7 +106,9 @@ class Client:
         url = urljoin(self.base_url, path)
 
         if query:
-            url = f"{url}?{urlencode(query)}"
+            enc = urlencode(query)
+            if enc:
+                url = f"{url}?{enc}"
 
         return url
 
