@@ -5,6 +5,8 @@ from pydantic import BaseModel, Field
 
 from langflow.base.onlyoffice.docspace.client import ErrorResponse
 from langflow.base.onlyoffice.docspace.component import Component
+from langflow.base.onlyoffice.docspace.inputs import filters_inputs
+from langflow.base.onlyoffice.docspace.schemas import FiltersSchema
 from langflow.field_typing import Tool
 from langflow.inputs import MessageTextInput, SecretStrInput
 from langflow.io import Output
@@ -30,6 +32,7 @@ class OnlyofficeDocspaceGetFolder(Component):
             display_name="Folder ID",
             info="The ID of the folder to get.",
         ),
+        *filters_inputs(),
     ]
 
 
@@ -50,11 +53,13 @@ class OnlyofficeDocspaceGetFolder(Component):
 
     class Schema(BaseModel):
         folder_id: int = Field(..., description="The ID of the folder to get.")
+        filters: FiltersSchema = Field(FiltersSchema(), description="Filters to apply to the request.")
 
 
     def _create_schema(self) -> Schema:
         return self.Schema(
-            folder_id=self.folder_id
+            folder_id=self.folder_id,
+            filters=FiltersSchema.from_component(self),
         )
 
 
@@ -81,7 +86,11 @@ class OnlyofficeDocspaceGetFolder(Component):
     async def _get_folder(self, schema: Schema) -> Any:
         client = await self._get_client()
 
-        result, response = client.files.get_folder(schema.folder_id)
+        result, response = client.files.get_folder(
+            schema.folder_id,
+            schema.filters,
+        )
+
         if isinstance(response, ErrorResponse):
             raise response.exception
 

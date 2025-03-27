@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any, Literal, Tuple
 from pydantic import BaseModel, Field
-from ..base import Response, Service, SuccessResponse, encode_multipart_formdata
+from ..base import Filters, Response, Service, SuccessResponse, encode_multipart_formdata
 
 # https://github.com/ONLYOFFICE/onlyoffice-zapier/blob/v1.1.0/app/docspace/files/files.js#L126
 
@@ -138,9 +138,14 @@ class FilesService(Service):
         )
 
 
-    def get_folder(self, folder_id: int) -> Tuple[Any, Response]:
+    def get_folder(self, folder_id: int, filters: Filters | None = None) -> Tuple[Any, Response]:
+        query: dict[str, Any] | None = None
+        if filters:
+            query = filters.model_dump(exclude_none=True, by_alias=True)
+
         return self._client.get(
             f"api/2.0/files/{folder_id}",
+            query=query,
         )
 
 
