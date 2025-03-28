@@ -23,6 +23,37 @@ RoomType = \
     ]
 
 
+InvitationAccess = \
+    Literal[
+        "None",
+        "ReadWrite",
+        "Read",
+        "Restrict",
+        "Varies",
+        "Review",
+        "Comment",
+        "FillForms",
+        "CustomFilter",
+        "RoomManager",
+        "Editing",
+        "ContentCreator",
+    ] | \
+    Literal[
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+    ]
+
+
 class Operation(BaseModel):
     id: str | None = Field(None)
     error: str | None = Field(None)
@@ -30,6 +61,12 @@ class Operation(BaseModel):
     percents: int | None = Field(None)
     progress: int | None = Field(None)
     url: str | None = Field(None)
+
+
+class Invitation(BaseModel):
+    email: str | None = Field(None)
+    id: str | None = Field(None)
+    access: InvitationAccess | None = Field(None)
 
 
 class MoveOptions(BaseModel):
@@ -69,6 +106,13 @@ class UpdateRoomOptions(BaseModel):
 
 class ArchiveRoomOptions(BaseModel):
     delete_after: bool | None = Field(None, alias="DeleteAfter")
+
+
+class SetRoomAccessRightOptions(BaseModel):
+    invitations: list[Invitation] | None = Field(None)
+    notify: bool | None = Field(None)
+    message: str | None = Field(None)
+    culture: str | None = Field(None)
 
 
 class UploadChunkOptions(BaseModel):
@@ -245,6 +289,13 @@ class FilesService(Service):
     def archive_room(self, room_id: int, options: ArchiveRoomOptions) -> Tuple[Any, Response]:
         return self._client.put(
             f"api/2.0/files/rooms/{room_id}/archive",
+            body=options.model_dump(exclude_none=True, by_alias=True),
+        )
+
+
+    def set_room_access_right(self, room_id: int, options: SetRoomAccessRightOptions) -> Tuple[Any, Response]:
+        return self._client.put(
+            f"api/2.0/files/rooms/{room_id}/share",
             body=options.model_dump(exclude_none=True, by_alias=True),
         )
 
