@@ -27,8 +27,8 @@ class DataMapper(Component):
             display_name="Number of Fields",
             info="Number of field mappings to define.",
             real_time_refresh=True,
-            value=1,
-            range_spec=RangeSpec(min=1, max=MAX_FIELDS, step=1, step_type="int"),
+            value=0,
+            range_spec=RangeSpec(min=0, max=MAX_FIELDS, step=1, step_type="int"),
         ),
     ]
 
@@ -47,6 +47,13 @@ class DataMapper(Component):
 
     def update_build_config(self, build_config: dotdict, field_value: Any, field_name: str | None = None):
         if field_name == "number_of_fields":
+            default_keys = {
+                "number_of_fields", 
+                "input_data",
+                "_type",
+                "code"
+            }
+            
             try:
                 field_value_int = int(field_value)
             except ValueError:
@@ -58,15 +65,18 @@ class DataMapper(Component):
                 raise ValueError(msg)
 
             existing_fields = {}
+            for key in list(build_config.keys()):
+                if key not in default_keys:
+                    existing_fields[key] = build_config.pop(key)
 
-            for i in range(1, field_value_int + 1):
+            for i in range(field_value_int):
                 field_field = f"field_{i}"
 
                 if field_field in existing_fields:
                     build_config[field_field] = existing_fields[field_field]
                 else:
                     field = DictInput(
-                        display_name=f"Field {i}",
+                        display_name=f"Field {i + 1}",
                         name=field_field,
                         info=f"Key-value pair where key is the output field name and value is either a pattern in curly brackets {{{{object.field}}}} or a literal value.",
                         input_types=["Message"],
@@ -137,7 +147,7 @@ class DataMapper(Component):
 
         num_fields = getattr(self, "number_of_fields", 0)
 
-        for i in range(1, num_fields + 1):
+        for i in range(num_fields): 
             field_field = f"field_{i}"
 
             if hasattr(self, field_field):
