@@ -145,7 +145,7 @@ class DocSpaceQdrantVectorStoreComponent(Component):
                 # Get vector size from first document
                 doc = Document(page_content='content for vectorize',
                                metadata={**self.metadata.data})
-                vector = embedding.embed_query(doc)
+                vector = embedding.embed_query(doc.page_content)
                 vector_size = len(vector)
                 self.create_collection(
                     client, collection_name, vector_size)
