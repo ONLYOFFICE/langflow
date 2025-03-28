@@ -141,14 +141,14 @@ class DocSpaceQdrantVectorStoreComponent(Component):
                 if not documents:
                     raise ValueError("No documents provided")
 
+            if not self.check_collection_exists(client, collection_name):
                 # Get vector size from first document
-                vector = embedding.embed_query(documents[0])
+                doc = Document(page_content='content for vectorize',
+                               metadata={**self.metadata})
+                vector = embedding.embed_query(doc)
                 vector_size = len(vector)
-
-                # Create collection if needed
-                if not self.check_collection_exists(client, collection_name):
-                    self.create_collection(
-                        client, collection_name, vector_size)
+                self.create_collection(
+                    client, collection_name, vector_size)
 
             qdrant = Qdrant(client=client,
                             embeddings=embedding,
