@@ -3,13 +3,15 @@ from typing import Any
 from langchain.tools import StructuredTool
 from pydantic import BaseModel
 
-from langflow.base.onlyoffice.docspace.client import ErrorResponse
-from langflow.base.onlyoffice.docspace.component import Component
+from langflow.base.onlyoffice.docspace import (
+    AuthTextInput,
+    Component,
+    DataOutput,
+    ErrorResponse,
+    ToolOutput,
+)
 from langflow.field_typing import Tool
-from langflow.inputs import SecretStrInput
-from langflow.io import Output
 from langflow.schema import Data
-from langflow.template import Output
 
 
 class OnlyofficeDocspaceGetCurrentPortal(Component):
@@ -19,27 +21,13 @@ class OnlyofficeDocspaceGetCurrentPortal(Component):
 
 
     inputs = [
-        SecretStrInput(
-            name="auth_text",
-            display_name="Text from Basic Authentication",
-            info="Text output from the Basic Authentication component.",
-            advanced=True,
-        ),
+        AuthTextInput(),
     ]
 
 
     outputs = [
-        Output(
-            display_name="Data",
-            name="api_build_data",
-            method="build_data",
-        ),
-        Output(
-            display_name="Tool",
-            name="api_build_tool",
-            method="build_tool",
-            hidden=True,
-        ),
+        DataOutput(),
+        ToolOutput(),
     ]
 
 

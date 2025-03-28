@@ -13,11 +13,11 @@ from .files import (
     RoomType,
     SetRoomAccessRightOptions,
     UpdateFileOptions,
+    UpdateFolderOptions,
     UpdateRoomOptions,
     UploadChunkOptions,
 )
 from .portal import PortalService
-
 
 __all__ = [
     "ArchiveRoomOptions",
@@ -37,6 +37,7 @@ __all__ = [
     "RoomType",
     "SetRoomAccessRightOptions",
     "UpdateFileOptions",
+    "UpdateFolderOptions",
     "UpdateRoomOptions",
     "UploadChunkOptions",
 ]

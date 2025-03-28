@@ -1,6 +1,9 @@
 from __future__ import annotations
+
 from typing import Self
-from .base import Client as Base, Opener
+
+from .base import Client as Base
+from .base import Opener
 from .services import AuthService, FilesService, PortalService
 from .transformers import AuthTokenTransformer, OriginTransformer
 

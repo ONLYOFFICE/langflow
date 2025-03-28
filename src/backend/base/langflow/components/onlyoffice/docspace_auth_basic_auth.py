@@ -4,7 +4,13 @@ import json
 from langchain.tools import StructuredTool
 from pydantic import BaseModel, Field
 
-from langflow.base.onlyoffice.docspace.client import AuthOptions, Client, SuccessResponse
+from langflow.base.onlyoffice.docspace import (
+    AuthOptions,
+    Client,
+    DataOutput,
+    SuccessResponse,
+    ToolOutput,
+)
 from langflow.custom.custom_component.component_with_cache import ComponentWithCache
 from langflow.field_typing import Tool
 from langflow.inputs import MessageTextInput, SecretStrInput
@@ -13,8 +19,7 @@ from langflow.schema.message import Message
 from langflow.services.cache.utils import CacheMiss
 from langflow.template import Output
 
-
-SHARED_COMPONENT_CACHE_TOKEN_KEY = "onlyoffice_docspace_basic_authorization_token"
+SHARED_COMPONENT_CACHE_TOKEN_KEY = "onlyoffice_docspace_basic_authorization_token"  # noqa: S105
 
 
 class OnlyofficeDocspaceBasicAuthentication(ComponentWithCache):
@@ -45,11 +50,7 @@ class OnlyofficeDocspaceBasicAuthentication(ComponentWithCache):
 
 
     outputs = [
-        Output(
-            display_name="Data",
-            name="api_build_data",
-            method="build_data",
-        ),
+        DataOutput(),
         Output(
             display_name="Message",
             name="api_build_message",
@@ -62,12 +63,7 @@ class OnlyofficeDocspaceBasicAuthentication(ComponentWithCache):
             method="build_text",
             hidden=True,
         ),
-        Output(
-            display_name="Tool",
-            name="api_build_tool",
-            method="build_tool",
-            hidden=True,
-        ),
+        ToolOutput(),
     ]
 
 
@@ -122,11 +118,10 @@ class OnlyofficeDocspaceBasicAuthentication(ComponentWithCache):
 
     def _do_basic(self, schema: Schema) -> dict:
         token = self._get_token(schema)
-        data = {
+        return {
             "base_url": schema.base_url,
             "token": token,
         }
-        return data
 
 
     def _get_token(self, schema: Schema) -> str:
@@ -143,11 +138,11 @@ class OnlyofficeDocspaceBasicAuthentication(ComponentWithCache):
         schema = self.Schema(
             base_url=schema.base_url,
             username=schema.username,
-            password="REDACTED",
+            password="REDACTED",  # noqa: S106
         )
         json = schema.model_dump_json()
-        hash = hashlib.sha1(json.encode())
-        return hash.hexdigest()
+        sha = hashlib.sha1(json.encode())  # noqa: S324
+        return sha.hexdigest()
 
 
     def _ensure_token(self, schema: Schema, key: str) -> str:
@@ -169,10 +164,12 @@ class OnlyofficeDocspaceBasicAuthentication(ComponentWithCache):
 
             auth, response = client.auth.auth(options)
             if not isinstance(response, SuccessResponse):
-                raise ValueError("Failed to authenticate")
+                msg = "Failed to authenticate"
+                raise ValueError(msg)
 
             if not auth.token:
-                raise ValueError("Token is empty")
+                msg = "Token is empty"
+                raise ValueError(msg)
 
             token = auth.token
 

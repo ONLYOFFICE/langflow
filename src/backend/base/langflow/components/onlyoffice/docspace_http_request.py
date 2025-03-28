@@ -4,13 +4,16 @@ from typing import Any
 from langchain.tools import StructuredTool
 from pydantic import BaseModel, Field
 
-from langflow.base.onlyoffice.docspace.client import ErrorResponse
-from langflow.base.onlyoffice.docspace.component import Component
+from langflow.base.onlyoffice.docspace import (
+    AuthTextInput,
+    Component,
+    DataOutput,
+    ErrorResponse,
+    ToolOutput,
+)
 from langflow.field_typing import Tool
-from langflow.inputs import MessageTextInput, SecretStrInput
-from langflow.io import Output
+from langflow.inputs import MessageTextInput
 from langflow.schema import Data
-from langflow.template import Output
 
 
 class OnlyofficeDocspaceHttpRequest(Component):
@@ -20,11 +23,7 @@ class OnlyofficeDocspaceHttpRequest(Component):
 
 
     inputs = [
-        SecretStrInput(
-            name="auth_text",
-            display_name="Text from Basic Authentication",
-            info="Text output from the Basic Authentication component.",
-        ),
+        AuthTextInput(),
         MessageTextInput(
             name="method",
             display_name="Method",
@@ -55,18 +54,10 @@ class OnlyofficeDocspaceHttpRequest(Component):
 
 
     outputs = [
-        Output(
-            display_name="Data",
-            name="api_build_data",
-            method="build_data",
-        ),
-        Output(
-            display_name="Tool",
-            name="api_build_tool",
-            method="build_tool",
-            hidden=True,
-        ),
+        DataOutput(),
+        ToolOutput(),
     ]
+
 
     class Schema(BaseModel):
         method: str | None = Field(None, description="The HTTP method to use.")

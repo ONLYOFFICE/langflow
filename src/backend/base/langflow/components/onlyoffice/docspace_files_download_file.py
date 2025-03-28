@@ -2,10 +2,13 @@ from urllib.request import Request
 
 from pydantic import BaseModel, Field
 
-from langflow.base.onlyoffice.docspace.client import ErrorResponse
-from langflow.base.onlyoffice.docspace.component import Component
-from langflow.inputs import MessageTextInput, SecretStrInput
-from langflow.io import Output
+from langflow.base.onlyoffice.docspace import (
+    AuthTextInput,
+    Component,
+    ErrorResponse,
+    FileIdInput,
+)
+from langflow.inputs import MessageTextInput
 from langflow.schema import Message
 from langflow.template import Output
 
@@ -17,17 +20,8 @@ class OnlyofficeDocspaceDownloadFile(Component):
 
 
     inputs = [
-        SecretStrInput(
-            name="auth_text",
-            display_name="Text from Basic Authentication",
-            info="Text output from the Basic Authentication component.",
-            advanced=True,
-        ),
-        MessageTextInput(
-            name="file_id",
-            display_name="File ID",
-            info="The ID of the file to download.",
-        ),
+        AuthTextInput(),
+        FileIdInput(info="The ID of the file to download."),
         MessageTextInput(
             name="chunk_size",
             display_name="Chunk Size",
@@ -40,15 +34,9 @@ class OnlyofficeDocspaceDownloadFile(Component):
 
     outputs = [
         Output(
-            display_name="Content",
-            name="api_build_content",
-            method="build_content",
-        ),
-        Output(
             display_name="Text",
             name="api_build_text",
             method="build_text",
-            hidden=True,
         ),
     ]
 
@@ -61,19 +49,13 @@ class OnlyofficeDocspaceDownloadFile(Component):
     def _create_schema(self) -> Schema:
         return self.Schema(
             file_id=self.file_id,
+            chunk_size=self.chunk_size,
         )
 
 
-    async def build_content(self) -> Message:
+    def build_text(self) -> Message:
         schema = self._create_schema()
-        chunk = await self._download_file(schema)
-        return Message(content=chunk)
-
-
-    async def build_text(self) -> Message:
-        schema = self._create_schema()
-        chunk = await self._download_file(schema)
-        text = chunk.decode("utf-8")
+        text = self._download_file(schema)
         return Message(text=text)
 
 
@@ -87,11 +69,11 @@ class OnlyofficeDocspaceDownloadFile(Component):
         opener = client.opener
 
         try:
-            req = Request(url, method="HEAD")
+            req = Request(url, method="HEAD")  # noqa: S310
             with opener.open(req) as res:
                 total_size = int(res.headers.get("Content-Length", 0))
-        except:
-            req = Request(url, method="GET")
+        except:  # noqa: E722
+            req = Request(url, method="GET")  # noqa: S310
             with opener.open(req) as res:
                 total_size = int(res.headers.get("Content-Length", 0))
 
@@ -99,7 +81,7 @@ class OnlyofficeDocspaceDownloadFile(Component):
 
         while downloaded < total_size:
             end = min(downloaded + schema.chunk_size - 1, total_size - 1)
-            req = Request(url, method="GET", headers={"Range": f"bytes={downloaded}-{end}"})
+            req = Request(url, method="GET", headers={"Range": f"bytes={downloaded}-{end}"})  # noqa: S310
 
             with opener.open(req) as res:
                 chunk = res.read()
@@ -107,7 +89,7 @@ class OnlyofficeDocspaceDownloadFile(Component):
                 actual_size = len(chunk)
                 downloaded += actual_size
 
-                yield chunk
+                yield Message(content=chunk.decode("utf-8"))
 
                 if actual_size < (end - downloaded + 1) and actual_size > 0:
                     break

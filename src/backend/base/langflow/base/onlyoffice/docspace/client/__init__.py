@@ -12,6 +12,7 @@ from .base import (
     SuccessPayload,
     SuccessResponse,
 )
+from .client import Client
 from .services import (
     ArchiveRoomOptions,
     AuthOptions,
@@ -30,11 +31,10 @@ from .services import (
     RoomType,
     SetRoomAccessRightOptions,
     UpdateFileOptions,
+    UpdateFolderOptions,
     UpdateRoomOptions,
     UploadChunkOptions,
 )
-from .client import Client
-
 
 __all__ = [
     "ArchiveRoomOptions",
@@ -67,6 +67,7 @@ __all__ = [
     "SuccessPayload",
     "SuccessResponse",
     "UpdateFileOptions",
+    "UpdateFolderOptions",
     "UpdateRoomOptions",
     "UploadChunkOptions",
 ]

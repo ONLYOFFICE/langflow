@@ -1,52 +1,34 @@
-from typing import Any
-import time
-
 from langchain.tools import StructuredTool
 from pydantic import BaseModel, Field
 
-from langflow.base.onlyoffice.docspace.client import Client, ErrorResponse
-from langflow.base.onlyoffice.docspace.component import Component
+from langflow.base.onlyoffice.docspace import (
+    AuthTextInput,
+    Component,
+    DataOutput,
+    ErrorResponse,
+    FileIdInput,
+    Syncer,
+    ToolOutput,
+)
 from langflow.field_typing import Tool
-from langflow.inputs import MessageTextInput, SecretStrInput
-from langflow.io import Output
 from langflow.schema import Data
-from langflow.template import Output
 
 
 class OnlyofficeDocspaceDownloadAsText(Component):
     display_name = "Download As Text"
     description = "Download a file from the ONLYOFFICE DocSpace as text."
-    documentation = "https://api.onlyoffice.com/openapi/docspace/api-backend/usage-api/bulk-download/"
     name = "OnlyofficeDocspaceDownloadAsText"
 
 
     inputs = [
-        SecretStrInput(
-            name="auth_text",
-            display_name="Text from Basic Authentication",
-            info="Text output from the Basic Authentication component.",
-            advanced=True,
-        ),
-        MessageTextInput(
-            name="file_id",
-            display_name="File ID",
-            info="The ID of the file to download as text.",
-        ),
+        AuthTextInput(),
+        FileIdInput(info="The ID of the file to download as text."),
     ]
 
 
     outputs = [
-        Output(
-            display_name="Data",
-            name="api_build_data",
-            method="build_data",
-        ),
-        Output(
-            display_name="Tool",
-            name="api_build_tool",
-            method="build_tool",
-            hidden=True,
-        ),
+        DataOutput(),
+        ToolOutput(),
     ]
 
 
@@ -83,28 +65,19 @@ class OnlyofficeDocspaceDownloadAsText(Component):
 
     async def _download_as_text(self, schema: Schema) -> str:
         client = await self._get_client()
+        syncer = Syncer(client.files.list_operations)
 
         result, response = client.files.get_file(schema.file_id)
         if isinstance(response, ErrorResponse):
             raise response.exception
 
-        type = result["fileType"]
-        ext = self._get_ext(type)
+        file_type = result["fileType"]
+        ext = self._get_ext(file_type)
         options = {"fileIds": [{"key": schema.file_id, "value": ext}]}
 
-        result, response = client.files.bulk_download(options)
-        if isinstance(response, ErrorResponse):
-            raise response.exception
+        result = syncer.do(client.files.bulk_download, options)
 
-        id = result[0]["id"]
-        result = self._wait_operation(client, id)
-        url = ""
-        for item in result:
-            if item.id == id:
-                url = item.url
-                break
-
-        request = client.create_request("GET", url)
+        request = client.create_request("GET", result[0].url)
         request.headers["Accept"] = "text/plain"
 
         with client.opener.open(request) as response:
@@ -113,43 +86,18 @@ class OnlyofficeDocspaceDownloadAsText(Component):
         return content.decode("utf-8")
 
 
-    def _get_ext(self, type: str) -> str:
-        if type == "Spreadsheet" or type == 5:
+    def _get_ext(self, file_type: str) -> str:
+        if file_type in ("Spreadsheet", 5):
             return ".csv"
-        elif type == "Presentation" or type == 6:
+
+        if file_type in ("Presentation", 6):
             return ".txt"
-        elif type == "Document" or type == 7:
+
+        if file_type in ("Document", 7):
             return ".txt"
-        elif type == "Pdf" or type == 10:
+
+        if file_type in ("Pdf", 10):
             return ".txt"
-        else:
-            raise ValueError(f"Unsupported file type: {type}")
 
-
-    def _wait_operation(self, client: Client, id: int) -> Any:
-        finished = False
-        body = {}
-
-        delay = 100 / 1000
-        limit = 100
-
-        while limit > 0:
-            body, response = client.files.list_operations()
-            if isinstance(response, ErrorResponse):
-                raise response.exception
-
-            for item in body:
-                if item.id == id and item.finished:
-                    finished = True
-                    break
-
-            if finished:
-                break
-
-            limit -= 1
-            time.sleep(delay)
-
-        if not finished:
-            raise ValueError(f"Operation {id} did not finish in time")
-
-        return body
+        msg = f"Unsupported file type: {file_type}"
+        raise ValueError(msg)

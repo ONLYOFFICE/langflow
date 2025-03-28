@@ -1,6 +1,11 @@
 from __future__ import annotations
-from urllib.request import Request as HTTPRequest
-from ..base import TransformerHandler
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from urllib.request import Request as HTTPRequest
+
+    from langflow.base.onlyoffice.docspace.client.base import TransformerHandler
 
 
 class OriginTransformer:
@@ -8,6 +13,6 @@ class OriginTransformer:
         self._origin = origin
 
 
-    def transform(self, request: HTTPRequest, next: TransformerHandler) -> HTTPRequest:
+    def transform(self, request: HTTPRequest, follow: TransformerHandler) -> HTTPRequest:
         request.add_header("Origin", self._origin)
-        return next(request)
+        return follow(request)

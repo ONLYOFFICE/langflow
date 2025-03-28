@@ -1,15 +1,20 @@
 from __future__ import annotations
-from typing import Any, Callable, Protocol
-from http.client import HTTPResponse
+
+from collections.abc import Callable
+from typing import TYPE_CHECKING, Any, Protocol
 from urllib.request import Request as HTTPRequest
-from .opener import Opener
+
+if TYPE_CHECKING:
+    from http.client import HTTPResponse
+
+    from .opener import Opener
 
 
 TransformerHandler = Callable[[HTTPRequest], HTTPRequest]
 
 
 class Transformer(Protocol):
-    def transform(self, request: HTTPRequest, next: TransformerHandler) -> HTTPRequest:
+    def transform(self, request: HTTPRequest, follow: TransformerHandler) -> HTTPRequest:
         ...
 
 
@@ -43,7 +48,7 @@ class TransformingOpener:
         if hasattr(origin, "method"):
             method = origin.method
 
-        request = HTTPRequest(
+        request = HTTPRequest(  # noqa: S310
             request.full_url,
             data=origin.data,
             method=method,
@@ -63,6 +68,6 @@ class TransformingOpener:
             return lambda request: request
 
         current = self._transformers[index]
-        next = self._build_chain(index + 1)
+        follow = self._build_chain(index + 1)
 
-        return lambda request: current.transform(request, next)
+        return lambda request: current.transform(request, follow)

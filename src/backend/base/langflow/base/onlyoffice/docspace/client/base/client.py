@@ -1,12 +1,17 @@
 from __future__ import annotations
-from typing import Any, Self, Tuple
+
 import json
+from typing import TYPE_CHECKING, Any, Self
 from urllib.error import HTTPError, URLError
 from urllib.parse import urlencode, urljoin
-from urllib.request import Request as HTTPRequest, build_opener
-from .opener import Opener
+from urllib.request import Request as HTTPRequest
+from urllib.request import build_opener
+
 from .response import ErrorPayload, ErrorResponse, Response, SuccessPayload, SuccessResponse
 from .transformer import Transformer, TransformingOpener
+
+if TYPE_CHECKING:
+    from .opener import Opener
 
 
 class Client:
@@ -19,13 +24,7 @@ class Client:
         self.base_url = ""
         self.user_agent = ""
 
-        origin: Opener
-
-        if opener:
-            origin = opener
-        else:
-            origin = build_opener()
-
+        origin = opener if opener else build_opener()
         self._opener = TransformingOpener(origin)
 
 
@@ -49,7 +48,7 @@ class Client:
         query: dict[str, Any] | None = None,
         headers: dict[str, str] | None = None,
         body: dict[str, Any] | None = None,
-    ) -> Tuple[Any, Response]:
+    ) -> tuple[Any, Response]:
         return self.request("DELETE", path, query, headers, body)
 
 
@@ -58,7 +57,7 @@ class Client:
         path: str,
         query: dict[str, Any] | None = None,
         headers: dict[str, str] | None = None,
-    ) -> Tuple[Any, Response]:
+    ) -> tuple[Any, Response]:
         return self.request("GET", path, query, headers)
 
 
@@ -68,7 +67,7 @@ class Client:
         query: dict[str, Any] | None = None,
         headers: dict[str, str] | None = None,
         body: dict[str, Any] | None = None,
-    ) -> Tuple[Any, Response]:
+    ) -> tuple[Any, Response]:
         return self.request("POST", path, query, headers, body)
 
 
@@ -78,7 +77,7 @@ class Client:
         query: dict[str, Any] | None = None,
         headers: dict[str, str] | None = None,
         body: dict[str, Any] | None = None,
-    ) -> Tuple[Any, Response]:
+    ) -> tuple[Any, Response]:
         return self.request("PUT", path, query, headers, body)
 
 
@@ -89,7 +88,7 @@ class Client:
         query: dict[str, Any] | None = None,
         headers: dict[str, str] | None = None,
         body: dict[str, Any] | None = None,
-    ) -> Tuple[Any, Response]:
+    ) -> tuple[Any, Response]:
         url = self.create_url(path, query)
         request = self.create_request(method, url, headers, body)
         body, response = self.send_request(request)
@@ -98,10 +97,12 @@ class Client:
 
     def create_url(self, path: str, query: dict[str, Any] | None = None) -> str:
         if not self.base_url.endswith("/"):
-            raise ValueError(f"Base URL must have a trailing slash, but {self.base_url} does not")
+            msg = f"Base URL must have a trailing slash, but {self.base_url} does not"
+            raise ValueError(msg)
 
         if path.startswith("/"):
-            raise ValueError(f"URL path must not have a leading slash, but {path} does")
+            msg = f"URL path must not have a leading slash, but {path} does"
+            raise ValueError(msg)
 
         url = urljoin(self.base_url, path)
 
@@ -120,12 +121,9 @@ class Client:
         headers: dict[str, str] | None = None,
         body: dict[str, Any] | None = None,
     ) -> HTTPRequest:
-        if body:
-            data = json.dumps(body).encode("utf-8")
-        else:
-            data = None
+        data = json.dumps(body).encode("utf-8") if body else None
 
-        request = HTTPRequest(url, data=data, method=method)
+        request = HTTPRequest(url, data=data, method=method)  # noqa: S310
 
         request.add_header("Accept", "application/json")
 
@@ -142,7 +140,7 @@ class Client:
         return request
 
 
-    def send_request(self, request: HTTPRequest) -> Tuple[Any, Response]:
+    def send_request(self, request: HTTPRequest) -> tuple[Any, Response]:
         wrapper: Response
 
         try:
@@ -160,7 +158,7 @@ class Client:
         except URLError as error:
             wrapper = ErrorResponse(request, error)
 
-        except Exception as error:
+        except Exception as error:  # noqa: BLE001
             wrapper = ErrorResponse(request, error)
 
         return wrapper.content, wrapper

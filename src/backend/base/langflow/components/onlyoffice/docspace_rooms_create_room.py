@@ -3,13 +3,18 @@ from typing import Any
 from langchain.tools import StructuredTool
 from pydantic import BaseModel, Field
 
-from langflow.base.onlyoffice.docspace.client import CreateRoomOptions, ErrorResponse, RoomType
-from langflow.base.onlyoffice.docspace.component import Component
+from langflow.base.onlyoffice.docspace import (
+    AuthTextInput,
+    Component,
+    CreateRoomOptions,
+    DataOutput,
+    ErrorResponse,
+    RoomType,
+    ToolOutput,
+)
 from langflow.field_typing import Tool
-from langflow.inputs import MessageTextInput, SecretStrInput
-from langflow.io import Output
+from langflow.inputs import MessageTextInput
 from langflow.schema import Data
-from langflow.template import Output
 
 
 class OnlyofficeDocspaceCreateRoom(Component):
@@ -19,12 +24,7 @@ class OnlyofficeDocspaceCreateRoom(Component):
 
 
     inputs = [
-        SecretStrInput(
-            name="auth_text",
-            display_name="Text from Basic Authentication",
-            info="Text output from the Basic Authentication component.",
-            advanced=True,
-        ),
+        AuthTextInput(),
         MessageTextInput(
             name="room_type",
             display_name="Room Type",
@@ -41,17 +41,8 @@ class OnlyofficeDocspaceCreateRoom(Component):
 
 
     outputs = [
-        Output(
-            display_name="Data",
-            name="api_build_data",
-            method="build_data",
-        ),
-        Output(
-            display_name="Tool",
-            name="api_build_tool",
-            method="build_tool",
-            hidden=True,
-        ),
+        DataOutput(),
+        ToolOutput(),
     ]
 
 
@@ -64,7 +55,7 @@ class OnlyofficeDocspaceCreateRoom(Component):
         room_type = self.room_type
         try:
             room_type = int(self.room_type)
-        except:
+        except:  # noqa: E722
             room_type = self.room_type
 
         return self.Schema(

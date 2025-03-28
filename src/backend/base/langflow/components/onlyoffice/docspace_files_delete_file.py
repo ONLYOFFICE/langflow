@@ -1,16 +1,19 @@
 from typing import Any
-import time
 
 from langchain.tools import StructuredTool
 from pydantic import BaseModel, Field
 
-from langflow.base.onlyoffice.docspace.client import Client, DeleteFileOptions, ErrorResponse
-from langflow.base.onlyoffice.docspace.component import Component
+from langflow.base.onlyoffice.docspace import (
+    AuthTextInput,
+    Component,
+    DataOutput,
+    DeleteFileOptions,
+    FileIdInput,
+    Syncer,
+    ToolOutput,
+)
 from langflow.field_typing import Tool
-from langflow.inputs import MessageTextInput, SecretStrInput
-from langflow.io import Output
 from langflow.schema import Data
-from langflow.template import Output
 
 
 class OnlyofficeDocspaceDeleteFile(Component):
@@ -20,32 +23,14 @@ class OnlyofficeDocspaceDeleteFile(Component):
 
 
     inputs = [
-        SecretStrInput(
-            name="auth_text",
-            display_name="Text from Basic Authentication",
-            info="Text output from the Basic Authentication component.",
-            advanced=True,
-        ),
-        MessageTextInput(
-            name="file_id",
-            display_name="File ID",
-            info="The ID of the file to delete.",
-        ),
+        AuthTextInput(),
+        FileIdInput(info="The ID of the file to delete."),
     ]
 
 
     outputs = [
-        Output(
-            display_name="Data",
-            name="api_build_data",
-            method="build_data",
-        ),
-        Output(
-            display_name="Tool",
-            name="api_build_tool",
-            method="build_tool",
-            hidden=True,
-        ),
+        DataOutput(),
+        ToolOutput(),
     ]
 
 
@@ -81,40 +66,7 @@ class OnlyofficeDocspaceDeleteFile(Component):
 
     async def _delete_file(self, schema: Schema) -> Any:
         client = await self._get_client()
-
-        options = DeleteFileOptions(DeleteAfter=True, immediately=True)
-
-        result, response = client.files.delete_file(schema.file_id, options)
-        if isinstance(response, ErrorResponse):
-            raise response.exception
-
-        return self._wait_operation(client, result["id"])
-
-
-    def _wait_operation(self, client: Client, id: int) -> dict:
-        finished = False
-        body = {}
-
-        delay = 100 / 1000
-        limit = 100
-
-        while limit > 0:
-            body, response = client.files.list_operations()
-            if isinstance(response, ErrorResponse):
-                raise response.exception
-
-            for item in body:
-                if item.id == id and item.finished:
-                    finished = True
-                    break
-
-            if finished:
-                break
-
-            limit -= 1
-            time.sleep(delay)
-
-        if not finished:
-            raise ValueError(f"Operation {id} did not finish in time")
-
-        return body
+        syncer = Syncer(client.files.list_operations)
+        options = DeleteFileOptions(DeleteAfter=False, immediately=False)
+        operations = syncer.do(client.files.delete_file, schema.file_id, options)
+        return operations[0].model_dump(exclude_none=True, by_alias=True)
