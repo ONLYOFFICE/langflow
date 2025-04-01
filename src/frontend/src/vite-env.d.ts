@@ -10,4 +10,5 @@ declare const __BASENAME__: string;
 // declare const __PROXY_TARGET__: string;
 // declare const __DOCS_LINK__: string;
 declare const __BASE_URL_API__: string;
+declare const __BASE_URL_API_V2__: string;
 declare const __HEALTH_CHECK_URL__: string;
