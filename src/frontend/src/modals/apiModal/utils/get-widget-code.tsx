@@ -10,7 +10,6 @@ export default function getWidgetCode({
   flowId,
   flowName,
   isAuth,
-  copy = false,
 }: GetCodeType): string {
   const domain = `${window.location.protocol}//${window.location.host}`;
 

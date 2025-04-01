@@ -47,6 +47,7 @@ on:
         type: string
         description: "Ref to check out. If not specified, will default to the main version or current branch."
 
+
 env:
   POETRY_VERSION: "1.8.2"
   TEST_TAG: "onlyoffice/4testing-flow:test"
@@ -202,17 +203,15 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build and Push to Docker Hub
-        uses: Wandalen/wretry.action@master
+        uses: docker/build-push-action@v6
         with:
-          action: docker/build-push-action@v6
-          with: |
-            context: .
-            push: true
-            file: ${{ needs.setup.outputs.file }}
-            tags: ${{ needs.setup.outputs.docker_tags }}
-            platforms: linux/amd64,linux/arm64
-            cache-from: type=gha
-            cache-to: type=gha,mode=max
+          context: .
+          push: true
+          file: ${{ needs.setup.outputs.file }}
+          tags: ${{ needs.setup.outputs.docker_tags }}
+          platforms: linux/amd64,linux/arm64
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
   build_components:
     if: ${{ inputs.release_type == 'main' }}
@@ -252,7 +251,7 @@ jobs:
         run: sleep 120
 
       - name: Build and push ${{ matrix.component }}
-        uses: Wandalen/wretry.action@master
+        uses: docker/build-push-action@v6
         with:
           context: .
           push: true

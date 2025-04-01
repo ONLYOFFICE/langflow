@@ -1,8 +1,7 @@
 import { AllNodeType } from "@/types/flow";
 import { cloneDeep } from "lodash";
 import { useCallback } from "react";
-import { APIClassType, OutputFieldType } from "../../types/api";
-import { updateHiddenOutputs } from "../helpers/update-hidden-outputs";
+import { APIClassType } from "../../types/api";
 
 export type UpdateNodesType = {
   nodeId: string;
@@ -28,8 +27,6 @@ const useUpdateAllNodes = (
           if (nodeIndex === -1) return;
 
           const updatedNode = newNodes[nodeIndex];
-          const outputs = updatedNode?.data.node?.outputs;
-
           updatedNode.data = {
             ...updatedNode.data,
             node: {
@@ -47,13 +44,6 @@ const useUpdateAllNodes = (
           }
 
           updatedNode.data.node!.template[name].value = code;
-
-          const updatedOutputs = updatedNode.data.node?.outputs;
-          updatedNode.data.node!.outputs = updateHiddenOutputs(
-            outputs!,
-            updatedOutputs!,
-          );
-
           updateNodeInternals(nodeId);
         });
 

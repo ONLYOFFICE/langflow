@@ -28,11 +28,14 @@ test(
 
     await page
       .getByTestId("outputsChat Output")
-      .hover()
-      .then(async () => {
-        await page.getByTestId("add-component-button-chat-output").click();
-      });
+      .dragTo(page.locator('//*[@id="react-flow-id"]'));
+    await page.mouse.up();
+    await page.mouse.down();
 
+    await adjustScreenView(page);
+
+    await page.getByTestId("zoom_out").click();
+    await page.getByTestId("zoom_out").click();
     await page.getByTestId("zoom_out").click();
     await page.getByTestId("zoom_out").click();
 
@@ -44,9 +47,13 @@ test(
 
     await page
       .getByTestId("inputsChat Input")
-      .dragTo(page.locator('//*[@id="react-flow-id"]'), {
-        targetPosition: { x: 100, y: 100 },
-      });
+      .dragTo(page.locator('//*[@id="react-flow-id"]'));
+    await page.mouse.up();
+    await page.mouse.down();
+
+    await page.waitForSelector('[data-testid="fit_view"]', {
+      timeout: 100000,
+    });
 
     await page.getByTestId("sidebar-search-input").click();
     await page.getByTestId("sidebar-search-input").fill("text output");
@@ -56,21 +63,92 @@ test(
 
     await page
       .getByTestId("outputsText Output")
-      .dragTo(page.locator('//*[@id="react-flow-id"]'), {
-        targetPosition: { x: 300, y: 300 },
-      });
+      .dragTo(page.locator('//*[@id="react-flow-id"]'));
+    await page.mouse.up();
+    await page.mouse.down();
 
     await adjustScreenView(page);
 
-    await page
-      .getByTestId("handle-chatinput-noshownode-message-source")
-      .click();
+    await page.getByTestId("zoom_out").click();
+    await page.getByTestId("zoom_out").click();
+    await page.getByTestId("zoom_out").click();
+    await page.getByTestId("zoom_out").click();
 
-    await page.getByTestId("handle-textoutput-shownode-text-left").click();
+    const elementsChatInput = await page
+      .locator('[data-testid="handle-chatinput-noshownode-message-source"]')
+      .all();
 
-    await page.getByTestId("handle-textoutput-shownode-message-right").click();
-    await page.getByTestId("handle-chatoutput-noshownode-text-target").click();
+    let visibleElementHandle;
 
+    for (const element of elementsChatInput) {
+      if (await element.isVisible()) {
+        visibleElementHandle = element;
+        break;
+      }
+    }
+
+    // Click and hold on the first element
+    await visibleElementHandle.hover();
+    await page.mouse.down();
+
+    // Move to the second element
+
+    const elementsTextOutput = await page
+      .getByTestId("handle-textoutput-shownode-text-left")
+      .all();
+
+    for (const element of elementsTextOutput) {
+      if (await element.isVisible()) {
+        visibleElementHandle = element;
+        break;
+      }
+    }
+
+    await visibleElementHandle.hover();
+
+    // Release the mouse
+    await page.mouse.up();
+
+    await page.getByTestId("fit_view").click();
+    await page.getByTestId("fit_view").click();
+    await page.getByTestId("fit_view").click();
+    await page.getByTestId("fit_view").click();
+
+    //
+
+    const elementsTextOutputRight = await page
+      .locator('[data-testid="handle-textoutput-shownode-message-right"]')
+      .all();
+
+    for (const element of elementsTextOutputRight) {
+      if (await element.isVisible()) {
+        visibleElementHandle = element;
+        break;
+      }
+    }
+
+    // Click and hold on the first element
+    await visibleElementHandle.hover();
+    await page.mouse.down();
+
+    //
+    const elementsChatOutput = await page
+      .getByTestId("handle-chatoutput-noshownode-text-target")
+      .all();
+
+    for (const element of elementsChatOutput) {
+      if (await element.isVisible()) {
+        visibleElementHandle = element;
+        break;
+      }
+    }
+
+    await visibleElementHandle.hover();
+
+    // Release the mouse
+    await page.mouse.up();
+
+    await page.getByTestId("fit_view").click();
     await page.getByText("Playground", { exact: true }).last().click();
     await page.waitForSelector('[data-testid="input-chat-playground"]', {
       timeout: 100000,

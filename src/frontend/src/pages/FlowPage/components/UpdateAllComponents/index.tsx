@@ -36,35 +36,27 @@ export default function UpdateAllComponents({}: {}) {
   const [loadingUpdate, setLoadingUpdate] = useState(false);
   const [dismissed, setDismissed] = useState(false);
 
-  const edgesUpdateRef = useRef({
-    numberOfEdgesBeforeUpdate: 0,
-    updateComponent: false,
-  });
+  const numberOfEdgesBeforeUpdate = useRef(0);
 
   useMemo(() => {
     if (
-      edgesUpdateRef.current.numberOfEdgesBeforeUpdate > 0 &&
-      edges.length !== edgesUpdateRef.current.numberOfEdgesBeforeUpdate &&
-      edgesUpdateRef.current.updateComponent
+      numberOfEdgesBeforeUpdate.current > 0 &&
+      edges.length !== numberOfEdgesBeforeUpdate.current
     ) {
       useAlertStore.getState().setNoticeData({
         title: ERROR_MESSAGE_EDGES_LOST,
       });
-
-      resetEdgesUpdateRef();
     }
   }, [edges]);
 
   const getSuccessTitle = (updatedCount: number) => {
-    resetEdgesUpdateRef();
     return `Successfully updated ${updatedCount} component${
       updatedCount > 1 ? "s" : ""
     }`;
   };
 
   const handleUpdateAllComponents = () => {
-    startEdgesUpdateRef();
-
+    numberOfEdgesBeforeUpdate.current = edges.length;
     setLoadingUpdate(true);
     takeSnapshot();
 
@@ -128,20 +120,6 @@ export default function UpdateAllComponents({}: {}) {
       .finally(() => {
         setLoadingUpdate(false);
       });
-  };
-
-  const resetEdgesUpdateRef = () => {
-    edgesUpdateRef.current = {
-      numberOfEdgesBeforeUpdate: 0,
-      updateComponent: false,
-    };
-  };
-
-  const startEdgesUpdateRef = () => {
-    edgesUpdateRef.current = {
-      numberOfEdgesBeforeUpdate: edges.length,
-      updateComponent: true,
-    };
   };
 
   if (componentsToUpdate.length === 0) return null;

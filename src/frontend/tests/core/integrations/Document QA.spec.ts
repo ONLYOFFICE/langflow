@@ -3,7 +3,6 @@ import * as dotenv from "dotenv";
 import path from "path";
 import { awaitBootstrapTest } from "../../utils/await-bootstrap-test";
 import { initialGPTsetup } from "../../utils/initialGPTsetup";
-import { uploadFile } from "../../utils/upload-file";
 import { withEventDeliveryModes } from "../../utils/withEventDeliveryModes";
 
 withEventDeliveryModes(
@@ -25,7 +24,13 @@ withEventDeliveryModes(
     await page.getByRole("heading", { name: "Document Q&A" }).click();
     await initialGPTsetup(page);
 
-    await uploadFile(page, "test_file.txt");
+    const fileChooserPromise = page.waitForEvent("filechooser");
+    await page.getByTestId("button_upload_file").click();
+    const fileChooser = await fileChooserPromise;
+    await fileChooser.setFiles(
+      path.join(__dirname, "../../assets/test_file.txt"),
+    );
+    await page.getByText("test_file.txt").isVisible();
 
     await page.waitForSelector('[data-testid="button_run_chat output"]', {
       timeout: 3000,

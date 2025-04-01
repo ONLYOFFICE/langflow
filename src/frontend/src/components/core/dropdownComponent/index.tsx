@@ -3,21 +3,13 @@ import { usePostTemplateValue } from "@/controllers/API/queries/nodes/use-post-t
 import NodeDialog from "@/CustomNodes/GenericNode/components/NodeDialogComponent";
 import { mutateTemplate } from "@/CustomNodes/helpers/mutate-template";
 import useAlertStore from "@/stores/alertStore";
-import {
-  convertStringToHTML,
-  getStatusColor,
-} from "@/utils/stringManipulation";
+import { getStatusColor } from "@/utils/stringManipulation";
 import { PopoverAnchor } from "@radix-ui/react-popover";
 import Fuse from "fuse.js";
 import { cloneDeep } from "lodash";
-import { ChangeEvent, useEffect, useMemo, useRef, useState } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { DropDownComponent } from "../../../types/components";
-import {
-  cn,
-  filterNullOptions,
-  formatName,
-  formatPlaceholderName,
-} from "../../../utils/utils";
+import { cn, formatName, formatPlaceholderName } from "../../../utils/utils";
 import { default as ForwardedIconComponent } from "../../common/genericIconComponent";
 import ShadTooltip from "../../common/shadTooltipComponent";
 import { Button } from "../../ui/button";
@@ -51,14 +43,11 @@ export default function Dropdown({
   dialogInputs,
   ...baseInputProps
 }: BaseInputProps & DropDownComponent): JSX.Element {
-  const validOptions = useMemo(() => filterNullOptions(options), [options]);
-
   // Initialize state and refs
   const [open, setOpen] = useState(children ? true : false);
   const [openDialog, setOpenDialog] = useState(false);
   const [customValue, setCustomValue] = useState("");
-  const [filteredOptions, setFilteredOptions] = useState(validOptions);
-  const [filteredMetadata, setFilteredMetadata] = useState(optionsMetaData);
+  const [filteredOptions, setFilteredOptions] = useState(options);
   const [refreshOptions, setRefreshOptions] = useState(false);
   const refButton = useRef<HTMLButtonElement>(null);
 
@@ -67,11 +56,10 @@ export default function Dropdown({
     ? formatPlaceholderName(name)
     : "Choose an option...";
   const { firstWord } = formatName(name);
-  const fuse = new Fuse(validOptions, { keys: ["name", "value"] });
+  const fuse = new Fuse(options, { keys: ["name", "value"] });
   const PopoverContentDropdown =
     children || editNode ? PopoverContent : PopoverContentWithoutPortal;
-  const { nodeClass, nodeId, handleNodeClass, tooltip, helperText } =
-    baseInputProps;
+  const { nodeClass, nodeId, handleNodeClass, tooltip } = baseInputProps;
 
   // API and store hooks
   const postTemplateValue = usePostTemplateValue({
@@ -84,7 +72,7 @@ export default function Dropdown({
   // Utility functions
   const filterMetadataKeys = (
     metadata: Record<string, any> = {},
-    excludeKeys: string[] = ["api_endpoint", "icon", "status", "org_id"],
+    excludeKeys: string[] = ["api_endpoint", "icon", "status"],
   ) => {
     return Object.fromEntries(
       Object.entries(metadata).filter(([key]) => !excludeKeys.includes(key)),
@@ -95,21 +83,8 @@ export default function Dropdown({
     const value = event.target.value;
     const searchValues = fuse.search(value);
     const filtered = searchValues.map((search) => search.item);
-
-    // Update filteredOptions with the search results
-    setFilteredOptions(value ? filtered : validOptions);
-
-    // Update filteredMetadata to match the filtered options
-    if (value && optionsMetaData) {
-      const newMetadata = filtered.map((option) => {
-        const originalIndex = validOptions.indexOf(option);
-        return optionsMetaData[originalIndex];
-      });
-      setFilteredMetadata(newMetadata);
-    } else {
-      setFilteredMetadata(optionsMetaData);
-    }
-
+    if (!filtered.includes(value) && combobox && value) filtered.push(value);
+    setFilteredOptions(value ? filtered : options);
     setCustomValue(value);
   };
 
@@ -158,7 +133,7 @@ export default function Dropdown({
 
   useEffect(() => {
     if (open) {
-      const filtered = cloneDeep(validOptions);
+      const filtered = cloneDeep(options);
       if (customValue === value && value && combobox) {
         filtered.push(customValue);
       }
@@ -179,12 +154,12 @@ export default function Dropdown({
   );
 
   const renderTriggerButton = () => (
-    <div className="flex w-full flex-col">
+    <ShadTooltip content={!value ? (tooltip as string) : ""}>
       <PopoverTrigger asChild>
         <Button
           disabled={
             disabled ||
-            (Object.keys(validOptions).length === 0 &&
+            (Object.keys(options).length === 0 &&
               !combobox &&
               !dialogInputs?.fields?.data?.node?.template)
           }
@@ -217,9 +192,7 @@ export default function Dropdown({
                 className="h-4 w-4"
               />
             )}
-            {value && filteredOptions.includes(value)
-              ? value
-              : placeholderName}{" "}
+            {value && filteredOptions.includes(value) ? value : placeholderName}{" "}
           </span>
           <ForwardedIconComponent
             name="ChevronsUpDown"
@@ -232,12 +205,7 @@ export default function Dropdown({
           />
         </Button>
       </PopoverTrigger>
-      {helperText && (
-        <span className="pt-2 text-xs text-muted-foreground">
-          {convertStringToHTML(helperText)}
-        </span>
-      )}
-    </div>
+    </ShadTooltip>
   );
 
   const renderSearchInput = () => (
@@ -327,37 +295,37 @@ export default function Dropdown({
                   data-testid={`${option}-${index}-option`}
                 >
                   <div className="flex w-full items-center gap-2">
-                    {filteredMetadata?.[index]?.icon && (
+                    {optionsMetaData && optionsMetaData.length > 0 && (
                       <ForwardedIconComponent
-                        name={filteredMetadata?.[index]?.icon || "Unknown"}
+                        name={optionsMetaData?.[index]?.icon || "Unknown"}
                         className="h-4 w-4 shrink-0 text-primary"
                       />
                     )}
                     <div
                       className={cn("flex truncate", {
                         "flex-col":
-                          filteredMetadata && filteredMetadata?.length > 0,
-                        "w-full pl-2": !filteredMetadata?.[index]?.icon,
+                          optionsMetaData && optionsMetaData?.length > 0,
+                        "w-full pl-2": !optionsMetaData?.[index]?.icon,
                       })}
                     >
                       <div className="flex truncate">
                         {option}{" "}
                         <span
                           className={`flex items-center pl-2 text-xs ${getStatusColor(
-                            filteredMetadata?.[index]?.status,
+                            optionsMetaData?.[index]?.status,
                           )}`}
                         >
                           <LoadingTextComponent
-                            text={filteredMetadata?.[
+                            text={optionsMetaData?.[
                               index
                             ]?.status?.toLowerCase()}
                           />
                         </span>
                       </div>
-                      {filteredMetadata && filteredMetadata?.length > 0 ? (
+                      {optionsMetaData && optionsMetaData?.length > 0 ? (
                         <div className="flex w-full items-center text-muted-foreground">
                           {Object.entries(
-                            filterMetadataKeys(filteredMetadata?.[index] || {}),
+                            filterMetadataKeys(optionsMetaData?.[index] || {}),
                           )
                             .filter(
                               ([key, value]) =>
@@ -422,14 +390,14 @@ export default function Dropdown({
       }
     >
       <Command>
-        {options?.length > 0 && renderSearchInput()}
+        {filteredOptions?.length > 0 && renderSearchInput()}
         {renderOptionsList()}
       </Command>
     </PopoverContentDropdown>
   );
 
   // Loading state
-  if (Object.keys(validOptions).length === 0 && !combobox && isLoading) {
+  if (Object.keys(options).length === 0 && !combobox && isLoading) {
     return (
       <div>
         <span className="text-sm italic">Loading...</span>

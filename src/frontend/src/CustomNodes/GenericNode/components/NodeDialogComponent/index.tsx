@@ -10,7 +10,6 @@ import {
 } from "@/components/ui/dialog";
 import { usePostTemplateValue } from "@/controllers/API/queries/nodes/use-post-template-value";
 import { getCustomParameterTitle } from "@/customization/components/custom-parameter";
-import { track } from "@/customization/utils/analytics";
 import { mutateTemplate } from "@/CustomNodes/helpers/mutate-template";
 import useAlertStore from "@/stores/alertStore";
 import useFlowStore from "@/stores/flowStore";
@@ -110,28 +109,6 @@ export const NodeDialog: React.FC<NodeDialogProps> = ({
   };
 
   const handleSubmitDialog = async () => {
-    // Validate required fields first
-    const missingRequiredFields = Object.entries(dialogTemplate)
-      .filter(
-        ([key, fieldValue]) =>
-          (fieldValue as { required: boolean })?.required === true &&
-          (!fieldValues[key] ||
-            (typeof fieldValues[key] === "string" &&
-              fieldValues[key].trim() === "")),
-      )
-      .map(
-        ([fieldKey, fieldValue]) =>
-          (fieldValue as { display_name: string })?.display_name || fieldKey,
-      );
-
-    if (missingRequiredFields.length > 0) {
-      handleErrorData({
-        title: "Missing required fields",
-        list: missingRequiredFields,
-      });
-      return;
-    }
-
     setIsLoading(true);
 
     await mutateTemplate(
@@ -144,20 +121,6 @@ export const NodeDialog: React.FC<NodeDialogProps> = ({
       handleCloseDialog,
       nodeClass.tool_mode,
     );
-
-    if (nodeId.toLowerCase().includes("astra") && name === "database_name") {
-      const {
-        cloud_provider: cloudProvider,
-        new_database_name: databaseName,
-        ...otherFields
-      } = fieldValues;
-      track("Database Created", {
-        nodeId,
-        cloudProvider,
-        databaseName,
-        ...otherFields,
-      });
-    }
 
     setTimeout(() => {
       handleCloseDialog();
@@ -184,15 +147,13 @@ export const NodeDialog: React.FC<NodeDialogProps> = ({
         <div className="flex flex-col gap-5 overflow-y-auto px-5">
           {Object.entries(dialogTemplate).map(([fieldKey, fieldValue]) => (
             <div key={fieldKey}>
-              <div className="flex items-center gap-2">
+              <div>
                 {getCustomParameterTitle({
                   title:
                     (fieldValue as { display_name: string })?.display_name ??
                     "",
                   nodeId,
                   isFlexView: false,
-                  required:
-                    (fieldValue as { required: boolean })?.required ?? false,
                 })}
               </div>
               <ParameterRenderComponent
@@ -202,16 +163,12 @@ export const NodeDialog: React.FC<NodeDialogProps> = ({
                 name={fieldKey}
                 nodeId={nodeId}
                 templateData={fieldValue as Partial<InputFieldType>}
-                templateValue={(fieldValue as { value: string })?.value ?? ""}
+                templateValue={fieldValues[fieldKey] || ""}
                 editNode={false}
                 handleNodeClass={() => {}}
                 nodeClass={dialogNodeData}
-                disabled={
-                  (fieldValue as { disabled: boolean })?.disabled ?? false
-                }
-                placeholder={
-                  (fieldValue as { placeholder: string })?.placeholder ?? ""
-                }
+                disabled={false}
+                placeholder=""
                 isToolMode={false}
               />
             </div>

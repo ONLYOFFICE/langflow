@@ -95,7 +95,6 @@ class TestAgentComponent(ComponentTestBaseWithoutClient):
         assert "model_name" not in updated_config
 
 
-@pytest.mark.usefixtures("client")
 @pytest.mark.api_key_required
 async def test_agent_component_with_calculator():
     # Mock inputs

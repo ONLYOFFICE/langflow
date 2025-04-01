@@ -10,7 +10,7 @@ from uuid import UUID, uuid4
 
 import pydantic
 from anyio import BrokenResourceError
-from fastapi import APIRouter, Depends, HTTPException, Request
+from fastapi import APIRouter, Depends, Request
 from fastapi.responses import StreamingResponse
 from mcp import types
 from mcp.server import NotificationOptions, Server
@@ -18,17 +18,12 @@ from mcp.server.sse import SseServerTransport
 from sqlmodel import select
 from starlette.background import BackgroundTasks
 
-from langflow.api.v1.chat import build_flow_and_stream
+from langflow.api.v1.chat import build_flow
 from langflow.api.v1.schemas import InputValueRequest
 from langflow.helpers.flow import json_schema_from_flow
 from langflow.services.auth.utils import get_current_active_user
 from langflow.services.database.models import Flow, User
-from langflow.services.deps import (
-    get_db_service,
-    get_session,
-    get_settings_service,
-    get_storage_service,
-)
+from langflow.services.deps import get_db_service, get_session, get_settings_service, get_storage_service
 from langflow.services.storage.utils import build_content_type_from_extension
 
 logger = logging.getLogger(__name__)
@@ -48,20 +43,6 @@ if False:
         mcp_logger.addHandler(handler)
 
     logger.debug("MCP module loaded - debug logging enabled")
-
-
-class MCPConfig:
-    _instance = None
-
-    def __new__(cls):
-        if cls._instance is None:
-            cls._instance = super().__new__(cls)
-            cls._instance.enable_progress_notifications = None
-        return cls._instance
-
-
-def get_mcp_config():
-    return MCPConfig()
 
 
 router = APIRouter(prefix="/mcp", tags=["mcp"])
@@ -196,12 +177,10 @@ async def handle_list_tools():
 
 
 @server.call_tool()
-async def handle_call_tool(name: str, arguments: dict) -> list[types.TextContent]:
+async def handle_call_tool(
+    name: str, arguments: dict, *, enable_progress_notifications: bool = Depends(get_enable_progress_notifications)
+) -> list[types.TextContent]:
     """Handle tool execution requests."""
-    mcp_config = get_mcp_config()
-    if mcp_config.enable_progress_notifications is None:
-        settings_service = get_settings_service()
-        mcp_config.enable_progress_notifications = settings_service.settings.mcp_server_enable_progress_notifications
     try:
         session = await anext(get_session())
         background_tasks = BackgroundTasks()
@@ -217,7 +196,7 @@ async def handle_call_tool(name: str, arguments: dict) -> list[types.TextContent
         processed_inputs = dict(arguments)
 
         # Initial progress notification
-        if mcp_config.enable_progress_notifications and (progress_token := server.request_context.meta.progressToken):
+        if enable_progress_notifications and (progress_token := server.request_context.meta.progressToken):
             await server.request_context.session.send_progress_notification(
                 progress_token=progress_token, progress=0.0, total=1.0
             )
@@ -228,7 +207,7 @@ async def handle_call_tool(name: str, arguments: dict) -> list[types.TextContent
         )
 
         async def send_progress_updates():
-            if not (mcp_config.enable_progress_notifications and server.request_context.meta.progressToken):
+            if not (enable_progress_notifications and server.request_context.meta.progressToken):
                 return
 
             try:
@@ -241,7 +220,7 @@ async def handle_call_tool(name: str, arguments: dict) -> list[types.TextContent
                     await asyncio.sleep(1.0)
             except asyncio.CancelledError:
                 # Send final 100% progress
-                if mcp_config.enable_progress_notifications:
+                if enable_progress_notifications:
                     await server.request_context.session.send_progress_notification(
                         progress_token=progress_token, progress=1.0, total=1.0
                     )
@@ -249,16 +228,17 @@ async def handle_call_tool(name: str, arguments: dict) -> list[types.TextContent
 
         db_service = get_db_service()
         collected_results = []
-        async with db_service.with_session():
+        async with db_service.with_session() as async_session:
             try:
                 progress_task = asyncio.create_task(send_progress_updates())
 
                 try:
-                    response = await build_flow_and_stream(
+                    response = await build_flow(
                         flow_id=UUID(name),
                         inputs=input_request,
                         background_tasks=background_tasks,
                         current_user=current_user,
+                        session=async_session,
                     )
 
                     async for line in response.body_iterator:
@@ -296,7 +276,7 @@ async def handle_call_tool(name: str, arguments: dict) -> list[types.TextContent
     except Exception as e:
         context = server.request_context
         # Send error progress if there's an exception
-        if mcp_config.enable_progress_notifications and (progress_token := context.meta.progressToken):
+        if enable_progress_notifications and (progress_token := context.meta.progressToken):
             await server.request_context.session.send_progress_notification(
                 progress_token=progress_token, progress=1.0, total=1.0
             )
@@ -366,8 +346,4 @@ async def handle_sse(request: Request, current_user: Annotated[User, Depends(get
 
 @router.post("/")
 async def handle_messages(request: Request):
-    try:
-        await sse.handle_post_message(request.scope, request.receive, request._send)
-    except BrokenResourceError as e:
-        logger.info("MCP Server disconnected")
-        raise HTTPException(status_code=404, detail=f"MCP Server disconnected, error: {e}") from e
+    await sse.handle_post_message(request.scope, request.receive, request._send)

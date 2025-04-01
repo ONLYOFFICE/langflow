@@ -179,8 +179,6 @@ class DatabaseService(Service):
                             cursor.execute(pragma)
                         except OperationalError:
                             logger.exception(f"Failed to set PRAGMA {pragma}")
-                        except GeneratorExit:
-                            logger.error(f"Failed to set PRAGMA {pragma}")
                 finally:
                     cursor.close()
 

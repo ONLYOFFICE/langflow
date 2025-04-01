@@ -1,7 +1,7 @@
 from langchain_text_splitters import CharacterTextSplitter
 
 from langflow.custom import Component
-from langflow.io import DropdownInput, HandleInput, IntInput, MessageTextInput, Output
+from langflow.io import HandleInput, IntInput, MessageTextInput, Output
 from langflow.schema import Data, DataFrame
 from langflow.utils.util import unescape_string
 
@@ -15,8 +15,8 @@ class SplitTextComponent(Component):
     inputs = [
         HandleInput(
             name="data_inputs",
-            display_name="Data or DataFrame",
-            info="The data with texts to split in chunks.",
+            display_name="Input Documents",
+            info="The data to split.",
             input_types=["Data", "DataFrame"],
             required=True,
         ),
@@ -29,20 +29,13 @@ class SplitTextComponent(Component):
         IntInput(
             name="chunk_size",
             display_name="Chunk Size",
-            info=(
-                "The maximum length of each chunk. Text is first split by separator, "
-                "then chunks are merged up to this size. "
-                "Individual splits larger than this won't be further divided."
-            ),
+            info="The maximum number of characters in each chunk.",
             value=1000,
         ),
         MessageTextInput(
             name="separator",
             display_name="Separator",
-            info=(
-                "The character to split on. Use \\n for newline. "
-                "Examples: \\n\\n for paragraphs, \\n for lines, . for sentences"
-            ),
+            info="The character to split on. Defaults to newline.",
             value="\n",
         ),
         MessageTextInput(
@@ -50,14 +43,6 @@ class SplitTextComponent(Component):
             display_name="Text Key",
             info="The key to use for the text column.",
             value="text",
-            advanced=True,
-        ),
-        DropdownInput(
-            name="keep_separator",
-            display_name="Keep Separator",
-            info="Whether to keep the separator in the output chunks and where to place it.",
-            options=["False", "True", "Start", "End"],
-            value="False",
             advanced=True,
         ),
     ]
@@ -70,18 +55,12 @@ class SplitTextComponent(Component):
     def _docs_to_data(self, docs) -> list[Data]:
         return [Data(text=doc.page_content, data=doc.metadata) for doc in docs]
 
-    def _fix_separator(self, separator: str) -> str:
-        """Fix common separator issues and convert to proper format."""
-        if separator == "/n":
-            return "\n"
-        if separator == "/t":
-            return "\t"
-        return separator
+    def _docs_to_dataframe(self, docs):
+        data_dicts = [{self.text_key: doc.page_content, **doc.metadata} for doc in docs]
+        return DataFrame(data_dicts)
 
     def split_text_base(self):
-        separator = self._fix_separator(self.separator)
-        separator = unescape_string(separator)
-
+        separator = unescape_string(self.separator)
         if isinstance(self.data_inputs, DataFrame):
             if not len(self.data_inputs):
                 msg = "DataFrame is empty"
@@ -112,20 +91,10 @@ class SplitTextComponent(Component):
                     msg = f"Invalid input type in collection: {e}"
                     raise TypeError(msg) from e
         try:
-            # Convert string 'False'/'True' to boolean
-            keep_sep = self.keep_separator
-            if isinstance(keep_sep, str):
-                if keep_sep.lower() == "false":
-                    keep_sep = False
-                elif keep_sep.lower() == "true":
-                    keep_sep = True
-                # 'start' and 'end' are kept as strings
-
             splitter = CharacterTextSplitter(
                 chunk_overlap=self.chunk_overlap,
                 chunk_size=self.chunk_size,
                 separator=separator,
-                keep_separator=keep_sep,
             )
             return splitter.split_documents(documents)
         except Exception as e:
@@ -136,4 +105,4 @@ class SplitTextComponent(Component):
         return self._docs_to_data(self.split_text_base())
 
     def as_dataframe(self) -> DataFrame:
-        return DataFrame(self.split_text())
+        return self._docs_to_dataframe(self.split_text_base())

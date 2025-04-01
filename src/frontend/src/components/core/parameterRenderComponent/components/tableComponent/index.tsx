@@ -55,12 +55,12 @@ const TableComponent = forwardRef<
   ) => {
     let colDef = props.columnDefs
       .filter((col) => !col.hide)
-      .map((col, index, filteredArray) => {
+      .map((col, index) => {
         let newCol = {
           ...col,
         };
 
-        if (index !== filteredArray.length - 1) {
+        if (index !== props.columnDefs.length - 1) {
           newCol = {
             ...newCol,
             suppressSizeToFit: true,
@@ -123,11 +123,7 @@ const TableComponent = forwardRef<
     const dark = useDarkStore((state) => state.dark);
     const initialColumnDefs = useRef(colDef);
     const [columnStateChange, setColumnStateChange] = useState(false);
-    // Only use visible columns for the store reference
-    const storeReference = props.columnDefs
-      .filter((col) => !col.hide)
-      .map((e) => e.headerName)
-      .join("_");
+    const storeReference = props.columnDefs.map((e) => e.headerName).join("_");
 
     const onGridReady = (params) => {
       // @ts-ignore
@@ -152,8 +148,6 @@ const TableComponent = forwardRef<
       setTimeout(() => {
         if (!realRef?.current?.api?.isDestroyed) {
           realRef?.current?.api?.hideOverlay();
-          // Force column fit after hiding overlay to ensure proper layout
-          realRef?.current?.api?.sizeColumnsToFit();
         }
       }, 1000);
       if (props.onGridReady) props.onGridReady(params);
@@ -174,7 +168,7 @@ const TableComponent = forwardRef<
 
       const containerWidth = containerElement.clientWidth;
 
-      // Get only visible columns
+      // Get all columns
       const columns = gridApi.getColumns();
       if (!columns) return;
 
@@ -233,14 +227,9 @@ const TableComponent = forwardRef<
           {...props}
           defaultColDef={{
             minWidth: 100,
-            suppressColumnsToolPanel: true, // Don't show hidden columns in tool panel
           }}
           animateRows={false}
-          gridOptions={{
-            colResizeDefault: "shift",
-            suppressColumnVirtualisation: false, // Enable column virtualization for better performance
-            ...props.gridOptions,
-          }}
+          gridOptions={{ colResizeDefault: "shift", ...props.gridOptions }}
           onColumnResized={onColumnResized}
           columnDefs={colDef}
           ref={(node) => {

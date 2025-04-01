@@ -41,7 +41,6 @@ class ApifyActorsComponent(Component):
                 "Actor name from Apify store to run. For example 'apify/website-content-crawler' "
                 "to use the Website Content Crawler Actor."
             ),
-            value="apify/website-content-crawler",
             required=True,
         ),
         # multiline input is more pleasant to use than the nested dict input
@@ -52,7 +51,7 @@ class ApifyActorsComponent(Component):
                 'The JSON input for the Actor run. For example for the "apify/website-content-crawler" Actor: '
                 '{"startUrls":[{"url":"https://docs.apify.com/academy/web-scraping-for-beginners"}],"maxCrawlDepth":0}'
             ),
-            value='{"startUrls":[{"url":"https://docs.apify.com/academy/web-scraping-for-beginners"}],"maxCrawlDepth":0}',
+            value="{}",
             required=True,
         ),
         MultilineInput(
@@ -90,9 +89,9 @@ class ApifyActorsComponent(Component):
 
     def run_model(self) -> list[Data]:
         """Run the Actor and return node output."""
-        input_ = json.loads(self.run_input)
+        _input = json.loads(self.run_input)
         fields = ApifyActorsComponent.parse_dataset_fields(self.dataset_fields) if self.dataset_fields else None
-        res = self._run_actor(self.actor_id, input_, fields=fields)
+        res = self._run_actor(self.actor_id, _input, fields=fields)
         if self.flatten_dataset:
             res = [ApifyActorsComponent.flatten(item) for item in res]
         data = [Data(data=item) for item in res]
@@ -114,16 +113,16 @@ class ApifyActorsComponent(Component):
         properties = {"run_input": properties}
 
         # works from input schema
-        info_ = [
+        _info = [
             (
                 "JSON encoded as a string with input schema (STRICTLY FOLLOW JSON FORMAT AND SCHEMA):\n\n"
                 f"{json.dumps(properties, separators=(',', ':'))}"
             )
         ]
         if required:
-            info_.append("\n\nRequired fields:\n" + "\n".join(required))
+            _info.append("\n\nRequired fields:\n" + "\n".join(required))
 
-        info = "".join(info_)
+        info = "".join(_info)
 
         input_model_cls = ApifyActorsComponent.create_input_model_class(info)
         tool_cls = ApifyActorsComponent.create_tool_class(self, readme, input_model_cls, actor_id)

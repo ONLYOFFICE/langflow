@@ -56,11 +56,7 @@ class SambaNovaComponent(LCModelComponent):
             info="Model top_p",
         ),
         SliderInput(
-            name="temperature",
-            display_name="Temperature",
-            value=0.1,
-            range_spec=RangeSpec(min=0, max=2, step=0.01),
-            advanced=True,
+            name="temperature", display_name="Temperature", value=0.1, range_spec=RangeSpec(min=0, max=2, step=0.01)
         ),
     ]
 

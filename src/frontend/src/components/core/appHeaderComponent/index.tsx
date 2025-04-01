@@ -7,7 +7,10 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { CustomOrgSelector } from "@/customization/components/custom-org-selector";
 import { CustomProductSelector } from "@/customization/components/custom-product-selector";
-import { ENABLE_DATASTAX_LANGFLOW } from "@/customization/feature-flags";
+import {
+  ENABLE_DATASTAX_LANGFLOW,
+  ENABLE_NEW_LOGO,
+} from "@/customization/feature-flags";
 import { useCustomNavigate } from "@/customization/hooks/use-custom-navigate";
 import useTheme from "@/customization/hooks/use-custom-theme";
 import { useResetDismissUpdateAll } from "@/hooks/use-reset-dismiss-update-all";
@@ -53,7 +56,7 @@ export default function AppHeader(): JSX.Element {
     >
       {/* Left Section */}
       <div
-        className={`z-30 flex items-center gap-2`}
+        className={`flex items-center gap-2`}
         data-testid="header_left_section_wrapper"
       >
         <Button
@@ -64,8 +67,10 @@ export default function AppHeader(): JSX.Element {
         >
           {ENABLE_DATASTAX_LANGFLOW ? (
             <DataStaxLogo className="fill-black dark:fill-[white]" />
-          ) : (
+          ) : ENABLE_NEW_LOGO ? (
             <LangflowLogo className="h-5 w-6" />
+          ) : (
+            <span className="fill-black text-2xl dark:fill-white">⛓️</span>
           )}
         </Button>
         {ENABLE_DATASTAX_LANGFLOW && (
@@ -77,13 +82,13 @@ export default function AppHeader(): JSX.Element {
       </div>
 
       {/* Middle Section */}
-      <div className="w-full flex-1 truncate lg:absolute lg:left-1/2 lg:-translate-x-1/2">
+      <div className="w-full flex-1 truncate md:max-w-[57%] lg:absolute lg:left-1/2 lg:max-w-[43%] lg:-translate-x-1/2 xl:max-w-[31%]">
         <FlowMenu />
       </div>
 
       {/* Right Section */}
       <div
-        className={`z-30 flex items-center gap-2`}
+        className={`flex items-center gap-2`}
         data-testid="header_right_section_wrapper"
       >
         {!ENABLE_DATASTAX_LANGFLOW && (
@@ -131,7 +136,9 @@ export default function AppHeader(): JSX.Element {
                   name="Bell"
                   className="side-bar-button-size h-[18px] w-[18px]"
                 />
-                <span className="hidden whitespace-nowrap">Notifications</span>
+                <span className="hidden whitespace-nowrap 2xl:inline">
+                  Notifications
+                </span>
               </Button>
             </AlertDropdown>
           </ShadTooltip>
@@ -139,13 +146,13 @@ export default function AppHeader(): JSX.Element {
         {!ENABLE_DATASTAX_LANGFLOW && (
           <>
             <ShadTooltip
-              content="Go to Langflow Store"
+              content="Go to LangflowStore"
               side="bottom"
               styleClasses="z-10"
             >
               <Button
                 variant="ghost"
-                className={` ${lastPath === "store" ? "bg-accent text-accent-foreground" : ""} z-50`}
+                className={` ${lastPath === "store" ? "bg-accent text-accent-foreground" : ""}`}
                 onClick={() => {
                   navigate("/store");
                 }}
@@ -155,7 +162,9 @@ export default function AppHeader(): JSX.Element {
                   name="Store"
                   className="side-bar-button-size h-[18px] w-[18px]"
                 />
-                <span className="hidden whitespace-nowrap">Store</span>
+                <span className="hidden whitespace-nowrap 2xl:inline">
+                  Store
+                </span>
               </Button>
             </ShadTooltip>
             <Separator

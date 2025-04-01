@@ -151,7 +151,7 @@ function NoteNode({
             overflow: "hidden",
           }}
           className={cn(
-            "flex-1 transition-all duration-200 ease-in-out",
+            "transition-all duration-200 ease-in-out",
             !isResizing && "transition-[width,height]",
           )}
         >

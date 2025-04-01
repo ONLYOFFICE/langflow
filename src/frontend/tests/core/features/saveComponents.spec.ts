@@ -52,6 +52,10 @@ test.describe("save component tests", () => {
         .locator('//*[@id="react-flow-id"]/div[1]/div[2]/button[3]')
         .click();
 
+      await page.getByTestId("title-ChatOpenAI").click({
+        modifiers: ["Control"],
+      });
+
       await page.getByTestId("title-Agent Initializer").click({
         modifiers: ["Control"],
       });

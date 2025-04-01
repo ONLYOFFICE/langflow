@@ -2,7 +2,6 @@ import useFlowStore from "@/stores/flowStore";
 import { cloneDeep } from "lodash"; // or any other deep cloning library you prefer
 import { useCallback } from "react";
 import { APIClassType } from "../../types/api";
-import { updateHiddenOutputs } from "../helpers/update-hidden-outputs";
 
 const useUpdateNodeCode = (
   dataId: string,
@@ -32,14 +31,6 @@ const useUpdateNodeCode = (
         newNode.data.node.template[name].value = code;
         setIsOutdated(false);
         setIsUserEdited(false);
-
-        const outputs = dataNode.outputs;
-        const updatedOutputs = newNodeClass.outputs;
-
-        newNode.data.node!.outputs = updateHiddenOutputs(
-          outputs!,
-          updatedOutputs!,
-        );
 
         return newNode;
       });

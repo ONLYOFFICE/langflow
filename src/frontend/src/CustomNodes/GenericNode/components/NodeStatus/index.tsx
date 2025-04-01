@@ -177,7 +177,7 @@ export default function NodeStatus({
   const iconName =
     BuildStatus.BUILDING === buildStatus
       ? isHovered
-        ? "Square"
+        ? "X"
         : "Loader2"
       : "Play";
 
@@ -185,8 +185,7 @@ export default function NodeStatus({
   const iconClasses = cn(
     "play-button-icon",
     isHovered ? "text-foreground" : "text-placeholder-foreground",
-    BuildStatus.BUILDING === buildStatus &&
-      (isHovered ? "text-status-red" : "animate-spin"),
+    BuildStatus.BUILDING === buildStatus && !isHovered && "animate-spin",
   );
 
   const getTooltipContent = () => {

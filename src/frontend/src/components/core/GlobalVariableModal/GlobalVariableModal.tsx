@@ -166,7 +166,7 @@ export default function GlobalVariableModal({
             </Tabs>
           </div>
 
-          <div className="space-y-2" id="global-variable-modal-inputs">
+          <div className="space-y-2">
             <Label>Name*</Label>
             <Input
               value={key}

@@ -79,7 +79,7 @@ test(
 
     const secondParseDataOutput = await page
       .getByTestId("handle-parsedata-shownode-data list-right")
-      .nth(1);
+      .nth(2);
 
     const loopItemInput = await page
       .getByTestId("handle-loopcomponent-shownode-item-left")
@@ -237,6 +237,6 @@ test(
 
     // Count occurrences of modified_value in output
     const matches = output?.match(/modified_value/g) || [];
-    expect(matches).toHaveLength(2);
+    expect(matches).toHaveLength(1);
   },
 );

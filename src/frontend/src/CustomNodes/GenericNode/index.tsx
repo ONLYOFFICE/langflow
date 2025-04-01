@@ -252,13 +252,6 @@ function GenericNode({
   const [hasChangedNodeDescription, setHasChangedNodeDescription] =
     useState(false);
 
-  const editedNameDescription =
-    editNameDescription && hasChangedNodeDescription;
-
-  const hasDescription = useMemo(() => {
-    return data.node?.description && data.node?.description !== "";
-  }, [data.node?.description]);
-
   const memoizedNodeToolbarComponent = useMemo(() => {
     return selected ? (
       <>
@@ -301,21 +294,25 @@ function GenericNode({
               showNode
                 ? "top-2 translate-x-[10.4rem]"
                 : "top-0 translate-x-[6.4rem]",
-              editedNameDescription
+              editNameDescription && hasChangedNodeDescription
                 ? "bg-accent-emerald"
                 : "bg-zinc-foreground",
             )}
             data-testid={
-              editedNameDescription
+              editNameDescription && hasChangedNodeDescription
                 ? "save-name-description-button"
                 : "edit-name-description-button"
             }
           >
             <ForwardedIconComponent
-              name={editedNameDescription ? "Check" : "PencilLine"}
+              name={
+                editNameDescription && hasChangedNodeDescription
+                  ? "Check"
+                  : "PencilLine"
+              }
               strokeWidth={ICON_STROKE_WIDTH}
               className={cn(
-                editedNameDescription
+                editNameDescription && hasChangedNodeDescription
                   ? "text-accent-emerald-foreground"
                   : "text-muted-foreground",
                 "icon-size",
@@ -493,9 +490,8 @@ function GenericNode({
         <div
           data-testid={`${data.id}-main-node`}
           className={cn(
-            "grid text-wrap p-4 leading-5",
-            showNode ? "border-b" : "relative",
-            hasDescription && "gap-3",
+            "grid gap-3 truncate text-wrap p-4 leading-5",
+            showNode && "border-b",
           )}
         >
           <div
@@ -511,9 +507,7 @@ function GenericNode({
               data-testid="generic-node-title-arrangement"
             >
               {renderNodeIcon()}
-              <div className="generic-node-tooltip-div truncate">
-                {renderNodeName()}
-              </div>
+              <div className="generic-node-tooltip-div">{renderNodeName()}</div>
             </div>
             <div data-testid={`${showNode ? "show" : "hide"}-node-content`}>
               {!showNode && (
@@ -548,11 +542,9 @@ function GenericNode({
               <div
                 className={cn(showHiddenOutputs ? "" : "h-0 overflow-hidden")}
               >
-                {showHiddenOutputs && (
-                  <div className="block">
-                    {renderOutputs(data.node!.outputs, "hidden")}
-                  </div>
-                )}
+                <div className="block">
+                  {renderOutputs(data.node!.outputs, "hidden")}
+                </div>
               </div>
               {hiddenOutputs && hiddenOutputs.length > 0 && (
                 <ShadTooltip

@@ -3,8 +3,6 @@ import { UtilityStoreType } from "@/types/zustand/utility";
 import { create } from "zustand";
 
 export const useUtilityStore = create<UtilityStoreType>((set, get) => ({
-  clientId: "",
-  setClientId: (clientId: string) => set({ clientId }),
   dismissAll: false,
   setDismissAll: (dismissAll: boolean) => set({ dismissAll }),
   chatValueStore: "",
@@ -37,10 +35,4 @@ export const useUtilityStore = create<UtilityStoreType>((set, get) => ({
   setTags: (tags: Tag[]) => set({ tags }),
   featureFlags: {},
   setFeatureFlags: (featureFlags: Record<string, any>) => set({ featureFlags }),
-  webhookPollingInterval: 5000,
-  setWebhookPollingInterval: (webhookPollingInterval: number) =>
-    set({ webhookPollingInterval }),
-  currentSessionId: "",
-  setCurrentSessionId: (sessionId: string) =>
-    set({ currentSessionId: sessionId }),
 }));

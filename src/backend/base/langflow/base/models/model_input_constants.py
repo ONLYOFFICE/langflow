@@ -7,7 +7,7 @@ from langflow.components.models.azure_openai import AzureChatOpenAIComponent
 from langflow.components.models.google_generative_ai import GoogleGenerativeAIComponent
 from langflow.components.models.groq import GroqModel
 from langflow.components.models.nvidia import NVIDIAModelComponent
-from langflow.components.models.openai_chat_model import OpenAIModelComponent
+from langflow.components.models.openai import OpenAIModelComponent
 from langflow.components.models.sambanova import SambaNovaComponent
 from langflow.inputs.inputs import InputTypes, SecretStrInput
 from langflow.template.field.base import Input
@@ -18,7 +18,6 @@ class ModelProvidersDict(TypedDict):
     inputs: list[InputTypes]
     prefix: str
     component_class: LCModelComponent
-    icon: str
 
 
 def get_filtered_inputs(component_class):
@@ -85,7 +84,7 @@ def _get_google_generative_ai_inputs_and_fields():
 
 def _get_openai_inputs_and_fields():
     try:
-        from langflow.components.models.openai_chat_model import OpenAIModelComponent
+        from langflow.components.models.openai import OpenAIModelComponent
 
         openai_inputs = get_filtered_inputs(OpenAIModelComponent)
     except ImportError as e:
@@ -170,7 +169,6 @@ try:
         "inputs": openai_inputs,
         "prefix": "",
         "component_class": OpenAIModelComponent(),
-        "icon": OpenAIModelComponent.icon,
     }
 except ImportError:
     pass
@@ -182,7 +180,6 @@ try:
         "inputs": azure_inputs,
         "prefix": "",
         "component_class": AzureChatOpenAIComponent(),
-        "icon": AzureChatOpenAIComponent.icon,
     }
 except ImportError:
     pass
@@ -194,7 +191,6 @@ try:
         "inputs": groq_inputs,
         "prefix": "",
         "component_class": GroqModel(),
-        "icon": GroqModel.icon,
     }
 except ImportError:
     pass
@@ -206,7 +202,6 @@ try:
         "inputs": anthropic_inputs,
         "prefix": "",
         "component_class": AnthropicModelComponent(),
-        "icon": AnthropicModelComponent.icon,
     }
 except ImportError:
     pass
@@ -218,7 +213,6 @@ try:
         "inputs": nvidia_inputs,
         "prefix": "",
         "component_class": NVIDIAModelComponent(),
-        "icon": NVIDIAModelComponent.icon,
     }
 except ImportError:
     pass
@@ -230,7 +224,6 @@ try:
         "inputs": bedrock_inputs,
         "prefix": "",
         "component_class": AmazonBedrockComponent(),
-        "icon": AmazonBedrockComponent.icon,
     }
 except ImportError:
     pass
@@ -242,7 +235,6 @@ try:
         "inputs": google_generative_ai_inputs,
         "prefix": "",
         "component_class": GoogleGenerativeAIComponent(),
-        "icon": GoogleGenerativeAIComponent.icon,
     }
 except ImportError:
     pass
@@ -254,7 +246,6 @@ try:
         "inputs": sambanova_inputs,
         "prefix": "",
         "component_class": SambaNovaComponent(),
-        "icon": SambaNovaComponent.icon,
     }
 except ImportError:
     pass
@@ -263,9 +254,3 @@ MODEL_PROVIDERS = list(MODEL_PROVIDERS_DICT.keys())
 ALL_PROVIDER_FIELDS: list[str] = [field for provider in MODEL_PROVIDERS_DICT.values() for field in provider["fields"]]
 
 MODEL_DYNAMIC_UPDATE_FIELDS = ["api_key", "model", "tool_model_enabled", "base_url", "model_name"]
-
-
-MODELS_METADATA = {
-    key: {"icon": MODEL_PROVIDERS_DICT[key]["icon"] if key in MODEL_PROVIDERS_DICT else None}
-    for key in MODEL_PROVIDERS_DICT
-}

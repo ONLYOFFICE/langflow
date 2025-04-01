@@ -1,6 +1,8 @@
 from pathlib import Path
 from urllib.parse import urlparse
 
+from loguru import logger
+
 from langflow.custom import Component
 from langflow.io import BoolInput, DropdownInput, FileInput, IntInput, MessageTextInput, Output
 from langflow.schema import Data
@@ -24,6 +26,7 @@ class NvidiaIngestComponent(Component):
             "NVIDIA Ingest dependencies missing. "
             "Please install them using your package manager. (e.g. uv pip install langflow[nv-ingest])"
         )
+        logger.warning(msg)
         file_types = [msg]
         supported_file_types_info = msg
 
@@ -228,5 +231,5 @@ class NvidiaIngestComponent(Component):
                     # image is not yet supported; skip if encountered
                     self.log(f"Unsupported document type: {document_type}", name="NVIDIAIngestComponent")
 
-        self.status = data or "No data"
+        self.status = data if data else "No data"
         return data

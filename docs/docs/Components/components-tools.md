@@ -168,16 +168,15 @@ This component performs web searches using the [DuckDuckGo](https://www.duckduck
 
 | Name | Display Name | Info |
 |------|--------------|------|
-| input_value | Search Query | The search query to execute with DuckDuckGo. |
-| max_results | Max Results | The maximum number of search results to return. Default: `5`. |
-| max_snippet_length | Max Snippet Length | The maximum length of each result snippet. Default: `100`.|
+| input_value | Search Query | The search query to be used for the DuckDuckGo search |
+| max_results | Max Results | Maximum number of results to return |
+| max_snippet_length | Max Snippet Length | Maximum length of each result snippet |
 
 ### Outputs
 
 | Name | Display Name | Info |
 |------|--------------|------|
-| data | [Data](/concepts-objects#data-object) | List of search results as Data objects containing snippets and full content. |
-| text | Text | Search results formatted as a single text string. |
+| data | Data | List of search results as Data objects |
 
 ## Exa Search
 

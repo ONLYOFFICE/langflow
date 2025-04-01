@@ -1,4 +1,3 @@
-import JsonOutputViewComponent from "@/components/core/jsonOutputComponent/json-output-view";
 import { MAX_TEXT_LENGTH } from "@/constants/constants";
 import { LogsLogType, OutputLogType } from "@/types/api";
 import { useMemo } from "react";
@@ -37,8 +36,7 @@ const SwitchOutputView: React.FC<SwitchOutputViewProps> = ({
       : flowPoolNode?.data?.logs?.[outputName]) ?? {};
   const resultType = results?.type;
   let resultMessage = results?.message ?? {};
-  const RECORD_TYPES = ["array", "message"];
-  const JSON_TYPES = ["data", "object"];
+  const RECORD_TYPES = ["data", "object", "array", "message"];
   if (resultMessage?.raw) {
     resultMessage = resultMessage.raw;
   }
@@ -52,6 +50,7 @@ const SwitchOutputView: React.FC<SwitchOutputViewProps> = ({
     ) {
       return `${resultMessage.substring(0, MAX_TEXT_LENGTH)}...`;
     }
+
     if (Array.isArray(resultMessage)) {
       return resultMessage.map((item) => {
         if (item?.data && typeof item?.data === "object") {
@@ -104,13 +103,6 @@ const SwitchOutputView: React.FC<SwitchOutputViewProps> = ({
           }
           pagination={true}
           columnMode="union"
-        />
-      </Case>
-      <Case condition={JSON_TYPES.includes(resultType)}>
-        <JsonOutputViewComponent
-          nodeId={nodeId}
-          outputName={outputName}
-          data={resultMessageMemoized}
         />
       </Case>
 
