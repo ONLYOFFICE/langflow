@@ -20,7 +20,7 @@ from typing_extensions import NotRequired, override
 
 from langflow.settings import DEV
 
-VALID_LOG_LEVELS = ["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"]
+VALID_LOG_LEVELS = ["TRACE", "DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"]
 # Human-readable
 DEFAULT_LOG_FORMAT = (
     "<green>{time:YYYY-MM-DD HH:mm:ss}</green> - <level>{level: <8}</level> - {module} - <level>{message}</level>"
@@ -179,13 +179,13 @@ class AsyncFileSink(AsyncSink):
     async def write_async(self, message):
         if self._closed:
             return  # Skip writing if we're already closed
-            
+
         try:
             await asyncio.to_thread(self._sink.write, message)
         except (ValueError, OSError) as e:
             # Handle common file errors that occur during shutdown
             if any(err_msg in str(e) for err_msg in [
-                "write to closed file", 
+                "write to closed file",
                 "seek of closed file",
                 "Bad file descriptor",
                 "I/O operation on closed file"
