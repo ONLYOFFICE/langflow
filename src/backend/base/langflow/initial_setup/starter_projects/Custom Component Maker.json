@@ -26,9 +26,9 @@
         "id": "reactflow__edge-Memory-80v92{œdataTypeœ:œMemoryœ,œidœ:œMemory-80v92œ,œnameœ:œmessages_textœ,œoutput_typesœ:[œMessageœ]}-Prompt-TBdwC{œfieldNameœ:œCHAT_HISTORYœ,œidœ:œPrompt-TBdwCœ,œinputTypesœ:[œMessageœ,œTextœ],œtypeœ:œstrœ}",
         "selected": false,
         "source": "Memory-80v92",
-        "sourceHandle": "{œdataTypeœ: œMemoryœ, œidœ: œMemory-80v92œ, œnameœ: œmessages_textœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œMemoryœ,œidœ:œMemory-80v92œ,œnameœ:œmessages_textœ,œoutput_typesœ:[œMessageœ]}",
         "target": "Prompt-TBdwC",
-        "targetHandle": "{œfieldNameœ: œCHAT_HISTORYœ, œidœ: œPrompt-TBdwCœ, œinputTypesœ: [œMessageœ, œTextœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œCHAT_HISTORYœ,œidœ:œPrompt-TBdwCœ,œinputTypesœ:[œMessageœ,œTextœ],œtypeœ:œstrœ}"
       },
       {
         "animated": false,
@@ -55,9 +55,9 @@
         "id": "reactflow__edge-URL-VNBsH{œdataTypeœ:œURLœ,œidœ:œURL-VNBsHœ,œnameœ:œtextœ,œoutput_typesœ:[œMessageœ]}-Prompt-TBdwC{œfieldNameœ:œEXAMPLE_COMPONENTSœ,œidœ:œPrompt-TBdwCœ,œinputTypesœ:[œMessageœ,œTextœ],œtypeœ:œstrœ}",
         "selected": false,
         "source": "URL-VNBsH",
-        "sourceHandle": "{œdataTypeœ: œURLœ, œidœ: œURL-VNBsHœ, œnameœ: œtextœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œURLœ,œidœ:œURL-VNBsHœ,œnameœ:œtextœ,œoutput_typesœ:[œMessageœ]}",
         "target": "Prompt-TBdwC",
-        "targetHandle": "{œfieldNameœ: œEXAMPLE_COMPONENTSœ, œidœ: œPrompt-TBdwCœ, œinputTypesœ: [œMessageœ, œTextœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œEXAMPLE_COMPONENTSœ,œidœ:œPrompt-TBdwCœ,œinputTypesœ:[œMessageœ,œTextœ],œtypeœ:œstrœ}"
       },
       {
         "animated": false,
@@ -84,9 +84,9 @@
         "id": "reactflow__edge-URL-7lpSF{œdataTypeœ:œURLœ,œidœ:œURL-7lpSFœ,œnameœ:œtextœ,œoutput_typesœ:[œMessageœ]}-Prompt-TBdwC{œfieldNameœ:œBASE_COMPONENT_CODEœ,œidœ:œPrompt-TBdwCœ,œinputTypesœ:[œMessageœ,œTextœ],œtypeœ:œstrœ}",
         "selected": false,
         "source": "URL-7lpSF",
-        "sourceHandle": "{œdataTypeœ: œURLœ, œidœ: œURL-7lpSFœ, œnameœ: œtextœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œURLœ,œidœ:œURL-7lpSFœ,œnameœ:œtextœ,œoutput_typesœ:[œMessageœ]}",
         "target": "Prompt-TBdwC",
-        "targetHandle": "{œfieldNameœ: œBASE_COMPONENT_CODEœ, œidœ: œPrompt-TBdwCœ, œinputTypesœ: [œMessageœ, œTextœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œBASE_COMPONENT_CODEœ,œidœ:œPrompt-TBdwCœ,œinputTypesœ:[œMessageœ,œTextœ],œtypeœ:œstrœ}"
       },
       {
         "animated": false,
@@ -113,9 +113,9 @@
         "id": "reactflow__edge-URL-V6Rnb{œdataTypeœ:œURLœ,œidœ:œURL-V6Rnbœ,œnameœ:œtextœ,œoutput_typesœ:[œMessageœ]}-Prompt-TBdwC{œfieldNameœ:œCUSTOM_COMPONENT_CODEœ,œidœ:œPrompt-TBdwCœ,œinputTypesœ:[œMessageœ,œTextœ],œtypeœ:œstrœ}",
         "selected": false,
         "source": "URL-V6Rnb",
-        "sourceHandle": "{œdataTypeœ: œURLœ, œidœ: œURL-V6Rnbœ, œnameœ: œtextœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œURLœ,œidœ:œURL-V6Rnbœ,œnameœ:œtextœ,œoutput_typesœ:[œMessageœ]}",
         "target": "Prompt-TBdwC",
-        "targetHandle": "{œfieldNameœ: œCUSTOM_COMPONENT_CODEœ, œidœ: œPrompt-TBdwCœ, œinputTypesœ: [œMessageœ, œTextœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œCUSTOM_COMPONENT_CODEœ,œidœ:œPrompt-TBdwCœ,œinputTypesœ:[œMessageœ,œTextœ],œtypeœ:œstrœ}"
       },
       {
         "animated": false,
@@ -141,9 +141,9 @@
         "id": "reactflow__edge-Prompt-TBdwC{œdataTypeœ:œPromptœ,œidœ:œPrompt-TBdwCœ,œnameœ:œpromptœ,œoutput_typesœ:[œMessageœ]}-AnthropicModel-Ud197{œfieldNameœ:œinput_valueœ,œidœ:œAnthropicModel-Ud197œ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "selected": false,
         "source": "Prompt-TBdwC",
-        "sourceHandle": "{œdataTypeœ: œPromptœ, œidœ: œPrompt-TBdwCœ, œnameœ: œpromptœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œPromptœ,œidœ:œPrompt-TBdwCœ,œnameœ:œpromptœ,œoutput_typesœ:[œMessageœ]}",
         "target": "AnthropicModel-Ud197",
-        "targetHandle": "{œfieldNameœ: œinput_valueœ, œidœ: œAnthropicModel-Ud197œ, œinputTypesœ: [œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œAnthropicModel-Ud197œ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "animated": false,
@@ -171,9 +171,9 @@
         "id": "reactflow__edge-AnthropicModel-Ud197{œdataTypeœ:œAnthropicModelœ,œidœ:œAnthropicModel-Ud197œ,œnameœ:œtext_outputœ,œoutput_typesœ:[œMessageœ]}-ChatOutput-lY6GY{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-lY6GYœ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œotherœ}",
         "selected": false,
         "source": "AnthropicModel-Ud197",
-        "sourceHandle": "{œdataTypeœ: œAnthropicModelœ, œidœ: œAnthropicModel-Ud197œ, œnameœ: œtext_outputœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œAnthropicModelœ,œidœ:œAnthropicModel-Ud197œ,œnameœ:œtext_outputœ,œoutput_typesœ:[œMessageœ]}",
         "target": "ChatOutput-lY6GY",
-        "targetHandle": "{œfieldNameœ: œinput_valueœ, œidœ: œChatOutput-lY6GYœ, œinputTypesœ: [œDataœ, œDataFrameœ, œMessageœ], œtypeœ: œotherœ}"
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-lY6GYœ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œotherœ}"
       },
       {
         "data": {
@@ -197,9 +197,9 @@
         },
         "id": "xy-edge__ChatInput-1jL7Z{œdataTypeœ:œChatInputœ,œidœ:œChatInput-1jL7Zœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}-Prompt-TBdwC{œfieldNameœ:œUSER_INPUTœ,œidœ:œPrompt-TBdwCœ,œinputTypesœ:[œMessageœ,œTextœ],œtypeœ:œstrœ}",
         "source": "ChatInput-1jL7Z",
-        "sourceHandle": "{œdataTypeœ: œChatInputœ, œidœ: œChatInput-1jL7Zœ, œnameœ: œmessageœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œChatInputœ,œidœ:œChatInput-1jL7Zœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}",
         "target": "Prompt-TBdwC",
-        "targetHandle": "{œfieldNameœ: œUSER_INPUTœ, œidœ: œPrompt-TBdwCœ, œinputTypesœ: [œMessageœ, œTextœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œUSER_INPUTœ,œidœ:œPrompt-TBdwCœ,œinputTypesœ:[œMessageœ,œTextœ],œtypeœ:œstrœ}"
       }
     ],
     "nodes": [

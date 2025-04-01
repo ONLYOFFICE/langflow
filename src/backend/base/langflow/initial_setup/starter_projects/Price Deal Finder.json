@@ -25,9 +25,9 @@
         "id": "reactflow__edge-AgentQL-BPZh4{œdataTypeœ:œAgentQLœ,œidœ:œAgentQL-BPZh4œ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}-Agent-Bh2Yb{œfieldNameœ:œtoolsœ,œidœ:œAgent-Bh2Ybœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}",
         "selected": false,
         "source": "AgentQL-BPZh4",
-        "sourceHandle": "{œdataTypeœ: œAgentQLœ, œidœ: œAgentQL-BPZh4œ, œnameœ: œcomponent_as_toolœ, œoutput_typesœ: [œToolœ]}",
+        "sourceHandle": "{œdataTypeœ:œAgentQLœ,œidœ:œAgentQL-BPZh4œ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}",
         "target": "Agent-Bh2Yb",
-        "targetHandle": "{œfieldNameœ: œtoolsœ, œidœ: œAgent-Bh2Ybœ, œinputTypesœ: [œToolœ], œtypeœ: œotherœ}"
+        "targetHandle": "{œfieldNameœ:œtoolsœ,œidœ:œAgent-Bh2Ybœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}"
       },
       {
         "animated": false,
@@ -55,9 +55,9 @@
         "id": "reactflow__edge-Agent-Bh2Yb{œdataTypeœ:œAgentœ,œidœ:œAgent-Bh2Ybœ,œnameœ:œresponseœ,œoutput_typesœ:[œMessageœ]}-ChatOutput-E2Kiz{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-E2Kizœ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œstrœ}",
         "selected": false,
         "source": "Agent-Bh2Yb",
-        "sourceHandle": "{œdataTypeœ: œAgentœ, œidœ: œAgent-Bh2Ybœ, œnameœ: œresponseœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œAgentœ,œidœ:œAgent-Bh2Ybœ,œnameœ:œresponseœ,œoutput_typesœ:[œMessageœ]}",
         "target": "ChatOutput-E2Kiz",
-        "targetHandle": "{œfieldNameœ: œinput_valueœ, œidœ: œChatOutput-E2Kizœ, œinputTypesœ: [œDataœ, œDataFrameœ, œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-E2Kizœ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "animated": false,
@@ -83,9 +83,9 @@
         "id": "reactflow__edge-TavilySearchComponent-EKeDo{œdataTypeœ:œTavilySearchComponentœ,œidœ:œTavilySearchComponent-EKeDoœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}-Agent-Bh2Yb{œfieldNameœ:œtoolsœ,œidœ:œAgent-Bh2Ybœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}",
         "selected": false,
         "source": "TavilySearchComponent-EKeDo",
-        "sourceHandle": "{œdataTypeœ: œTavilySearchComponentœ, œidœ: œTavilySearchComponent-EKeDoœ, œnameœ: œcomponent_as_toolœ, œoutput_typesœ: [œToolœ]}",
+        "sourceHandle": "{œdataTypeœ:œTavilySearchComponentœ,œidœ:œTavilySearchComponent-EKeDoœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}",
         "target": "Agent-Bh2Yb",
-        "targetHandle": "{œfieldNameœ: œtoolsœ, œidœ: œAgent-Bh2Ybœ, œinputTypesœ: [œToolœ], œtypeœ: œotherœ}"
+        "targetHandle": "{œfieldNameœ:œtoolsœ,œidœ:œAgent-Bh2Ybœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}"
       },
       {
         "animated": false,
@@ -111,9 +111,9 @@
         "id": "reactflow__edge-ChatInput-5OxIN{œdataTypeœ:œChatInputœ,œidœ:œChatInput-5OxINœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}-Agent-Bh2Yb{œfieldNameœ:œinput_valueœ,œidœ:œAgent-Bh2Ybœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "selected": false,
         "source": "ChatInput-5OxIN",
-        "sourceHandle": "{œdataTypeœ: œChatInputœ, œidœ: œChatInput-5OxINœ, œnameœ: œmessageœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œChatInputœ,œidœ:œChatInput-5OxINœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}",
         "target": "Agent-Bh2Yb",
-        "targetHandle": "{œfieldNameœ: œinput_valueœ, œidœ: œAgent-Bh2Ybœ, œinputTypesœ: [œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œAgent-Bh2Ybœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       }
     ],
     "nodes": [

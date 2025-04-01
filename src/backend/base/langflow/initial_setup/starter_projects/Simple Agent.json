@@ -24,9 +24,9 @@
         "id": "xy-edge__URL-eEDon{œdataTypeœ:œURLœ,œidœ:œURL-eEDonœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}-Agent-8k2Yj{œfieldNameœ:œtoolsœ,œidœ:œAgent-8k2Yjœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}",
         "selected": false,
         "source": "URL-eEDon",
-        "sourceHandle": "{œdataTypeœ: œURLœ, œidœ: œURL-eEDonœ, œnameœ: œcomponent_as_toolœ, œoutput_typesœ: [œToolœ]}",
+        "sourceHandle": "{œdataTypeœ:œURLœ,œidœ:œURL-eEDonœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}",
         "target": "Agent-8k2Yj",
-        "targetHandle": "{œfieldNameœ: œtoolsœ, œidœ: œAgent-8k2Yjœ, œinputTypesœ: [œToolœ], œtypeœ: œotherœ}"
+        "targetHandle": "{œfieldNameœ:œtoolsœ,œidœ:œAgent-8k2Yjœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}"
       },
       {
         "animated": false,
@@ -51,9 +51,9 @@
         "id": "xy-edge__CalculatorComponent-zU3QI{œdataTypeœ:œCalculatorComponentœ,œidœ:œCalculatorComponent-zU3QIœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}-Agent-8k2Yj{œfieldNameœ:œtoolsœ,œidœ:œAgent-8k2Yjœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}",
         "selected": false,
         "source": "CalculatorComponent-zU3QI",
-        "sourceHandle": "{œdataTypeœ: œCalculatorComponentœ, œidœ: œCalculatorComponent-zU3QIœ, œnameœ: œcomponent_as_toolœ, œoutput_typesœ: [œToolœ]}",
+        "sourceHandle": "{œdataTypeœ:œCalculatorComponentœ,œidœ:œCalculatorComponent-zU3QIœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}",
         "target": "Agent-8k2Yj",
-        "targetHandle": "{œfieldNameœ: œtoolsœ, œidœ: œAgent-8k2Yjœ, œinputTypesœ: [œToolœ], œtypeœ: œotherœ}"
+        "targetHandle": "{œfieldNameœ:œtoolsœ,œidœ:œAgent-8k2Yjœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}"
       },
       {
         "animated": false,
@@ -78,9 +78,9 @@
         "id": "xy-edge__ChatInput-sYodl{œdataTypeœ:œChatInputœ,œidœ:œChatInput-sYodlœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}-Agent-8k2Yj{œfieldNameœ:œinput_valueœ,œidœ:œAgent-8k2Yjœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "selected": false,
         "source": "ChatInput-sYodl",
-        "sourceHandle": "{œdataTypeœ: œChatInputœ, œidœ: œChatInput-sYodlœ, œnameœ: œmessageœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œChatInputœ,œidœ:œChatInput-sYodlœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}",
         "target": "Agent-8k2Yj",
-        "targetHandle": "{œfieldNameœ: œinput_valueœ, œidœ: œAgent-8k2Yjœ, œinputTypesœ: [œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œAgent-8k2Yjœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "data": {
@@ -105,9 +105,9 @@
         },
         "id": "xy-edge__Agent-8k2Yj{œdataTypeœ:œAgentœ,œidœ:œAgent-8k2Yjœ,œnameœ:œresponseœ,œoutput_typesœ:[œMessageœ]}-ChatOutput-IwY9Y{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-IwY9Yœ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œotherœ}",
         "source": "Agent-8k2Yj",
-        "sourceHandle": "{œdataTypeœ: œAgentœ, œidœ: œAgent-8k2Yjœ, œnameœ: œresponseœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œAgentœ,œidœ:œAgent-8k2Yjœ,œnameœ:œresponseœ,œoutput_typesœ:[œMessageœ]}",
         "target": "ChatOutput-IwY9Y",
-        "targetHandle": "{œfieldNameœ: œinput_valueœ, œidœ: œChatOutput-IwY9Yœ, œinputTypesœ: [œDataœ, œDataFrameœ, œMessageœ], œtypeœ: œotherœ}"
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-IwY9Yœ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œotherœ}"
       }
     ],
     "nodes": [

@@ -25,9 +25,9 @@
         "id": "reactflow__edge-ChatInput-4lamw{œdataTypeœ:œChatInputœ,œidœ:œChatInput-4lamwœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}-Agent-I23ZV{œfieldNameœ:œinput_valueœ,œidœ:œAgent-I23ZVœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "selected": false,
         "source": "ChatInput-4lamw",
-        "sourceHandle": "{œdataTypeœ: œChatInputœ, œidœ: œChatInput-4lamwœ, œnameœ: œmessageœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œChatInputœ,œidœ:œChatInput-4lamwœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}",
         "target": "Agent-I23ZV",
-        "targetHandle": "{œfieldNameœ: œinput_valueœ, œidœ: œAgent-I23ZVœ, œinputTypesœ: [œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œAgent-I23ZVœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "animated": false,
@@ -55,9 +55,9 @@
         "id": "reactflow__edge-Agent-I23ZV{œdataTypeœ:œAgentœ,œidœ:œAgent-I23ZVœ,œnameœ:œresponseœ,œoutput_typesœ:[œMessageœ]}-ChatOutput-MBTWS{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-MBTWSœ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œstrœ}",
         "selected": false,
         "source": "Agent-I23ZV",
-        "sourceHandle": "{œdataTypeœ: œAgentœ, œidœ: œAgent-I23ZVœ, œnameœ: œresponseœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œAgentœ,œidœ:œAgent-I23ZVœ,œnameœ:œresponseœ,œoutput_typesœ:[œMessageœ]}",
         "target": "ChatOutput-MBTWS",
-        "targetHandle": "{œfieldNameœ: œinput_valueœ, œidœ: œChatOutput-MBTWSœ, œinputTypesœ: [œDataœ, œDataFrameœ, œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-MBTWSœ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "data": {
@@ -80,9 +80,9 @@
         },
         "id": "xy-edge__APIRequest-zDdGN{œdataTypeœ:œAPIRequestœ,œidœ:œAPIRequest-zDdGNœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}-Agent-I23ZV{œfieldNameœ:œtoolsœ,œidœ:œAgent-I23ZVœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}",
         "source": "APIRequest-zDdGN",
-        "sourceHandle": "{œdataTypeœ: œAPIRequestœ, œidœ: œAPIRequest-zDdGNœ, œnameœ: œcomponent_as_toolœ, œoutput_typesœ: [œToolœ]}",
+        "sourceHandle": "{œdataTypeœ:œAPIRequestœ,œidœ:œAPIRequest-zDdGNœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}",
         "target": "Agent-I23ZV",
-        "targetHandle": "{œfieldNameœ: œtoolsœ, œidœ: œAgent-I23ZVœ, œinputTypesœ: [œToolœ], œtypeœ: œotherœ}"
+        "targetHandle": "{œfieldNameœ:œtoolsœ,œidœ:œAgent-I23ZVœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}"
       }
     ],
     "nodes": [
