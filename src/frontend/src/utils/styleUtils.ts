@@ -7,6 +7,7 @@ import { ExaIcon } from "@/icons/Exa";
 import { GleanIcon } from "@/icons/Glean";
 import { GoogleDriveIcon } from "@/icons/GoogleDrive";
 import { GridHorizontalIcon } from "@/icons/GridHorizontal";
+import { HomeAssistantIcon } from "@/icons/HomeAssistant";
 import { JSIcon } from "@/icons/JSicon";
 import { LangwatchIcon } from "@/icons/Langwatch";
 import { MilvusIcon } from "@/icons/Milvus";
@@ -804,6 +805,7 @@ export const nodeIconsLucide: iconsType = {
   Apify: ApifyIcon,
   onlyoffice: OnlyofficeIcon,
   ApifyWhite: ApifyWhiteIcon,
+  HomeAssistant: HomeAssistantIcon,
 
   //Node Icons
   model_specs: FileSliders,
