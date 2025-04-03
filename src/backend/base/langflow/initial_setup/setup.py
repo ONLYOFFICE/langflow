@@ -684,7 +684,7 @@ def create_new_project(
 ) -> None:
 
     new_project = FlowCreate(
-        id=project_id,  # Use the ID from the project file if provided
+        id=project_id if project_id is not None else None,  # Use the ID from the project file if provided
         name=project_name,
         description=project_description,
         icon=project_icon,
@@ -950,16 +950,7 @@ async def create_or_update_starter_projects(all_types_dict: dict, *, do_create: 
         do_create (bool, optional): Whether to create new projects. Defaults to True.
     """
     async with session_scope() as session:
-
-        # TODO: Remove this when we have a way to clean up transactions
-        # Need for fix update system flow, it crash when transaction table is not empty
-        delete_stmt = delete(TransactionTable)
-        await session.exec(delete_stmt)
-        delete_vertex_stmt = delete(VertexBuildTable)
-        await session.exec(delete_vertex_stmt)
-
         new_folder = await create_starter_folder(session)
-        system_folder = await create_system_folder(session)
 
         # Handle starter projects
         starter_projects = await load_starter_projects()
@@ -997,7 +988,7 @@ async def create_or_update_starter_projects(all_types_dict: dict, *, do_create: 
 
                 create_new_project(
                     session=session,
-                    project_id=project_id,
+                    project_id=None,
                     project_name=project_name,
                     project_description=project_description,
                     project_is_component=project_is_component,
@@ -1010,9 +1001,27 @@ async def create_or_update_starter_projects(all_types_dict: dict, *, do_create: 
                     new_folder_id=new_folder.id,
                 )
 
-        # Handle system projects
+async def create_or_update_system_projects(all_types_dict: dict, *, do_create: bool = True) -> None:
+    """Create or update system projects.
+
+    Args:
+        all_types_dict (dict): Dictionary containing all component types and their templates
+        do_create (bool, optional): Whether to create new projects. Defaults to True.
+    """
+    async with session_scope() as folder_session:
+        # TODO: Remove this when we have a way to clean up transactions
+        # Need for fix update system flow, it crash when transaction table is not empty
+        delete_stmt = delete(TransactionTable)
+        await folder_session.exec(delete_stmt)
+        delete_vertex_stmt = delete(VertexBuildTable)
+        await folder_session.exec(delete_vertex_stmt)
+
+        system_folder = await create_system_folder(folder_session)
+        await delete_system_projects(folder_session, system_folder.id)
+
+    async with session_scope() as flows_session:
         system_projects = await load_system_projects()
-        await delete_system_projects(session, system_folder.id)
+
         for project_path, project in system_projects:
             (
                 project_id,
@@ -1034,6 +1043,12 @@ async def create_or_update_starter_projects(all_types_dict: dict, *, do_create: 
                 )
                 updated_project_data = update_edges_with_latest_component_versions(
                     updated_project_data)
+
+                if updated_project_data != project_data:
+                    project_data = updated_project_data
+                    # We also need to update the project data in the file
+                    await update_project_file(project_path, project, updated_project_data)
+
             if project_data and "edges" in project_data:
                 for edge in project_data["edges"]:
                     if "sourceHandle" in edge and edge["sourceHandle"]:
@@ -1042,17 +1057,10 @@ async def create_or_update_starter_projects(all_types_dict: dict, *, do_create: 
                     if "targetHandle" in edge and edge["targetHandle"]:
                         edge["targetHandle"] = edge["targetHandle"].replace(
                             " ", "")
-
-            if updated_project_data != project_data:
-                project_data = updated_project_data
-                # We also need to update the project data in the file
-                await update_project_file(project_path, project, updated_project_data)
+            
             if do_create and project_name and project_data:
-                for existing_project in await get_all_flows_similar_to_project(session, system_folder.id):
-                    await session.delete(existing_project)
-
                 create_new_project(
-                    session=session,
+                    session=flows_session,
                     project_id=project_id,
                     project_name=project_name,
                     project_description=project_description,
@@ -1065,7 +1073,6 @@ async def create_or_update_starter_projects(all_types_dict: dict, *, do_create: 
                     project_tags=project_tags,
                     new_folder_id=system_folder.id,
                 )
-
 
 async def initialize_super_user_if_needed() -> None:
     settings_service = get_settings_service()

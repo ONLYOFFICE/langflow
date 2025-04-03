@@ -25,6 +25,7 @@ from starlette.middleware.base import BaseHTTPMiddleware, RequestResponseEndpoin
 from langflow.api import health_check_router, log_router, router
 from langflow.initial_setup.setup import (
     create_or_update_starter_projects,
+    create_or_update_system_projects,
     initialize_super_user_if_needed,
     load_bundles_from_urls,
     load_flows_from_directory,
@@ -150,6 +151,7 @@ def get_lifespan(*, fix_migration=False, version=None):
             current_time = asyncio.get_event_loop().time()
             logger.debug("Creating/updating starter projects")
             await create_or_update_starter_projects(all_types_dict)
+            await create_or_update_system_projects(all_types_dict)
             logger.debug(f"Starter projects updated in {asyncio.get_event_loop().time() - current_time:.2f}s")
 
             telemetry_service.start()

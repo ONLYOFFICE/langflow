@@ -64,7 +64,7 @@ async def test_get_and_cache_all_types_dict():
 
 async def test_create_starter_projects():
     """Benchmark creation of starter projects."""
-    from langflow.initial_setup.setup import create_or_update_starter_projects
+    from langflow.initial_setup.setup import create_or_update_starter_projects, create_or_update_system_projects
     from langflow.interface.components import get_and_cache_all_types_dict
     from langflow.services.utils import initialize_services
 
@@ -72,6 +72,7 @@ async def test_create_starter_projects():
     settings_service = get_settings_service()
     types_dict = await get_and_cache_all_types_dict(settings_service)
     await create_or_update_starter_projects(types_dict)
+    await create_or_update_system_projects(types_dict)
     assert "test_performance.db" in settings_service.settings.database_url
 
 
