@@ -40,6 +40,8 @@ from langflow.template.frontend_node.custom_components import ComponentFrontendN
 from langflow.utils.async_helpers import run_until_complete
 from langflow.utils.util import find_closest_match
 
+from loguru import logger
+
 from .custom_component import CustomComponent
 
 if TYPE_CHECKING:
@@ -67,7 +69,8 @@ def _get_component_toolkit():
 
 
 BACKWARDS_COMPATIBLE_ATTRIBUTES = ["user_id", "vertex", "tracing_service"]
-CONFIG_ATTRIBUTES = ["_display_name", "_description", "_icon", "_name", "_metadata"]
+CONFIG_ATTRIBUTES = ["_display_name",
+                     "_description", "_icon", "_name", "_metadata"]
 
 
 class PlaceholderGraph(NamedTuple):
@@ -140,7 +143,8 @@ class Component(CustomComponent):
 
         # Add unique ID if not provided
         if "_id" not in self.__config:
-            self.__config |= {"_id": f"{self.__class__.__name__}-{nanoid.generate(size=5)}"}
+            self.__config |= {
+                "_id": f"{self.__class__.__name__}-{nanoid.generate(size=5)}"}
 
         # Initialize base class
         super().__init__(**self.__config)
@@ -183,7 +187,8 @@ class Component(CustomComponent):
             set[str]: Set of names that overlap between inputs and outputs.
         """
         # Create sets of input and output names for O(1) lookup
-        input_names = {input_.name for input_ in self.inputs if input_.name is not None}
+        input_names = {
+            input_.name for input_ in self.inputs if input_.name is not None}
         output_names = {output.name for output in self.outputs}
 
         # Return the intersection of the sets
@@ -449,7 +454,8 @@ class Component(CustomComponent):
         """
         for input_ in inputs:
             if input_.name is None:
-                msg = self.build_component_error_message("Input name cannot be None")
+                msg = self.build_component_error_message(
+                    "Input name cannot be None")
                 raise ValueError(msg)
             self._inputs[input_.name] = deepcopy(input_)
 
@@ -467,19 +473,23 @@ class Component(CustomComponent):
         self._validate_outputs()
 
     async def run_and_validate_update_outputs(self, frontend_node: dict, field_name: str, field_value: Any):
-        frontend_node = self.update_outputs(frontend_node, field_name, field_value)
+        frontend_node = self.update_outputs(
+            frontend_node, field_name, field_value)
         if field_name == "tool_mode" or frontend_node.get("tool_mode"):
             is_tool_mode = field_value or frontend_node.get("tool_mode")
-            frontend_node["outputs"] = [self._build_tool_output()] if is_tool_mode else frontend_node["outputs"]
+            frontend_node["outputs"] = [self._build_tool_output(
+            )] if is_tool_mode else frontend_node["outputs"]
             if is_tool_mode:
                 frontend_node.setdefault("template", {})
                 frontend_node["tool_mode"] = True
                 tools_metadata_input = await self._build_tools_metadata_input()
-                frontend_node["template"][TOOLS_METADATA_INPUT_NAME] = tools_metadata_input.to_dict()
+                frontend_node["template"][TOOLS_METADATA_INPUT_NAME] = tools_metadata_input.to_dict(
+                )
                 self._append_tool_to_outputs_map()
             elif "template" in frontend_node:
                 frontend_node["template"].pop(TOOLS_METADATA_INPUT_NAME, None)
-        self.tools_metadata = frontend_node.get("template", {}).get(TOOLS_METADATA_INPUT_NAME, {}).get("value")
+        self.tools_metadata = frontend_node.get("template", {}).get(
+            TOOLS_METADATA_INPUT_NAME, {}).get("value")
         return self._validate_frontend_node(frontend_node)
 
     def _validate_frontend_node(self, frontend_node: dict):
@@ -542,9 +552,11 @@ class Component(CustomComponent):
     def get_output_by_method(self, method: Callable):
         # method is a callable and output.method is a string
         # we need to find the output that has the same method
-        output = next((output for output in self._outputs_map.values() if output.method == method.__name__), None)
+        output = next((output for output in self._outputs_map.values()
+                      if output.method == method.__name__), None)
         if output is None:
-            method_name = method.__name__ if hasattr(method, "__name__") else str(method)
+            method_name = method.__name__ if hasattr(
+                method, "__name__") else str(method)
             msg = f"Output with method {method_name} not found"
             raise ValueError(msg)
         return output
@@ -606,14 +618,16 @@ class Component(CustomComponent):
         ]
         # If multiple matches are found, raise an error indicating ambiguity
         if len(matching_pairs) > 1:
-            matching_pairs_str = self._build_error_string_from_matching_pairs(matching_pairs)
+            matching_pairs_str = self._build_error_string_from_matching_pairs(
+                matching_pairs)
             msg = self.build_component_error_message(
                 f"There are multiple outputs from {value.display_name} that can connect to inputs: {matching_pairs_str}"
             )
             raise ValueError(msg)
         # If no matches are found, raise an error indicating no suitable output
         if not matching_pairs:
-            msg = self.build_input_error_message(input_name, f"No matching output from {value.display_name} found")
+            msg = self.build_input_error_message(
+                input_name, f"No matching output from {value.display_name} found")
             raise ValueError(msg)
         # Get the matching output and input pair
         output, input_ = matching_pairs[0]
@@ -693,7 +707,8 @@ class Component(CustomComponent):
 
     def _set_parameter_or_attribute(self, key, value) -> None:
         if isinstance(value, Component):
-            methods = ", ".join([f"'{output.method}'" for output in value.outputs])
+            methods = ", ".join(
+                [f"'{output.method}'" for output in value.outputs])
             msg = f"You set {value.display_name} as value for `{key}`. You should pass one of the following: {methods}"
             raise TypeError(msg)
         self._set_input_value(key, value)
@@ -730,9 +745,11 @@ class Component(CustomComponent):
             return self.__dict__[name]
         if name == "graph":
             # If it got up to here it means it was going to raise
-            session_id = self._session_id if hasattr(self, "_session_id") else None
+            session_id = self._session_id if hasattr(
+                self, "_session_id") else None
             user_id = self._user_id if hasattr(self, "_user_id") else None
-            flow_name = self._flow_name if hasattr(self, "_flow_name") else None
+            flow_name = self._flow_name if hasattr(
+                self, "_flow_name") else None
             flow_id = self._flow_id if hasattr(self, "_flow_id") else None
             return PlaceholderGraph(
                 flow_id=flow_id, user_id=str(user_id), session_id=session_id, context={}, flow_name=flow_name
@@ -744,7 +761,8 @@ class Component(CustomComponent):
         if name in self._inputs:
             input_value = self._inputs[name].value
             if isinstance(input_value, Component):
-                methods = ", ".join([f"'{output.method}'" for output in input_value.outputs])
+                methods = ", ".join(
+                    [f"'{output.method}'" for output in input_value.outputs])
                 msg = self.build_input_error_message(
                     name,
                     f"You set {input_value.display_name} as value. You should pass one of the following: {methods}",
@@ -885,7 +903,8 @@ class Component(CustomComponent):
             if hasattr(input_, "trace_as_input") and input_.trace_as_input
         }
         # Runtime inputs
-        runtime_inputs = {name: input_.value for name, input_ in self._inputs.items() if hasattr(input_, "value")}
+        runtime_inputs = {name: input_.value for name,
+                          input_ in self._inputs.items() if hasattr(input_, "value")}
         return {**predefined_inputs, **runtime_inputs}
 
     def get_trace_as_metadata(self):
@@ -931,7 +950,8 @@ class Component(CustomComponent):
             await self.send_error(
                 exception=e,
                 session_id=session_id,
-                source=Source(id=self._id, display_name=self.display_name, source=self.display_name),
+                source=Source(
+                    id=self._id, display_name=self.display_name, source=self.display_name),
                 trace_name=getattr(self, "trace_name", None),
             )
             raise
@@ -958,7 +978,8 @@ class Component(CustomComponent):
 
     def _handle_tool_mode(self):
         if (
-            hasattr(self, "outputs") and any(getattr(_input, "tool_mode", False) for _input in self.inputs)
+            hasattr(self, "outputs") and any(
+                getattr(_input, "tool_mode", False) for _input in self.inputs)
         ) or self.add_tool_output:
             self._append_tool_to_outputs_map()
 
@@ -1095,7 +1116,8 @@ class Component(CustomComponent):
         tools = await self._get_tools()
 
         if hasattr(self, TOOLS_METADATA_INPUT_NAME):
-            tools = self._filter_tools_by_status(tools=tools, metadata=self.tools_metadata)
+            tools = self._filter_tools_by_status(
+                tools=tools, metadata=self.tools_metadata)
             return self._update_tools_with_metadata(tools=tools, metadata=self.tools_metadata)
 
         # If no metadata exists yet, filter based on enabled_tools
@@ -1156,7 +1178,8 @@ class Component(CustomComponent):
             return tools
 
         # Create a mapping of tool names to their status
-        tool_status = {item["name"]: item.get("status", True) for item in metadata_dict}
+        tool_status = {item["name"]: item.get(
+            "status", True) for item in metadata_dict}
         return [tool for tool in tools if tool_status.get(tool.name, True)]
 
     async def _build_tools_metadata_input(self):
@@ -1180,11 +1203,13 @@ class Component(CustomComponent):
                 enabled = self.enabled_tools
                 if enabled is not None:
                     for item in tool_data:
-                        item["status"] = any(enabled_name in [item["name"], *item["tags"]] for enabled_name in enabled)
+                        item["status"] = any(
+                            enabled_name in [item["name"], *item["tags"]] for enabled_name in enabled)
                 self.tools_metadata = tool_data
             else:
                 # Preserve existing status values
-                existing_status = {item["name"]: item.get("status", True) for item in self.tools_metadata}
+                existing_status = {item["name"]: item.get(
+                    "status", True) for item in self.tools_metadata}
                 for item in tool_data:
                     item["status"] = existing_status.get(item["name"], True)
                 tool_data = self.tools_metadata
@@ -1193,7 +1218,8 @@ class Component(CustomComponent):
             enabled = self.enabled_tools
             if enabled is not None:
                 for item in tool_data:
-                    item["status"] = any(enabled_name in [item["name"], *item["tags"]] for enabled_name in enabled)
+                    item["status"] = any(
+                        enabled_name in [item["name"], *item["tags"]] for enabled_name in enabled)
             self.tools_metadata = tool_data
 
         try:
@@ -1277,7 +1303,8 @@ class Component(CustomComponent):
             return message
         if (hasattr(self, "graph") and self.graph.session_id) and (message is not None and not message.session_id):
             session_id = (
-                UUID(self.graph.session_id) if isinstance(self.graph.session_id, str) else self.graph.session_id
+                UUID(self.graph.session_id) if isinstance(
+                    self.graph.session_id, str) else self.graph.session_id
             )
             message.session_id = session_id
         if hasattr(message, "flow_id") and isinstance(message.flow_id, str):
@@ -1319,7 +1346,8 @@ class Component(CustomComponent):
 
     async def _send_message_event(self, message: Message, id_: str | None = None, category: str | None = None) -> None:
         if hasattr(self, "_event_manager") and self._event_manager:
-            data_dict = message.data.copy() if hasattr(message, "data") else message.model_dump()
+            data_dict = message.data.copy() if hasattr(
+                message, "data") else message.model_dump()
             if id_ and not data_dict.get("id"):
                 data_dict["id"] = id_
             category = category or data_dict.get("category", None)
@@ -1329,7 +1357,8 @@ class Component(CustomComponent):
                     case "error":
                         self._event_manager.on_error(data=data_dict)
                     case "remove_message":
-                        self._event_manager.on_remove_message(data={"id": data_dict["id"]})
+                        self._event_manager.on_remove_message(
+                            data={"id": data_dict["id"]})
                     case _:
                         self._event_manager.on_message(data=data_dict)
 
@@ -1377,7 +1406,8 @@ class Component(CustomComponent):
                 )
                 first_chunk = False
         except Exception as e:
-            raise StreamingError(cause=e, source=message.properties.source) from e
+            raise StreamingError(
+                cause=e, source=message.properties.source) from e
         else:
             return complete_message
 
