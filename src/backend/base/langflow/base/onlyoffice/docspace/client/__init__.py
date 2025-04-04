@@ -1,14 +1,18 @@
 from .base import (
     ErrorPayload,
     ErrorResponse,
+    FilterOp,
+    Filters,
     Opener,
     Response,
     ResponseError,
     ResponseLink,
     Service,
+    SortOrder,
     SuccessPayload,
     SuccessResponse,
 )
+from .client import Client
 from .services import (
     ArchiveRoomOptions,
     AuthOptions,
@@ -19,16 +23,18 @@ from .services import (
     CreateSessionOptions,
     DeleteFileOptions,
     FilesService,
+    Invitation,
+    InvitationAccess,
     MoveOptions,
     Operation,
     PortalService,
     RoomType,
+    SetRoomAccessRightOptions,
     UpdateFileOptions,
+    UpdateFolderOptions,
     UpdateRoomOptions,
     UploadChunkOptions,
 )
-from .client import Client
-
 
 __all__ = [
     "ArchiveRoomOptions",
@@ -43,6 +49,10 @@ __all__ = [
     "ErrorPayload",
     "ErrorResponse",
     "FilesService",
+    "FilterOp",
+    "Filters",
+    "Invitation",
+    "InvitationAccess",
     "MoveOptions",
     "Opener",
     "Operation",
@@ -52,9 +62,12 @@ __all__ = [
     "ResponseLink",
     "RoomType",
     "Service",
+    "SetRoomAccessRightOptions",
+    "SortOrder",
     "SuccessPayload",
     "SuccessResponse",
     "UpdateFileOptions",
+    "UpdateFolderOptions",
     "UpdateRoomOptions",
     "UploadChunkOptions",
 ]

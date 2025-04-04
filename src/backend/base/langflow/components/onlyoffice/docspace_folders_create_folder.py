@@ -3,13 +3,17 @@ from typing import Any
 from langchain.tools import StructuredTool
 from pydantic import BaseModel, Field
 
-from langflow.base.onlyoffice.docspace.client import CreateFolderOptions, ErrorResponse
-from langflow.base.onlyoffice.docspace.component import Component
+from langflow.base.onlyoffice.docspace import (
+    AuthTextInput,
+    Component,
+    CreateFolderOptions,
+    DataOutput,
+    ErrorResponse,
+    ToolOutput,
+)
 from langflow.field_typing import Tool
-from langflow.inputs import MessageTextInput, SecretStrInput
-from langflow.io import Output
+from langflow.inputs import MessageTextInput
 from langflow.schema import Data
-from langflow.template import Output
 
 
 class OnlyofficeDocspaceCreateFolder(Component):
@@ -19,12 +23,7 @@ class OnlyofficeDocspaceCreateFolder(Component):
 
 
     inputs = [
-        SecretStrInput(
-            name="auth_text",
-            display_name="Text from Basic Authentication",
-            info="Text output from the Basic Authentication component.",
-            advanced=True,
-        ),
+        AuthTextInput(),
         MessageTextInput(
             name="room_id_or_folder_id",
             display_name="Room ID or Folder ID",
@@ -39,17 +38,8 @@ class OnlyofficeDocspaceCreateFolder(Component):
 
 
     outputs = [
-        Output(
-            display_name="Data",
-            name="api_build_data",
-            method="build_data",
-        ),
-        Output(
-            display_name="Tool",
-            name="api_build_tool",
-            method="build_tool",
-            hidden=True,
-        ),
+        DataOutput(),
+        ToolOutput(),
     ]
 
 

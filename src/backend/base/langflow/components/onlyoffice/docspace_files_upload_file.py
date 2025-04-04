@@ -1,18 +1,18 @@
-from datetime import datetime, timezone
 import math
+from datetime import datetime, timezone
 from typing import Any
 
-# from langchain.tools import StructuredTool
-# from pydantic import BaseModel, Field
-
-from langflow.base.onlyoffice.docspace.client import CreateSessionOptions, ErrorResponse, UploadChunkOptions
-from langflow.base.onlyoffice.docspace.component import Component
-# from langflow.field_typing import Tool
-from langflow.inputs import MessageTextInput, SecretStrInput
-from langflow.io import Output
+from langflow.base.onlyoffice.docspace import (
+    AuthTextInput,
+    Component,
+    CreateSessionOptions,
+    DataOutput,
+    ErrorResponse,
+    FolderIdInput,
+    UploadChunkOptions,
+)
+from langflow.inputs import MessageTextInput
 from langflow.schema import Data
-from langflow.template import Output
-
 
 MAX_CHUNK_SIZE = 1024 * 1024 * 10 # 10mb
 
@@ -24,17 +24,8 @@ class OnlyofficeDocspaceUploadFile(Component):
 
 
     inputs = [
-        SecretStrInput(
-            name="auth_text",
-            display_name="Text from Basic Authentication",
-            info="Text output from the Basic Authentication component.",
-            advanced=True,
-        ),
-        MessageTextInput(
-            name="folder_id",
-            display_name="Folder ID",
-            info="The ID of the folder to upload the file to.",
-        ),
+        AuthTextInput(),
+        FolderIdInput(info="The ID of the folder to upload the file to."),
         MessageTextInput(
             name="filename",
             display_name="Filename",
@@ -49,11 +40,7 @@ class OnlyofficeDocspaceUploadFile(Component):
 
 
     outputs = [
-        Output(
-            display_name="Data",
-            name="api_build_data",
-            method="build_data",
-        ),
+        DataOutput(),
     ]
 
 
@@ -82,7 +69,7 @@ class OnlyofficeDocspaceUploadFile(Component):
         chunks = math.ceil(filesize / MAX_CHUNK_SIZE)
 
         for index in range(chunks):
-            id = session_result["data"]["id"]
+            session_id = session_result["data"]["id"]
             start = index * MAX_CHUNK_SIZE
             end = (index + 1) * MAX_CHUNK_SIZE
             chunk = self.content[start:end].encode("utf-8")
@@ -92,7 +79,7 @@ class OnlyofficeDocspaceUploadFile(Component):
                 chunk=chunk,
             )
 
-            upload_result, response = client.files.upload_chunk(id, upload_options)
+            upload_result, response = client.files.upload_chunk(session_id, upload_options)
             if isinstance(response, ErrorResponse):
                 raise response.exception
 

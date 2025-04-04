@@ -3,58 +3,49 @@ from typing import Any
 from langchain.tools import StructuredTool
 from pydantic import BaseModel, Field
 
-from langflow.base.onlyoffice.docspace.client import ErrorResponse
-from langflow.base.onlyoffice.docspace.component import Component
+from langflow.base.onlyoffice.docspace import (
+    AuthTextInput,
+    Component,
+    DataOutput,
+    ErrorResponse,
+    FiltersMixin,
+    FiltersSchema,
+    FolderIdInput,
+    ToolOutput,
+    filters_inputs,
+)
 from langflow.field_typing import Tool
-from langflow.inputs import MessageTextInput, SecretStrInput
-from langflow.io import Output
 from langflow.schema import Data
-from langflow.template import Output
 
 
-class OnlyofficeDocspaceGetFolder(Component):
+class OnlyofficeDocspaceGetFolder(Component, FiltersMixin):
     display_name = "Get Folder"
     description = "Get a folder from ONLYOFFICE DocSpace."
     name = "OnlyofficeDocspaceGetFolder"
 
 
     inputs = [
-        SecretStrInput(
-            name="auth_text",
-            display_name="Text from Basic Authentication",
-            info="Text output from the Basic Authentication component.",
-            advanced=True,
-        ),
-        MessageTextInput(
-            name="folder_id",
-            display_name="Folder ID",
-            info="The ID of the folder to get.",
-        ),
+        AuthTextInput(),
+        FolderIdInput(info="The ID of the folder to get."),
+        *filters_inputs(),
     ]
 
 
     outputs = [
-        Output(
-            display_name="Data",
-            name="api_build_data",
-            method="build_data",
-        ),
-        Output(
-            display_name="Tool",
-            name="api_build_tool",
-            method="build_tool",
-            hidden=True,
-        ),
+        DataOutput(),
+        ToolOutput(),
     ]
 
 
     class Schema(BaseModel):
         folder_id: int = Field(..., description="The ID of the folder to get.")
+        filters: FiltersSchema = Field(FiltersSchema(), description="Filters to apply to the request.")
 
 
     def _create_schema(self) -> Schema:
         return self.Schema(
-            folder_id=self.folder_id
+            folder_id=self.folder_id,
+            filters=self.filters,
         )
 
 
@@ -81,7 +72,11 @@ class OnlyofficeDocspaceGetFolder(Component):
     async def _get_folder(self, schema: Schema) -> Any:
         client = await self._get_client()
 
-        result, response = client.files.get_folder(schema.folder_id)
+        result, response = client.files.get_folder(
+            schema.folder_id,
+            schema.filters.to_filters(),
+        )
+
         if isinstance(response, ErrorResponse):
             raise response.exception
 

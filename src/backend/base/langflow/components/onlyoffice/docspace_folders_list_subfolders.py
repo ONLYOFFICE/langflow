@@ -3,13 +3,16 @@ from typing import Any
 from langchain.tools import StructuredTool
 from pydantic import BaseModel, Field
 
-from langflow.base.onlyoffice.docspace.client import ErrorResponse
-from langflow.base.onlyoffice.docspace.component import Component
+from langflow.base.onlyoffice.docspace import (
+    AuthTextInput,
+    Component,
+    DataOutput,
+    ErrorResponse,
+    FolderIdInput,
+    ToolOutput,
+)
 from langflow.field_typing import Tool
-from langflow.inputs import MessageTextInput, SecretStrInput
-from langflow.io import Output
 from langflow.schema import Data
-from langflow.template import Output
 
 
 class OnlyofficeDocspaceListSubfolders(Component):
@@ -19,32 +22,14 @@ class OnlyofficeDocspaceListSubfolders(Component):
 
 
     inputs = [
-        SecretStrInput(
-            name="auth_text",
-            display_name="Text from Basic Authentication",
-            info="Text output from the Basic Authentication component.",
-            advanced=True,
-        ),
-        MessageTextInput(
-            name="folder_id",
-            display_name="Folder ID",
-            info="The ID of the folder to list subfolders for.",
-        ),
+        AuthTextInput(),
+        FolderIdInput(info="The ID of the folder to list subfolders for."),
     ]
 
 
     outputs = [
-        Output(
-            display_name="Data",
-            name="api_build_data",
-            method="build_data",
-        ),
-        Output(
-            display_name="Tool",
-            name="api_build_tool",
-            method="build_tool",
-            hidden=True,
-        ),
+        DataOutput(),
+        ToolOutput(),
     ]
 
 
@@ -60,8 +45,7 @@ class OnlyofficeDocspaceListSubfolders(Component):
 
     async def build_data(self) -> Data:
         schema = self._create_schema()
-        data = await self._list_subfolders(schema)
-        return Data(data=data)
+        return [Data(data=data) for data in await self._list_subfolders(schema)]
 
 
     def build_tool(self) -> Tool:
@@ -73,16 +57,16 @@ class OnlyofficeDocspaceListSubfolders(Component):
         )
 
 
-    async def _tool_func(self, **kwargs) -> Any:
+    async def _tool_func(self, **kwargs) -> list[Any]:
         schema = self.Schema(**kwargs)
         return await self._get_room(schema)
 
 
-    async def _list_subfolders(self, schema: Schema) -> Any:
+    async def _list_subfolders(self, schema: Schema) -> list[Any]:
         client = await self._get_client()
 
-        result, response = client.files.get_subfolders(schema.folder_id)
+        result, response = client.files.list_subfolders(schema.folder_id)
         if isinstance(response, ErrorResponse):
-            raise Exception(response.message)
+            raise response.exception
 
         return result

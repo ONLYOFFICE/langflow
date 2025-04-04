@@ -6,15 +6,18 @@ from .files import (
     CreateSessionOptions,
     DeleteFileOptions,
     FilesService,
+    Invitation,
+    InvitationAccess,
     MoveOptions,
     Operation,
     RoomType,
+    SetRoomAccessRightOptions,
     UpdateFileOptions,
+    UpdateFolderOptions,
     UpdateRoomOptions,
     UploadChunkOptions,
 )
 from .portal import PortalService
-
 
 __all__ = [
     "ArchiveRoomOptions",
@@ -26,11 +29,15 @@ __all__ = [
     "CreateSessionOptions",
     "DeleteFileOptions",
     "FilesService",
+    "Invitation",
+    "InvitationAccess",
     "MoveOptions",
     "Operation",
     "PortalService",
     "RoomType",
+    "SetRoomAccessRightOptions",
     "UpdateFileOptions",
+    "UpdateFolderOptions",
     "UpdateRoomOptions",
     "UploadChunkOptions",
 ]

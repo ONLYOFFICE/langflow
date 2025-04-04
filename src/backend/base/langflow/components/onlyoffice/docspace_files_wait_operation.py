@@ -1,16 +1,19 @@
 from typing import Any
-import time
 
 from langchain.tools import StructuredTool
 from pydantic import BaseModel, Field
 
-from langflow.base.onlyoffice.docspace.client import ErrorResponse
-from langflow.base.onlyoffice.docspace.component import Component
+from langflow.base.onlyoffice.docspace import (
+    AuthTextInput,
+    Component,
+    DataOutput,
+    Operation,
+    Syncer,
+    ToolOutput,
+)
 from langflow.field_typing import Tool
-from langflow.inputs import MessageTextInput, SecretStrInput
-from langflow.io import Output
+from langflow.inputs import MessageTextInput
 from langflow.schema import Data
-from langflow.template import Output
 
 
 class OnlyofficeDocspaceWaitOperation(Component):
@@ -20,12 +23,7 @@ class OnlyofficeDocspaceWaitOperation(Component):
 
 
     inputs = [
-        SecretStrInput(
-            name="auth_text",
-            display_name="Text from Basic Authentication",
-            info="Text output from the Basic Authentication component.",
-            advanced=True,
-        ),
+        AuthTextInput(),
         MessageTextInput(
             name="operation_id",
             display_name="Operation ID",
@@ -49,17 +47,8 @@ class OnlyofficeDocspaceWaitOperation(Component):
 
 
     outputs = [
-        Output(
-            display_name="Data",
-            name="api_build_data",
-            method="build_data",
-        ),
-        Output(
-            display_name="Tool",
-            name="api_build_tool",
-            method="build_tool",
-            hidden=True,
-        ),
+        DataOutput(),
+        ToolOutput(),
     ]
 
 
@@ -99,29 +88,7 @@ class OnlyofficeDocspaceWaitOperation(Component):
 
     async def _wait_operation(self, schema: Schema) -> Any:
         client = await self._get_client()
-
-        finished = False
-        body = {}
-
-        retries = schema.max_retries
-
-        while retries > 0:
-            body, response = client.files.list_operations()
-            if isinstance(response, ErrorResponse):
-                raise response.exception
-
-            for item in body:
-                if item.id == schema.id and item.finished:
-                    finished = True
-                    break
-
-            if finished:
-                break
-
-            retries -= 1
-            time.sleep(schema.delay)
-
-        if not finished:
-            raise ValueError(f"Operation {schema.id} did not finish in time")
-
-        return body
+        syncer = Syncer(client.files.list_operations)
+        operation = Operation(id=schema.operation_id)
+        operation = syncer.wait(operation)
+        return operation.model_dump(exclude_none=True, by_alias=True)

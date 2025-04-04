@@ -1,8 +1,12 @@
 from __future__ import annotations
-from typing import Any, Protocol
-from http.client import HTTPResponse
-from urllib.request import Request as HTTPRequest
+
+from typing import TYPE_CHECKING, Any, Protocol
+
 from pydantic import BaseModel, Field
+
+if TYPE_CHECKING:
+    from http.client import HTTPResponse
+    from urllib.request import Request as HTTPRequest
 
 # https://github.com/ONLYOFFICE/DocSpace-server/blob/v3.0.4-server/common/ASC.Api.Core/Middleware/CommonApiResponse.cs/
 # https://github.com/ONLYOFFICE/DocSpace-server/blob/v3.0.4-server/products/ASC.Files/Core/ApiModels/ResponseDto/UploadResultDto.cs/

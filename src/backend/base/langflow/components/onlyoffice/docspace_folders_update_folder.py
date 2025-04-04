@@ -3,13 +3,18 @@ from typing import Any
 from langchain.tools import StructuredTool
 from pydantic import BaseModel, Field
 
-from langflow.base.onlyoffice.docspace.client import ErrorResponse, UpdateFileOptions
-from langflow.base.onlyoffice.docspace.component import Component
+from langflow.base.onlyoffice.docspace import (
+    AuthTextInput,
+    Component,
+    DataOutput,
+    ErrorResponse,
+    FolderIdInput,
+    ToolOutput,
+    UpdateFolderOptions,
+)
 from langflow.field_typing import Tool
-from langflow.inputs import MessageTextInput, SecretStrInput
-from langflow.io import Output
+from langflow.inputs import MessageTextInput
 from langflow.schema import Data
-from langflow.template import Output
 
 
 class OnlyofficeDocspaceUpdateFolder(Component):
@@ -19,17 +24,8 @@ class OnlyofficeDocspaceUpdateFolder(Component):
 
 
     inputs = [
-        SecretStrInput(
-            name="auth_text",
-            display_name="Text from Basic Authentication",
-            info="Text output from the Basic Authentication component.",
-            advanced=True,
-        ),
-        MessageTextInput(
-            name="folder_id",
-            display_name="Folder ID",
-            info="The ID of the folder to update.",
-        ),
+        AuthTextInput(),
+        FolderIdInput(info="The ID of the folder to update."),
         MessageTextInput(
             name="title",
             display_name="Title",
@@ -39,17 +35,8 @@ class OnlyofficeDocspaceUpdateFolder(Component):
 
 
     outputs = [
-        Output(
-            display_name="Data",
-            name="api_build_data",
-            method="build_data",
-        ),
-        Output(
-            display_name="Tool",
-            name="api_build_tool",
-            method="build_tool",
-            hidden=True,
-        ),
+        DataOutput(),
+        ToolOutput(),
     ]
 
 
@@ -88,7 +75,7 @@ class OnlyofficeDocspaceUpdateFolder(Component):
     async def _update_folder(self, schema: Schema) -> Any:
         client = await self._get_client()
 
-        options = UpdateFileOptions(title=schema.title)
+        options = UpdateFolderOptions(title=schema.title)
 
         result, response = client.files.update_folder(schema.folder_id, options)
         if isinstance(response, ErrorResponse):

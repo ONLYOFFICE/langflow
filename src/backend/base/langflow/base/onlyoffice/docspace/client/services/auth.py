@@ -1,7 +1,8 @@
 from __future__ import annotations
-from typing import Tuple
+
 from pydantic import BaseModel, Field
-from ..base import Response, SuccessResponse, Service
+
+from langflow.base.onlyoffice.docspace.client.base import Response, Service, SuccessResponse
 
 
 class AuthOptions(BaseModel):
@@ -14,30 +15,23 @@ class AuthResponse(BaseModel):
 
 
 class AuthService(Service):
-    def auth(self, options: AuthOptions) -> Tuple[AuthResponse, Response]:
+    def auth(self, options: AuthOptions) -> tuple[AuthResponse, Response]:
         payload, response = self._client.post(
             "api/2.0/authentication",
             body=options.model_dump(),
         )
 
-        model: AuthResponse
-        if isinstance(response, SuccessResponse):
-            model = AuthResponse.model_validate(payload)
-        else:
-            model = AuthResponse()
+        model = AuthResponse.model_validate(payload) \
+            if isinstance(response, SuccessResponse) else AuthResponse()
 
         return model, response
 
 
-    def check(self) -> Tuple[bool, Response]:
+    def check(self) -> tuple[bool, Response]:
         _, response = self._client.get(
             "api/2.0/authentication",
         )
 
-        model: bool
-        if isinstance(response, SuccessResponse):
-            model = True
-        else:
-            model = False
+        model = bool(isinstance(response, SuccessResponse))
 
         return model, response
