@@ -8,6 +8,7 @@ from uuid import UUID
 
 from fastapi import APIRouter, Depends, HTTPException, UploadFile
 from fastapi.responses import StreamingResponse
+from loguru import logger
 
 from langflow.api.utils import CurrentActiveUser, DbSession
 from langflow.api.v1.schemas import UploadFileResponse
@@ -32,8 +33,9 @@ async def get_flow(
     flow = await session.get(Flow, flow_id)
     if not flow:
         raise HTTPException(status_code=404, detail="Flow not found")
-    if flow.user_id != current_user.id:
-        raise HTTPException(status_code=403, detail="You don't have access to this flow")
+    if flow.user_id and flow.user_id != current_user.id:
+        raise HTTPException(
+            status_code=403, detail="You don't have access to this flow")
     return flow
 
 
@@ -56,12 +58,17 @@ async def upload_file(
             status_code=413, detail=f"File size is larger than the maximum file size {max_file_size_upload}MB."
         )
 
-    if flow.user_id != current_user.id:
-        raise HTTPException(status_code=403, detail="You don't have access to this flow")
+    logger.info('My log:')
+    logger.info(flow.user_id)
+
+    if flow.user_id and flow.user_id != current_user.id:
+        raise HTTPException(
+            status_code=403, detail="You don't have access to this flow")
 
     try:
         file_content = await file.read()
-        timestamp = datetime.now(tz=timezone.utc).astimezone().strftime("%Y-%m-%d_%H-%M-%S")
+        timestamp = datetime.now(
+            tz=timezone.utc).astimezone().strftime("%Y-%m-%d_%H-%M-%S")
         file_name = file.filename or hashlib.sha256(file_content).hexdigest()
         full_file_name = f"{timestamp}_{file_name}"
         folder = str(flow.id)
@@ -79,14 +86,16 @@ async def download_file(
     extension = file_name.split(".")[-1]
 
     if not extension:
-        raise HTTPException(status_code=500, detail=f"Extension not found for file {file_name}")
+        raise HTTPException(
+            status_code=500, detail=f"Extension not found for file {file_name}")
     try:
         content_type = build_content_type_from_extension(extension)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e)) from e
 
     if not content_type:
-        raise HTTPException(status_code=500, detail=f"Content type not found for extension {extension}")
+        raise HTTPException(
+            status_code=500, detail=f"Content type not found for extension {extension}")
 
     try:
         file_content = await storage_service.get_file(flow_id=flow_id_str, file_name=file_name)
@@ -107,16 +116,19 @@ async def download_image(file_name: str, flow_id: UUID):
     flow_id_str = str(flow_id)
 
     if not extension:
-        raise HTTPException(status_code=500, detail=f"Extension not found for file {file_name}")
+        raise HTTPException(
+            status_code=500, detail=f"Extension not found for file {file_name}")
     try:
         content_type = build_content_type_from_extension(extension)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e)) from e
 
     if not content_type:
-        raise HTTPException(status_code=500, detail=f"Content type not found for extension {extension}")
+        raise HTTPException(
+            status_code=500, detail=f"Content type not found for extension {extension}")
     if not content_type.startswith("image"):
-        raise HTTPException(status_code=500, detail=f"Content type {content_type} is not an image")
+        raise HTTPException(
+            status_code=500, detail=f"Content type {content_type} is not an image")
 
     try:
         file_content = await storage_service.get_file(flow_id=flow_id_str, file_name=file_name)
@@ -137,7 +149,8 @@ async def download_profile_picture(
         config_path = Path(config_dir)  # type: ignore[arg-type]
         folder_path = config_path / "profile_pictures" / folder_name
         content_type = build_content_type_from_extension(extension)
-        file_content = await storage_service.get_file(flow_id=folder_path, file_name=file_name)  # type: ignore[arg-type]
+        # type: ignore[arg-type]
+        file_content = await storage_service.get_file(flow_id=folder_path, file_name=file_name)
         return StreamingResponse(BytesIO(file_content), media_type=content_type)
 
     except Exception as e:
@@ -154,8 +167,10 @@ async def list_profile_pictures():
         people_path = config_path / "profile_pictures/People"
         space_path = config_path / "profile_pictures/Space"
 
-        people = await storage_service.list_files(flow_id=people_path)  # type: ignore[arg-type]
-        space = await storage_service.list_files(flow_id=space_path)  # type: ignore[arg-type]
+        # type: ignore[arg-type]
+        people = await storage_service.list_files(flow_id=people_path)
+        # type: ignore[arg-type]
+        space = await storage_service.list_files(flow_id=space_path)
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e)) from e

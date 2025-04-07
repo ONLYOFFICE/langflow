@@ -6,6 +6,8 @@ from fastapi_pagination import Page, Params
 from fastapi_pagination.ext.sqlmodel import paginate
 from sqlalchemy import delete
 from sqlmodel import col, select
+from loguru import logger
+
 
 from langflow.api.utils import DbSession, custom_params
 from langflow.schema.message import MessageResponse
@@ -51,8 +53,15 @@ async def get_messages(
 ) -> list[MessageResponse]:
     try:
         stmt = select(MessageTable)
+        logger.debug("Current flow_id: {}", flow_id)
+        logger.debug("Current session_id: {}", session_id)
+        logger.debug("Current sender: {}", sender)
+        logger.debug("Current sender_name: {}", sender_name)
+        logger.debug("Current order_by: {}", order_by)
         if flow_id:
-            stmt = stmt.where(MessageTable.flow_id == flow_id)
+            flow_uuid = flow_id if isinstance(
+                flow_id, UUID) else UUID(str(flow_id))
+            stmt = stmt.where(MessageTable.flow_id == flow_uuid)
         if session_id:
             stmt = stmt.where(MessageTable.session_id == session_id)
         if sender:
@@ -71,7 +80,8 @@ async def get_messages(
 @router.delete("/messages", status_code=204, dependencies=[Depends(get_current_active_user)])
 async def delete_messages(message_ids: list[UUID], session: DbSession) -> None:
     try:
-        await session.exec(delete(MessageTable).where(MessageTable.id.in_(message_ids)))  # type: ignore[attr-defined]
+        # type: ignore[attr-defined]
+        await session.exec(delete(MessageTable).where(MessageTable.id.in_(message_ids)))
         await session.commit()
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e)) from e
@@ -92,7 +102,8 @@ async def update_message(
         raise HTTPException(status_code=404, detail="Message not found")
 
     try:
-        message_dict = message.model_dump(exclude_unset=True, exclude_none=True)
+        message_dict = message.model_dump(
+            exclude_unset=True, exclude_none=True)
         if "text" in message_dict and message_dict["text"] != db_message.text:
             message_dict["edit"] = True
         db_message.sqlmodel_update(message_dict)
@@ -115,13 +126,15 @@ async def update_session_id(
 ) -> list[MessageResponse]:
     try:
         # Get all messages with the old session ID
-        stmt = select(MessageTable).where(MessageTable.session_id == old_session_id)
+        stmt = select(MessageTable).where(
+            MessageTable.session_id == old_session_id)
         messages = (await session.exec(stmt)).all()
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e)) from e
 
     if not messages:
-        raise HTTPException(status_code=404, detail="No messages found with the given session ID")
+        raise HTTPException(
+            status_code=404, detail="No messages found with the given session ID")
 
     try:
         # Update all messages with the new session ID
@@ -134,7 +147,8 @@ async def update_session_id(
         message_responses = []
         for message in messages:
             await session.refresh(message)
-            message_responses.append(MessageResponse.model_validate(message, from_attributes=True))
+            message_responses.append(
+                MessageResponse.model_validate(message, from_attributes=True))
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e)) from e
 
