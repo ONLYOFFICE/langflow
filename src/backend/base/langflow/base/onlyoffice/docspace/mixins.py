@@ -6,6 +6,7 @@ from langflow.inputs.inputs import InputTypes
 
 from .inputs import (
     INPUT_NAME_AUTH_TEXT,
+    INPUT_NAME_ENABLE_EXTERNAL_EXT,
     INPUT_NAME_FILE_IDS,
     INPUT_NAME_FILTERS_COUNT,
     INPUT_NAME_FILTERS_FILTER_BY,
@@ -16,7 +17,9 @@ from .inputs import (
     INPUT_NAME_FILTERS_START_INDEX,
     INPUT_NAME_FILTERS_UPDATED_SINCE,
     INPUT_NAME_FOLDER_IDS,
+    INPUT_NAME_FORM_ID,
     INPUT_NAME_ID_SEPARATOR,
+    INPUT_NAME_TEMPLATE_ID,
 )
 from .schemas import FiltersSchema
 
@@ -26,6 +29,20 @@ if TYPE_CHECKING:
 
 BOOL_TRUE_VALUES = {"true", "1", "on", "yes", "y"}
 BOOL_FALSE_VALUES = {"false", "0", "off", "no", "n"}
+
+
+def to_bool(value: str) -> bool | None:
+    if value in BOOL_TRUE_VALUES:
+        return True
+    if value in BOOL_FALSE_VALUES:
+        return False
+    return None
+
+
+def to_int(value: str) -> int | None:
+    if value.strip().isdigit():
+        return int(value)
+    return None
 
 
 class AuthTextMixin(ABC):
@@ -120,22 +137,40 @@ class FileIdsMixin(ABC):
         return file_ids
 
 
-class BooleanMixin(ABC):
+class EnableExternalExtMixin(ABC):
     @abstractmethod
     def get_input(self, name: str) -> InputTypes:
         ...
 
-    def boolean(self, name: str) -> bool | None:
-        boolean_input = self.get_input(name)
+    @property
+    def enable_external_ext(self) -> bool | None:
+        boolean_input = self.get_input(INPUT_NAME_ENABLE_EXTERNAL_EXT)
 
-        if boolean_input.value == "":
-            return None
-        if boolean_input.value in BOOL_TRUE_VALUES:
-            return True
-        if boolean_input.value in BOOL_FALSE_VALUES:
-            return False
+        return to_bool(boolean_input.value)
 
-        return None
+
+class FormIdMixin(ABC):
+    @abstractmethod
+    def get_input(self, name: str) -> InputTypes:
+        ...
+
+    @property
+    def form_id(self) -> int | None:
+        form_id_input = self.get_input(INPUT_NAME_FORM_ID)
+
+        return to_int(form_id_input.value)
+
+
+class TemplateIdMixin(ABC):
+    @abstractmethod
+    def get_input(self, name: str) -> InputTypes:
+        ...
+
+    @property
+    def template_id(self) -> int | None:
+        template_id_input = self.get_input(INPUT_NAME_TEMPLATE_ID)
+
+        return to_int(template_id_input.value)
 
 
 class FiltersMixin(ABC):

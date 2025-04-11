@@ -5,19 +5,23 @@ from pydantic import BaseModel, Field
 
 from langflow.base.onlyoffice.docspace import (
     AuthTextInput,
-    BooleanMixin,
     Component,
     CreateFileOptions,
     DataOutput,
+    EnableExternalExtInput,
+    EnableExternalExtMixin,
     ErrorResponse,
     FolderIdInput,
+    FormIdInput,
+    FormIdMixin,
+    TemplateIdInput,
+    TemplateIdMixin,
     ToolOutput,
 )
 from langflow.field_typing import Tool
 from langflow.inputs import MessageTextInput
 from langflow.schema import Data
 
-NAME_ENABLE_EXTERNAL_EXT = "enable_external_ext"
 DESCRIPTION_FOLDER_ID = "The ID of the folder to create the file in."
 DESCRIPTION_TITLE = "The title of the file to create."
 DESCRIPTION_TEMPLATE_ID = "The ID of the template to use for the file."
@@ -26,7 +30,7 @@ DESCRIPTION_ENABLE_EXTERNAL_EXT = "Enable external extensions for the file."
 DESCRIPTION_COMPONENT = "Create a new file in the specified folder in ONLYOFFICE DocSpace."
 
 
-class OnlyofficeDocspaceCreateFile(Component, BooleanMixin):
+class OnlyofficeDocspaceCreateFile(Component, EnableExternalExtMixin, FormIdMixin, TemplateIdMixin):
     display_name = "Create File"
     description = DESCRIPTION_COMPONENT
     name = "OnlyofficeDocspaceCreateFile"
@@ -40,24 +44,9 @@ class OnlyofficeDocspaceCreateFile(Component, BooleanMixin):
             display_name="Title",
             info=DESCRIPTION_TITLE,
         ),
-        MessageTextInput(
-            name="template_id",
-            display_name="Template ID",
-            info=DESCRIPTION_TEMPLATE_ID,
-            required=False,
-        ),
-        MessageTextInput(
-            name="form_id",
-            display_name="Form ID",
-            info=DESCRIPTION_FORM_ID,
-            required=False,
-        ),
-        MessageTextInput(
-            name=NAME_ENABLE_EXTERNAL_EXT,
-            display_name="Enable External Ext",
-            info=DESCRIPTION_ENABLE_EXTERNAL_EXT,
-            required=False,
-        ),
+        TemplateIdInput(advanced=True, info=DESCRIPTION_TEMPLATE_ID),
+        FormIdInput(advanced=True, info=DESCRIPTION_FORM_ID),
+        EnableExternalExtInput(advanced=True, info=DESCRIPTION_ENABLE_EXTERNAL_EXT),
     ]
 
 
@@ -76,22 +65,12 @@ class OnlyofficeDocspaceCreateFile(Component, BooleanMixin):
 
 
     def _create_schema(self) -> Schema:
-        template_id: int | None = None
-        if self.template_id:
-            template_id = self.template_id
-
-        form_id: int | None = None
-        if self.form_id:
-            form_id = self.form_id
-
-        enable_external_ext = self.boolean(NAME_ENABLE_EXTERNAL_EXT)
-
         return self.Schema(
             folder_id=self.folder_id,
             title=self.title,
-            template_id=template_id,
-            form_id=form_id,
-            enable_external_ext=enable_external_ext,
+            template_id=self.template_id,
+            form_id=self.form_id,
+            enable_external_ext=self.enable_external_ext,
         )
 
 

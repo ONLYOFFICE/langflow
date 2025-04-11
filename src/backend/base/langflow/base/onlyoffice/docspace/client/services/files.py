@@ -86,7 +86,7 @@ class CreateSessionOptions(BaseModel):
 
 
 class CreateFileOptions(BaseModel):
-    title: str = Field(None)
+    title: str | None = Field(None)
     template_id: int | None = Field(None, alias="templateId")
     form_id: int | None = Field(None, alias="formId")
     enable_external_ext: bool | None = Field(None, alias="enableExternalExt")
