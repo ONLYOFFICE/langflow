@@ -4,6 +4,7 @@ from .client import (
     AuthResponse,
     AuthService,
     Client,
+    CreateFileOptions,
     CreateFolderOptions,
     CreateRoomOptions,
     CreateSessionOptions,
@@ -48,6 +49,7 @@ from .inputs import (
     filters_inputs,
 )
 from .mixins import (
+    BooleanMixin,
     FileIdsMixin,
     FiltersMixin,
     FolderIdsMixin,
@@ -65,8 +67,10 @@ __all__ = [
     "AuthResponse",
     "AuthService",
     "AuthTextInput",
+    "BooleanMixin",
     "Client",
     "Component",
+    "CreateFileOptions",
     "CreateFolderOptions",
     "CreateRoomOptions",
     "CreateSessionOptions",

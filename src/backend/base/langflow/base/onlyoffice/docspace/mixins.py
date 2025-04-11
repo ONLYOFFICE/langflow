@@ -24,6 +24,10 @@ if TYPE_CHECKING:
     from .client import FilterOp, SortOrder
 
 
+BOOL_TRUE_VALUES = {"true", "1", "on", "yes", "y"}
+BOOL_FALSE_VALUES = {"false", "0", "off", "no", "n"}
+
+
 class AuthTextMixin(ABC):
     @abstractmethod
     def get_input(self, name: str) -> InputTypes:
@@ -114,6 +118,24 @@ class FileIdsMixin(ABC):
                 file_ids = json.loads(file_ids_input.value)
 
         return file_ids
+
+
+class BooleanMixin(ABC):
+    @abstractmethod
+    def get_input(self, name: str) -> InputTypes:
+        ...
+
+    def boolean(self, name: str) -> bool | None:
+        boolean_input = self.get_input(name)
+
+        if boolean_input.value == "":
+            return None
+        if boolean_input.value in BOOL_TRUE_VALUES:
+            return True
+        if boolean_input.value in BOOL_FALSE_VALUES:
+            return False
+
+        return None
 
 
 class FiltersMixin(ABC):
