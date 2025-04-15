@@ -1,6 +1,7 @@
 from .auth import AuthOptions, AuthResponse, AuthService
 from .files import (
     ArchiveRoomOptions,
+    CreateFileOptions,
     CreateFolderOptions,
     CreateRoomOptions,
     CreateSessionOptions,
@@ -24,6 +25,7 @@ __all__ = [
     "AuthOptions",
     "AuthResponse",
     "AuthService",
+    "CreateFileOptions",
     "CreateFolderOptions",
     "CreateRoomOptions",
     "CreateSessionOptions",
