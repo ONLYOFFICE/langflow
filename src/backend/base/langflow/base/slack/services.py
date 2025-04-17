@@ -24,6 +24,13 @@ class ChatService(Service):
 
 
 class ConversationService(Service):
+    def get_list(self):
+        return self._client.request(
+            "GET",
+            "https://slack.com/api/conversations.list"
+        )
+
+
     def create_conversation(self, options: CreateConversationOptions):
         return self._client.request(
             "POST",
