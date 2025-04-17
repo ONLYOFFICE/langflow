@@ -52,10 +52,9 @@ FROM python:3.12.3-slim AS runtime
 RUN apt-get update \
     && apt-get install git -y \
     && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* \
-    && useradd user -u 1000 -g 0 --no-create-home --home-dir /app/data
+    && rm -rf /var/lib/apt/lists/*
 
-COPY --from=builder --chown=1000 /app/.venv /app/.venv
+COPY --from=builder /app/.venv /app/.venv
 
 # Place executables in the environment at the front of the path
 ENV PATH="/app/.venv/bin:$PATH"
@@ -66,7 +65,6 @@ LABEL org.opencontainers.image.licenses=MIT
 LABEL org.opencontainers.image.url=https://github.com/langflow-ai/langflow
 LABEL org.opencontainers.image.source=https://github.com/langflow-ai/langflow
 
-USER user
 WORKDIR /app
 
 ENV LANGFLOW_HOST=0.0.0.0
