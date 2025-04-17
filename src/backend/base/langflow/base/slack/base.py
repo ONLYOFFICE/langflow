@@ -9,16 +9,20 @@ class BaseClient:
         self,
         method: str,
         url: str,
-        headers: dict[str, str] | None = {},
+        headers: dict[str, str] | None = None,
         body: dict[str, Any] | None = None
     ) -> tuple[Any | None, requests.Response]:
-        data = json.dumps(body).encode("utf-8") if body else None
+        data = body
+
+        if headers is None:
+            headers = {}
 
         headers["Accept"] = "application/json"
         headers["Authorization"] = f"Bearer {self.auth}"
 
-        if body:
+        if body and "Content-Type" not in headers:
             headers["Content-Type"] = "application/json"
+            data = json.dumps(body).encode("utf-8")
 
         response = requests.request(    # noqa: S113
             method,
@@ -26,7 +30,7 @@ class BaseClient:
             data=data,
             headers=headers,
         )
-        
+
         result = json.loads(response.text)
 
         return result, response
