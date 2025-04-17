@@ -1,0 +1,61 @@
+
+from typing import Any
+
+from langchain.tools import StructuredTool
+from pydantic import BaseModel
+
+from langflow.base.slack import (
+    AuthTextInput,
+    Component,
+    DataOutput,
+    ToolOutput,
+)
+from langflow.field_typing import Tool
+from langflow.schema import Data
+
+
+class SlackGetConversations(Component):
+    display_name = "Get Conversations"
+    description = "Lists all channels in a Slack team."
+    name = "SlackGetConversations"
+
+
+    inputs = [
+        AuthTextInput(),
+    ]
+
+
+    outputs = [
+        DataOutput(),
+        ToolOutput(),
+    ]
+
+
+    class Schema(BaseModel):
+        pass
+
+
+    async def build_data(self) -> Data:
+        data = await self._get_conversations()
+        return Data(data=data)
+
+
+    def build_tool(self) -> Tool:
+        return StructuredTool.from_function(
+            name="slack_get_conversations",
+            description="Get a list of channels in a Slack team.",
+            coroutine=self._tool_func,
+            args_schema=self.Schema,
+        )
+
+
+    def _tool_func(self) -> Any:
+        return self._get_conversations()
+
+
+    async def _get_conversations(self) -> Any:
+        client = await self._get_client()
+
+        result, response = client.conversation.get_list()
+
+        return result
