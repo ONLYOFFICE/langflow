@@ -28,6 +28,10 @@ class CreateConversationOptions(BaseModel):
     is_private: bool | None = Field(None)
 
 
+class ArchiveConversationOptions(BaseModel):
+    channel: str | None = Field(None)
+
+
 class GetUserByEmailOptions(BaseModel):
     email: str | None = Field(None)
 
@@ -50,6 +54,14 @@ class ChatService(Service):
 
 
 class ConversationService(Service):
+    def archive(self, options: ArchiveConversationOptions):
+        return self._client.request(
+            "POST",
+            "https://slack.com/api/conversations.archive",
+            body=options.model_dump(exclude_none=True, by_alias=True)
+        )
+
+
     def get_list(self):
         return self._client.request(
             "GET",
