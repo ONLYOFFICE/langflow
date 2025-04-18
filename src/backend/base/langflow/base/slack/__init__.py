@@ -15,6 +15,7 @@ from .outputs import DataOutput, ToolOutput
 from .services import (
     ConversationHistoryOptions,
     CreateConversationOptions,
+    DeleteMessageOptions,
     GetUserByEmailOptions,
     PostMessageOptions,
 )
@@ -29,6 +30,7 @@ __all__ = [
     "ConversationHistoryOptions",
     "CreateConversationOptions",
     "DataOutput",
+    "DeleteMessageOptions",
     "GetUserByEmailOptions",
     "IncludeAllMetadataInput",
     "IncludeAllMetadataMixin",

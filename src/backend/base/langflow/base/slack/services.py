@@ -3,6 +3,11 @@ from pydantic import BaseModel, Field
 from .base import Service
 
 
+class DeleteMessageOptions(BaseModel):
+    channel: str | None = Field(None)
+    ts: str | None = Field(None)
+
+
 class PostMessageOptions(BaseModel):
     channel: str | None = Field(None)
     text: str | None = Field(None)
@@ -34,6 +39,14 @@ class ChatService(Service):
             "https://slack.com/api/chat.postMessage",
             body=options.model_dump(exclude_none=True, by_alias=True)
             )
+
+
+    def delete_message(self, options: DeleteMessageOptions):
+        return self._client.request(
+            "POST",
+            "https://slack.com/api/chat.delete",
+            body=options.model_dump(exclude_none=True, by_alias=True)
+        )
 
 
 class ConversationService(Service):
