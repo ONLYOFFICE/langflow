@@ -8,6 +8,15 @@ class PostMessageOptions(BaseModel):
     text: str | None = Field(None)
 
 
+class ConversationHistoryOptions(BaseModel):
+    channel: str | None = Field(None)
+    include_all_metadata: bool | None = Field(None)
+    inclusive: bool | None = Field(None)
+    latest: str | None = Field(None)
+    oldest: str | None = Field(None)
+    limit: int | None = Field(None)
+
+
 class CreateConversationOptions(BaseModel):
     name: str | None = Field(None)
     team_id: str | None = Field(None)
@@ -32,6 +41,14 @@ class ConversationService(Service):
         return self._client.request(
             "GET",
             "https://slack.com/api/conversations.list"
+        )
+
+
+    def get_history(self, options: ConversationHistoryOptions):
+        return self._client.request(
+            "POST",
+            "https://slack.com/api/conversations.history",
+            body=options.model_dump(exclude_none=True, by_alias=True)
         )
 
 
