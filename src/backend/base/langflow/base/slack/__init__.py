@@ -13,6 +13,7 @@ from .inputs import (
 from .mixins import IncludeAllMetadataMixin, InclusiveMixin, IsPrivateMixin, LimitMixin
 from .outputs import DataOutput, ToolOutput
 from .services import (
+    ArchiveConversationOptions,
     ConversationHistoryOptions,
     CreateConversationOptions,
     DeleteMessageOptions,
@@ -25,6 +26,7 @@ __all__ = [
     "INPUT_DESCRIPTION_INCLUSIVE",
     "INPUT_DESCRIPTION_IS_PRIVATE",
     "INPUT_DESCRIPTION_LIMIT",
+    "ArchiveConversationOptions",
     "AuthTextInput",
     "Component",
     "ConversationHistoryOptions",
