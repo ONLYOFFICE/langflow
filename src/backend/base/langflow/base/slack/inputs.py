@@ -1,9 +1,15 @@
 from langflow.inputs import MessageTextInput, SecretStrInput
 
+INPUT_DESCRIPTION_INCLUDE_ALL_METADATA = "Return all metadata associated with this message."
+INPUT_DESCRIPTION_INCLUSIVE = "Include messages with oldest or latest timestamps in results."
 INPUT_DESCRIPTION_IS_PRIVATE = "Set to true to create a private channel."
+INPUT_DESCRIPTION_LIMIT = "The maximum number of items to return."
 
 INPUT_NAME_AUTH_TEXT = "auth_token"
+INPUT_NAME_INCLUDE_ALL_METADATA = "include_all_metadata"
+INPUT_NAME_INCLUSIVE = "inclusive"
 INPUT_NAME_IS_PRIVATE = "is_private"
+INPUT_NAME_LIMIT = "limit"
 
 
 class AuthTextInput(SecretStrInput):
@@ -13,8 +19,30 @@ class AuthTextInput(SecretStrInput):
     advanced: bool = True
 
 
+class IncludeAllMetadataInput(MessageTextInput):
+    name: str = INPUT_NAME_INCLUDE_ALL_METADATA
+    display_name: str = "Include All Metadata"
+    info: str = INPUT_DESCRIPTION_INCLUDE_ALL_METADATA
+    advanced: bool = True
+
+
+class InclusiveInput(MessageTextInput):
+    name: str = INPUT_NAME_INCLUSIVE
+    display_name: str = "Inclusive"
+    info: str = INPUT_DESCRIPTION_INCLUSIVE
+    advanced: bool = True
+
+
 class IsPrivateInput(MessageTextInput):
     name: str = INPUT_NAME_IS_PRIVATE
     display_name: str = "Is Private"
     info: str = INPUT_DESCRIPTION_IS_PRIVATE
     advanced: bool = True
+
+
+class LimitInput(MessageTextInput):
+    name: str = INPUT_NAME_LIMIT
+    display_name: str = "Limit"
+    info: str = INPUT_DESCRIPTION_LIMIT
+    advanced: bool = True
+
