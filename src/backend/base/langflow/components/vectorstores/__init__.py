@@ -15,6 +15,11 @@ from .mongodb_atlas import MongoVectorStoreComponent
 from .opensearch import OpenSearchVectorStoreComponent
 from .pgvector import PGVectorStoreComponent
 from .pinecone import PineconeVectorStoreComponent
+from .qdrant_check_exists_file import QdrantCheckFileComponent
+from .qdrant_check_exists_folder import QdrantCheckFolderComponent
+from .qdrant_search_file import QdrantSearchFileComponent
+from .qdrant_search_folder import QdrantSearchFolderComponent
+from .qdrant_vectorize import QdrantVectorizeVectorStoreComponent
 from .qdrant import QdrantVectorStoreComponent
 from .redis import RedisVectorStoreComponent
 from .supabase import SupabaseVectorStoreComponent
@@ -43,6 +48,11 @@ __all__ = [
     "PGVectorStoreComponent",
     "PineconeVectorStoreComponent",
     "QdrantVectorStoreComponent",
+    "QdrantCheckFileComponent",
+    "QdrantCheckFolderComponent",
+    "QdrantSearchFileComponent",
+    "QdrantSearchFolderComponent",
+    "QdrantVectorizeVectorStoreComponent",
     "RedisVectorStoreComponent",
     "SupabaseVectorStoreComponent",
     "UpstashVectorStoreComponent",
