@@ -81,3 +81,10 @@ class UserService(Service):
             body=options.model_dump(exclude_none=True, by_alias=True),
             headers={"Content-Type": "application/x-www-form-urlencoded"}
         )
+
+    def get_list(self):
+        return self._client.request(
+            "GET",
+            "https://slack.com/api/users.list",
+            headers={"Content-Type": "application/x-www-form-urlencoded"}
+        )
