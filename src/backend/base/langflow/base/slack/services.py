@@ -33,6 +33,12 @@ class InviteOptions(BaseModel):
     users: str | None = Field(None)
     force: bool | None = Field(None)
 
+
+class KickOptions(BaseModel):
+    channel: str | None = Field(None)
+    user: str | None = Field(None)
+
+
 class ArchiveConversationOptions(BaseModel):
     channel: str | None = Field(None)
 
@@ -94,6 +100,14 @@ class ConversationService(Service):
         return self._client.request(
             "POST",
             "https://slack.com/api/conversations.invite",
+            body=options.model_dump(exclude_none=True, by_alias=True)
+        )
+
+
+    def kick(self, options: KickOptions):
+        return self._client.request(
+            "POST",
+            "https://slack.com/api/conversations.kick",
             body=options.model_dump(exclude_none=True, by_alias=True)
         )
 
