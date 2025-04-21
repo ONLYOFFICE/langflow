@@ -47,6 +47,7 @@ class ForceMixin(ABC):
     def get_input(self, name: str) -> InputTypes:
         ...
 
+
     @property
     def force(self) -> bool | None:
         boolean_input = self.get_input(INPUT_NAME_FORCE)
@@ -58,6 +59,7 @@ class IncludeAllMetadataMixin(ABC):
     @abstractmethod
     def get_input(self, name: str) -> InputTypes:
         ...
+
 
     @property
     def include_all_metadata(self) -> bool | None:
@@ -71,6 +73,7 @@ class InclusiveMixin(ABC):
     def get_input(self, name: str) -> InputTypes:
         ...
 
+
     @property
     def inclusive(self) -> bool | None:
         boolean_input = self.get_input(INPUT_NAME_INCLUSIVE)
@@ -83,6 +86,7 @@ class IsPrivateMixin(ABC):
     def get_input(self, name: str) -> InputTypes:
         ...
 
+
     @property
     def is_private(self) -> bool | None:
         boolean_input = self.get_input(INPUT_NAME_IS_PRIVATE)
@@ -94,6 +98,7 @@ class LimitMixin(ABC):
     @abstractmethod
     def get_input(self, name: str) -> InputTypes:
         ...
+
 
     @property
     def limit(self) -> int | None:

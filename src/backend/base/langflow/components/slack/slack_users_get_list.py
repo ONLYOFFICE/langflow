@@ -7,15 +7,19 @@ from langflow.base.slack import AuthTextInput, Component, DataOutput, ToolOutput
 from langflow.field_typing import Tool
 from langflow.schema import Data
 
+DESCRIPTION_COMPONENT = "Lists all users in a Slack team."
+
 
 class SlackGetUsers(Component):
     display_name = "Get Users"
-    description = "Lists all users in a Slack team."
+    description = DESCRIPTION_COMPONENT
     name = "SlackGetUsers"
+
 
     inputs = [
         AuthTextInput()
     ]
+
 
     outputs = [
         DataOutput(),
@@ -35,7 +39,7 @@ class SlackGetUsers(Component):
     def build_tool(self) -> Tool:
         return StructuredTool.from_function(
             name="slack_get_users",
-            description="Lists all users in a Slack team.",
+            description=DESCRIPTION_COMPONENT,
             coroutine=self._tool_func,
             args_schema=self.Schema,
         )

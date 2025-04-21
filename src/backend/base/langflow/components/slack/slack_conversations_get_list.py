@@ -1,4 +1,3 @@
-
 from typing import Any
 
 from langchain.tools import StructuredTool
@@ -13,10 +12,12 @@ from langflow.base.slack import (
 from langflow.field_typing import Tool
 from langflow.schema import Data
 
+DESCRIPTION_COMPONENT = "Lists all channels in a Slack team."
+
 
 class SlackGetConversations(Component):
     display_name = "Get Conversations"
-    description = "Lists all channels in a Slack team."
+    description = DESCRIPTION_COMPONENT
     name = "SlackGetConversations"
 
 
@@ -43,7 +44,7 @@ class SlackGetConversations(Component):
     def build_tool(self) -> Tool:
         return StructuredTool.from_function(
             name="slack_get_conversations",
-            description="Get a list of channels in a Slack team.",
+            description=DESCRIPTION_COMPONENT,
             coroutine=self._tool_func,
             args_schema=self.Schema,
         )

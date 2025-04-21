@@ -1,4 +1,3 @@
-
 from typing import Any
 
 from langchain.tools import StructuredTool
@@ -18,10 +17,14 @@ from langflow.field_typing import Tool
 from langflow.inputs import MessageTextInput
 from langflow.schema import Data
 
+DESCRIPTION_COMPONENT = "Initiates a public or private channel-based conversation."
+DESCRIPTION_CONVERSATION_NAME = "Name of the public or private channel to create."
+DESCRIPTION_TEAM_ID = "Encoded team id to create the channel in, required if org token is used."
+
 
 class SlackCreateConversation(Component, IsPrivateMixin):
     display_name = "Create Conversation"
-    description = "Initiates a public or private channel-based conversation"
+    description = DESCRIPTION_COMPONENT
     name = "SlackCreateConversation"
 
     inputs = [
@@ -29,12 +32,12 @@ class SlackCreateConversation(Component, IsPrivateMixin):
         MessageTextInput(
             name="conversation_name",
             display_name="Name",
-            info="The name of the conversation."
+            info=DESCRIPTION_CONVERSATION_NAME
         ),
         MessageTextInput(
             name="team_id",
             display_name="Team ID",
-            info="The ID of the team to create the conversation in.",
+            info=DESCRIPTION_TEAM_ID,
             advanced=True
         ),
         IsPrivateInput()
@@ -47,8 +50,8 @@ class SlackCreateConversation(Component, IsPrivateMixin):
 
 
     class Schema(BaseModel):
-        name: str = Field(..., description="The name of the conversation.")
-        team_id: str | None = Field(None, description="The ID of the team to create the conversation in.")
+        name: str = Field(..., description=DESCRIPTION_CONVERSATION_NAME)
+        team_id: str | None = Field(None, description=DESCRIPTION_TEAM_ID)
         is_private: bool | None = Field(None, description=INPUT_DESCRIPTION_IS_PRIVATE)
 
 
@@ -68,11 +71,12 @@ class SlackCreateConversation(Component, IsPrivateMixin):
 
     def build_tool(self) -> Tool:
         return StructuredTool.from_function(
-            name="slack_post_message",
-            description="Post a message to a Slack channel.",
+            name="slack_create_conversation",
+            description=DESCRIPTION_COMPONENT,
             coroutine=self._tool_func,
             args_schema=self.Schema,
         )
+
 
     def _tool_func(self, **kwargs) -> Any:
         schema = self.Schema(**kwargs)

@@ -23,6 +23,7 @@ from langflow.field_typing import Tool
 from langflow.inputs import MessageTextInput
 from langflow.schema import Data
 
+DESCRIPTION_COMPONENT = "Fetches a conversation's history of messages and events."
 DESCRIPTION_CHANNEL = "Conversation ID to fetch history for."
 DESCRIPTION_LATEST = "Only messages before this Unix timestamp will be included in results."
 DESCRIPTION_OLDEST = "Only messages after this Unix timestamp will be included in results."
@@ -30,7 +31,7 @@ DESCRIPTION_OLDEST = "Only messages after this Unix timestamp will be included i
 
 class SlackGetConversationHistory(Component, IncludeAllMetadataMixin, InclusiveMixin, LimitMixin):
     display_name = "Get Conversation History"
-    description = "Fetches a conversation's history of messages and events."
+    description = DESCRIPTION_COMPONENT
     name = "SlackGetConversationHistory"
 
 
@@ -93,8 +94,8 @@ class SlackGetConversationHistory(Component, IncludeAllMetadataMixin, InclusiveM
 
     def build_tool(self) -> Tool:
         return StructuredTool.from_function(
-            name="slack_post_message",
-            description="Post a message to a Slack channel.",
+            name="slack_get_conversation_history",
+            description=DESCRIPTION_COMPONENT,
             coroutine=self._tool_func,
             args_schema=self.Schema,
         )
