@@ -1,16 +1,18 @@
 from .component import Component
 from .inputs import (
+    INPUT_DESCRIPTION_FORCE,
     INPUT_DESCRIPTION_INCLUDE_ALL_METADATA,
     INPUT_DESCRIPTION_INCLUSIVE,
     INPUT_DESCRIPTION_IS_PRIVATE,
     INPUT_DESCRIPTION_LIMIT,
     AuthTextInput,
+    ForceInput,
     IncludeAllMetadataInput,
     InclusiveInput,
     IsPrivateInput,
     LimitInput,
 )
-from .mixins import IncludeAllMetadataMixin, InclusiveMixin, IsPrivateMixin, LimitMixin
+from .mixins import ForceMixin, IncludeAllMetadataMixin, InclusiveMixin, IsPrivateMixin, LimitMixin
 from .outputs import DataOutput, ToolOutput
 from .services import (
     ArchiveConversationOptions,
@@ -18,10 +20,12 @@ from .services import (
     CreateConversationOptions,
     DeleteMessageOptions,
     GetUserByEmailOptions,
+    InviteOptions,
     PostMessageOptions,
 )
 
 __all__ = [
+    "INPUT_DESCRIPTION_FORCE",
     "INPUT_DESCRIPTION_INCLUDE_ALL_METADATA",
     "INPUT_DESCRIPTION_INCLUSIVE",
     "INPUT_DESCRIPTION_IS_PRIVATE",
@@ -33,11 +37,14 @@ __all__ = [
     "CreateConversationOptions",
     "DataOutput",
     "DeleteMessageOptions",
+    "ForceInput",
+    "ForceMixin",
     "GetUserByEmailOptions",
     "IncludeAllMetadataInput",
     "IncludeAllMetadataMixin",
     "InclusiveInput",
     "InclusiveMixin",
+    "InviteOptions",
     "IsPrivateInput",
     "IsPrivateMixin",
     "LimitInput",
