@@ -5,7 +5,9 @@ INPUT_FORMAT_FILTER_OP = "Can be 'contains', 'equals', 'startsWith', or 'present
 INPUT_FORMAT_FOLDER_IDS = "Can be a JSON array of IDs or a string of IDs separated by the separator."
 INPUT_FORMAT_FILE_IDS = "Can be a JSON array of IDs or a string of IDs separated by the separator."
 
+INPUT_NAME_FORM_ID = "form_id"
 INPUT_NAME_AUTH_TEXT = "auth_text"
+INPUT_NAME_TEMPLATE_ID = "template_id"
 INPUT_NAME_ID_SEPARATOR = "id_separator"
 INPUT_NAME_FOLDER_IDS = "folder_ids"
 INPUT_NAME_FILE_IDS = "file_ids"
@@ -15,6 +17,7 @@ INPUT_NAME_FILTERS_SORT_BY = "filters_sort_by"
 INPUT_NAME_FILTERS_SORT_ORDER = "filters_sort_order"
 INPUT_NAME_FILTERS_FILTER_BY = "filters_filter_by"
 INPUT_NAME_FILTERS_FILTER_OP = "filters_filter_op"
+INPUT_NAME_ENABLE_EXTERNAL_EXT = "enable_external_ext"
 INPUT_NAME_FILTERS_FILTER_VALUE = "filters_filter_value"
 INPUT_NAME_FILTERS_UPDATED_SINCE = "filters_updated_since"
 
@@ -33,6 +36,11 @@ class AuthTextInput(SecretStrInput):
     display_name: str = "Text from Basic Authentication"
     info: str = "Text output from the Basic Authentication component."
     advanced: bool = True
+
+
+class EnableExternalExtInput(MessageTextInput):
+    name: str = INPUT_NAME_ENABLE_EXTERNAL_EXT
+    display_name: str = "Enable External Extensions"
 
 
 class IdSeparatorInput(MessageTextInput):
@@ -55,6 +63,16 @@ class FolderIdInput(MessageTextInput):
 class FileIdInput(MessageTextInput):
     name: str = "file_id"
     display_name: str = "File ID"
+
+
+class TemplateIdInput(MessageTextInput):
+    name: str = INPUT_NAME_TEMPLATE_ID
+    display_name: str = "Template ID"
+
+
+class FormIdInput(MessageTextInput):
+    name: str = INPUT_NAME_FORM_ID
+    display_name: str = "Form ID"
 
 
 class FolderIdsInput(MessageTextInput):

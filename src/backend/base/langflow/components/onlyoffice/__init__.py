@@ -1,4 +1,5 @@
 from .docspace_auth_basic_auth import OnlyofficeDocspaceBasicAuthentication
+from .docspace_files_create import OnlyofficeDocspaceCreateFile
 from .docspace_files_delete_file import OnlyofficeDocspaceDeleteFile
 from .docspace_files_download_as_text import OnlyofficeDocspaceDownloadAsText
 from .docspace_files_get_file import OnlyofficeDocspaceGetFile
@@ -22,6 +23,7 @@ from .docspace_rooms_update_room import OnlyofficeDocspaceUpdateRoom
 __all__ = [
     "OnlyofficeDocspaceArchiveRoom",
     "OnlyofficeDocspaceBasicAuthentication",
+    "OnlyofficeDocspaceCreateFile",
     "OnlyofficeDocspaceCreateFolder",
     "OnlyofficeDocspaceCreateRoom",
     "OnlyofficeDocspaceDeleteFile",

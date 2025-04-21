@@ -85,6 +85,13 @@ class CreateSessionOptions(BaseModel):
     create_on: str | None = Field(None, alias="CreateOn")
 
 
+class CreateFileOptions(BaseModel):
+    title: str | None = Field(None)
+    template_id: int | None = Field(None, alias="templateId")
+    form_id: int | None = Field(None, alias="formId")
+    enable_external_ext: bool | None = Field(None, alias="enableExternalExt")
+
+
 class CreateFolderOptions(BaseModel):
     title: str | None = Field(None)
 
@@ -179,6 +186,13 @@ class FilesService(Service):
             if isinstance(response, SuccessResponse) else []
 
         return ls, response
+
+
+    def create_file(self, folder_id: int, options: CreateFileOptions) -> tuple[Any, Response]:
+        return self._client.post(
+            f"api/2.0/files/{folder_id}/file",
+            body=options.model_dump(exclude_none=True, by_alias=True),
+        )
 
 
     def create_session(self, folder_id: int, options: CreateSessionOptions) -> tuple[Any, Response]:
