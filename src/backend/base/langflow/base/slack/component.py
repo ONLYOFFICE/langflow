@@ -5,6 +5,7 @@ from .mixins import AuthTextMixin
 
 _AUTH_KEY_VARIABLE_NAME = "slack_auth_key"
 
+
 class Component(BaseComponent, AuthTextMixin):
     display_name = "Slack Component"
     description = "Component to interact with Slack."
@@ -13,6 +14,7 @@ class Component(BaseComponent, AuthTextMixin):
 
     async def _get_client(self) -> Client:
         client = Client()
+
         if self.auth_token:
             client.auth = self.auth_token
         else:

@@ -8,10 +8,14 @@ from langflow.field_typing import Tool
 from langflow.inputs import MessageTextInput
 from langflow.schema import Data
 
+DESCRIPTION_COMPONENT = "Deletes a message."
+DESCRIPTION_CHANNEL = "Channel containing the message to be deleted."
+DESCRIPTION_TIMESTAMP = "Timestamp of the message to be deleted."
+
 
 class SlackDeleteMessage(Component):
     display_name = "Delete Message"
-    description = "Deletes a message."
+    description = DESCRIPTION_COMPONENT
     name = "SlackDeleteMessage"
 
 
@@ -20,12 +24,12 @@ class SlackDeleteMessage(Component):
         MessageTextInput(
             name="channel",
             display_name="Channel ID",
-            info="Channel containing the message to be deleted."
+            info=DESCRIPTION_CHANNEL
         ),
         MessageTextInput(
             name="timestamp",
             display_name="Timestamp",
-            info="The timestamp of the message to delete."
+            info=DESCRIPTION_TIMESTAMP
         )
     ]
 
@@ -37,8 +41,8 @@ class SlackDeleteMessage(Component):
 
 
     class Schema(BaseModel):
-        channel: str = Field(..., description="Channel containing the message to be deleted.")
-        timestamp: str = Field(..., description="The timestamp of the message to delete.")
+        channel: str = Field(..., description=DESCRIPTION_CHANNEL)
+        timestamp: str = Field(..., description=DESCRIPTION_TIMESTAMP)
 
 
     def _create_schema(self) -> Schema:
@@ -56,8 +60,8 @@ class SlackDeleteMessage(Component):
 
     def build_tool(self) -> Tool:
         return StructuredTool.from_function(
-            name="slack_post_message",
-            description="Post a message to a Slack channel.",
+            name="slack_delete_message",
+            description=DESCRIPTION_COMPONENT,
             coroutine=self._tool_func,
             args_schema=self.Schema,
         )

@@ -17,10 +17,14 @@ from langflow.field_typing import Tool
 from langflow.inputs import MessageTextInput
 from langflow.schema import Data
 
+DESCRIPTION_COMPONENT = "Invites users to a channel."
+DESCRIPTION_CHANNEL = "The ID of the public or private channel to invite user(s) to."
+DESCRIPTION_USERS = "A comma separated list of user IDs."
+
 
 class SlackInviteUsers(Component, ForceMixin):
     display_name = "Invite Users"
-    description = "Invites users to a channel."
+    description = DESCRIPTION_COMPONENT
     name = "SlackInviteUsers"
 
 
@@ -29,15 +33,16 @@ class SlackInviteUsers(Component, ForceMixin):
         MessageTextInput(
             name="channel",
             display_name="Channel ID",
-            info="The ID of the public or private channel to invite user(s) to."
+            info=DESCRIPTION_CHANNEL
         ),
         MessageTextInput(
             name="users",
             display_name="Users",
-            info="A comma separated list of user IDs."
+            info=DESCRIPTION_USERS
         ),
         ForceInput()
     ]
+
 
     outputs = [
         DataOutput(),
@@ -46,8 +51,8 @@ class SlackInviteUsers(Component, ForceMixin):
 
 
     class Schema(BaseModel):
-        channel: str = Field(..., description="The ID of the public or private channel to invite user(s) to.")
-        users: str = Field(..., description="A comma separated list of user IDs.")
+        channel: str = Field(..., description=DESCRIPTION_CHANNEL)
+        users: str = Field(..., description=DESCRIPTION_USERS)
         force: bool | None = Field(None, description=INPUT_DESCRIPTION_FORCE)
 
 
@@ -68,7 +73,7 @@ class SlackInviteUsers(Component, ForceMixin):
     def build_tool(self) -> Tool:
         return StructuredTool.from_function(
             name="slack_invite_users",
-            description="Invites users to a channel.",
+            description=DESCRIPTION_COMPONENT,
             coroutine=self._tool_func,
             args_schema=self.Schema,
         )

@@ -14,10 +14,13 @@ from langflow.field_typing import Tool
 from langflow.inputs import MessageTextInput
 from langflow.schema import Data
 
+DESCRIPTION_COMPONENT = "Archives a conversation."
+DESCRIPTION_CHANNEL = "ID of conversation to archive."
+
 
 class SlackArchiveConversation(Component):
     display_name = "Archive Conversation"
-    description = "Archives a conversation."
+    description = DESCRIPTION_COMPONENT
     name = "SlackArchiveConversation"
 
 
@@ -26,7 +29,7 @@ class SlackArchiveConversation(Component):
         MessageTextInput(
             name="channel",
             display_name="Channel ID",
-            info="ID of conversation to archive"
+            info=DESCRIPTION_CHANNEL
         )
     ]
 
@@ -38,7 +41,7 @@ class SlackArchiveConversation(Component):
 
 
     class Schema(BaseModel):
-        channel: str = Field(..., description="ID of conversation to archive")
+        channel: str = Field(..., description=DESCRIPTION_CHANNEL)
 
 
     def _create_schema(self) -> Schema:
@@ -56,7 +59,7 @@ class SlackArchiveConversation(Component):
     def build_tool(self) -> Tool:
         return StructuredTool.from_function(
             name="slack_archive_conversation",
-            description="Archives a conversation.",
+            description=DESCRIPTION_COMPONENT,
             coroutine=self._tool_func,
             args_schema=self.Schema,
         )

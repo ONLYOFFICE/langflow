@@ -14,10 +14,13 @@ from langflow.field_typing import Tool
 from langflow.inputs import MessageTextInput
 from langflow.schema import Data
 
+DESCRIPTION_COMPONENT = "Joins an existing conversation."
+DESCRIPTION_CHANNEL = "ID of conversation to join."
+
 
 class SlackJoin(Component):
     display_name = "Join Conversation"
-    description = "Joins an existing conversation."
+    description = DESCRIPTION_COMPONENT
     name = "SlackJoin"
 
     inputs = [
@@ -25,7 +28,7 @@ class SlackJoin(Component):
         MessageTextInput(
             name="channel",
             display_name="Channel ID",
-            info="ID of conversation to join."
+            info=DESCRIPTION_CHANNEL
         )
     ]
 
@@ -37,7 +40,7 @@ class SlackJoin(Component):
 
 
     class Schema(BaseModel):
-        channel: str = Field(..., description="ID of conversation to join.")
+        channel: str = Field(..., description=DESCRIPTION_CHANNEL)
 
 
     def _create_schema(self) -> Schema:
@@ -55,7 +58,7 @@ class SlackJoin(Component):
     def build_tool(self) -> Tool:
         return StructuredTool.from_function(
             name="slack_join",
-            description="Joins an existing conversation.",
+            description=DESCRIPTION_COMPONENT,
             coroutine=self._tool_func,
             args_schema=self.Schema,
         )

@@ -3,14 +3,8 @@ from pydantic import BaseModel, Field
 from .base import Service
 
 
-class DeleteMessageOptions(BaseModel):
+class ArchiveConversationOptions(BaseModel):
     channel: str | None = Field(None)
-    ts: str | None = Field(None)
-
-
-class PostMessageOptions(BaseModel):
-    channel: str | None = Field(None)
-    text: str | None = Field(None)
 
 
 class ConversationHistoryOptions(BaseModel):
@@ -28,6 +22,15 @@ class CreateConversationOptions(BaseModel):
     is_private: bool | None = Field(None)
 
 
+class DeleteMessageOptions(BaseModel):
+    channel: str | None = Field(None)
+    ts: str | None = Field(None)
+
+
+class GetUserByEmailOptions(BaseModel):
+    email: str | None = Field(None)
+
+
 class InviteOptions(BaseModel):
     channel: str | None = Field(None)
     users: str | None = Field(None)
@@ -43,27 +46,24 @@ class KickOptions(BaseModel):
     user: str | None = Field(None)
 
 
-class ArchiveConversationOptions(BaseModel):
+class PostMessageOptions(BaseModel):
     channel: str | None = Field(None)
-
-
-class GetUserByEmailOptions(BaseModel):
-    email: str | None = Field(None)
+    text: str | None = Field(None)
 
 
 class ChatService(Service):
-    def post_message(self, options: PostMessageOptions):
-        return self._client.request(
-            "POST",
-            "https://slack.com/api/chat.postMessage",
-            body=options.model_dump(exclude_none=True, by_alias=True)
-            )
-
-
     def delete_message(self, options: DeleteMessageOptions):
         return self._client.request(
             "POST",
             "https://slack.com/api/chat.delete",
+            body=options.model_dump(exclude_none=True, by_alias=True)
+        )
+
+
+    def post_message(self, options: PostMessageOptions):
+        return self._client.request(
+            "POST",
+            "https://slack.com/api/chat.postMessage",
             body=options.model_dump(exclude_none=True, by_alias=True)
         )
 
@@ -77,10 +77,11 @@ class ConversationService(Service):
         )
 
 
-    def get_list(self):
+    def create_conversation(self, options: CreateConversationOptions):
         return self._client.request(
-            "GET",
-            "https://slack.com/api/conversations.list"
+            "POST",
+            "https://slack.com/api/conversations.create",
+            body=options.model_dump(exclude_none=True, by_alias=True)
         )
 
 
@@ -92,12 +93,11 @@ class ConversationService(Service):
         )
 
 
-    def create_conversation(self, options: CreateConversationOptions):
+    def get_list(self):
         return self._client.request(
-            "POST",
-            "https://slack.com/api/conversations.create",
-            body=options.model_dump(exclude_none=True, by_alias=True)
-            )
+            "GET",
+            "https://slack.com/api/conversations.list"
+        )
 
 
     def invite(self, options: InviteOptions):
@@ -125,17 +125,17 @@ class ConversationService(Service):
 
 
 class UserService(Service):
+    def get_list(self):
+        return self._client.request(
+            "GET",
+            "https://slack.com/api/users.list",
+            headers={"Content-Type": "application/x-www-form-urlencoded"}
+        )
+
     def get_user_by_email(self, options: GetUserByEmailOptions):
         return self._client.request(
             "POST",
             "https://slack.com/api/users.lookupByEmail",
             body=options.model_dump(exclude_none=True, by_alias=True),
-            headers={"Content-Type": "application/x-www-form-urlencoded"}
-        )
-
-    def get_list(self):
-        return self._client.request(
-            "GET",
-            "https://slack.com/api/users.list",
             headers={"Content-Type": "application/x-www-form-urlencoded"}
         )

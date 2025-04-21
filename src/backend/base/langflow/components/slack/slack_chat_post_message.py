@@ -1,4 +1,3 @@
-
 from typing import Any
 
 from langchain.tools import StructuredTool
@@ -9,10 +8,14 @@ from langflow.field_typing import Tool
 from langflow.inputs import MessageTextInput
 from langflow.schema import Data
 
+DESCRIPTION_COMPONENT = "Sends a message to a channel."
+DESCRIPTION_CHANNEL = "Channel ID or name that represents a channel, group, or IM channel to send the message to."
+DESCRIPTION_TEXT = "Message text to post."
+
 
 class SlackPostMessage(Component):
     display_name = "Post Message"
-    description = "Post a message to a Slack channel."
+    description = DESCRIPTION_COMPONENT
     name = "SlackPostMessage"
 
 
@@ -21,12 +24,12 @@ class SlackPostMessage(Component):
         MessageTextInput(
             name="channel",
             display_name="Channel",
-            info="The channel name to post the message to."
+            info=DESCRIPTION_CHANNEL
         ),
         MessageTextInput(
             name="text",
             display_name="Text",
-            info="The message text to post."
+            info=DESCRIPTION_TEXT
         )
     ]
 
@@ -38,8 +41,8 @@ class SlackPostMessage(Component):
 
 
     class Schema(BaseModel):
-        channel: str = Field(..., description="The channel name to post the message to.")
-        text: str = Field(..., description="The message text to post.")
+        channel: str = Field(..., description=DESCRIPTION_CHANNEL)
+        text: str = Field(..., description=DESCRIPTION_TEXT)
 
 
     def _create_schema(self) -> Schema:
@@ -58,7 +61,7 @@ class SlackPostMessage(Component):
     def build_tool(self) -> Tool:
         return StructuredTool.from_function(
             name="slack_post_message",
-            description="Post a message to a Slack channel.",
+            description=DESCRIPTION_COMPONENT,
             coroutine=self._tool_func,
             args_schema=self.Schema,
         )

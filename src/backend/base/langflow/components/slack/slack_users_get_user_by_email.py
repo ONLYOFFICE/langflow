@@ -1,4 +1,3 @@
-
 from typing import Any
 
 from langchain.tools import StructuredTool
@@ -9,10 +8,13 @@ from langflow.field_typing import Tool
 from langflow.inputs import MessageTextInput
 from langflow.schema import Data
 
+DESCRIPTION_COMPONENT = "Find a user with an email address."
+DESCRIPTION_EMAIL = "An email address belonging to a user in the workspace."
+
 
 class SlackGetUserByEmail(Component):
     display_name = "Get User by Email"
-    description = "Find a user with an email address."
+    description = DESCRIPTION_COMPONENT
     name = "SlackGetUserByEmail"
 
 
@@ -21,7 +23,7 @@ class SlackGetUserByEmail(Component):
         MessageTextInput(
             name="email",
             display_name="Email",
-            info="The email address of the user."
+            info=DESCRIPTION_EMAIL
         ),
     ]
 
@@ -32,7 +34,7 @@ class SlackGetUserByEmail(Component):
 
 
     class Schema(BaseModel):
-        email: str = Field(..., description="An email address belonging to a user in the workspace")
+        email: str = Field(..., description=DESCRIPTION_EMAIL)
 
 
     def _create_schema(self) -> Schema:
@@ -50,7 +52,7 @@ class SlackGetUserByEmail(Component):
     def build_tool(self) -> Tool:
         return StructuredTool.from_function(
             name="slack_get_user_by_email",
-            description="Get a user by email.",
+            description=DESCRIPTION_COMPONENT,
             coroutine=self._tool_func,
             args_schema=self.Schema,
         )

@@ -14,10 +14,14 @@ from langflow.field_typing import Tool
 from langflow.inputs import MessageTextInput
 from langflow.schema import Data
 
+DESCRIPTION_COMPONENT = "Removes a user from a conversation."
+DESCRIPTION_CHANNEL = "ID of conversation to remove user from."
+DESCRIPTION_USER = "User ID to be removed."
+
 
 class SlackKickUser(Component):
     display_name = "Kick User"
-    description = "Removes a user from a conversation."
+    description = DESCRIPTION_COMPONENT
     name = "SlackKickUser"
 
 
@@ -26,12 +30,12 @@ class SlackKickUser(Component):
         MessageTextInput(
             name="channel",
             display_name="Channel ID",
-            info="ID of conversation to remove user from."
+            info=DESCRIPTION_CHANNEL
         ),
         MessageTextInput(
             name="user",
             display_name="User",
-            info="User ID to be removed."
+            info=DESCRIPTION_USER
         )
     ]
 
@@ -43,8 +47,8 @@ class SlackKickUser(Component):
 
 
     class Schema(BaseModel):
-        channel: str = Field(..., description="ID of conversation to remove user from.")
-        user: str = Field(..., description="User ID to be removed.")
+        channel: str = Field(..., description=DESCRIPTION_CHANNEL)
+        user: str = Field(..., description=DESCRIPTION_USER)
 
 
     def _create_schema(self) -> Schema:
@@ -63,7 +67,7 @@ class SlackKickUser(Component):
     def build_tool(self) -> Tool:
         return StructuredTool.from_function(
             name="slack_kick_user",
-            description="Kicks a user from a conversation.",
+            description=DESCRIPTION_COMPONENT,
             coroutine=self._tool_func,
             args_schema=self.Schema,
         )
