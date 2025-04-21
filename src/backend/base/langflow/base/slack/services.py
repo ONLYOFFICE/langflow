@@ -28,6 +28,11 @@ class CreateConversationOptions(BaseModel):
     is_private: bool | None = Field(None)
 
 
+class InviteOptions(BaseModel):
+    channel: str | None = Field(None)
+    users: str | None = Field(None)
+    force: bool | None = Field(None)
+
 class ArchiveConversationOptions(BaseModel):
     channel: str | None = Field(None)
 
@@ -83,6 +88,14 @@ class ConversationService(Service):
             "https://slack.com/api/conversations.create",
             body=options.model_dump(exclude_none=True, by_alias=True)
             )
+
+
+    def invite(self, options: InviteOptions):
+        return self._client.request(
+            "POST",
+            "https://slack.com/api/conversations.invite",
+            body=options.model_dump(exclude_none=True, by_alias=True)
+        )
 
 
 class UserService(Service):

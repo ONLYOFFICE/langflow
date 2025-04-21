@@ -4,6 +4,7 @@ from langflow.inputs.inputs import InputTypes
 
 from .inputs import (
     INPUT_NAME_AUTH_TEXT,
+    INPUT_NAME_FORCE,
     INPUT_NAME_INCLUDE_ALL_METADATA,
     INPUT_NAME_INCLUSIVE,
     INPUT_NAME_IS_PRIVATE,
@@ -39,6 +40,18 @@ class AuthTextMixin(ABC):
         auth_text_input = self.get_input(INPUT_NAME_AUTH_TEXT)
 
         return auth_text_input.value if auth_text_input.value != "" else None
+
+
+class ForceMixin(ABC):
+    @abstractmethod
+    def get_input(self, name: str) -> InputTypes:
+        ...
+
+    @property
+    def force(self) -> bool | None:
+        boolean_input = self.get_input(INPUT_NAME_FORCE)
+
+        return to_bool(boolean_input.value)
 
 
 class IncludeAllMetadataMixin(ABC):
