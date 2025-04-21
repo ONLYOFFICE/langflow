@@ -5,6 +5,7 @@ from .slack_conversations_create_conversation import SlackCreateConversation
 from .slack_conversations_get_history import SlackGetConversationHistory
 from .slack_conversations_get_list import SlackGetConversations
 from .slack_conversations_invite import SlackInviteUsers
+from .slack_conversations_join import SlackJoin
 from .slack_conversations_kick import SlackKickUser
 from .slack_users_get_list import SlackGetUsers
 from .slack_users_get_user_by_email import SlackGetUserByEmail
@@ -18,6 +19,7 @@ __all__ = [
     "SlackGetUserByEmail",
     "SlackGetUsers",
     "SlackInviteUsers",
+    "SlackJoin",
     "SlackKickUser",
     "SlackPostMessage"
 ]

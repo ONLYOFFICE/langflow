@@ -21,6 +21,7 @@ from .services import (
     DeleteMessageOptions,
     GetUserByEmailOptions,
     InviteOptions,
+    JoinOptions,
     KickOptions,
     PostMessageOptions,
 )
@@ -48,6 +49,7 @@ __all__ = [
     "InviteOptions",
     "IsPrivateInput",
     "IsPrivateMixin",
+    "JoinOptions",
     "KickOptions",
     "LimitInput",
     "LimitMixin",
