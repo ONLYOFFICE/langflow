@@ -34,6 +34,10 @@ class InviteOptions(BaseModel):
     force: bool | None = Field(None)
 
 
+class JoinOptions(BaseModel):
+    channel: str | None = Field(None)
+
+
 class KickOptions(BaseModel):
     channel: str | None = Field(None)
     user: str | None = Field(None)
@@ -100,6 +104,14 @@ class ConversationService(Service):
         return self._client.request(
             "POST",
             "https://slack.com/api/conversations.invite",
+            body=options.model_dump(exclude_none=True, by_alias=True)
+        )
+
+
+    def join(self, options: JoinOptions):
+        return self._client.request(
+            "POST",
+            "https://slack.com/api/conversations.join",
             body=options.model_dump(exclude_none=True, by_alias=True)
         )
 
