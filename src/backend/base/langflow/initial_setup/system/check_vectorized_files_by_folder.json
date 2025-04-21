@@ -6,56 +6,120 @@
         "className": "",
         "data": {
           "sourceHandle": {
-            "dataType": "FileID",
-            "id": "FileID-z6JdM",
-            "name": "file",
-            "output_types": [
-              "Message"
-            ]
+            "dataType": "TextInput",
+            "id": "TextInput-QPviD",
+            "name": "text",
+            "output_types": ["Message"]
           },
           "targetHandle": {
-            "fieldName": "files_ids",
-            "id": "GetFile-getAm",
-            "inputTypes": [
-              "Message"
-            ],
+            "fieldName": "folder_id",
+            "id": "OnlyofficeDocspaceGetFolder-g6Dzr",
+            "inputTypes": ["Message"],
             "type": "str"
           }
         },
-        "id": "reactflow__edge-FileID-z6JdM{œdataTypeœ:œFileIDœ,œidœ:œFileID-z6JdMœ,œnameœ:œfileœ,œoutput_typesœ:[œMessageœ]}-GetFile-getAm{œfieldNameœ:œfiles_idsœ,œidœ:œGetFile-getAmœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "id": "xy-edge__TextInput-QPviD{œdataTypeœ:œTextInputœ,œidœ:œTextInput-QPviDœ,œnameœ:œtextœ,œoutput_typesœ:[œMessageœ]}-OnlyofficeDocspaceGetFolder-g6Dzr{œfieldNameœ:œfolder_idœ,œidœ:œOnlyofficeDocspaceGetFolder-g6Dzrœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "selected": false,
-        "source": "FileID-z6JdM",
-        "sourceHandle": "{œdataTypeœ:œFileIDœ,œidœ:œFileID-z6JdMœ,œnameœ:œfileœ,œoutput_typesœ:[œMessageœ]}",
-        "target": "GetFile-getAm",
-        "targetHandle": "{œfieldNameœ:œfiles_idsœ,œidœ:œGetFile-getAmœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
+        "source": "TextInput-QPviD",
+        "sourceHandle": "{œdataTypeœ:œTextInputœ,œidœ:œTextInput-QPviDœ,œnameœ:œtextœ,œoutput_typesœ:[œMessageœ]}",
+        "target": "OnlyofficeDocspaceGetFolder-g6Dzr",
+        "targetHandle": "{œfieldNameœ:œfolder_idœ,œidœ:œOnlyofficeDocspaceGetFolder-g6Dzrœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "animated": false,
         "className": "",
         "data": {
           "sourceHandle": {
-            "dataType": "UserQuestion",
-            "id": "UserQuestion-wMrl9",
-            "name": "question",
-            "output_types": [
-              "Message"
-            ]
+            "dataType": "ParserComponent",
+            "id": "ParserComponent-ZkllZ",
+            "name": "parsed_text",
+            "output_types": ["Message"]
           },
           "targetHandle": {
-            "fieldName": "question",
-            "id": "DocSpaceQdrantVectorStoreComponent-XcFyR",
-            "inputTypes": [
-              "Message"
-            ],
+            "fieldName": "collection_name",
+            "id": "QdrantCheckFolderComponent-yx1Qz",
+            "inputTypes": ["Message"],
             "type": "str"
           }
         },
-        "id": "reactflow__edge-UserQuestion-wMrl9{œdataTypeœ:œUserQuestionœ,œidœ:œUserQuestion-wMrl9œ,œnameœ:œquestionœ,œoutput_typesœ:[œMessageœ]}-DocSpaceQdrantVectorStoreComponent-XcFyR{œfieldNameœ:œquestionœ,œidœ:œDocSpaceQdrantVectorStoreComponent-XcFyRœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "id": "xy-edge__ParserComponent-ZkllZ{œdataTypeœ:œParserComponentœ,œidœ:œParserComponent-ZkllZœ,œnameœ:œparsed_textœ,œoutput_typesœ:[œMessageœ]}-QdrantCheckFolderComponent-yx1Qz{œfieldNameœ:œcollection_nameœ,œidœ:œQdrantCheckFolderComponent-yx1Qzœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "selected": false,
-        "source": "UserQuestion-wMrl9",
-        "sourceHandle": "{œdataTypeœ:œUserQuestionœ,œidœ:œUserQuestion-wMrl9œ,œnameœ:œquestionœ,œoutput_typesœ:[œMessageœ]}",
-        "target": "DocSpaceQdrantVectorStoreComponent-XcFyR",
-        "targetHandle": "{œfieldNameœ:œquestionœ,œidœ:œDocSpaceQdrantVectorStoreComponent-XcFyRœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
+        "source": "ParserComponent-ZkllZ",
+        "sourceHandle": "{œdataTypeœ:œParserComponentœ,œidœ:œParserComponent-ZkllZœ,œnameœ:œparsed_textœ,œoutput_typesœ:[œMessageœ]}",
+        "target": "QdrantCheckFolderComponent-yx1Qz",
+        "targetHandle": "{œfieldNameœ:œcollection_nameœ,œidœ:œQdrantCheckFolderComponent-yx1Qzœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
+      },
+      {
+        "animated": false,
+        "className": "",
+        "data": {
+          "sourceHandle": {
+            "dataType": "DataMapper",
+            "id": "DataMapper-mJpkv",
+            "name": "data",
+            "output_types": ["Data"]
+          },
+          "targetHandle": {
+            "fieldName": "input_data",
+            "id": "ParserComponent-ZkllZ",
+            "inputTypes": ["DataFrame", "Data"],
+            "type": "other"
+          }
+        },
+        "id": "xy-edge__DataMapper-mJpkv{œdataTypeœ:œDataMapperœ,œidœ:œDataMapper-mJpkvœ,œnameœ:œdataœ,œoutput_typesœ:[œDataœ]}-ParserComponent-ZkllZ{œfieldNameœ:œinput_dataœ,œidœ:œParserComponent-ZkllZœ,œinputTypesœ:[œDataFrameœ,œDataœ],œtypeœ:œotherœ}",
+        "selected": false,
+        "source": "DataMapper-mJpkv",
+        "sourceHandle": "{œdataTypeœ:œDataMapperœ,œidœ:œDataMapper-mJpkvœ,œnameœ:œdataœ,œoutput_typesœ:[œDataœ]}",
+        "target": "ParserComponent-ZkllZ",
+        "targetHandle": "{œfieldNameœ:œinput_dataœ,œidœ:œParserComponent-ZkllZœ,œinputTypesœ:[œDataFrameœ,œDataœ],œtypeœ:œotherœ}"
+      },
+      {
+        "animated": false,
+        "className": "",
+        "data": {
+          "sourceHandle": {
+            "dataType": "OnlyofficeDocspaceGetFolder",
+            "id": "OnlyofficeDocspaceGetFolder-g6Dzr",
+            "name": "api_build_data",
+            "output_types": ["Data"]
+          },
+          "targetHandle": {
+            "fieldName": "input_data",
+            "id": "DataMapper-mJpkv",
+            "inputTypes": ["Data"],
+            "type": "other"
+          }
+        },
+        "id": "xy-edge__OnlyofficeDocspaceGetFolder-g6Dzr{œdataTypeœ:œOnlyofficeDocspaceGetFolderœ,œidœ:œOnlyofficeDocspaceGetFolder-g6Dzrœ,œnameœ:œapi_build_dataœ,œoutput_typesœ:[œDataœ]}-DataMapper-mJpkv{œfieldNameœ:œinput_dataœ,œidœ:œDataMapper-mJpkvœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}",
+        "selected": false,
+        "source": "OnlyofficeDocspaceGetFolder-g6Dzr",
+        "sourceHandle": "{œdataTypeœ:œOnlyofficeDocspaceGetFolderœ,œidœ:œOnlyofficeDocspaceGetFolder-g6Dzrœ,œnameœ:œapi_build_dataœ,œoutput_typesœ:[œDataœ]}",
+        "target": "DataMapper-mJpkv",
+        "targetHandle": "{œfieldNameœ:œinput_dataœ,œidœ:œDataMapper-mJpkvœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}"
+      },
+      {
+        "animated": false,
+        "className": "",
+        "data": {
+          "sourceHandle": {
+            "dataType": "OnlyofficeDocspaceGetFolder",
+            "id": "OnlyofficeDocspaceGetFolder-g6Dzr",
+            "name": "api_build_data",
+            "output_types": ["Data"]
+          },
+          "targetHandle": {
+            "fieldName": "folder",
+            "id": "QdrantCheckFolderComponent-yx1Qz",
+            "inputTypes": ["Data"],
+            "type": "other"
+          }
+        },
+        "id": "xy-edge__OnlyofficeDocspaceGetFolder-g6Dzr{œdataTypeœ:œOnlyofficeDocspaceGetFolderœ,œidœ:œOnlyofficeDocspaceGetFolder-g6Dzrœ,œnameœ:œapi_build_dataœ,œoutput_typesœ:[œDataœ]}-QdrantCheckFolderComponent-yx1Qz{œfieldNameœ:œfolderœ,œidœ:œQdrantCheckFolderComponent-yx1Qzœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}",
+        "selected": false,
+        "source": "OnlyofficeDocspaceGetFolder-g6Dzr",
+        "sourceHandle": "{œdataTypeœ:œOnlyofficeDocspaceGetFolderœ,œidœ:œOnlyofficeDocspaceGetFolder-g6Dzrœ,œnameœ:œapi_build_dataœ,œoutput_typesœ:[œDataœ]}",
+        "target": "QdrantCheckFolderComponent-yx1Qz",
+        "targetHandle": "{œfieldNameœ:œfolderœ,œidœ:œQdrantCheckFolderComponent-yx1Qzœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}"
       },
       {
         "animated": false,
@@ -63,390 +127,67 @@
         "data": {
           "sourceHandle": {
             "dataType": "OpenAIEmbeddings",
-            "id": "OpenAIEmbeddings-TIJdh",
+            "id": "OpenAIEmbeddings-ekoMN",
             "name": "embeddings",
-            "output_types": [
-              "Embeddings"
-            ]
+            "output_types": ["Embeddings"]
           },
           "targetHandle": {
             "fieldName": "embedding",
-            "id": "DocSpaceQdrantVectorStoreComponent-XcFyR",
-            "inputTypes": [
-              "Embeddings"
-            ],
+            "id": "QdrantCheckFolderComponent-yx1Qz",
+            "inputTypes": ["Embeddings"],
             "type": "other"
           }
         },
-        "id": "reactflow__edge-OpenAIEmbeddings-TIJdh{œdataTypeœ:œOpenAIEmbeddingsœ,œidœ:œOpenAIEmbeddings-TIJdhœ,œnameœ:œembeddingsœ,œoutput_typesœ:[œEmbeddingsœ]}-DocSpaceQdrantVectorStoreComponent-XcFyR{œfieldNameœ:œembeddingœ,œidœ:œDocSpaceQdrantVectorStoreComponent-XcFyRœ,œinputTypesœ:[œEmbeddingsœ],œtypeœ:œotherœ}",
+        "id": "xy-edge__OpenAIEmbeddings-ekoMN{œdataTypeœ:œOpenAIEmbeddingsœ,œidœ:œOpenAIEmbeddings-ekoMNœ,œnameœ:œembeddingsœ,œoutput_typesœ:[œEmbeddingsœ]}-QdrantCheckFolderComponent-yx1Qz{œfieldNameœ:œembeddingœ,œidœ:œQdrantCheckFolderComponent-yx1Qzœ,œinputTypesœ:[œEmbeddingsœ],œtypeœ:œotherœ}",
         "selected": false,
-        "source": "OpenAIEmbeddings-TIJdh",
-        "sourceHandle": "{œdataTypeœ:œOpenAIEmbeddingsœ,œidœ:œOpenAIEmbeddings-TIJdhœ,œnameœ:œembeddingsœ,œoutput_typesœ:[œEmbeddingsœ]}",
-        "target": "DocSpaceQdrantVectorStoreComponent-XcFyR",
-        "targetHandle": "{œfieldNameœ:œembeddingœ,œidœ:œDocSpaceQdrantVectorStoreComponent-XcFyRœ,œinputTypesœ:[œEmbeddingsœ],œtypeœ:œotherœ}"
+        "source": "OpenAIEmbeddings-ekoMN",
+        "sourceHandle": "{œdataTypeœ:œOpenAIEmbeddingsœ,œidœ:œOpenAIEmbeddings-ekoMNœ,œnameœ:œembeddingsœ,œoutput_typesœ:[œEmbeddingsœ]}",
+        "target": "QdrantCheckFolderComponent-yx1Qz",
+        "targetHandle": "{œfieldNameœ:œembeddingœ,œidœ:œQdrantCheckFolderComponent-yx1Qzœ,œinputTypesœ:[œEmbeddingsœ],œtypeœ:œotherœ}"
       },
       {
         "animated": false,
         "className": "",
         "data": {
           "sourceHandle": {
-            "dataType": "GetFile",
-            "id": "GetFile-getAm",
-            "name": "files",
-            "output_types": [
-              "Data"
-            ]
-          },
-          "targetHandle": {
-            "fieldName": "files",
-            "id": "DocSpaceQdrantVectorStoreComponent-XcFyR",
-            "inputTypes": [
-              "Data"
-            ],
-            "type": "other"
-          }
-        },
-        "id": "xy-edge__GetFile-getAm{œdataTypeœ:œGetFileœ,œidœ:œGetFile-getAmœ,œnameœ:œfilesœ,œoutput_typesœ:[œDataœ]}-DocSpaceQdrantVectorStoreComponent-XcFyR{œfieldNameœ:œfilesœ,œidœ:œDocSpaceQdrantVectorStoreComponent-XcFyRœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}",
-        "selected": false,
-        "source": "GetFile-getAm",
-        "sourceHandle": "{œdataTypeœ:œGetFileœ,œidœ:œGetFile-getAmœ,œnameœ:œfilesœ,œoutput_typesœ:[œDataœ]}",
-        "target": "DocSpaceQdrantVectorStoreComponent-XcFyR",
-        "targetHandle": "{œfieldNameœ:œfilesœ,œidœ:œDocSpaceQdrantVectorStoreComponent-XcFyRœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}"
-      },
-      {
-        "animated": false,
-        "className": "",
-        "data": {
-          "sourceHandle": {
-            "dataType": "DocSpaceQdrantVectorStoreComponent",
-            "id": "DocSpaceQdrantVectorStoreComponent-XcFyR",
-            "name": "search",
-            "output_types": [
-              "Message"
-            ]
+            "dataType": "QdrantCheckFolderComponent",
+            "id": "QdrantCheckFolderComponent-yx1Qz",
+            "name": "check",
+            "output_types": ["Message"]
           },
           "targetHandle": {
             "fieldName": "input_value",
-            "id": "CustomComponent1-GXz5a",
-            "inputTypes": [
-              "Message"
-            ],
-            "type": "str"
-          }
-        },
-        "id": "xy-edge__DocSpaceQdrantVectorStoreComponent-XcFyR{œdataTypeœ:œDocSpaceQdrantVectorStoreComponentœ,œidœ:œDocSpaceQdrantVectorStoreComponent-XcFyRœ,œnameœ:œsearchœ,œoutput_typesœ:[œMessageœ]}-CustomComponent1-GXz5a{œfieldNameœ:œinput_valueœ,œidœ:œCustomComponent1-GXz5aœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
-        "selected": false,
-        "source": "DocSpaceQdrantVectorStoreComponent-XcFyR",
-        "sourceHandle": "{œdataTypeœ:œDocSpaceQdrantVectorStoreComponentœ,œidœ:œDocSpaceQdrantVectorStoreComponent-XcFyRœ,œnameœ:œsearchœ,œoutput_typesœ:[œMessageœ]}",
-        "target": "CustomComponent1-GXz5a",
-        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œCustomComponent1-GXz5aœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
-      },
-      {
-        "className": "",
-        "data": {
-          "sourceHandle": {
-            "dataType": "CustomComponent1",
-            "id": "CustomComponent1-GXz5a",
-            "name": "output",
-            "output_types": [
-              "Message"
-            ]
-          },
-          "targetHandle": {
-            "fieldName": "input_value",
-            "id": "ChatOutput-t2HjL",
-            "inputTypes": [
-              "Data",
-              "DataFrame",
-              "Message"
-            ],
+            "id": "ChatOutput-VT11x",
+            "inputTypes": ["Data", "DataFrame", "Message"],
             "type": "other"
           }
         },
-        "id": "xy-edge__CustomComponent1-GXz5a{œdataTypeœ:œCustomComponent1œ,œidœ:œCustomComponent1-GXz5aœ,œnameœ:œoutputœ,œoutput_typesœ:[œMessageœ]}-ChatOutput-t2HjL{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-t2HjLœ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œotherœ}",
+        "id": "xy-edge__QdrantCheckFolderComponent-yx1Qz{œdataTypeœ:œQdrantCheckFolderComponentœ,œidœ:œQdrantCheckFolderComponent-yx1Qzœ,œnameœ:œcheckœ,œoutput_typesœ:[œMessageœ]}-ChatOutput-VT11x{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-VT11xœ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œotherœ}",
         "selected": false,
-        "source": "CustomComponent1-GXz5a",
-        "sourceHandle": "{œdataTypeœ:œCustomComponent1œ,œidœ:œCustomComponent1-GXz5aœ,œnameœ:œoutputœ,œoutput_typesœ:[œMessageœ]}",
-        "target": "ChatOutput-t2HjL",
-        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-t2HjLœ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œotherœ}"
+        "source": "QdrantCheckFolderComponent-yx1Qz",
+        "sourceHandle": "{œdataTypeœ:œQdrantCheckFolderComponentœ,œidœ:œQdrantCheckFolderComponent-yx1Qzœ,œnameœ:œcheckœ,œoutput_typesœ:[œMessageœ]}",
+        "target": "ChatOutput-VT11x",
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-VT11xœ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œotherœ}"
       }
     ],
     "nodes": [
       {
         "data": {
-          "id": "CustomComponent1-GXz5a",
+          "id": "TextInput-QPviD",
           "node": {
-            "base_classes": [
-              "Message"
-            ],
+            "base_classes": ["Message"],
             "beta": false,
             "conditional_paths": [],
             "custom_fields": {},
-            "description": "Use as a template to create your own component.",
-            "display_name": "Custom Component",
-            "documentation": "https://docs.langflow.org/components-custom-components",
-            "edited": true,
-            "field_order": [
-              "input_value"
-            ],
-            "frozen": false,
-            "icon": "code",
-            "legacy": false,
-            "lf_version": "1.2.0",
-            "metadata": {},
-            "minimized": false,
-            "output_types": [],
-            "outputs": [
-              {
-                "allows_loop": false,
-                "cache": true,
-                "display_name": "Output",
-                "hidden": null,
-                "method": "build_output",
-                "name": "output",
-                "required_inputs": null,
-                "selected": "Message",
-                "tool_mode": true,
-                "types": [
-                  "Message"
-                ],
-                "value": "__UNDEFINED__"
-              }
-            ],
-            "pinned": false,
-            "template": {
-              "_type": "Component",
-              "code": {
-                "advanced": true,
-                "dynamic": true,
-                "fileTypes": [],
-                "file_path": "",
-                "info": "",
-                "list": false,
-                "load_from_db": false,
-                "multiline": true,
-                "name": "code",
-                "password": false,
-                "placeholder": "",
-                "required": true,
-                "show": true,
-                "title_case": false,
-                "type": "code",
-                "value": "# from langflow.field_typing import Data\nfrom langflow.custom import Component\nfrom langflow.io import MessageInput, Output\nfrom langflow.schema import Message\n\n\nclass CustomComponent(Component):\n    display_name = \"Custom Component\"\n    description = \"Use as a template to create your own component.\"\n    documentation: str = \"https://docs.langflow.org/components-custom-components\"\n    icon = \"code\"\n    name = \"CustomComponent1\"\n\n    inputs = [\n        MessageInput(\n            name=\"input_value\",\n            display_name=\"Input Value\",\n            info=\"This is a custom component Input\",\n        ),\n    ]\n\n    outputs = [\n        Output(display_name=\"Output\", name=\"output\", method=\"build_output\"),\n    ]\n\n    def build_output(self) -> Message:\n        data = self.input_value.data.get('docs', [])\n        \n        return Message(text=\"\\n\".join(f'{item.metadata.get('id')}:{item.metadata.get('title')}\\n{item.page_content}\\n\\n' for item in data))\n"
-              },
-              "input_value": {
-                "_input_type": "MessageInput",
-                "advanced": false,
-                "display_name": "Input Value",
-                "dynamic": false,
-                "info": "This is a custom component Input",
-                "input_types": [
-                  "Message"
-                ],
-                "list": false,
-                "list_add_label": "Add More",
-                "load_from_db": false,
-                "name": "input_value",
-                "placeholder": "",
-                "required": false,
-                "show": true,
-                "title_case": false,
-                "tool_mode": false,
-                "trace_as_input": true,
-                "trace_as_metadata": true,
-                "type": "str",
-                "value": ""
-              }
-            },
-            "tool_mode": false
-          },
-          "showNode": true,
-          "type": "CustomComponent1"
-        },
-        "dragging": false,
-        "id": "CustomComponent1-GXz5a",
-        "measured": {
-          "height": 249,
-          "width": 320
-        },
-        "position": {
-          "x": 901.3579992903756,
-          "y": 854.9591783228261
-        },
-        "selected": false,
-        "type": "genericNode"
-      },
-      {
-        "data": {
-          "id": "GetFile-getAm",
-          "node": {
-            "base_classes": [
-              "Data"
-            ],
-            "beta": false,
-            "conditional_paths": [],
-            "custom_fields": {},
-            "description": "Retrieves detailed file information from DocSpace including metadata, permissions, and file properties",
-            "display_name": "Get File Info",
+            "description": "Get text inputs from the Playground.",
+            "display_name": "Text Input",
             "documentation": "",
             "edited": false,
-            "field_order": [
-              "files_ids",
-              "asc_auth_key",
-              "files_host"
-            ],
-            "frozen": false,
-            "icon": "file-info",
-            "legacy": false,
-            "lf_version": "1.2.0",
-            "metadata": {},
-            "minimized": false,
-            "output_types": [],
-            "outputs": [
-              {
-                "allows_loop": false,
-                "cache": true,
-                "display_name": "Files",
-                "method": "get_files",
-                "name": "files",
-                "selected": "Data",
-                "tool_mode": true,
-                "types": [
-                  "Data"
-                ],
-                "value": "__UNDEFINED__"
-              }
-            ],
-            "pinned": false,
-            "template": {
-              "_type": "Component",
-              "asc_auth_key": {
-                "_input_type": "MessageTextInput",
-                "advanced": false,
-                "display_name": "Auth key",
-                "dynamic": false,
-                "info": "Auth key to use",
-                "input_types": [
-                  "Message"
-                ],
-                "list": false,
-                "list_add_label": "Add More",
-                "load_from_db": true,
-                "name": "asc_auth_key",
-                "placeholder": "",
-                "required": true,
-                "show": true,
-                "title_case": false,
-                "tool_mode": false,
-                "trace_as_input": true,
-                "trace_as_metadata": true,
-                "type": "str",
-                "value": "asc_auth_key"
-              },
-              "code": {
-                "advanced": true,
-                "dynamic": true,
-                "fileTypes": [],
-                "file_path": "",
-                "info": "",
-                "list": false,
-                "load_from_db": false,
-                "multiline": true,
-                "name": "code",
-                "password": false,
-                "placeholder": "",
-                "required": true,
-                "show": true,
-                "title_case": false,
-                "type": "code",
-                "value": "import asyncio\nimport aiohttp\nfrom typing import List, Dict, Any\nfrom langflow.custom import Component\nfrom langflow.inputs.inputs import MessageInput, MessageTextInput\nfrom langflow.io import Output\nfrom langflow.schema import Data, Message\n\n\nclass GetFilesInfoComponent(Component):\n    \"\"\"Component for retrieving file information from DocSpace via API.\"\"\"\n\n\n    display_name: str = \"Get File Info\"\n    description: str = \"Retrieves detailed file information from DocSpace including metadata, permissions, and file properties\"\n    name: str = \"GetFile\"\n    icon = \"file-info\"\n\n    inputs = [\n        MessageInput(\n            name=\"files_ids\",\n            display_name=\"Files IDs\",\n            info=\"IDs of the files to get\",\n            required=True,\n        ),\n        MessageTextInput(\n            name=\"asc_auth_key\",\n            display_name=\"Auth key\",\n            info=\"Auth key to use\",\n            required=True,\n        ),\n        MessageInput(\n            name=\"files_host\",\n            display_name=\"Files Service\",\n            info=\"URL of the files service\",\n            required=True,\n        )\n    ]\n\n    outputs = [\n        Output(\n            name=\"files\",\n            display_name=\"Files\",\n            method=\"get_files\",\n        ),\n    ]\n\n    async def get_file(self, session: aiohttp.ClientSession, file_id: str) -> Dict[str, Any]:\n        \"\"\"\n        Make an async API request to get a file.\n\n        Args:\n            session: aiohttp client session\n            file_id: ID of the file to get\n\n        Returns:\n            Dict containing the file information\n        \"\"\"\n        try:\n            headers = {\n                'Authorization': self.asc_auth_key,\n            }\n\n            files_host = self.files_host.text\n            url = f'{files_host}/api/2.0/files/file/{file_id}'\n\n            async with session.get(url, headers=headers, timeout=30) as response:\n                response.raise_for_status()\n                data = await response.json()\n                return data[\"response\"]\n\n        except Exception as e:\n            print(f\"Error getting file {file_id}: {str(e)}\")\n            return None\n\n    async def fetch_all_files(self, file_ids: List[str]) -> List[Dict[str, Any]]:\n        \"\"\"\n        Fetch all files concurrently using aiohttp.\n\n        Args:\n            file_ids: List of file IDs to fetch\n\n        Returns:\n            List of file information dictionaries\n        \"\"\"\n        async with aiohttp.ClientSession() as session:\n            # Create tasks for all file fetches\n            tasks = [self.get_file(session, file_id) for file_id in file_ids]\n            # Wait for all tasks to complete (like Promise.all)\n            results = await asyncio.gather(*tasks)\n            # Filter out None results (failed requests)\n            return [r for r in results if r is not None]\n\n    async def get_files(self) -> Data:\n        \"\"\"\n        Make concurrent API requests to get multiple files.\n\n        Returns:\n            Data object containing list of file information\n        \"\"\"\n        try:\n            # Get file IDs from input data\n            files_data: List[str] = self.files_ids.data.get(\"files_ids\", [])\n            if not files_data:\n                return Data(data={\"files\": []})\n\n            # Fetch all files concurrently\n            files_info = await self.fetch_all_files(files_data)\n            return Data(data={\"files\": files_info})\n\n        except Exception as e:\n            return Data(data={\"files\": []})\n"
-              },
-              "files_host": {
-                "_input_type": "MessageInput",
-                "advanced": false,
-                "display_name": "Files Service",
-                "dynamic": false,
-                "info": "URL of the files service",
-                "input_types": [
-                  "Message"
-                ],
-                "list": false,
-                "list_add_label": "Add More",
-                "load_from_db": false,
-                "name": "files_host",
-                "placeholder": "",
-                "required": true,
-                "show": true,
-                "title_case": false,
-                "tool_mode": false,
-                "trace_as_input": true,
-                "trace_as_metadata": true,
-                "type": "str",
-                "value": "http://onlyoffice-router:8092"
-              },
-              "files_ids": {
-                "_input_type": "MessageInput",
-                "advanced": false,
-                "display_name": "Files IDs",
-                "dynamic": false,
-                "info": "IDs of the files to get",
-                "input_types": [
-                  "Message"
-                ],
-                "list": false,
-                "list_add_label": "Add More",
-                "load_from_db": false,
-                "name": "files_ids",
-                "placeholder": "",
-                "required": true,
-                "show": true,
-                "title_case": false,
-                "tool_mode": false,
-                "trace_as_input": true,
-                "trace_as_metadata": true,
-                "type": "str",
-                "value": ""
-              }
-            },
-            "tool_mode": false
-          },
-          "showNode": true,
-          "type": "GetFile"
-        },
-        "dragging": false,
-        "id": "GetFile-getAm",
-        "measured": {
-          "height": 433,
-          "width": 320
-        },
-        "position": {
-          "x": -206.0981011455748,
-          "y": 393.875814495539
-        },
-        "selected": false,
-        "type": "genericNode"
-      },
-      {
-        "data": {
-          "id": "FileID-z6JdM",
-          "node": {
-            "base_classes": [
-              "Message"
-            ],
-            "beta": false,
-            "conditional_paths": [],
-            "custom_fields": {},
-            "description": "Enter file ID to start vectorize.",
-            "display_name": "File id",
-            "documentation": "",
-            "edited": true,
-            "field_order": [
-              "input_value"
-            ],
+            "field_order": ["input_value"],
             "frozen": false,
             "icon": "type",
             "legacy": false,
-            "lf_version": "1.2.0",
+            "lf_version": "1.3.2",
             "metadata": {},
             "minimized": false,
             "output_types": [],
@@ -455,15 +196,11 @@
                 "allows_loop": false,
                 "cache": true,
                 "display_name": "Message",
-                "hidden": null,
-                "method": "file_id",
-                "name": "file",
-                "required_inputs": null,
+                "method": "text_response",
+                "name": "text",
                 "selected": "Message",
                 "tool_mode": true,
-                "types": [
-                  "Message"
-                ],
+                "types": ["Message"],
                 "value": "__UNDEFINED__"
               }
             ],
@@ -486,17 +223,16 @@
                 "show": true,
                 "title_case": false,
                 "type": "code",
-                "value": "from langflow.base.io.text import TextComponent\nfrom langflow.io import MultilineInput, Output\nfrom langflow.schema.message import Message\n\n\nclass TextInputComponent(TextComponent):\n    display_name = \"File id\"\n    description = \"Enter file ID to start vectorize.\"\n    icon = \"type\"\n    name = \"FileID\"\n\n    inputs = [\n        MultilineInput(\n            name=\"input_value\",\n            display_name=\"File id\",\n            info=\"File id for start flow.\",\n        ),\n    ]\n    outputs = [\n        Output(display_name=\"Message\", name=\"file\", method=\"file_id\"),\n    ]\n\n    def file_id(self) -> Message:\n        files = self.input_value\n        \n        files_list= files.split(\",\")\n        \n        return Message(\n            text=\"Start flow\",\n            data={'files_ids': files_list},\n        )\n"
+                "value": "from langflow.base.io.text import TextComponent\nfrom langflow.io import MultilineInput, Output\nfrom langflow.schema.message import Message\n\n\nclass TextInputComponent(TextComponent):\n    display_name = \"Text Input\"\n    description = \"Get text inputs from the Playground.\"\n    icon = \"type\"\n    name = \"TextInput\"\n\n    inputs = [\n        MultilineInput(\n            name=\"input_value\",\n            display_name=\"Text\",\n            info=\"Text to be passed as input.\",\n        ),\n    ]\n    outputs = [\n        Output(display_name=\"Message\", name=\"text\", method=\"text_response\"),\n    ]\n\n    def text_response(self) -> Message:\n        return Message(\n            text=self.input_value,\n        )\n"
               },
               "input_value": {
                 "_input_type": "MultilineInput",
                 "advanced": false,
-                "display_name": "File id",
+                "copy_field": false,
+                "display_name": "Text",
                 "dynamic": false,
-                "info": "File id for start flow.",
-                "input_types": [
-                  "Message"
-                ],
+                "info": "Text to be passed as input.",
+                "input_types": ["Message"],
                 "list": false,
                 "list_add_label": "Add More",
                 "load_from_db": false,
@@ -510,71 +246,103 @@
                 "trace_as_input": true,
                 "trace_as_metadata": true,
                 "type": "str",
-                "value": "5"
+                "value": "42"
               }
             },
             "tool_mode": false
           },
           "showNode": true,
-          "type": "FileID"
+          "type": "TextInput"
         },
         "dragging": false,
-        "id": "FileID-z6JdM",
+        "id": "TextInput-QPviD",
         "measured": {
-          "height": 229,
+          "height": 230,
           "width": 320
         },
         "position": {
-          "x": -672.98027474764,
-          "y": 366.40166408782477
+          "x": 557.0517582921422,
+          "y": 1058.2432894308245
         },
         "selected": false,
         "type": "genericNode"
       },
       {
         "data": {
-          "id": "UserQuestion-wMrl9",
+          "id": "OnlyofficeDocspaceGetFolder-g6Dzr",
           "node": {
-            "base_classes": [
-              "Message"
-            ],
+            "base_classes": ["Data", "Tool"],
             "beta": false,
             "conditional_paths": [],
             "custom_fields": {},
-            "description": "Component for entering a question to search documents or query information.",
-            "display_name": "User Question",
+            "description": "Get a folder from ONLYOFFICE DocSpace.",
+            "display_name": "Get Folder",
             "documentation": "",
-            "edited": true,
+            "edited": false,
             "field_order": [
-              "input_value"
+              "auth_text",
+              "folder_id",
+              "filters_count",
+              "filters_start_index",
+              "filters_sort_by",
+              "filters_sort_order",
+              "filters_filter_by",
+              "filters_filter_op",
+              "filters_filter_value",
+              "filters_updated_since"
             ],
             "frozen": false,
-            "icon": "message-circle",
+            "icon": "onlyoffice",
             "legacy": false,
-            "lf_version": "1.2.0",
+            "lf_version": "1.3.2",
             "metadata": {},
             "minimized": false,
-            "output_types": [],
+            "output_types": ["Docspace Folders Get Folder"],
             "outputs": [
               {
                 "allows_loop": false,
                 "cache": true,
-                "display_name": "Question Message",
-                "hidden": null,
-                "method": "create_question_message",
-                "name": "question",
-                "required_inputs": null,
-                "selected": "Message",
+                "display_name": "Data",
+                "method": "build_data",
+                "name": "api_build_data",
+                "selected": "Data",
                 "tool_mode": true,
-                "types": [
-                  "Message"
-                ],
+                "types": ["Data"],
+                "value": "__UNDEFINED__"
+              },
+              {
+                "allows_loop": false,
+                "cache": true,
+                "display_name": "Tool",
+                "hidden": true,
+                "method": "build_tool",
+                "name": "api_build_tool",
+                "selected": "Tool",
+                "tool_mode": true,
+                "types": ["Tool"],
                 "value": "__UNDEFINED__"
               }
             ],
             "pinned": false,
             "template": {
               "_type": "Component",
+              "auth_text": {
+                "_input_type": "AuthTextInput",
+                "advanced": true,
+                "display_name": "Text from Basic Authentication",
+                "dynamic": false,
+                "info": "Text output from the Basic Authentication component.",
+                "input_types": ["Message"],
+                "load_from_db": false,
+                "name": "auth_text",
+                "password": true,
+                "placeholder": "",
+                "required": false,
+                "show": true,
+                "title_case": false,
+                "type": "str",
+                "value": ""
+              },
               "code": {
                 "advanced": true,
                 "dynamic": true,
@@ -591,22 +359,19 @@
                 "show": true,
                 "title_case": false,
                 "type": "code",
-                "value": "from langflow.base.io.text import TextComponent\nfrom langflow.io import MultilineInput, Output\nfrom langflow.schema.message import Message\n\n\nclass QuestionInputComponent(TextComponent):\n    display_name = \"User Question\"\n    description = \"Component for entering a question to search documents or query information.\"\n    icon = \"message-circle\"\n    name = \"UserQuestion\"\n\n    inputs = [\n        MultilineInput(\n            name=\"input_value\",\n            display_name=\"Question\",\n            info=\"Enter your question to search for relevant information in documents.\",\n        ),\n    ]\n    outputs = [\n        Output(display_name=\"Question Message\", name=\"question\", method=\"create_question_message\"),\n    ]\n\n    def create_question_message(self) -> Message:\n        \"\"\"\n        Creates a Message object containing the user's question.\n        \n        Returns:\n            Message: A message containing the user's question.\n        \"\"\"\n        question = self.input_value.strip()\n        \n        if not question:\n            return Message(\n                text=\"\",\n                data={\"empty_question\": True}\n            )\n        \n        return Message(\n            text=question,\n            data={\"question\": question}\n        )"
+                "value": "from typing import Any\n\nfrom langchain.tools import StructuredTool\nfrom pydantic import BaseModel, Field\n\nfrom langflow.base.onlyoffice.docspace import (\n    AuthTextInput,\n    Component,\n    DataOutput,\n    ErrorResponse,\n    FiltersMixin,\n    FiltersSchema,\n    FolderIdInput,\n    ToolOutput,\n    filters_inputs,\n)\nfrom langflow.field_typing import Tool\nfrom langflow.schema import Data\n\n\nclass OnlyofficeDocspaceGetFolder(Component, FiltersMixin):\n    display_name = \"Get Folder\"\n    description = \"Get a folder from ONLYOFFICE DocSpace.\"\n    name = \"OnlyofficeDocspaceGetFolder\"\n\n\n    inputs = [\n        AuthTextInput(),\n        FolderIdInput(info=\"The ID of the folder to get.\"),\n        *filters_inputs(),\n    ]\n\n\n    outputs = [\n        DataOutput(),\n        ToolOutput(),\n    ]\n\n\n    class Schema(BaseModel):\n        folder_id: int = Field(..., description=\"The ID of the folder to get.\")\n        filters: FiltersSchema = Field(FiltersSchema(), description=\"Filters to apply to the request.\")\n\n\n    def _create_schema(self) -> Schema:\n        return self.Schema(\n            folder_id=self.folder_id,\n            filters=self.filters,\n        )\n\n\n    async def build_data(self) -> Data:\n        schema = self._create_schema()\n        data = await self._get_folder(schema)\n        return Data(data=data)\n\n\n    def build_tool(self) -> Tool:\n        return StructuredTool.from_function(\n            name=\"onlyoffice_docspace_get_folder\",\n            description=\"Get a folder from ONLYOFFICE DocSpace.\",\n            coroutine=self._tool_func,\n            args_schema=self.Schema,\n        )\n\n\n    async def _tool_func(self, **kwargs) -> Any:\n        schema = self.Schema(**kwargs)\n        return await self._get_folder(schema)\n\n\n    async def _get_folder(self, schema: Schema) -> Any:\n        client = await self._get_client()\n\n        result, response = client.files.get_folder(\n            schema.folder_id,\n            schema.filters.to_filters(),\n        )\n\n        if isinstance(response, ErrorResponse):\n            raise response.exception\n\n        return result\n"
               },
-              "input_value": {
-                "_input_type": "MultilineInput",
-                "advanced": false,
-                "display_name": "Question",
+              "filters_count": {
+                "_input_type": "FiltersCountInput",
+                "advanced": true,
+                "display_name": "Filters: Count",
                 "dynamic": false,
-                "info": "Enter your question to search for relevant information in documents.",
-                "input_types": [
-                  "Message"
-                ],
+                "info": "The number of items to return.",
+                "input_types": ["Message"],
                 "list": false,
                 "list_add_label": "Add More",
                 "load_from_db": false,
-                "multiline": true,
-                "name": "input_value",
+                "name": "filters_count",
                 "placeholder": "",
                 "required": false,
                 "show": true,
@@ -615,56 +380,218 @@
                 "trace_as_input": true,
                 "trace_as_metadata": true,
                 "type": "str",
-                "value": "Write summary"
+                "value": ""
+              },
+              "filters_filter_by": {
+                "_input_type": "FiltersFilterByInput",
+                "advanced": true,
+                "display_name": "Filters: Filter By",
+                "dynamic": false,
+                "info": "The field to filter by.",
+                "input_types": ["Message"],
+                "list": false,
+                "list_add_label": "Add More",
+                "load_from_db": false,
+                "name": "filters_filter_by",
+                "placeholder": "",
+                "required": false,
+                "show": true,
+                "title_case": false,
+                "tool_mode": false,
+                "trace_as_input": true,
+                "trace_as_metadata": true,
+                "type": "str",
+                "value": ""
+              },
+              "filters_filter_op": {
+                "_input_type": "FiltersFilterOpInput",
+                "advanced": true,
+                "display_name": "Filters: Filter Op",
+                "dynamic": false,
+                "info": "The filter operation. Can be 'contains', 'equals', 'startsWith', or 'present'.",
+                "input_types": ["Message"],
+                "list": false,
+                "list_add_label": "Add More",
+                "load_from_db": false,
+                "name": "filters_filter_op",
+                "placeholder": "",
+                "required": false,
+                "show": true,
+                "title_case": false,
+                "tool_mode": false,
+                "trace_as_input": true,
+                "trace_as_metadata": true,
+                "type": "str",
+                "value": ""
+              },
+              "filters_filter_value": {
+                "_input_type": "FiltersFilterValueInput",
+                "advanced": true,
+                "display_name": "Filters: Filter Value",
+                "dynamic": false,
+                "info": "The value to filter by.",
+                "input_types": ["Message"],
+                "list": false,
+                "list_add_label": "Add More",
+                "load_from_db": false,
+                "name": "filters_filter_value",
+                "placeholder": "",
+                "required": false,
+                "show": true,
+                "title_case": false,
+                "tool_mode": false,
+                "trace_as_input": true,
+                "trace_as_metadata": true,
+                "type": "str",
+                "value": ""
+              },
+              "filters_sort_by": {
+                "_input_type": "FiltersSortByInput",
+                "advanced": true,
+                "display_name": "Filters: Sort By",
+                "dynamic": false,
+                "info": "The field to sort by.",
+                "input_types": ["Message"],
+                "list": false,
+                "list_add_label": "Add More",
+                "load_from_db": false,
+                "name": "filters_sort_by",
+                "placeholder": "",
+                "required": false,
+                "show": true,
+                "title_case": false,
+                "tool_mode": false,
+                "trace_as_input": true,
+                "trace_as_metadata": true,
+                "type": "str",
+                "value": ""
+              },
+              "filters_sort_order": {
+                "_input_type": "FiltersSortOrderInput",
+                "advanced": true,
+                "display_name": "Filters: Sort Order",
+                "dynamic": false,
+                "info": "The sort order. Can be 'ascending' or 'descending'.",
+                "input_types": ["Message"],
+                "list": false,
+                "list_add_label": "Add More",
+                "load_from_db": false,
+                "name": "filters_sort_order",
+                "placeholder": "",
+                "required": false,
+                "show": true,
+                "title_case": false,
+                "tool_mode": false,
+                "trace_as_input": true,
+                "trace_as_metadata": true,
+                "type": "str",
+                "value": ""
+              },
+              "filters_start_index": {
+                "_input_type": "FiltersStartIndexInput",
+                "advanced": true,
+                "display_name": "Filters: Start Index",
+                "dynamic": false,
+                "info": "The index of the first item to return.",
+                "input_types": ["Message"],
+                "list": false,
+                "list_add_label": "Add More",
+                "load_from_db": false,
+                "name": "filters_start_index",
+                "placeholder": "",
+                "required": false,
+                "show": true,
+                "title_case": false,
+                "tool_mode": false,
+                "trace_as_input": true,
+                "trace_as_metadata": true,
+                "type": "str",
+                "value": ""
+              },
+              "filters_updated_since": {
+                "_input_type": "FiltersUpdatedSinceInput",
+                "advanced": true,
+                "display_name": "Filters: Updated Since",
+                "dynamic": false,
+                "info": "Only return items updated since this date.",
+                "input_types": ["Message"],
+                "list": false,
+                "list_add_label": "Add More",
+                "load_from_db": false,
+                "name": "filters_updated_since",
+                "placeholder": "",
+                "required": false,
+                "show": true,
+                "title_case": false,
+                "tool_mode": false,
+                "trace_as_input": true,
+                "trace_as_metadata": true,
+                "type": "str",
+                "value": ""
+              },
+              "folder_id": {
+                "_input_type": "FolderIdInput",
+                "advanced": false,
+                "display_name": "Folder ID",
+                "dynamic": false,
+                "info": "The ID of the folder to get.",
+                "input_types": ["Message"],
+                "list": false,
+                "list_add_label": "Add More",
+                "load_from_db": false,
+                "name": "folder_id",
+                "placeholder": "",
+                "required": false,
+                "show": true,
+                "title_case": false,
+                "tool_mode": false,
+                "trace_as_input": true,
+                "trace_as_metadata": true,
+                "type": "str",
+                "value": ""
               }
             },
             "tool_mode": false
           },
           "showNode": true,
-          "type": "UserQuestion"
+          "type": "OnlyofficeDocspaceGetFolder"
         },
         "dragging": false,
-        "id": "UserQuestion-wMrl9",
+        "id": "OnlyofficeDocspaceGetFolder-g6Dzr",
         "measured": {
-          "height": 249,
+          "height": 230,
           "width": 320
         },
         "position": {
-          "x": -227.4623297606814,
-          "y": -7.182938769589462
+          "x": 1000.6419870523866,
+          "y": 1067.6112216595131
         },
         "selected": false,
         "type": "genericNode"
       },
       {
         "data": {
-          "id": "DocSpaceQdrantVectorStoreComponent-XcFyR",
+          "id": "QdrantCheckFolderComponent-yx1Qz",
           "node": {
-            "base_classes": [
-              "Message"
-            ],
+            "base_classes": ["Message"],
             "beta": false,
             "conditional_paths": [],
             "custom_fields": {},
-            "description": "Add documents to Qdrant Vector Store",
-            "display_name": "DocsSpace Qdrant Vector Store",
+            "description": "Check if document exists in Qdrant Vector Store",
+            "display_name": "Qdrant Check Folder",
             "documentation": "",
             "edited": false,
             "field_order": [
               "collection_name",
-              "question",
-              "restart_search",
               "qdrant_host",
               "qdrant_port",
-              "documents",
-              "files",
-              "metadata",
-              "embedding"
+              "embedding",
+              "folder"
             ],
             "frozen": false,
             "icon": "Qdrant",
             "legacy": false,
-            "lf_version": "1.2.0",
+            "lf_version": "1.3.2",
             "metadata": {},
             "minimized": false,
             "output_types": [],
@@ -672,40 +599,12 @@
               {
                 "allows_loop": false,
                 "cache": true,
-                "display_name": "Vectorize",
-                "method": "vectorize_documents",
-                "name": "vectorize",
-                "selected": "Message",
-                "tool_mode": true,
-                "types": [
-                  "Message"
-                ],
-                "value": "__UNDEFINED__"
-              },
-              {
-                "allows_loop": false,
-                "cache": true,
-                "display_name": "Search",
-                "method": "search_documents",
-                "name": "search",
-                "selected": "Message",
-                "tool_mode": true,
-                "types": [
-                  "Message"
-                ],
-                "value": "__UNDEFINED__"
-              },
-              {
-                "allows_loop": false,
-                "cache": true,
-                "display_name": "Check document",
-                "method": "check_document",
+                "display_name": "Check folder",
+                "method": "check_folder",
                 "name": "check",
                 "selected": "Message",
                 "tool_mode": true,
-                "types": [
-                  "Message"
-                ],
+                "types": ["Message"],
                 "value": "__UNDEFINED__"
               }
             ],
@@ -728,7 +627,7 @@
                 "show": true,
                 "title_case": false,
                 "type": "code",
-                "value": "import os\nfrom typing import Any, Dict, List\nfrom langchain.embeddings.base import Embeddings\nfrom langchain_community.vectorstores import Qdrant\nfrom langchain_core.documents import Document\nfrom qdrant_client import QdrantClient\nfrom qdrant_client.models import Distance, VectorParams, Filter\nfrom langflow.custom import Component\nfrom langflow.schema import Message\nfrom langflow.io import (\n    MessageInput,\n    DataInput,\n    HandleInput,\n    Output,\n)\n\n\nclass DocSpaceQdrantVectorStoreComponent(Component):\n    display_name = \"DocsSpace Qdrant Vector Store\"\n    description = \"Add documents to Qdrant Vector Store\"\n    icon = \"Qdrant\"\n\n    inputs = [\n        MessageInput(\n            name=\"collection_name\",\n            display_name=\"Collection Name\",\n            required=True\n        ),\n        MessageInput(\n            name=\"question\",\n            display_name=\"Question\",\n        ),\n        MessageInput(\n            name=\"restart_search\",\n            display_name=\"Restart Search\",\n        ),\n        MessageInput(\n            name=\"qdrant_host\",\n            display_name=\"Qdrant Host\",\n        ),\n        MessageInput(\n            name=\"qdrant_port\",\n            display_name=\"Qdrant Port\",\n        ),\n\n        DataInput(\n            name=\"documents\",\n            display_name=\"Documents\",\n            list=True,\n        ),\n        DataInput(\n            name=\"files\",\n            display_name=\"Files\"\n        ),\n        DataInput(\n            name='metadata',\n            display_name=\"Metadata\"\n        ),\n\n        HandleInput(\n            name=\"embedding\",\n            display_name=\"Embedding\",\n            input_types=[\"Embeddings\"]\n        ),\n    ]\n\n    outputs = [\n        Output(name=\"vectorize\",\n               display_name=\"Vectorize\",\n               method=\"vectorize_documents\"),\n        Output(name=\"search\",\n               display_name=\"Search\",\n               method=\"search_documents\"),\n        Output(name=\"check\",\n               display_name=\"Check document\",\n               method=\"check_document\")\n    ]\n\n    def check_collection_exists(self, client: QdrantClient, collection_name: str) -> bool:\n        \"\"\"Check if collection exists in Qdrant.\"\"\"\n        try:\n            collections = client.get_collections()\n            return any(collection.name == collection_name for collection in collections.collections)\n        except Exception as e:\n            raise Exception(f\"Error checking collections list: {str(e)}\")\n\n    def create_collection(self, client: QdrantClient, collection_name: str, vector_size: int) -> bool:\n        \"\"\"Create a new collection in Qdrant.\"\"\"\n        try:\n            # Create new collection\n            client.create_collection(\n                collection_name=collection_name,\n                vectors_config=VectorParams(\n                    size=vector_size,\n                    distance=Distance.COSINE\n                )\n            )\n\n            return True\n\n        except Exception as e:\n            raise Exception(\n                f\"Failed to create collection {collection_name}: {str(e)}\")\n\n    # @check_cached_vector_store\n    def build_vector_store(self) -> Qdrant:\n        try:\n            collection_name = self.collection_name.get_text()\n            embedding: Embeddings = self.embedding\n\n            # Get host and port from inputs or environment variables\n            qdrant_host = self.qdrant_host.get_text() if hasattr(\n                self, 'qdrant_host') and self.qdrant_host else None\n            qdrant_port = self.qdrant_port.get_text() if hasattr(\n                self, 'qdrant_port') and self.qdrant_port else None\n\n            # If not provided in inputs, check environment variables\n            if not qdrant_host:\n                qdrant_host = os.getenv(\n                    'HOST_QDRANT_SERVICE', 'onlyoffice-qdrant')\n\n            if not qdrant_port:\n                qdrant_port = os.getenv('HOST_QDRANT_PORT', \"6333\")\n\n            # Create QdrantClient with HTTP and timeout\n            client = QdrantClient(\n                host=qdrant_host,\n                port=qdrant_port,  # HTTP/REST API port\n                prefer_grpc=False,  # Use HTTP\n                timeout=10.0  # Add timeout\n            )\n\n            if self.files:\n                if not self.check_collection_exists(client, collection_name):\n                    return None\n\n            if self.documents:\n                documents: List[str] = [\n                    i.data.get('text') for i in self.documents]\n\n                if not documents:\n                    raise ValueError(\"No documents provided\")\n\n            if not self.check_collection_exists(client, collection_name):\n                # Get vector size from first document\n                doc = Document(page_content='content for vectorize',\n                               metadata={**self.metadata.data})\n                vector = embedding.embed_query(doc.page_content)\n                vector_size = len(vector)\n                self.create_collection(\n                    client, collection_name, vector_size)\n\n            qdrant = Qdrant(client=client,\n                            embeddings=embedding,\n                            collection_name=collection_name)\n\n            return qdrant\n\n        except Exception as e:\n            raise Exception(f\"Error building vector store: {str(e)}\")\n\n    def check_document_exists(self, qdrant: Qdrant, document: Document) -> List[Document]:\n        # Only check if document has metadata with id and version\n        if not document.metadata or 'id' not in document.metadata or 'version' not in document.metadata:\n            return []\n\n        return qdrant.similarity_search(\n            query=document.page_content,\n            k=1,\n            filter=Filter(\n                must=[\n                    {\"key\": \"metadata.id\", \"match\": {\n                        \"value\": document.metadata['id']}},\n                    {\"key\": \"metadata.version\", \"match\": {\n                        \"value\": document.metadata['version']}},\n                ]\n            )\n        )\n\n    def check_document(self) -> Message:\n        qdrant = self.build_vector_store()\n\n        if not self.metadata:\n            return Message(text=\"No metadata provided\")\n\n        doc = Document(page_content=\"\", metadata={**self.metadata.data})\n\n        if self.check_document_exists(qdrant, doc):\n            return Message(text=\"exist\")\n\n        return Message(text=\"not_found\")\n\n    def vectorize_documents(self) -> Message:\n        try:\n            qdrant = self.build_vector_store()\n\n            if not self.documents:\n                return Message(text=\"No documents to process\")\n\n            metadata = self.metadata.data\n\n            docs: Dict[str, str] = [\n                Document(page_content=doc.data.get('text'), metadata={**metadata, \"page\": i}) for i, doc in enumerate(self.documents)]\n\n            if not docs:\n                return Message(text=\"No documents to process\")\n\n            if not metadata:\n                return Message(text=\"No metadata provided\")\n\n            if self.check_document_exists(qdrant, docs[0]):\n                return Message(text=\"exist\")\n\n            qdrant.add_documents(docs)\n\n            msg = Message(\n                text=f'added'\n            )\n\n            return msg\n\n        except Exception as e:\n            raise Exception(f\"Error vectorizing documents: {str(e)}\")\n\n    def search_documents(self) -> Message:\n        files: List[Dict[str, Any]] = self.files.data.get(\"files\", [])\n\n        if not files:\n            return Message(text=\"No files found in input\")\n\n        question: str = self.question.get_text()\n\n        if not question:\n            return Message(text=\"No question provided\")\n\n        qdrant = self.build_vector_store()\n\n        if not qdrant:\n            return Message(text=\", \".join([str(file.get('id', 'unknown')) for file in files]),\n                           data={\"docs\": []})\n\n        # Create a unique list of files based on id and version\n        unique_files = []\n        file_keys = set()\n\n        for file in files:\n            file_id = file.get('id', 'unknown')\n            file_version = file.get('version', 1)\n            file_key = f\"{file_id}_{file_version}\"\n\n            if file_key not in file_keys:\n                file_keys.add(file_key)\n                unique_files.append(file)\n\n        not_found_files = []\n\n        for file in unique_files:\n            if self.check_document_exists(qdrant, Document(\n                page_content=question,\n                metadata={\n                    \"id\": file.get('id', 'unknown'),\n                    \"version\": file.get('version', 1),\n                }\n            )):\n                continue\n\n            not_found_files.append(file)\n\n        if len(not_found_files):\n            return Message(text=\", \".join([str(file.get('id', 'unknown')) for file in files]),\n                           data={\"docs\": []})\n\n        # Create OR conditions for each file (file_id AND version must match)\n        file_conditions = [\n            {\n                \"must\": [\n                    {\"key\": \"metadata.id\", \"match\": {\n                        \"value\": file.get('id', 'unknown')}},\n                    {\"key\": \"metadata.version\", \"match\": {\n                        \"value\": file.get('version', 1)}}\n                ]\n            } for file in files\n        ]\n\n        filter: Filter = Filter(\n            should=file_conditions\n        )\n\n        docs = qdrant.similarity_search(\n            query=question,\n            k=5,\n            filter=filter\n        )\n\n        return Message(text=\", \".join([str(file.get('id', 'unknown')) for file in files]),\n                       data={\"docs\": docs})\n"
+                "value": "from langchain.embeddings.base import Embeddings\nfrom langchain_community.vectorstores import Qdrant\nfrom langchain_core.documents import Document\nfrom qdrant_client.models import Filter\nfrom langflow.custom import Component\nfrom langflow.schema import Message\nfrom langflow.io import (\n    DataInput,\n    Output,\n)\n\nfrom langflow.utils.qdrant import get_qdrant_client, check_collection_exists, create_collection, check_document_exists, qdrant_inputs\n\n\nclass QdrantCheckFolderComponent(Component):\n    display_name = \"Qdrant Check Folder\"\n    description = \"Check if document exists in Qdrant Vector Store\"\n    icon = \"Qdrant\"\n\n    inputs = [\n        *qdrant_inputs,\n    ]\n\n    outputs = [\n        Output(name=\"check\",\n               display_name=\"Check folder\",\n               method=\"check_folder\")\n    ]\n\n    def build_vector_store(self) -> Qdrant:\n        try:\n            collection_name: str = self.collection_name.get_text()\n            embedding: Embeddings = self.embedding\n\n            client = get_qdrant_client(\n                self.qdrant_host.get_text(), self.qdrant_port.get_text())\n\n            if not check_collection_exists(client, collection_name):\n                # Get vector size from first document\n                doc = Document(page_content='content for vectorize')\n                vector = embedding.embed_query(doc.page_content)\n                vector_size = len(vector)\n\n                create_collection(\n                    client, collection_name, vector_size)\n\n            qdrant = Qdrant(client=client,\n                            embeddings=embedding,\n                            collection_name=collection_name)\n\n            return qdrant\n\n        except Exception as e:\n            raise Exception(f\"Error building vector store: {str(e)}\")\n\n    def check_folder(self) -> Message:\n        qdrant = self.build_vector_store()\n\n        filter = Filter(must=[\n            {\"key\": \"metadata.page\", \"match\": {\n                \"value\": 0\n            }}\n        ])\n\n        docs = qdrant.similarity_search(\n            query=\"\",\n            k=1000,\n            filter=filter\n        )\n\n        files_ids = [doc.metadata.get('id') for doc in docs]\n        files_versions = [doc.metadata.get('version') for doc in docs]\n\n        response = ', '.join(\n            [f'{id}:{version}' for id, version in zip(files_ids, files_versions)])\n\n        return Message(text=response)\n"
               },
               "collection_name": {
                 "_input_type": "MessageInput",
@@ -736,9 +635,7 @@
                 "display_name": "Collection Name",
                 "dynamic": false,
                 "info": "",
-                "input_types": [
-                  "Message"
-                ],
+                "input_types": ["Message"],
                 "list": false,
                 "list_add_label": "Add More",
                 "load_from_db": false,
@@ -751,28 +648,6 @@
                 "trace_as_input": true,
                 "trace_as_metadata": true,
                 "type": "str",
-                "value": "files"
-              },
-              "documents": {
-                "_input_type": "DataInput",
-                "advanced": false,
-                "display_name": "Documents",
-                "dynamic": false,
-                "info": "",
-                "input_types": [
-                  "Data"
-                ],
-                "list": true,
-                "list_add_label": "Add More",
-                "name": "documents",
-                "placeholder": "",
-                "required": false,
-                "show": true,
-                "title_case": false,
-                "tool_mode": false,
-                "trace_as_input": true,
-                "trace_as_metadata": true,
-                "type": "other",
                 "value": ""
               },
               "embedding": {
@@ -781,9 +656,7 @@
                 "display_name": "Embedding",
                 "dynamic": false,
                 "info": "",
-                "input_types": [
-                  "Embeddings"
-                ],
+                "input_types": ["Embeddings"],
                 "list": false,
                 "list_add_label": "Add More",
                 "name": "embedding",
@@ -795,40 +668,16 @@
                 "type": "other",
                 "value": ""
               },
-              "files": {
+              "folder": {
                 "_input_type": "DataInput",
                 "advanced": false,
-                "display_name": "Files",
+                "display_name": "Folder",
                 "dynamic": false,
                 "info": "",
-                "input_types": [
-                  "Data"
-                ],
+                "input_types": ["Data"],
                 "list": false,
                 "list_add_label": "Add More",
-                "name": "files",
-                "placeholder": "",
-                "required": false,
-                "show": true,
-                "title_case": false,
-                "tool_mode": false,
-                "trace_as_input": true,
-                "trace_as_metadata": true,
-                "type": "other",
-                "value": ""
-              },
-              "metadata": {
-                "_input_type": "DataInput",
-                "advanced": false,
-                "display_name": "Metadata",
-                "dynamic": false,
-                "info": "",
-                "input_types": [
-                  "Data"
-                ],
-                "list": false,
-                "list_add_label": "Add More",
-                "name": "metadata",
+                "name": "folder",
                 "placeholder": "",
                 "required": false,
                 "show": true,
@@ -845,9 +694,7 @@
                 "display_name": "Qdrant Host",
                 "dynamic": false,
                 "info": "",
-                "input_types": [
-                  "Message"
-                ],
+                "input_types": ["Message"],
                 "list": false,
                 "list_add_label": "Add More",
                 "load_from_db": false,
@@ -868,59 +715,11 @@
                 "display_name": "Qdrant Port",
                 "dynamic": false,
                 "info": "",
-                "input_types": [
-                  "Message"
-                ],
+                "input_types": ["Message"],
                 "list": false,
                 "list_add_label": "Add More",
                 "load_from_db": false,
                 "name": "qdrant_port",
-                "placeholder": "",
-                "required": false,
-                "show": true,
-                "title_case": false,
-                "tool_mode": false,
-                "trace_as_input": true,
-                "trace_as_metadata": true,
-                "type": "str",
-                "value": ""
-              },
-              "question": {
-                "_input_type": "MessageInput",
-                "advanced": false,
-                "display_name": "Question",
-                "dynamic": false,
-                "info": "",
-                "input_types": [
-                  "Message"
-                ],
-                "list": false,
-                "list_add_label": "Add More",
-                "load_from_db": false,
-                "name": "question",
-                "placeholder": "",
-                "required": false,
-                "show": true,
-                "title_case": false,
-                "tool_mode": false,
-                "trace_as_input": true,
-                "trace_as_metadata": true,
-                "type": "str",
-                "value": ""
-              },
-              "restart_search": {
-                "_input_type": "MessageInput",
-                "advanced": false,
-                "display_name": "Restart Search",
-                "dynamic": false,
-                "info": "",
-                "input_types": [
-                  "Message"
-                ],
-                "list": false,
-                "list_add_label": "Add More",
-                "load_from_db": false,
-                "name": "restart_search",
                 "placeholder": "",
                 "required": false,
                 "show": true,
@@ -935,28 +734,25 @@
             "tool_mode": false
           },
           "showNode": true,
-          "type": "DocSpaceQdrantVectorStoreComponent"
+          "type": "QdrantCheckFolderComponent"
         },
-        "dragging": false,
-        "id": "DocSpaceQdrantVectorStoreComponent-XcFyR",
+        "id": "QdrantCheckFolderComponent-yx1Qz",
         "measured": {
-          "height": 829,
+          "height": 504,
           "width": 320
         },
         "position": {
-          "x": 419.4798255872256,
-          "y": 243.99807931582257
+          "x": 2437.1810055075866,
+          "y": 721.1459162273218
         },
         "selected": false,
         "type": "genericNode"
       },
       {
         "data": {
-          "id": "OpenAIEmbeddings-TIJdh",
+          "id": "OpenAIEmbeddings-ekoMN",
           "node": {
-            "base_classes": [
-              "Embeddings"
-            ],
+            "base_classes": ["Embeddings"],
             "beta": false,
             "conditional_paths": [],
             "custom_fields": {},
@@ -990,7 +786,7 @@
             "frozen": false,
             "icon": "OpenAI",
             "legacy": false,
-            "lf_version": "1.2.0",
+            "lf_version": "1.3.2",
             "metadata": {},
             "minimized": false,
             "output_types": [],
@@ -1001,14 +797,10 @@
                 "display_name": "Embeddings",
                 "method": "build_embeddings",
                 "name": "embeddings",
-                "required_inputs": [
-                  "openai_api_key"
-                ],
+                "required_inputs": ["openai_api_key"],
                 "selected": "Embeddings",
                 "tool_mode": true,
-                "types": [
-                  "Embeddings"
-                ],
+                "types": ["Embeddings"],
                 "value": "__UNDEFINED__"
               }
             ],
@@ -1039,9 +831,7 @@
                 "display_name": "Client",
                 "dynamic": false,
                 "info": "",
-                "input_types": [
-                  "Message"
-                ],
+                "input_types": ["Message"],
                 "list": false,
                 "list_add_label": "Add More",
                 "load_from_db": false,
@@ -1116,9 +906,7 @@
                 "display_name": "Deployment",
                 "dynamic": false,
                 "info": "",
-                "input_types": [
-                  "Message"
-                ],
+                "input_types": ["Message"],
                 "list": false,
                 "list_add_label": "Add More",
                 "load_from_db": false,
@@ -1235,9 +1023,7 @@
                 "display_name": "OpenAI API Base",
                 "dynamic": false,
                 "info": "",
-                "input_types": [
-                  "Message"
-                ],
+                "input_types": ["Message"],
                 "list": false,
                 "list_add_label": "Add More",
                 "load_from_db": false,
@@ -1258,9 +1044,7 @@
                 "display_name": "OpenAI API Key",
                 "dynamic": false,
                 "info": "",
-                "input_types": [
-                  "Message"
-                ],
+                "input_types": ["Message"],
                 "load_from_db": true,
                 "name": "openai_api_key",
                 "password": true,
@@ -1277,9 +1061,7 @@
                 "display_name": "OpenAI API Type",
                 "dynamic": false,
                 "info": "",
-                "input_types": [
-                  "Message"
-                ],
+                "input_types": ["Message"],
                 "list": false,
                 "list_add_label": "Add More",
                 "load_from_db": false,
@@ -1300,9 +1082,7 @@
                 "display_name": "OpenAI API Version",
                 "dynamic": false,
                 "info": "",
-                "input_types": [
-                  "Message"
-                ],
+                "input_types": ["Message"],
                 "list": false,
                 "list_add_label": "Add More",
                 "load_from_db": false,
@@ -1323,9 +1103,7 @@
                 "display_name": "OpenAI Organization",
                 "dynamic": false,
                 "info": "",
-                "input_types": [
-                  "Message"
-                ],
+                "input_types": ["Message"],
                 "list": false,
                 "list_add_label": "Add More",
                 "load_from_db": false,
@@ -1346,9 +1124,7 @@
                 "display_name": "OpenAI Proxy",
                 "dynamic": false,
                 "info": "",
-                "input_types": [
-                  "Message"
-                ],
+                "input_types": ["Message"],
                 "list": false,
                 "list_add_label": "Add More",
                 "load_from_db": false,
@@ -1441,9 +1217,7 @@
                 "display_name": "TikToken Model Name",
                 "dynamic": false,
                 "info": "",
-                "input_types": [
-                  "Message"
-                ],
+                "input_types": ["Message"],
                 "list": false,
                 "list_add_label": "Add More",
                 "load_from_db": false,
@@ -1465,25 +1239,23 @@
           "type": "OpenAIEmbeddings"
         },
         "dragging": false,
-        "id": "OpenAIEmbeddings-TIJdh",
+        "id": "OpenAIEmbeddings-ekoMN",
         "measured": {
-          "height": 311,
+          "height": 312,
           "width": 320
         },
         "position": {
-          "x": -171.41394634212412,
-          "y": 955.5694074266708
+          "x": 1542.156227769157,
+          "y": 835.8992018307592
         },
         "selected": false,
         "type": "genericNode"
       },
       {
         "data": {
-          "id": "ChatOutput-t2HjL",
+          "id": "ChatOutput-VT11x",
           "node": {
-            "base_classes": [
-              "Message"
-            ],
+            "base_classes": ["Message"],
             "beta": false,
             "conditional_paths": [],
             "custom_fields": {},
@@ -1506,6 +1278,7 @@
             "frozen": false,
             "icon": "MessagesSquare",
             "legacy": false,
+            "lf_version": "1.3.2",
             "metadata": {},
             "minimized": true,
             "output_types": [],
@@ -1518,9 +1291,7 @@
                 "name": "message",
                 "selected": "Message",
                 "tool_mode": true,
-                "types": [
-                  "Message"
-                ],
+                "types": ["Message"],
                 "value": "__UNDEFINED__"
               }
             ],
@@ -1533,9 +1304,7 @@
                 "display_name": "Background Color",
                 "dynamic": false,
                 "info": "The background color of the icon.",
-                "input_types": [
-                  "Message"
-                ],
+                "input_types": ["Message"],
                 "list": false,
                 "list_add_label": "Add More",
                 "load_from_db": false,
@@ -1556,9 +1325,7 @@
                 "display_name": "Icon",
                 "dynamic": false,
                 "info": "The icon of the message.",
-                "input_types": [
-                  "Message"
-                ],
+                "input_types": ["Message"],
                 "list": false,
                 "list_add_label": "Add More",
                 "load_from_db": false,
@@ -1615,9 +1382,7 @@
                 "display_name": "Data Template",
                 "dynamic": false,
                 "info": "Template to convert Data to Text. If left empty, it will be dynamically set to the Data's text key.",
-                "input_types": [
-                  "Message"
-                ],
+                "input_types": ["Message"],
                 "list": false,
                 "list_add_label": "Add More",
                 "load_from_db": false,
@@ -1638,11 +1403,7 @@
                 "display_name": "Text",
                 "dynamic": false,
                 "info": "Message to be passed as output.",
-                "input_types": [
-                  "Data",
-                  "DataFrame",
-                  "Message"
-                ],
+                "input_types": ["Data", "DataFrame", "Message"],
                 "list": false,
                 "list_add_label": "Add More",
                 "name": "input_value",
@@ -1663,10 +1424,7 @@
                 "dynamic": false,
                 "info": "Type of sender.",
                 "name": "sender",
-                "options": [
-                  "Machine",
-                  "User"
-                ],
+                "options": ["Machine", "User"],
                 "options_metadata": [],
                 "placeholder": "",
                 "required": false,
@@ -1683,9 +1441,7 @@
                 "display_name": "Sender Name",
                 "dynamic": false,
                 "info": "Name of the sender.",
-                "input_types": [
-                  "Message"
-                ],
+                "input_types": ["Message"],
                 "list": false,
                 "list_add_label": "Add More",
                 "load_from_db": false,
@@ -1706,9 +1462,7 @@
                 "display_name": "Session ID",
                 "dynamic": false,
                 "info": "The session ID of the chat. If empty, the current session ID parameter will be used.",
-                "input_types": [
-                  "Message"
-                ],
+                "input_types": ["Message"],
                 "list": false,
                 "list_add_label": "Add More",
                 "load_from_db": false,
@@ -1747,9 +1501,7 @@
                 "display_name": "Text Color",
                 "dynamic": false,
                 "info": "The text color of the name",
-                "input_types": [
-                  "Message"
-                ],
+                "input_types": ["Message"],
                 "list": false,
                 "list_add_label": "Add More",
                 "load_from_db": false,
@@ -1770,31 +1522,357 @@
           "showNode": false,
           "type": "ChatOutput"
         },
-        "dragging": false,
-        "id": "ChatOutput-t2HjL",
+        "id": "ChatOutput-VT11x",
         "measured": {
           "height": 66,
           "width": 192
         },
         "position": {
-          "x": 1383.6126265957037,
-          "y": 1030.0457456563431
+          "x": 2881.626999539624,
+          "y": 1133.0449300136795
+        },
+        "selected": false,
+        "type": "genericNode"
+      },
+      {
+        "data": {
+          "id": "ParserComponent-ZkllZ",
+          "node": {
+            "base_classes": ["Message"],
+            "beta": false,
+            "conditional_paths": [],
+            "custom_fields": {},
+            "description": "Format a DataFrame or Data object into text using a template. Enable 'Stringify' to convert input into a readable string instead.",
+            "display_name": "Parser",
+            "documentation": "",
+            "edited": false,
+            "field_order": ["mode", "pattern", "input_data", "sep"],
+            "frozen": false,
+            "icon": "braces",
+            "legacy": false,
+            "lf_version": "1.3.2",
+            "metadata": {},
+            "minimized": false,
+            "output_types": [],
+            "outputs": [
+              {
+                "allows_loop": false,
+                "cache": true,
+                "display_name": "Parsed Text",
+                "method": "parse_combined_text",
+                "name": "parsed_text",
+                "selected": "Message",
+                "tool_mode": true,
+                "types": ["Message"],
+                "value": "__UNDEFINED__"
+              }
+            ],
+            "pinned": false,
+            "template": {
+              "_type": "Component",
+              "clean_data": {
+                "_input_type": "BoolInput",
+                "advanced": true,
+                "display_name": "Clean Data",
+                "dynamic": false,
+                "info": "Enable to clean the data by removing empty rows and lines in each cell of the DataFrame/ Data object.",
+                "list": false,
+                "list_add_label": "Add More",
+                "name": "clean_data",
+                "placeholder": "",
+                "required": false,
+                "show": true,
+                "title_case": false,
+                "tool_mode": false,
+                "trace_as_metadata": true,
+                "type": "bool",
+                "value": true
+              },
+              "code": {
+                "advanced": true,
+                "dynamic": true,
+                "fileTypes": [],
+                "file_path": "",
+                "info": "",
+                "list": false,
+                "load_from_db": false,
+                "multiline": true,
+                "name": "code",
+                "password": false,
+                "placeholder": "",
+                "required": true,
+                "show": true,
+                "title_case": false,
+                "type": "code",
+                "value": "import json\nfrom typing import Any\n\nfrom langflow.custom import Component\nfrom langflow.io import (\n    BoolInput,\n    HandleInput,\n    MessageTextInput,\n    MultilineInput,\n    Output,\n    TabInput,\n)\nfrom langflow.schema import Data, DataFrame\nfrom langflow.schema.message import Message\n\n\nclass ParserComponent(Component):\n    display_name = \"Parser\"\n    description = (\n        \"Format a DataFrame or Data object into text using a template. \"\n        \"Enable 'Stringify' to convert input into a readable string instead.\"\n    )\n    icon = \"braces\"\n\n    inputs = [\n        TabInput(\n            name=\"mode\",\n            display_name=\"Mode\",\n            options=[\"Parser\", \"Stringify\"],\n            value=\"Parser\",\n            info=\"Convert into raw string instead of using a template.\",\n            real_time_refresh=True,\n        ),\n        MultilineInput(\n            name=\"pattern\",\n            display_name=\"Template\",\n            info=(\n                \"Use variables within curly brackets to extract column values for DataFrames \"\n                \"or key values for Data.\"\n                \"For example: `Name: {Name}, Age: {Age}, Country: {Country}`\"\n            ),\n            value=\"Text: {text}\",  # Example default\n            dynamic=True,\n            show=True,\n            required=True,\n        ),\n        HandleInput(\n            name=\"input_data\",\n            display_name=\"Data or DataFrame\",\n            input_types=[\"DataFrame\", \"Data\"],\n            info=\"Accepts either a DataFrame or a Data object.\",\n            required=True,\n        ),\n        MessageTextInput(\n            name=\"sep\",\n            display_name=\"Separator\",\n            advanced=True,\n            value=\"\\n\",\n            info=\"String used to separate rows/items.\",\n        ),\n    ]\n\n    outputs = [\n        Output(\n            display_name=\"Parsed Text\",\n            name=\"parsed_text\",\n            info=\"Formatted text output.\",\n            method=\"parse_combined_text\",\n        ),\n    ]\n\n    def update_build_config(self, build_config, field_value, field_name=None):\n        \"\"\"Dynamically hide/show `template` and enforce requirement based on `stringify`.\"\"\"\n        if field_name == \"mode\":\n            build_config[\"pattern\"][\"show\"] = self.mode == \"Parser\"\n            build_config[\"pattern\"][\"required\"] = self.mode == \"Parser\"\n            if field_value:\n                clean_data = BoolInput(\n                    name=\"clean_data\",\n                    display_name=\"Clean Data\",\n                    info=(\n                        \"Enable to clean the data by removing empty rows and lines \"\n                        \"in each cell of the DataFrame/ Data object.\"\n                    ),\n                    value=True,\n                    advanced=True,\n                    required=False,\n                )\n                build_config[\"clean_data\"] = clean_data.to_dict()\n            else:\n                build_config.pop(\"clean_data\", None)\n\n        return build_config\n\n    def _clean_args(self):\n        \"\"\"Prepare arguments based on input type.\"\"\"\n        input_data = self.input_data\n\n        match input_data:\n            case list() if all(isinstance(item, Data) for item in input_data):\n                msg = \"List of Data objects is not supported.\"\n                raise ValueError(msg)\n            case DataFrame():\n                return input_data, None\n            case Data():\n                return None, input_data\n            case dict() if \"data\" in input_data:\n                try:\n                    if \"columns\" in input_data:  # Likely a DataFrame\n                        return DataFrame.from_dict(input_data), None\n                    # Likely a Data object\n                    return None, Data(**input_data)\n                except (TypeError, ValueError, KeyError) as e:\n                    msg = f\"Invalid structured input provided: {e!s}\"\n                    raise ValueError(msg) from e\n            case _:\n                msg = f\"Unsupported input type: {type(input_data)}. Expected DataFrame or Data.\"\n                raise ValueError(msg)\n\n    def parse_combined_text(self) -> Message:\n        \"\"\"Parse all rows/items into a single text or convert input to string if `stringify` is enabled.\"\"\"\n        # Early return for stringify option\n        if self.mode == \"Stringify\":\n            return self.convert_to_string()\n\n        df, data = self._clean_args()\n\n        lines = []\n        if df is not None:\n            for _, row in df.iterrows():\n                formatted_text = self.pattern.format(**row.to_dict())\n                lines.append(formatted_text)\n        elif data is not None:\n            formatted_text = self.pattern.format(**data.data)\n            lines.append(formatted_text)\n\n        combined_text = self.sep.join(lines)\n        self.status = combined_text\n        return Message(text=combined_text)\n\n    def _safe_convert(self, data: Any) -> str:\n        \"\"\"Safely convert input data to string.\"\"\"\n        try:\n            if isinstance(data, str):\n                return data\n            if isinstance(data, Message):\n                return data.get_text()\n            if isinstance(data, Data):\n                return json.dumps(data.data)\n            if isinstance(data, DataFrame):\n                if hasattr(self, \"clean_data\") and self.clean_data:\n                    # Remove empty rows\n                    data = data.dropna(how=\"all\")\n                    # Remove empty lines in each cell\n                    data = data.replace(r\"^\\s*$\", \"\", regex=True)\n                    # Replace multiple newlines with a single newline\n                    data = data.replace(r\"\\n+\", \"\\n\", regex=True)\n                return data.to_markdown(index=False)\n            return str(data)\n        except (ValueError, TypeError, AttributeError) as e:\n            msg = f\"Error converting data: {e!s}\"\n            raise ValueError(msg) from e\n\n    def convert_to_string(self) -> Message:\n        \"\"\"Convert input data to string with proper error handling.\"\"\"\n        result = \"\"\n        if isinstance(self.input_data, list):\n            result = \"\\n\".join([self._safe_convert(item) for item in self.input_data])\n        else:\n            result = self._safe_convert(self.input_data)\n        self.log(f\"Converted to string with length: {len(result)}\")\n\n        message = Message(text=result)\n        self.status = message\n        return message\n"
+              },
+              "input_data": {
+                "_input_type": "HandleInput",
+                "advanced": false,
+                "display_name": "Data or DataFrame",
+                "dynamic": false,
+                "info": "Accepts either a DataFrame or a Data object.",
+                "input_types": ["DataFrame", "Data"],
+                "list": false,
+                "list_add_label": "Add More",
+                "name": "input_data",
+                "placeholder": "",
+                "required": true,
+                "show": true,
+                "title_case": false,
+                "trace_as_metadata": true,
+                "type": "other",
+                "value": ""
+              },
+              "mode": {
+                "_input_type": "TabInput",
+                "advanced": false,
+                "display_name": "Mode",
+                "dynamic": false,
+                "info": "Convert into raw string instead of using a template.",
+                "name": "mode",
+                "options": ["Parser", "Stringify"],
+                "placeholder": "",
+                "real_time_refresh": true,
+                "required": false,
+                "show": true,
+                "title_case": false,
+                "tool_mode": false,
+                "trace_as_metadata": true,
+                "type": "tab",
+                "value": "Parser"
+              },
+              "pattern": {
+                "_input_type": "MultilineInput",
+                "advanced": false,
+                "copy_field": false,
+                "display_name": "Template",
+                "dynamic": true,
+                "info": "Use variables within curly brackets to extract column values for DataFrames or key values for Data.For example: `Name: {Name}, Age: {Age}, Country: {Country}`",
+                "input_types": ["Message"],
+                "list": false,
+                "list_add_label": "Add More",
+                "load_from_db": false,
+                "multiline": true,
+                "name": "pattern",
+                "placeholder": "",
+                "required": true,
+                "show": true,
+                "title_case": false,
+                "tool_mode": false,
+                "trace_as_input": true,
+                "trace_as_metadata": true,
+                "type": "str",
+                "value": "files-{id}"
+              },
+              "sep": {
+                "_input_type": "MessageTextInput",
+                "advanced": true,
+                "display_name": "Separator",
+                "dynamic": false,
+                "info": "String used to separate rows/items.",
+                "input_types": ["Message"],
+                "list": false,
+                "list_add_label": "Add More",
+                "load_from_db": false,
+                "name": "sep",
+                "placeholder": "",
+                "required": false,
+                "show": true,
+                "title_case": false,
+                "tool_mode": false,
+                "trace_as_input": true,
+                "trace_as_metadata": true,
+                "type": "str",
+                "value": "\n"
+              }
+            },
+            "tool_mode": false
+          },
+          "showNode": true,
+          "type": "ParserComponent"
+        },
+        "dragging": false,
+        "id": "ParserComponent-ZkllZ",
+        "measured": {
+          "height": 395,
+          "width": 320
+        },
+        "position": {
+          "x": 1957.4732348867826,
+          "y": 318.604003417535
+        },
+        "selected": false,
+        "type": "genericNode"
+      },
+      {
+        "data": {
+          "id": "DataMapper-mJpkv",
+          "node": {
+            "base_classes": ["Data", "Message"],
+            "beta": false,
+            "conditional_paths": [],
+            "custom_fields": {},
+            "description": "Maps data using patterns or literal values to a new Data object or JSON string.",
+            "display_name": "Data Mapper",
+            "documentation": "",
+            "edited": false,
+            "field_order": ["input_data", "number_of_fields"],
+            "frozen": false,
+            "icon": "table",
+            "legacy": false,
+            "lf_version": "1.3.2",
+            "metadata": {},
+            "minimized": false,
+            "output_types": [],
+            "outputs": [
+              {
+                "allows_loop": false,
+                "cache": true,
+                "display_name": "Data",
+                "hidden": null,
+                "method": "build_data",
+                "name": "data",
+                "options": null,
+                "required_inputs": null,
+                "selected": "Data",
+                "tool_mode": true,
+                "types": ["Data"],
+                "value": "__UNDEFINED__"
+              },
+              {
+                "allows_loop": false,
+                "cache": true,
+                "display_name": "Message",
+                "hidden": null,
+                "method": "build_message",
+                "name": "message",
+                "options": null,
+                "required_inputs": null,
+                "selected": "Message",
+                "tool_mode": true,
+                "types": ["Message"],
+                "value": "__UNDEFINED__"
+              }
+            ],
+            "pinned": false,
+            "template": {
+              "_type": "Component",
+              "code": {
+                "advanced": true,
+                "dynamic": true,
+                "fileTypes": [],
+                "file_path": "",
+                "info": "",
+                "list": false,
+                "load_from_db": false,
+                "multiline": true,
+                "name": "code",
+                "password": false,
+                "placeholder": "",
+                "required": true,
+                "show": true,
+                "title_case": false,
+                "type": "code",
+                "value": "from langflow.template.field.base import Output\nfrom langflow.schema.data import Data\nfrom langflow.schema.message import Message\nfrom langflow.custom import Component\nfrom langflow.inputs.inputs import DataInput, DictInput, IntInput\nfrom langflow.schema.dotdict import dotdict\nfrom langflow.field_typing.range_spec import RangeSpec\nfrom typing import Any\nimport json\n\n\nclass DataMapper(Component):\n    display_name = \"Data Mapper\"\n    description = \"Maps data using patterns or literal values to a new Data object or JSON string.\"\n    icon = \"table\"\n    name = \"DataMapper\"\n    MAX_FIELDS = 15\n\n    inputs = [\n        DataInput(\n            name=\"input_data\",\n            display_name=\"Data\",\n            info=\"Input data to map from.\",\n        ),\n        IntInput(\n            name=\"number_of_fields\",\n            display_name=\"Number of Fields\",\n            info=\"Number of field mappings to define.\",\n            real_time_refresh=True,\n            value=0,\n            range_spec=RangeSpec(min=0, max=MAX_FIELDS, step=1, step_type=\"int\"),\n        ),\n    ]\n\n    outputs = [\n        Output(\n            display_name=\"Data\",\n            name=\"data\",\n            method=\"build_data\"\n        ),\n        Output(\n            display_name=\"Message\",\n            name=\"message\",\n            method=\"build_message\",\n        ),\n    ]\n\n    def update_build_config(self, build_config: dotdict, field_value: Any, field_name: str | None = None):\n        if field_name == \"number_of_fields\":\n            default_keys = {\n                \"number_of_fields\", \n                \"input_data\",\n                \"_type\",\n                \"code\"\n            }\n            \n            try:\n                field_value_int = int(field_value)\n            except ValueError:\n                return build_config\n\n            if field_value_int > self.MAX_FIELDS:\n                build_config[\"number_of_fields\"][\"value\"] = self.MAX_FIELDS\n                msg = f\"Number of fields cannot exceed {self.MAX_FIELDS}.\"\n                raise ValueError(msg)\n\n            existing_fields = {}\n            for key in list(build_config.keys()):\n                if key not in default_keys:\n                    existing_fields[key] = build_config.pop(key)\n\n            for i in range(field_value_int):\n                field_field = f\"field_{i}\"\n\n                if field_field in existing_fields:\n                    build_config[field_field] = existing_fields[field_field]\n                else:\n                    field = DictInput(\n                        display_name=f\"Field {i + 1}\",\n                        name=field_field,\n                        info=f\"Key-value pair where key is the output field name and value is either a pattern in curly brackets {{{{object.field}}}} or a literal value.\",\n                        input_types=[\"Message\"],\n                    )\n                    build_config[field.name] = field.to_dict()\n\n            build_config[\"number_of_fields\"][\"value\"] = field_value_int\n        return build_config\n\n    def _get_value_from_path(self, data_dict, path):\n        parts = path.split('.')\n        current = data_dict\n\n        for part in parts:\n            if '[' in part and part.endswith(']'):\n                field_name, index_part = part.split('[', 1)\n                index = int(index_part[:-1])\n\n                if field_name in current and isinstance(current[field_name], list):\n                    if 0 <= index < len(current[field_name]):\n                        current = current[field_name][index]\n                    else:\n                        return None\n                else:\n                    return None\n            else:\n                if isinstance(current, dict) and part in current:\n                    current = current[part]\n                else:\n                    return None\n\n        return current\n\n    def _map_data(self):\n        input_data = self.input_data\n        fields = self._get_fields()\n\n        result_data = {}\n\n        if isinstance(input_data, Data):\n            source_data = input_data.data\n        elif isinstance(input_data, dict):\n            source_data = input_data\n        else:\n            return {}\n\n        for field_name, value in fields.items():\n            if isinstance(value, str) and value.startswith('{') and value.endswith('}'):\n                pattern = value[1:-1]\n                extracted_value = self._get_value_from_path(source_data, pattern)\n\n                if not field_name:\n                    if '[' in pattern and pattern.split('.')[-1].endswith(']'):\n                        last_part = pattern.split('.')[-1]\n                        field_name = last_part.split('[')[0]\n                    else:\n                        field_name = pattern.split('.')[-1]\n\n                if extracted_value is not None:\n                    result_data[field_name] = extracted_value\n            else:\n                result_data[field_name] = value\n\n        return result_data\n\n    def _get_fields(self):\n        fields = {}\n\n        num_fields = getattr(self, \"number_of_fields\", 0)\n\n        for i in range(num_fields): \n            field_field = f\"field_{i}\"\n\n            if hasattr(self, field_field):\n                field_input = getattr(self, field_field, {})\n\n                if isinstance(field_input, dict) and field_input:\n                    for key, value in field_input.items():\n                        if isinstance(value, Message):\n                            fields[key] = value.text\n                        else:\n                            fields[key] = value\n                elif isinstance(field_input, Message):\n                    fields[field_input.text] = field_input.text\n\n        return fields\n\n    def build_data(self) -> Data:\n        result_data = self._map_data()\n        return Data(data=result_data)\n\n    def build_message(self) -> Message:\n        result_data = self._map_data()\n        try:\n            json_string = json.dumps(result_data, indent=2, default=str)\n            return Message(text=json_string)\n        except Exception as e:\n            return Message(text=f\"Error converting to JSON: {str(e)}\", error=True)"
+              },
+              "field_0": {
+                "_input_type": "DictInput",
+                "advanced": false,
+                "display_name": "Field 1",
+                "dynamic": false,
+                "info": "Key-value pair where key is the output field name and value is either a pattern in curly brackets {{object.field}} or a literal value.",
+                "input_types": ["Message"],
+                "list": false,
+                "list_add_label": "Add More",
+                "name": "field_0",
+                "placeholder": "",
+                "required": false,
+                "show": true,
+                "title_case": false,
+                "tool_mode": false,
+                "trace_as_input": true,
+                "type": "dict",
+                "value": {
+                  "id": "{current.id}"
+                }
+              },
+              "input_data": {
+                "_input_type": "DataInput",
+                "advanced": false,
+                "display_name": "Data",
+                "dynamic": false,
+                "info": "Input data to map from.",
+                "input_types": ["Data"],
+                "list": false,
+                "list_add_label": "Add More",
+                "name": "input_data",
+                "placeholder": "",
+                "required": false,
+                "show": true,
+                "title_case": false,
+                "tool_mode": false,
+                "trace_as_input": true,
+                "trace_as_metadata": true,
+                "type": "other",
+                "value": ""
+              },
+              "number_of_fields": {
+                "_input_type": "IntInput",
+                "advanced": false,
+                "display_name": "Number of Fields",
+                "dynamic": false,
+                "info": "Number of field mappings to define.",
+                "list": false,
+                "list_add_label": "Add More",
+                "name": "number_of_fields",
+                "placeholder": "",
+                "range_spec": {
+                  "max": 15,
+                  "min": 0,
+                  "step": 1,
+                  "step_type": "int"
+                },
+                "real_time_refresh": true,
+                "required": false,
+                "show": true,
+                "title_case": false,
+                "tool_mode": false,
+                "trace_as_metadata": true,
+                "type": "int",
+                "value": 1
+              }
+            },
+            "tool_mode": false
+          },
+          "showNode": true,
+          "type": "DataMapper"
+        },
+        "dragging": false,
+        "id": "DataMapper-mJpkv",
+        "measured": {
+          "height": 425,
+          "width": 320
+        },
+        "position": {
+          "x": 1520.2441165441821,
+          "y": 330.95904130273976
         },
         "selected": false,
         "type": "genericNode"
       }
     ],
     "viewport": {
-      "x": -438.92297110386903,
-      "y": -249.00193535322467,
-      "zoom": 0.6446334428866788
+      "x": -236.77884405833584,
+      "y": 9.77879764171854,
+      "zoom": 0.5490867744265042
     }
   },
-  "description": "Get file content depend on user query.",
+  "description": "Get vectorized files for folder",
   "endpoint_name": null,
-  "id": "4db3ea45-476c-4c40-8a15-cc5963aa4c89",
+  "id": "188d8de8-7c0f-41df-9a9c-553e729557e0",
   "is_component": false,
-  "last_tested_version": "1.2.0",
-  "name": "get_context_from_files",
+  "last_tested_version": "1.3.2",
+  "name": "check_vectorized_files_by_folder",
   "tags": []
 }

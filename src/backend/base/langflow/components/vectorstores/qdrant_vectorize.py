@@ -73,7 +73,13 @@ class QdrantVectorizeVectorStoreComponent(Component):
             metadata = self.metadata.data
 
             docs: Dict[str, str] = [
-                Document(page_content=doc.data.get('text'), metadata={**metadata, "page": i}) for i, doc in enumerate(self.documents)]
+                Document(page_content=doc.data.get('text'),
+                         metadata={
+                    "title": metadata.get('title'),
+                    "id": metadata.get('id'),
+                    "version": metadata.get('version'),
+                    "page": i})
+                for i, doc in enumerate(self.documents)]
 
             if not docs:
                 return Message(text="No documents to process")

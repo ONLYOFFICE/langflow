@@ -45,7 +45,7 @@ async def login_with_external_credentials(
         )
 
     # Attempt to verify with the external system and get user info
-    user, tokens, chat_api_key, id_keys = await verify_external_auth(
+    user, tokens, chat_api_key = await verify_external_auth(
         request=request,
         db=db,
         external_api_url=external_api_url
@@ -58,7 +58,7 @@ async def login_with_external_credentials(
         )
 
     # Set authentication cookies in the response including chat_api_key and id_keys if present
-    await set_auth_cookies(response, tokens, chat_api_key, id_keys)
+    await set_auth_cookies(response, tokens, chat_api_key)
 
     return tokens
 

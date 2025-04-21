@@ -57,6 +57,8 @@ class InterfaceComponentTypes(str, Enum, metaclass=ContainsEnumMeta):
     DataOutput = "DataOutput"
     DataInput = "DataInput"
     FileID = "FileID"
+    FilesIDs = "FilesIDs"
+    FolderID = "FolderID"
     UserQuestion = "UserQuestion"
     WebhookInput = "Webhook"
 
@@ -70,6 +72,8 @@ INPUT_COMPONENTS = [
     InterfaceComponentTypes.TextInput,
     InterfaceComponentTypes.DataInput,
     InterfaceComponentTypes.FileID,
+    InterfaceComponentTypes.FilesIDs,
+    InterfaceComponentTypes.FolderID,
     InterfaceComponentTypes.UserQuestion,
 ]
 OUTPUT_COMPONENTS = [

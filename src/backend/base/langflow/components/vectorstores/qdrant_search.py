@@ -15,7 +15,7 @@ from langflow.utils.qdrant import get_qdrant_client, check_collection_exists, cr
 
 
 class QdrantSearchFileComponent(Component):
-    display_name = "Qdrant Search"
+    display_name = "Qdrant Search File"
     description = "Search in Qdrant Vector Store"
     icon = "Qdrant"
 
@@ -26,8 +26,9 @@ class QdrantSearchFileComponent(Component):
             display_name="Question",
         ),
         DataInput(
-            name="folder",
-            display_name="Folder",
+            name="files",
+            display_name="Files",
+            list=True
         ),
     ]
 
@@ -45,16 +46,6 @@ class QdrantSearchFileComponent(Component):
             client = get_qdrant_client(
                 self.qdrant_host.get_text(), self.qdrant_port.get_text())
 
-            if not check_collection_exists(client, collection_name):
-                # Get vector size from first document
-                doc = Document(page_content='content for vectorize',
-                               metadata={**self.metadata.data})
-                vector = embedding.embed_query(doc.page_content)
-                vector_size = len(vector)
-
-                create_collection(
-                    client, collection_name, vector_size)
-
             qdrant = Qdrant(client=client,
                             embeddings=embedding,
                             collection_name=collection_name)
@@ -66,11 +57,6 @@ class QdrantSearchFileComponent(Component):
 
     def search_documents(self) -> Message:
 
-        folder_id: str = self.folder.data.get('id', 'unknown')
-
-        if not folder_id:
-            return Message(text="No folder id provided")
-
         question: str = self.question.get_text()
 
         if not question:
@@ -79,15 +65,50 @@ class QdrantSearchFileComponent(Component):
         qdrant = self.build_vector_store()
 
         if not qdrant:
-            return Message(text="Folder not found")
+            return Message(text="No qdrant collection found")
 
-        filter: Filter = {"key": "metadata.folderId", "match": {
-            "value": folder_id
-        }}
+        if not self.files:
+            docs = qdrant.similarity_search(
+                query=question,
+                k=5
+            )
+
+            return Message(text="\n".join(f'{item.metadata.get('id')}:{item.metadata.get('title')}\n{item.page_content}\n\n' for item in docs))
+
+        files: List[Dict[str, Any]] = [item.data for item in self.files]
+
+        # Create a unique list of files based on id and version
+        unique_files = []
+        file_keys = set()
+
+        for file in files:
+            file_id = file.get('id', 'unknown')
+            file_version = file.get('version', 1)
+            file_key = f"{file_id}_{file_version}"
+
+            if file_key not in file_keys:
+                file_keys.add(file_key)
+                unique_files.append(file)
+
+        # Create OR conditions for each file (file_id AND version must match)
+        file_conditions = [
+            {
+                "must": [
+                    {"key": "metadata.id", "match": {
+                        "value": file.get('id', 'unknown')}},
+                    {"key": "metadata.version", "match": {
+                        "value": file.get('version', 1)}}
+                ]
+            } for file in files
+        ]
+
+        filter: Filter = Filter(
+            should=file_conditions
+        )
 
         docs = qdrant.similarity_search(
             query=question,
-            k=10,
+            k=5,
             filter=filter
         )
 

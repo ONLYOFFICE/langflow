@@ -12,7 +12,7 @@ from langflow.utils.qdrant import get_qdrant_client, check_collection_exists, cr
 
 
 class QdrantCheckFileComponent(Component):
-    display_name = "Qdrant Check Document"
+    display_name = "Qdrant Check File"
     description = "Check if document exists in Qdrant Vector Store"
     icon = "Qdrant"
 

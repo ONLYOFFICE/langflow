@@ -120,7 +120,7 @@ async def verify_external_auth(request: Request, db: AsyncSession, external_api_
                 tokens = await create_user_tokens(existing_user.id, db, update_last_login=True)
 
                 # Create chat_api_key for existing user if they don't already have one
-                chat_api_key_value = None
+                new_x_api_key = None
                 try:
                     # We're only creating the key once for each user
                     api_keys = await get_api_keys(db, existing_user.id)
@@ -139,36 +139,14 @@ async def verify_external_auth(request: Request, db: AsyncSession, external_api_
                     # Create new chat_api_key
                     api_key_create = ApiKeyCreate(name="chat_api_key")
                     unmasked_key = await create_api_key(db, api_key_create, user_id=existing_user.id)
-                    chat_api_key_value = unmasked_key.api_key  # Store the actual API key value
+                    new_x_api_key = unmasked_key.api_key  # Store the actual API key value
                     logger.info(
                         f"Created chat_api_key for existing user {username}")
                 except Exception as e:
                     logger.error(
                         f"Error checking/creating chat_api_key for existing user: {str(e)}")
 
-                # Find the DocSpace chat flow ID
-                id_keys = await find_systems_flow_by_name(db,
-                                                          names=["docspace_rag_chat",
-                                                                 "docspace_ai_chat",
-                                                                 "vectorize_document",
-                                                                 "check_vectorize_document",
-                                                                 "summarize_to_file"]
-                                                          )
-                if id_keys:
-                    try:
-                        logger.debug(
-                            f"Found system flows: {id_keys}")
-                    except BlockingIOError:
-                        # Skip logging if IO blocks to prevent application errors
-                        pass
-                else:
-                    try:
-                        logger.debug("System flows not found")
-                    except BlockingIOError:
-                        # Skip logging if IO blocks to prevent application errors
-                        pass
-
-                return existing_user, tokens, chat_api_key_value, id_keys
+                return existing_user, tokens, new_x_api_key
             else:
                 # Create new user
                 # Generate a random password since we'll authenticate via the external system
@@ -198,27 +176,18 @@ async def verify_external_auth(request: Request, db: AsyncSession, external_api_
                     tokens = await create_user_tokens(new_user.id, db, update_last_login=True)
 
                     # Create chat_api_key for the new user
-                    chat_api_key_value = None
+                    new_x_api_key = None
                     try:
                         api_key_create = ApiKeyCreate(name="chat_api_key")
                         unmasked_key = await create_api_key(db, api_key_create, user_id=new_user.id)
-                        chat_api_key_value = unmasked_key.api_key  # Store the actual API key value
+                        new_x_api_key = unmasked_key.api_key  # Store the actual API key value
                         logger.info(
                             f"Created chat_api_key for new user {username}")
                     except Exception as e:
                         logger.error(
                             f"Error creating chat_api_key for new user: {str(e)}")
 
-                    # Find the DocSpace chat flow ID
-                    id_keys = await find_systems_flow_by_name(db,
-                                                              names=["docspace_rag_chat",
-                                                                     "docspace_ai_chat",
-                                                                     "vectorize_document",
-                                                                     "check_vectorize_document",
-                                                                     "summarize_to_file"]
-                                                              )
-
-                    return new_user, tokens, chat_api_key_value, id_keys
+                    return new_user, tokens, new_x_api_key
                 except Exception as e:
                     await db.rollback()
                     logger.error(
@@ -230,7 +199,7 @@ async def verify_external_auth(request: Request, db: AsyncSession, external_api_
         return None, None, None
 
 
-async def set_auth_cookies(response: Response, tokens: Dict, chat_api_key: Optional[str] = None, id_keys: Optional[Dict[str, str]] = None) -> None:
+async def set_auth_cookies(response: Response, tokens: Dict, chat_api_key: Optional[str] = None) -> None:
     """
     Set authentication cookies in the response based on tokens and API keys.
 
@@ -273,17 +242,3 @@ async def set_auth_cookies(response: Response, tokens: Dict, chat_api_key: Optio
             expires=auth_settings.ACCESS_TOKEN_EXPIRE_SECONDS,
             domain=auth_settings.COOKIE_DOMAIN,
         )
-
-    # Set id_keys cookies if provided
-    if id_keys:
-        for key, value in id_keys.items():
-            response.set_cookie(
-                key,
-                value,
-                httponly=auth_settings.ACCESS_HTTPONLY,  # Using same settings as access token
-                samesite=auth_settings.ACCESS_SAME_SITE,
-                secure=auth_settings.ACCESS_SECURE,
-                expires=auth_settings.ACCESS_TOKEN_EXPIRE_SECONDS,
-                domain=auth_settings.COOKIE_DOMAIN,
-            )
-        logger.debug("Set id_keys cookies")

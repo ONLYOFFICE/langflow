@@ -22,12 +22,12 @@ qdrant_inputs = [
     MessageInput(
         name="qdrant_host",
         display_name="Qdrant Host",
-        required=False
+        required=False,
     ),
     MessageInput(
         name="qdrant_port",
         display_name="Qdrant Port",
-        required=False
+        required=False,
     ),
     HandleInput(
         name="embedding",
@@ -108,6 +108,8 @@ def check_document_exists(qdrant: Qdrant, document: Document) -> List[Document]:
                         "value": document.metadata['id']}},
                 {"key": "metadata.version", "match": {
                         "value": document.metadata['version']}},
+                {"key": "metadata.page", "match": {
+                        "value": 0}}
             ]
         )
     )

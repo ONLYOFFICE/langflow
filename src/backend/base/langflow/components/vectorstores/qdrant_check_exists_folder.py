@@ -13,22 +13,18 @@ from langflow.utils.qdrant import get_qdrant_client, check_collection_exists, cr
 
 
 class QdrantCheckFolderComponent(Component):
-    display_name = "Qdrant Check Document"
+    display_name = "Qdrant Check Folder"
     description = "Check if document exists in Qdrant Vector Store"
     icon = "Qdrant"
 
     inputs = [
         *qdrant_inputs,
-        DataInput(
-            name='folder',
-            display_name="Folder"
-        ),
     ]
 
     outputs = [
         Output(name="check",
-               display_name="Check document",
-               method="check_document")
+               display_name="Check folder",
+               method="check_folder")
     ]
 
     def build_vector_store(self) -> Qdrant:
@@ -60,12 +56,11 @@ class QdrantCheckFolderComponent(Component):
     def check_folder(self) -> Message:
         qdrant = self.build_vector_store()
 
-        if not self.folder:
-            return Message(text="No folder id provided")
-
-        filter: Filter = {"key": "metadata.folderId", "match": {
-            "value": self.folder.data.get('id', 'unknown')
-        }}
+        filter = Filter(must=[
+            {"key": "metadata.page", "match": {
+                "value": 0
+            }}
+        ])
 
         docs = qdrant.similarity_search(
             query="",
