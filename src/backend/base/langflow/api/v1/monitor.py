@@ -63,7 +63,18 @@ async def get_messages(
                 flow_id, UUID) else UUID(str(flow_id))
             stmt = stmt.where(MessageTable.flow_id == flow_uuid)
         if session_id:
-            stmt = stmt.where(MessageTable.session_id == session_id)
+            # Check if session_id is in the format '/d/X' or just a numeric value
+            if session_id.isdigit():
+                # If session_id is numeric, treat it as folder ID
+                folder_prefix = f"folder-{session_id}"
+                # Filter for session_ids starting with this prefix
+                stmt = stmt.where(
+                    MessageTable.session_id.startswith(folder_prefix))
+                logger.debug(
+                    f"Numeric session_id detected, filtering for session_id starting with: {folder_prefix}")
+            else:
+                # Default behavior (exact match) for other session_id formats
+                stmt = stmt.where(MessageTable.session_id == session_id)
         if sender:
             stmt = stmt.where(MessageTable.sender == sender)
         if sender_name:
