@@ -1,7 +1,6 @@
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Optional
 from langchain.embeddings.base import Embeddings
 from langchain_community.vectorstores import Qdrant
-from langchain_core.documents import Document
 from qdrant_client.models import Filter
 from langflow.custom import Component
 from langflow.schema import Message
@@ -11,7 +10,7 @@ from langflow.io import (
     Output,
 )
 
-from langflow.utils.qdrant import get_qdrant_client, check_collection_exists, create_collection, qdrant_inputs
+from langflow.utils.qdrant import get_qdrant_client, check_collection_exists, qdrant_inputs
 
 
 class QdrantSearchFileComponent(Component):
@@ -38,13 +37,16 @@ class QdrantSearchFileComponent(Component):
                method="search_documents"),
     ]
 
-    def build_vector_store(self) -> Qdrant:
+    def build_vector_store(self) -> Optional[Qdrant]:
         try:
             collection_name: str = self.collection_name.get_text()
             embedding: Embeddings = self.embedding
 
             client = get_qdrant_client(
                 self.qdrant_host.get_text(), self.qdrant_port.get_text())
+
+            if not check_collection_exists(client, collection_name):
+                return None
 
             qdrant = Qdrant(client=client,
                             embeddings=embedding,
