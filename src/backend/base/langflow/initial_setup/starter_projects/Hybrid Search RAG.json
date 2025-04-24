@@ -25,9 +25,9 @@
         "id": "reactflow__edge-OpenAIModel-GHbvP{œdataTypeœ:œOpenAIModelœ,œidœ:œOpenAIModel-GHbvPœ,œnameœ:œmodel_outputœ,œoutput_typesœ:[œLanguageModelœ]}-StructuredOutput-hj1IZ{œfieldNameœ:œllmœ,œidœ:œStructuredOutput-hj1IZœ,œinputTypesœ:[œLanguageModelœ],œtypeœ:œotherœ}",
         "selected": false,
         "source": "OpenAIModel-GHbvP",
-        "sourceHandle": "{œdataTypeœ: œOpenAIModelœ, œidœ: œOpenAIModel-GHbvPœ, œnameœ: œmodel_outputœ, œoutput_typesœ: [œLanguageModelœ]}",
+        "sourceHandle": "{œdataTypeœ:œOpenAIModelœ,œidœ:œOpenAIModel-GHbvPœ,œnameœ:œmodel_outputœ,œoutput_typesœ:[œLanguageModelœ]}",
         "target": "StructuredOutput-hj1IZ",
-        "targetHandle": "{œfieldNameœ: œllmœ, œidœ: œStructuredOutput-hj1IZœ, œinputTypesœ: [œLanguageModelœ], œtypeœ: œotherœ}"
+        "targetHandle": "{œfieldNameœ:œllmœ,œidœ:œStructuredOutput-hj1IZœ,œinputTypesœ:[œLanguageModelœ],œtypeœ:œotherœ}"
       },
       {
         "animated": false,
@@ -53,9 +53,9 @@
         "id": "reactflow__edge-ChatInput-MsFJG{œdataTypeœ:œChatInputœ,œidœ:œChatInput-MsFJGœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}-AstraDB-zZztw{œfieldNameœ:œsearch_queryœ,œidœ:œAstraDB-zZztwœ,œinputTypesœ:[œMessageœ],œtypeœ:œqueryœ}",
         "selected": false,
         "source": "ChatInput-MsFJG",
-        "sourceHandle": "{œdataTypeœ: œChatInputœ, œidœ: œChatInput-MsFJGœ, œnameœ: œmessageœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œChatInputœ,œidœ:œChatInput-MsFJGœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}",
         "target": "AstraDB-zZztw",
-        "targetHandle": "{œfieldNameœ: œsearch_queryœ, œidœ: œAstraDB-zZztwœ, œinputTypesœ: [œMessageœ], œtypeœ: œqueryœ}"
+        "targetHandle": "{œfieldNameœ:œsearch_queryœ,œidœ:œAstraDB-zZztwœ,œinputTypesœ:[œMessageœ],œtypeœ:œqueryœ}"
       },
       {
         "animated": false,
@@ -81,9 +81,9 @@
         "id": "reactflow__edge-OpenAIModel-GHbvP{œdataTypeœ:œOpenAIModelœ,œidœ:œOpenAIModel-GHbvPœ,œnameœ:œtext_outputœ,œoutput_typesœ:[œMessageœ]}-StructuredOutput-hj1IZ{œfieldNameœ:œinput_valueœ,œidœ:œStructuredOutput-hj1IZœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "selected": false,
         "source": "OpenAIModel-GHbvP",
-        "sourceHandle": "{œdataTypeœ: œOpenAIModelœ, œidœ: œOpenAIModel-GHbvPœ, œnameœ: œtext_outputœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œOpenAIModelœ,œidœ:œOpenAIModel-GHbvPœ,œnameœ:œtext_outputœ,œoutput_typesœ:[œMessageœ]}",
         "target": "StructuredOutput-hj1IZ",
-        "targetHandle": "{œfieldNameœ: œinput_valueœ, œidœ: œStructuredOutput-hj1IZœ, œinputTypesœ: [œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œStructuredOutput-hj1IZœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "animated": false,
@@ -110,9 +110,9 @@
         "id": "reactflow__edge-StructuredOutput-hj1IZ{œdataTypeœ:œStructuredOutputœ,œidœ:œStructuredOutput-hj1IZœ,œnameœ:œstructured_output_dataframeœ,œoutput_typesœ:[œDataFrameœ]}-ParserComponent-9FGat{œfieldNameœ:œinput_dataœ,œidœ:œParserComponent-9FGatœ,œinputTypesœ:[œDataFrameœ,œDataœ],œtypeœ:œotherœ}",
         "selected": false,
         "source": "StructuredOutput-hj1IZ",
-        "sourceHandle": "{œdataTypeœ: œStructuredOutputœ, œidœ: œStructuredOutput-hj1IZœ, œnameœ: œstructured_output_dataframeœ, œoutput_typesœ: [œDataFrameœ]}",
+        "sourceHandle": "{œdataTypeœ:œStructuredOutputœ,œidœ:œStructuredOutput-hj1IZœ,œnameœ:œstructured_output_dataframeœ,œoutput_typesœ:[œDataFrameœ]}",
         "target": "ParserComponent-9FGat",
-        "targetHandle": "{œfieldNameœ: œinput_dataœ, œidœ: œParserComponent-9FGatœ, œinputTypesœ: [œDataFrameœ, œDataœ], œtypeœ: œotherœ}"
+        "targetHandle": "{œfieldNameœ:œinput_dataœ,œidœ:œParserComponent-9FGatœ,œinputTypesœ:[œDataFrameœ,œDataœ],œtypeœ:œotherœ}"
       },
       {
         "animated": false,
@@ -138,9 +138,9 @@
         "id": "reactflow__edge-ParserComponent-9FGat{œdataTypeœ:œParserComponentœ,œidœ:œParserComponent-9FGatœ,œnameœ:œparsed_textœ,œoutput_typesœ:[œMessageœ]}-AstraDB-zZztw{œfieldNameœ:œlexical_termsœ,œidœ:œAstraDB-zZztwœ,œinputTypesœ:[œMessageœ],œtypeœ:œqueryœ}",
         "selected": false,
         "source": "ParserComponent-9FGat",
-        "sourceHandle": "{œdataTypeœ: œParserComponentœ, œidœ: œParserComponent-9FGatœ, œnameœ: œparsed_textœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œParserComponentœ,œidœ:œParserComponent-9FGatœ,œnameœ:œparsed_textœ,œoutput_typesœ:[œMessageœ]}",
         "target": "AstraDB-zZztw",
-        "targetHandle": "{œfieldNameœ: œlexical_termsœ, œidœ: œAstraDB-zZztwœ, œinputTypesœ: [œMessageœ], œtypeœ: œqueryœ}"
+        "targetHandle": "{œfieldNameœ:œlexical_termsœ,œidœ:œAstraDB-zZztwœ,œinputTypesœ:[œMessageœ],œtypeœ:œqueryœ}"
       },
       {
         "animated": false,
@@ -166,9 +166,9 @@
         "id": "reactflow__edge-ChatInput-MsFJG{œdataTypeœ:œChatInputœ,œidœ:œChatInput-MsFJGœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}-OpenAIModel-GHbvP{œfieldNameœ:œinput_valueœ,œidœ:œOpenAIModel-GHbvPœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "selected": false,
         "source": "ChatInput-MsFJG",
-        "sourceHandle": "{œdataTypeœ: œChatInputœ, œidœ: œChatInput-MsFJGœ, œnameœ: œmessageœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œChatInputœ,œidœ:œChatInput-MsFJGœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}",
         "target": "OpenAIModel-GHbvP",
-        "targetHandle": "{œfieldNameœ: œinput_valueœ, œidœ: œOpenAIModel-GHbvPœ, œinputTypesœ: [œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œOpenAIModel-GHbvPœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "animated": false,
@@ -195,9 +195,9 @@
         "id": "xy-edge__AstraDB-zZztw{œdataTypeœ:œAstraDBœ,œidœ:œAstraDB-zZztwœ,œnameœ:œdataframeœ,œoutput_typesœ:[œDataFrameœ]}-ParserComponent-AzBHA{œfieldNameœ:œinput_dataœ,œidœ:œParserComponent-AzBHAœ,œinputTypesœ:[œDataFrameœ,œDataœ],œtypeœ:œotherœ}",
         "selected": false,
         "source": "AstraDB-zZztw",
-        "sourceHandle": "{œdataTypeœ: œAstraDBœ, œidœ: œAstraDB-zZztwœ, œnameœ: œdataframeœ, œoutput_typesœ: [œDataFrameœ]}",
+        "sourceHandle": "{œdataTypeœ:œAstraDBœ,œidœ:œAstraDB-zZztwœ,œnameœ:œdataframeœ,œoutput_typesœ:[œDataFrameœ]}",
         "target": "ParserComponent-AzBHA",
-        "targetHandle": "{œfieldNameœ: œinput_dataœ, œidœ: œParserComponent-AzBHAœ, œinputTypesœ: [œDataFrameœ, œDataœ], œtypeœ: œotherœ}"
+        "targetHandle": "{œfieldNameœ:œinput_dataœ,œidœ:œParserComponent-AzBHAœ,œinputTypesœ:[œDataFrameœ,œDataœ],œtypeœ:œotherœ}"
       },
       {
         "animated": false,
@@ -225,9 +225,9 @@
         "id": "xy-edge__ParserComponent-AzBHA{œdataTypeœ:œParserComponentœ,œidœ:œParserComponent-AzBHAœ,œnameœ:œparsed_textœ,œoutput_typesœ:[œMessageœ]}-ChatOutput-qOr04{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-qOr04œ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œotherœ}",
         "selected": false,
         "source": "ParserComponent-AzBHA",
-        "sourceHandle": "{œdataTypeœ: œParserComponentœ, œidœ: œParserComponent-AzBHAœ, œnameœ: œparsed_textœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œParserComponentœ,œidœ:œParserComponent-AzBHAœ,œnameœ:œparsed_textœ,œoutput_typesœ:[œMessageœ]}",
         "target": "ChatOutput-qOr04",
-        "targetHandle": "{œfieldNameœ: œinput_valueœ, œidœ: œChatOutput-qOr04œ, œinputTypesœ: [œDataœ, œDataFrameœ, œMessageœ], œtypeœ: œotherœ}"
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-qOr04œ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œotherœ}"
       }
     ],
     "nodes": [

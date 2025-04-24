@@ -25,9 +25,9 @@
         "id": "reactflow__edge-AgentQL-TCADj{œdataTypeœ:œAgentQLœ,œidœ:œAgentQL-TCADjœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}-Agent-x50rv{œfieldNameœ:œtoolsœ,œidœ:œAgent-x50rvœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}",
         "selected": false,
         "source": "AgentQL-TCADj",
-        "sourceHandle": "{œdataTypeœ: œAgentQLœ, œidœ: œAgentQL-TCADjœ, œnameœ: œcomponent_as_toolœ, œoutput_typesœ: [œToolœ]}",
+        "sourceHandle": "{œdataTypeœ:œAgentQLœ,œidœ:œAgentQL-TCADjœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}",
         "target": "Agent-x50rv",
-        "targetHandle": "{œfieldNameœ: œtoolsœ, œidœ: œAgent-x50rvœ, œinputTypesœ: [œToolœ], œtypeœ: œotherœ}"
+        "targetHandle": "{œfieldNameœ:œtoolsœ,œidœ:œAgent-x50rvœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}"
       },
       {
         "animated": false,
@@ -53,9 +53,9 @@
         "id": "reactflow__edge-ChatInput-LwqUD{œdataTypeœ:œChatInputœ,œidœ:œChatInput-LwqUDœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}-Agent-x50rv{œfieldNameœ:œinput_valueœ,œidœ:œAgent-x50rvœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "selected": false,
         "source": "ChatInput-LwqUD",
-        "sourceHandle": "{œdataTypeœ: œChatInputœ, œidœ: œChatInput-LwqUDœ, œnameœ: œmessageœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œChatInputœ,œidœ:œChatInput-LwqUDœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}",
         "target": "Agent-x50rv",
-        "targetHandle": "{œfieldNameœ: œinput_valueœ, œidœ: œAgent-x50rvœ, œinputTypesœ: [œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œAgent-x50rvœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "animated": false,
@@ -83,9 +83,9 @@
         "id": "reactflow__edge-Agent-x50rv{œdataTypeœ:œAgentœ,œidœ:œAgent-x50rvœ,œnameœ:œresponseœ,œoutput_typesœ:[œMessageœ]}-ChatOutput-RB2DM{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-RB2DMœ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œotherœ}",
         "selected": false,
         "source": "Agent-x50rv",
-        "sourceHandle": "{œdataTypeœ: œAgentœ, œidœ: œAgent-x50rvœ, œnameœ: œresponseœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œAgentœ,œidœ:œAgent-x50rvœ,œnameœ:œresponseœ,œoutput_typesœ:[œMessageœ]}",
         "target": "ChatOutput-RB2DM",
-        "targetHandle": "{œfieldNameœ: œinput_valueœ, œidœ: œChatOutput-RB2DMœ, œinputTypesœ: [œDataœ, œDataFrameœ, œMessageœ], œtypeœ: œotherœ}"
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-RB2DMœ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œotherœ}"
       },
       {
         "animated": false,
@@ -111,9 +111,9 @@
         "id": "reactflow__edge-ChatOutput-RB2DM{œdataTypeœ:œChatOutputœ,œidœ:œChatOutput-RB2DMœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}-SaveToFile-FmELb{œfieldNameœ:œmessageœ,œidœ:œSaveToFile-FmELbœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "selected": false,
         "source": "ChatOutput-RB2DM",
-        "sourceHandle": "{œdataTypeœ: œChatOutputœ, œidœ: œChatOutput-RB2DMœ, œnameœ: œmessageœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œChatOutputœ,œidœ:œChatOutput-RB2DMœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}",
         "target": "SaveToFile-FmELb",
-        "targetHandle": "{œfieldNameœ: œmessageœ, œidœ: œSaveToFile-FmELbœ, œinputTypesœ: [œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œmessageœ,œidœ:œSaveToFile-FmELbœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       }
     ],
     "nodes": [

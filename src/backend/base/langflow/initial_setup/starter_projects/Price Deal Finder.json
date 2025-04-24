@@ -25,9 +25,9 @@
         "id": "reactflow__edge-AgentQL-reBlu{œdataTypeœ:œAgentQLœ,œidœ:œAgentQL-reBluœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}-Agent-oRYZX{œfieldNameœ:œtoolsœ,œidœ:œAgent-oRYZXœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}",
         "selected": false,
         "source": "AgentQL-reBlu",
-        "sourceHandle": "{œdataTypeœ: œAgentQLœ, œidœ: œAgentQL-reBluœ, œnameœ: œcomponent_as_toolœ, œoutput_typesœ: [œToolœ]}",
+        "sourceHandle": "{œdataTypeœ:œAgentQLœ,œidœ:œAgentQL-reBluœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}",
         "target": "Agent-oRYZX",
-        "targetHandle": "{œfieldNameœ: œtoolsœ, œidœ: œAgent-oRYZXœ, œinputTypesœ: [œToolœ], œtypeœ: œotherœ}"
+        "targetHandle": "{œfieldNameœ:œtoolsœ,œidœ:œAgent-oRYZXœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}"
       },
       {
         "animated": false,
@@ -55,9 +55,9 @@
         "id": "reactflow__edge-Agent-oRYZX{œdataTypeœ:œAgentœ,œidœ:œAgent-oRYZXœ,œnameœ:œresponseœ,œoutput_typesœ:[œMessageœ]}-ChatOutput-hdvqT{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-hdvqTœ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œstrœ}",
         "selected": false,
         "source": "Agent-oRYZX",
-        "sourceHandle": "{œdataTypeœ: œAgentœ, œidœ: œAgent-oRYZXœ, œnameœ: œresponseœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œAgentœ,œidœ:œAgent-oRYZXœ,œnameœ:œresponseœ,œoutput_typesœ:[œMessageœ]}",
         "target": "ChatOutput-hdvqT",
-        "targetHandle": "{œfieldNameœ: œinput_valueœ, œidœ: œChatOutput-hdvqTœ, œinputTypesœ: [œDataœ, œDataFrameœ, œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-hdvqTœ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "animated": false,
@@ -83,9 +83,9 @@
         "id": "reactflow__edge-TavilySearchComponent-STQC5{œdataTypeœ:œTavilySearchComponentœ,œidœ:œTavilySearchComponent-STQC5œ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}-Agent-oRYZX{œfieldNameœ:œtoolsœ,œidœ:œAgent-oRYZXœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}",
         "selected": false,
         "source": "TavilySearchComponent-STQC5",
-        "sourceHandle": "{œdataTypeœ: œTavilySearchComponentœ, œidœ: œTavilySearchComponent-STQC5œ, œnameœ: œcomponent_as_toolœ, œoutput_typesœ: [œToolœ]}",
+        "sourceHandle": "{œdataTypeœ:œTavilySearchComponentœ,œidœ:œTavilySearchComponent-STQC5œ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}",
         "target": "Agent-oRYZX",
-        "targetHandle": "{œfieldNameœ: œtoolsœ, œidœ: œAgent-oRYZXœ, œinputTypesœ: [œToolœ], œtypeœ: œotherœ}"
+        "targetHandle": "{œfieldNameœ:œtoolsœ,œidœ:œAgent-oRYZXœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}"
       },
       {
         "animated": false,
@@ -111,9 +111,9 @@
         "id": "reactflow__edge-ChatInput-DwzkZ{œdataTypeœ:œChatInputœ,œidœ:œChatInput-DwzkZœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}-Agent-oRYZX{œfieldNameœ:œinput_valueœ,œidœ:œAgent-oRYZXœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "selected": false,
         "source": "ChatInput-DwzkZ",
-        "sourceHandle": "{œdataTypeœ: œChatInputœ, œidœ: œChatInput-DwzkZœ, œnameœ: œmessageœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œChatInputœ,œidœ:œChatInput-DwzkZœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}",
         "target": "Agent-oRYZX",
-        "targetHandle": "{œfieldNameœ: œinput_valueœ, œidœ: œAgent-oRYZXœ, œinputTypesœ: [œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œAgent-oRYZXœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       }
     ],
     "nodes": [
