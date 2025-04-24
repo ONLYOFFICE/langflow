@@ -10,6 +10,7 @@ from loguru import logger
 
 
 from langflow.api.utils import DbSession, custom_params
+from langflow.services.database.models import User
 from langflow.schema.message import MessageResponse
 from langflow.services.auth.utils import get_current_active_user
 from langflow.services.database.models.message.model import MessageRead, MessageTable, MessageUpdate
@@ -50,6 +51,7 @@ async def get_messages(
     sender: Annotated[str | None, Query()] = None,
     sender_name: Annotated[str | None, Query()] = None,
     order_by: Annotated[str | None, Query()] = "timestamp",
+    current_user: Annotated[User, Depends(get_current_active_user)] = None,
 ) -> list[MessageResponse]:
     try:
         stmt = select(MessageTable)
@@ -66,7 +68,20 @@ async def get_messages(
             # Check if session_id is in the format '/d/X' or just a numeric value
             if session_id.isdigit():
                 # If session_id is numeric, treat it as folder ID
-                folder_prefix = f"folder-{session_id}"
+                folder_prefix = f"folder-{session_id}-{str(current_user.id)}"
+                logger.debug(f"Folder prefix: {folder_prefix}")
+                # Output the user ID for debugging
+                logger.debug(f"Current user ID for prefix: {current_user.id}")
+                
+                # First, check if any matching sessions exist (for debugging)
+                check_stmt = select(MessageTable.session_id).where(
+                    MessageTable.session_id.startswith(folder_prefix))
+                sample_sessions = await session.exec(check_stmt)
+                sample_sessions_list = sample_sessions.all()
+                logger.debug(f"Found {len(sample_sessions_list)} sessions matching prefix {folder_prefix}")
+                if sample_sessions_list:
+                    logger.debug(f"Sample matching session: {sample_sessions_list[0]}")
+                
                 # Filter for session_ids starting with this prefix
                 stmt = stmt.where(
                     MessageTable.session_id.startswith(folder_prefix))
