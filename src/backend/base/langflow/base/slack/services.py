@@ -46,6 +46,15 @@ class KickOptions(BaseModel):
     user: str | None = Field(None)
 
 
+class PinListOptions(BaseModel):
+    channel: str | None = Field(None)
+
+
+class PinOptions(BaseModel):
+    channel: str | None = Field(None)
+    timestamp: str | None = Field(None)
+
+
 class PostMessageOptions(BaseModel):
     channel: str | None = Field(None)
     text: str | None = Field(None)
@@ -120,6 +129,32 @@ class ConversationService(Service):
         return self._client.request(
             "POST",
             "https://slack.com/api/conversations.kick",
+            body=options.model_dump(exclude_none=True, by_alias=True)
+        )
+
+
+class PinService(Service):
+    def get_list(self, options: PinListOptions):
+        return self._client.request(
+            "POST",
+            "https://slack.com/api/pins.list",
+            headers={"Content-Type": "application/x-www-form-urlencoded"},
+            body=options.model_dump(exclude_none=True, by_alias=True)
+        )
+
+
+    def pin(self, options: PinOptions):
+        return self._client.request(
+            "POST",
+            "https://slack.com/api/pins.add",
+            body=options.model_dump(exclude_none=True, by_alias=True)
+        )
+
+
+    def unpin(self, options: PinOptions):
+        return self._client.request(
+            "POST",
+            "https://slack.com/api/pins.remove",
             body=options.model_dump(exclude_none=True, by_alias=True)
         )
 

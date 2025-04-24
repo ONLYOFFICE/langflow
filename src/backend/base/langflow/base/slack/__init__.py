@@ -23,6 +23,8 @@ from .services import (
     InviteOptions,
     JoinOptions,
     KickOptions,
+    PinListOptions,
+    PinOptions,
     PostMessageOptions,
 )
 
@@ -53,6 +55,8 @@ __all__ = [
     "KickOptions",
     "LimitInput",
     "LimitMixin",
+    "PinListOptions",
+    "PinOptions",
     "PostMessageOptions",
     "ToolOutput",
 ]
