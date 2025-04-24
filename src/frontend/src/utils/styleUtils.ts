@@ -324,7 +324,6 @@ export const nodeIconToDisplayIconMap: Record<string, string> = {
   ChatInput: "MessagesSquare",
   ChatOutput: "MessagesSquare",
   //Integration Icons
-  // onlyoffice: OnlyofficeIcon,
   AIML: "AI/ML",
   AgentQL: "AgentQL",
   AirbyteJSONLoader: "Airbyte",
@@ -461,6 +460,7 @@ export const eagerLoadedIconsMap = {
   FaDiscord: FaDiscord,
   FaGithub: FaGithub,
   TwitterLogoIcon: TwitterLogoIcon,
+  onlyoffice: OnlyofficeIcon,
 
   // All Lucide Icons
   ...lucideIcons,
