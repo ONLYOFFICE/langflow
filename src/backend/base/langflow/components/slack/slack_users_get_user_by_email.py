@@ -3,7 +3,7 @@ from typing import Any
 from langchain.tools import StructuredTool
 from pydantic import BaseModel, Field
 
-from langflow.base.slack import AuthTextInput, Component, DataOutput, GetUserByEmailOptions, ToolOutput
+from langflow.base.slack import OAuthTokenInput, Component, DataOutput, GetUserByEmailOptions, ToolOutput
 from langflow.field_typing import Tool
 from langflow.inputs import MessageTextInput
 from langflow.schema import Data
@@ -19,7 +19,7 @@ class SlackGetUserByEmail(Component):
 
 
     inputs = [
-        AuthTextInput(),
+        OAuthTokenInput(),
         MessageTextInput(
             name="email",
             display_name="Email",
@@ -43,9 +43,9 @@ class SlackGetUserByEmail(Component):
         )
 
 
-    async def build_data(self) -> Data:
+    def build_data(self) -> Data:
         schema = self._create_schema()
-        data = await self._get_user_by_email(schema)
+        data = self._get_user_by_email(schema)
         return Data(data=data)
 
 
@@ -63,8 +63,8 @@ class SlackGetUserByEmail(Component):
         return self._get_user_by_email(schema)
 
 
-    async def _get_user_by_email(self, schema: Schema) -> Any:
-        client = await self._get_client()
+    def _get_user_by_email(self, schema: Schema) -> Any:
+        client = self._get_client()
 
         options = GetUserByEmailOptions(email=schema.email)
 

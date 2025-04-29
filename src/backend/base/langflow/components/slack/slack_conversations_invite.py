@@ -5,7 +5,7 @@ from pydantic import BaseModel, Field
 
 from langflow.base.slack import (
     INPUT_DESCRIPTION_FORCE,
-    AuthTextInput,
+    OAuthTokenInput,
     Component,
     DataOutput,
     ForceInput,
@@ -29,7 +29,7 @@ class SlackInviteUsers(Component, ForceMixin):
 
 
     inputs = [
-        AuthTextInput(),
+        OAuthTokenInput(),
         MessageTextInput(
             name="channel",
             display_name="Channel ID",
@@ -64,9 +64,9 @@ class SlackInviteUsers(Component, ForceMixin):
         )
 
 
-    async def build_data(self) -> Data:
+    def build_data(self) -> Data:
         schema = self._create_schema()
-        data = await self._invite(schema)
+        data = self._invite(schema)
         return Data(data=data)
 
 
@@ -84,8 +84,8 @@ class SlackInviteUsers(Component, ForceMixin):
         return self._invite(schema)
 
 
-    async def _invite(self, schema: Schema) -> Any:
-        client = await self._get_client()
+    def _invite(self, schema: Schema) -> Any:
+        client = self._get_client()
 
         options = InviteOptions(channel=schema.channel, users=schema.users, force=schema.force)
 

@@ -4,7 +4,7 @@ from langchain.tools import StructuredTool
 from pydantic import BaseModel, Field
 
 from langflow.base.slack import (
-    AuthTextInput,
+    OAuthTokenInput,
     Component,
     DataOutput,
     KickOptions,
@@ -26,7 +26,7 @@ class SlackKickUser(Component):
 
 
     inputs = [
-        AuthTextInput(),
+        OAuthTokenInput(),
         MessageTextInput(
             name="channel",
             display_name="Channel ID",
@@ -58,9 +58,9 @@ class SlackKickUser(Component):
         )
 
 
-    async def build_data(self) -> Data:
+    def build_data(self) -> Data:
         schema = self._create_schema()
-        data = await self._kick(schema)
+        data = self._kick(schema)
         return Data(data=data)
 
 
@@ -78,8 +78,8 @@ class SlackKickUser(Component):
         return self._kick(schema)
 
 
-    async def _kick(self, schema: Schema) -> Any:
-        client = await self._get_client()
+    def _kick(self, schema: Schema) -> Any:
+        client = self._get_client()
 
         options = KickOptions(channel=schema.channel, user=schema.user)
 

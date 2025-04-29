@@ -6,7 +6,7 @@ INPUT_DESCRIPTION_INCLUSIVE = "Include messages with oldest or latest timestamps
 INPUT_DESCRIPTION_IS_PRIVATE = "Create a private channel instead of a public one."
 INPUT_DESCRIPTION_LIMIT = "The maximum number of items to return."
 
-INPUT_NAME_AUTH_TEXT = "auth_token"
+INPUT_NAME_OAUTH_TOKEN = "oauth_token"
 INPUT_NAME_FORCE = "force"
 INPUT_NAME_INCLUDE_ALL_METADATA = "include_all_metadata"
 INPUT_NAME_INCLUSIVE = "inclusive"
@@ -14,11 +14,11 @@ INPUT_NAME_IS_PRIVATE = "is_private"
 INPUT_NAME_LIMIT = "limit"
 
 
-class AuthTextInput(SecretStrInput):
-    name: str = INPUT_NAME_AUTH_TEXT
+class OAuthTokenInput(SecretStrInput):
+    name: str = INPUT_NAME_OAUTH_TOKEN
     display_name: str = "Bot User OAuth Token"
     info: str = "OAuth token for the Slack app."
-    advanced: bool = True
+    required: bool = True
 
 
 class ForceInput(MessageTextInput):

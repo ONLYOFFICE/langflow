@@ -4,7 +4,7 @@ from langchain.tools import StructuredTool
 from pydantic import BaseModel, Field
 
 from langflow.base.slack import (
-    AuthTextInput,
+    OAuthTokenInput,
     Component,
     DataOutput,
     PinListOptions,
@@ -24,7 +24,7 @@ class SlackGetPins(Component):
     name = "SlackGetPins"
 
     inputs = [
-        AuthTextInput(),
+        OAuthTokenInput(),
         MessageTextInput(
             name="channel",
             display_name="Channel ID",
@@ -49,9 +49,9 @@ class SlackGetPins(Component):
         )
 
 
-    async def build_data(self) -> Data:
+    def build_data(self) -> Data:
         schema = self._create_schema()
-        data = await self._get_pins(schema)
+        data = self._get_pins(schema)
         return Data(data=data)
 
 
@@ -69,8 +69,8 @@ class SlackGetPins(Component):
         return self._get_pins(schema)
 
 
-    async def _get_pins(self, schema: Schema) -> Any:
-        client = await self._get_client()
+    def _get_pins(self, schema: Schema) -> Any:
+        client = self._get_client()
 
         options = PinListOptions(channel=schema.channel)
 

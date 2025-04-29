@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 from langflow.inputs.inputs import InputTypes
 
 from .inputs import (
-    INPUT_NAME_AUTH_TEXT,
+    INPUT_NAME_OAUTH_TOKEN,
     INPUT_NAME_FORCE,
     INPUT_NAME_INCLUDE_ALL_METADATA,
     INPUT_NAME_INCLUSIVE,
@@ -29,7 +29,7 @@ def to_int(value: str) -> int | None:
     return None
 
 
-class AuthTextMixin(ABC):
+class OAuthTokenMixin(ABC):
     @abstractmethod
     def get_input(self, name: str) -> InputTypes:
         ...
@@ -37,7 +37,7 @@ class AuthTextMixin(ABC):
 
     @property
     def auth_token(self) -> str | None:
-        auth_text_input = self.get_input(INPUT_NAME_AUTH_TEXT)
+        auth_text_input = self.get_input(INPUT_NAME_OAUTH_TOKEN)
 
         return auth_text_input.value if auth_text_input.value != "" else None
 
