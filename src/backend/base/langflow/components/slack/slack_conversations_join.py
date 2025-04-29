@@ -4,7 +4,7 @@ from langchain.tools import StructuredTool
 from pydantic import BaseModel, Field
 
 from langflow.base.slack import (
-    AuthTextInput,
+    OAuthTokenInput,
     Component,
     DataOutput,
     JoinOptions,
@@ -24,7 +24,7 @@ class SlackJoin(Component):
     name = "SlackJoin"
 
     inputs = [
-        AuthTextInput(),
+        OAuthTokenInput(),
         MessageTextInput(
             name="channel",
             display_name="Channel ID",
@@ -49,9 +49,9 @@ class SlackJoin(Component):
         )
 
 
-    async def build_data(self) -> Data:
+    def build_data(self) -> Data:
         schema = self._create_schema()
-        data = await self._join(schema)
+        data = self._join(schema)
         return Data(data=data)
 
 
@@ -69,8 +69,8 @@ class SlackJoin(Component):
         return self._join(schema)
 
 
-    async def _join(self, schema: Schema) -> Any:
-        client = await self._get_client()
+    def _join(self, schema: Schema) -> Any:
+        client = self._get_client()
 
         options = JoinOptions(channel=schema.channel)
 

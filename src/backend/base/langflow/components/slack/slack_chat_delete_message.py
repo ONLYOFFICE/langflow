@@ -3,7 +3,7 @@ from typing import Any
 from langchain.tools import StructuredTool
 from pydantic import BaseModel, Field
 
-from langflow.base.slack import AuthTextInput, Component, DataOutput, DeleteMessageOptions, ToolOutput
+from langflow.base.slack import OAuthTokenInput, Component, DataOutput, DeleteMessageOptions, ToolOutput
 from langflow.field_typing import Tool
 from langflow.inputs import MessageTextInput
 from langflow.schema import Data
@@ -20,7 +20,7 @@ class SlackDeleteMessage(Component):
 
 
     inputs = [
-        AuthTextInput(),
+        OAuthTokenInput(),
         MessageTextInput(
             name="channel",
             display_name="Channel ID",
@@ -52,9 +52,9 @@ class SlackDeleteMessage(Component):
         )
 
 
-    async def build_data(self) -> Data:
+    def build_data(self) -> Data:
         schema = self._create_schema()
-        data = await self._delete_message(schema)
+        data = self._delete_message(schema)
         return Data(data=data)
 
 
@@ -72,8 +72,8 @@ class SlackDeleteMessage(Component):
         return self._delete_message(schema)
 
 
-    async def _delete_message(self, schema: Schema) -> Any:
-        client = await self._get_client()
+    def _delete_message(self, schema: Schema) -> Any:
+        client = self._get_client()
 
         options = DeleteMessageOptions(channel=schema.channel, ts=schema.timestamp)
 

@@ -5,7 +5,7 @@ from pydantic import BaseModel, Field
 
 from langflow.base.slack import (
     ArchiveConversationOptions,
-    AuthTextInput,
+    OAuthTokenInput,
     Component,
     DataOutput,
     ToolOutput,
@@ -25,7 +25,7 @@ class SlackArchiveConversation(Component):
 
 
     inputs = [
-        AuthTextInput(),
+        OAuthTokenInput(),
         MessageTextInput(
             name="channel",
             display_name="Channel ID",
@@ -50,9 +50,9 @@ class SlackArchiveConversation(Component):
         )
 
 
-    async def build_data(self) -> Data:
+    def build_data(self) -> Data:
         schema = self._create_schema()
-        data = await self._archive_conversation(schema)
+        data = self._archive_conversation(schema)
         return Data(data=data)
 
 
@@ -70,8 +70,8 @@ class SlackArchiveConversation(Component):
         return self._archive_conversation(schema)
 
 
-    async def _archive_conversation(self, schema: Schema) -> Any:
-        client = await self._get_client()
+    def _archive_conversation(self, schema: Schema) -> Any:
+        client = self._get_client()
 
         options = ArchiveConversationOptions(channel=schema.channel)
 

@@ -4,7 +4,7 @@ from langchain.tools import StructuredTool
 from pydantic import BaseModel
 
 from langflow.base.slack import (
-    AuthTextInput,
+    OAuthTokenInput,
     Component,
     DataOutput,
     ToolOutput,
@@ -22,7 +22,7 @@ class SlackGetConversations(Component):
 
 
     inputs = [
-        AuthTextInput(),
+        OAuthTokenInput(),
     ]
 
 
@@ -36,8 +36,8 @@ class SlackGetConversations(Component):
         pass
 
 
-    async def build_data(self) -> Data:
-        data = await self._get_conversations()
+    def build_data(self) -> Data:
+        data = self._get_conversations()
         return Data(data=data)
 
 
@@ -54,8 +54,8 @@ class SlackGetConversations(Component):
         return self._get_conversations()
 
 
-    async def _get_conversations(self) -> Any:
-        client = await self._get_client()
+    def _get_conversations(self) -> Any:
+        client = self._get_client()
 
         result, response = client.conversation.get_list()
 

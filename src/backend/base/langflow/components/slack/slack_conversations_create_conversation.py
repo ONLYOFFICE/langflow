@@ -5,7 +5,7 @@ from pydantic import BaseModel, Field
 
 from langflow.base.slack import (
     INPUT_DESCRIPTION_IS_PRIVATE,
-    AuthTextInput,
+    OAuthTokenInput,
     Component,
     CreateConversationOptions,
     DataOutput,
@@ -28,7 +28,7 @@ class SlackCreateConversation(Component, IsPrivateMixin):
     name = "SlackCreateConversation"
 
     inputs = [
-        AuthTextInput(),
+        OAuthTokenInput(),
         MessageTextInput(
             name="conversation_name",
             display_name="Name",
@@ -63,9 +63,9 @@ class SlackCreateConversation(Component, IsPrivateMixin):
         )
 
 
-    async def build_data(self) -> Data:
+    def build_data(self) -> Data:
         schema = self._create_schema()
-        data = await self._create_conversation(schema)
+        data = self._create_conversation(schema)
         return Data(data=data)
 
 
@@ -83,8 +83,8 @@ class SlackCreateConversation(Component, IsPrivateMixin):
         return self._create_conversation(schema)
 
 
-    async def _create_conversation(self, schema: Schema) -> Any:
-        client = await self._get_client()
+    def _create_conversation(self, schema: Schema) -> Any:
+        client = self._get_client()
 
         options = CreateConversationOptions(name=schema.name, team_id=schema.team_id, is_private=schema.is_private)
 

@@ -7,7 +7,7 @@ from langflow.base.slack import (
     INPUT_DESCRIPTION_INCLUDE_ALL_METADATA,
     INPUT_DESCRIPTION_INCLUSIVE,
     INPUT_DESCRIPTION_LIMIT,
-    AuthTextInput,
+    OAuthTokenInput,
     Component,
     ConversationHistoryOptions,
     DataOutput,
@@ -36,7 +36,7 @@ class SlackGetConversationHistory(Component, IncludeAllMetadataMixin, InclusiveM
 
 
     inputs = [
-        AuthTextInput(),
+        OAuthTokenInput(),
         MessageTextInput(
             name="channel",
             display_name="Channel ID",
@@ -86,9 +86,9 @@ class SlackGetConversationHistory(Component, IncludeAllMetadataMixin, InclusiveM
         )
 
 
-    async def build_data(self) -> Data:
+    def build_data(self) -> Data:
         schema = self._create_schema()
-        data = await self._get_history(schema)
+        data = self._get_history(schema)
         return Data(data=data)
 
 
@@ -106,8 +106,8 @@ class SlackGetConversationHistory(Component, IncludeAllMetadataMixin, InclusiveM
         return self._get_history(schema)
 
 
-    async def _get_history(self, schema: Schema) -> Any:
-        client = await self._get_client()
+    def _get_history(self, schema: Schema) -> Any:
+        client = self._get_client()
 
         options = ConversationHistoryOptions(
             channel=schema.channel,
