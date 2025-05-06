@@ -260,31 +260,35 @@ def configure(
         # Configure loguru to use RichHandler with enhanced error handling
         try:
             # Use sys.stdout with exception handling to prevent blocking errors
-            logger.configure(
-                handlers=[
-                    {
-                        "sink": RichHandler(
-                            rich_tracebacks=True,
-                            markup=True,
-                            # Custom console to handle errors
-                            console=Console(file=sys.stdout, stderr=False)
-                        ),
-                        "format": log_format,
-                        "level": log_level.upper(),
-                        "backtrace": False,  # Don't include variable values in tracebacks
-                        "diagnose": False,  # Disable exception diagnose
-                        "catch": True,  # Catch exceptions raised during logging
-                    },
-                    # Fallback handler if rich console fails
-                    {
-                        "sink": sys.stderr,
-                        "format": "[{time}] {level}: {message}",
-                        "level": log_level.upper(),
-                        "backtrace": False,
-                        "catch": True,
-                    }
-                ]
-            )
+            # pretty print to rich stdout development-friendly but poor performance, It's better for debugger.
+            # suggest directly print to stdout in production
+            log_stdout_pretty = os.getenv("LANGFLOW_PRETTY_LOGS", "true").lower() == "true"
+            if log_stdout_pretty:
+                logger.configure(
+                    handlers=[
+                        {
+                            "sink": RichHandler(
+                                rich_tracebacks=True,
+                                markup=True,
+                                # Custom console to handle errors
+                                console=Console(file=sys.stdout, stderr=False)
+                            ),
+                            "format": log_format,
+                            "level": log_level.upper(),
+                            "backtrace": False,  # Don't include variable values in tracebacks
+                            "diagnose": False,  # Disable exception diagnose
+                            "catch": True,  # Catch exceptions raised during logging
+                        },
+                        # Fallback handler if rich console fails
+                        {
+                            "sink": sys.stderr,
+                            "format": "[{time}] {level}: {message}",
+                            "level": log_level.upper(),
+                            "backtrace": False,
+                            "catch": True,
+                        }
+                    ]
+                )
         except Exception as e:
             # If configuring Rich fails, fall back to a simple stderr logger
             print(

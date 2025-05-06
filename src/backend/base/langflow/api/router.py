@@ -10,8 +10,10 @@ from langflow.api.v1 import (
     flows_router,
     folders_router,
     login_router,
+    mcp_projects_router,
     mcp_router,
     monitor_router,
+    projects_router,
     starter_projects_router,
     store_router,
     users_router,
@@ -45,10 +47,12 @@ router_v1.include_router(variables_router)
 router_v1.include_router(files_router)
 router_v1.include_router(monitor_router)
 router_v1.include_router(folders_router)
+router_v1.include_router(projects_router)
 router_v1.include_router(starter_projects_router)
 router_v1.include_router(external_auth_router)  # Add the external auth router
 router_v1.include_router(voice_mode_router)
 router_v1.include_router(mcp_router)
+router_v1.include_router(mcp_projects_router)
 
 router_v2.include_router(files_router_v2)
 
