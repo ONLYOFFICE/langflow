@@ -2005,7 +2005,7 @@
                 "name": "flow_outputs_data",
                 "required_inputs": [],
                 "selected": "Data",
-                "tool_mode": true,
+                "tool_mode": false,
                 "types": [
                   "Data"
                 ],
@@ -2020,7 +2020,7 @@
                 "name": "flow_outputs_dataframe",
                 "required_inputs": [],
                 "selected": "DataFrame",
-                "tool_mode": true,
+                "tool_mode": false,
                 "types": [
                   "DataFrame"
                 ],
@@ -2989,7 +2989,7 @@
                 "name": "flow_outputs_data",
                 "required_inputs": [],
                 "selected": "Data",
-                "tool_mode": true,
+                "tool_mode": false,
                 "types": [
                   "Data"
                 ],
@@ -3004,7 +3004,7 @@
                 "name": "flow_outputs_dataframe",
                 "required_inputs": [],
                 "selected": "DataFrame",
-                "tool_mode": true,
+                "tool_mode": false,
                 "types": [
                   "DataFrame"
                 ],

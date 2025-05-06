@@ -25,9 +25,9 @@
         "id": "reactflow__edge-Prompt-0aGkQ{œdataTypeœ:œPromptœ,œidœ:œPrompt-0aGkQœ,œnameœ:œpromptœ,œoutput_typesœ:[œMessageœ]}-Agent-DBNrp{œfieldNameœ:œsystem_promptœ,œidœ:œAgent-DBNrpœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "selected": false,
         "source": "Prompt-0aGkQ",
-        "sourceHandle": "{œdataTypeœ: œPromptœ, œidœ: œPrompt-0aGkQœ, œnameœ: œpromptœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œPromptœ,œidœ:œPrompt-0aGkQœ,œnameœ:œpromptœ,œoutput_typesœ:[œMessageœ]}",
         "target": "Agent-DBNrp",
-        "targetHandle": "{œfieldNameœ: œsystem_promptœ, œidœ: œAgent-DBNrpœ, œinputTypesœ: [œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œsystem_promptœ,œidœ:œAgent-DBNrpœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "animated": false,
@@ -53,9 +53,9 @@
         "id": "reactflow__edge-needle-5GYmd{œdataTypeœ:œneedleœ,œidœ:œneedle-5GYmdœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}-Agent-DBNrp{œfieldNameœ:œtoolsœ,œidœ:œAgent-DBNrpœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}",
         "selected": false,
         "source": "needle-5GYmd",
-        "sourceHandle": "{œdataTypeœ: œneedleœ, œidœ: œneedle-5GYmdœ, œnameœ: œcomponent_as_toolœ, œoutput_typesœ: [œToolœ]}",
+        "sourceHandle": "{œdataTypeœ:œneedleœ,œidœ:œneedle-5GYmdœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}",
         "target": "Agent-DBNrp",
-        "targetHandle": "{œfieldNameœ: œtoolsœ, œidœ: œAgent-DBNrpœ, œinputTypesœ: [œToolœ], œtypeœ: œotherœ}"
+        "targetHandle": "{œfieldNameœ:œtoolsœ,œidœ:œAgent-DBNrpœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}"
       },
       {
         "animated": false,
@@ -81,9 +81,9 @@
         "id": "reactflow__edge-ChatInput-cKEM6{œdataTypeœ:œChatInputœ,œidœ:œChatInput-cKEM6œ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}-Agent-DBNrp{œfieldNameœ:œinput_valueœ,œidœ:œAgent-DBNrpœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "selected": false,
         "source": "ChatInput-cKEM6",
-        "sourceHandle": "{œdataTypeœ: œChatInputœ, œidœ: œChatInput-cKEM6œ, œnameœ: œmessageœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œChatInputœ,œidœ:œChatInput-cKEM6œ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}",
         "target": "Agent-DBNrp",
-        "targetHandle": "{œfieldNameœ: œinput_valueœ, œidœ: œAgent-DBNrpœ, œinputTypesœ: [œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œAgent-DBNrpœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "animated": false,
@@ -111,9 +111,9 @@
         "id": "reactflow__edge-Agent-DBNrp{œdataTypeœ:œAgentœ,œidœ:œAgent-DBNrpœ,œnameœ:œresponseœ,œoutput_typesœ:[œMessageœ]}-ChatOutput-LTYD8{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-LTYD8œ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œstrœ}",
         "selected": false,
         "source": "Agent-DBNrp",
-        "sourceHandle": "{œdataTypeœ: œAgentœ, œidœ: œAgent-DBNrpœ, œnameœ: œresponseœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œAgentœ,œidœ:œAgent-DBNrpœ,œnameœ:œresponseœ,œoutput_typesœ:[œMessageœ]}",
         "target": "ChatOutput-LTYD8",
-        "targetHandle": "{œfieldNameœ: œinput_valueœ, œidœ: œChatOutput-LTYD8œ, œinputTypesœ: [œDataœ, œDataFrameœ, œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-LTYD8œ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œstrœ}"
       }
     ],
     "nodes": [
