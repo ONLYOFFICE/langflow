@@ -20,7 +20,7 @@ from langflow.api.v1.flows import create_flows
 from langflow.api.v1.schemas import FlowListCreate
 from langflow.helpers.flow import generate_unique_flow_name
 from langflow.helpers.folders import generate_unique_folder_name
-from langflow.initial_setup.constants import STARTER_FOLDER_NAME
+from langflow.initial_setup.constants import STARTER_FOLDER_NAME, SYSTEM_FOLDER_ID
 from langflow.services.database.models.flow.model import Flow, FlowCreate, FlowRead
 from langflow.services.database.models.folder.constants import DEFAULT_FOLDER_NAME
 from langflow.services.database.models.folder.model import (
@@ -104,6 +104,8 @@ async def read_projects(
             await session.exec(
                 select(Folder).where(
                     or_(Folder.user_id == current_user.id, Folder.user_id == None)  # noqa: E711
+                ).where(
+                    Folder.id != SYSTEM_FOLDER_ID
                 )
             )
         ).all()
