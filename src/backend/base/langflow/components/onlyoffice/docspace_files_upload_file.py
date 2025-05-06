@@ -52,7 +52,8 @@ class OnlyofficeDocspaceUploadFile(Component):
     async def _upload_file(self) -> Any:
         client = await self._get_client()
 
-        filesize = len(self.content)
+        buf = self.content.encode("utf-8")
+        filesize = len(buf)
         create_on = datetime.now(timezone.utc).isoformat()
 
         session_options = CreateSessionOptions(
@@ -72,7 +73,7 @@ class OnlyofficeDocspaceUploadFile(Component):
             session_id = session_result["data"]["id"]
             start = index * MAX_CHUNK_SIZE
             end = (index + 1) * MAX_CHUNK_SIZE
-            chunk = self.content[start:end].encode("utf-8")
+            chunk = buf[start:end]
 
             upload_options = UploadChunkOptions(
                 filename=self.filename,
