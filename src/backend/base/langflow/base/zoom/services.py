@@ -42,3 +42,8 @@ class AuthService(Service):
             headers=headers,
             body=body.model_dump(exclude_none=True, by_alias=True),
         )
+
+
+class UsersService(Service):
+    def get_list(self):
+        return self._client.request("GET", "/v2/users")
