@@ -4,6 +4,7 @@ from .azure_openai import AzureChatOpenAIComponent
 from .baidu_qianfan_chat import QianfanChatEndpointComponent
 from .cohere import CohereComponent
 from .deepseek import DeepSeekModelComponent
+from .docspace import DocSpaceModelComponent
 from .google_generative_ai import GoogleGenerativeAIComponent
 from .groq import GroqModel
 from .huggingface import HuggingFaceEndpointsComponent
@@ -30,6 +31,7 @@ __all__ = [
     "ChatVertexAIComponent",
     "CohereComponent",
     "DeepSeekModelComponent",
+    "DocSpaceModelComponent",
     "GoogleGenerativeAIComponent",
     "GroqModel",
     "HuggingFaceEndpointsComponent",

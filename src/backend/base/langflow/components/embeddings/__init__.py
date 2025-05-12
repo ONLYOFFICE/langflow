@@ -3,6 +3,7 @@ from .astra_vectorize import AstraVectorizeComponent
 from .azure_openai import AzureOpenAIEmbeddingsComponent
 from .cloudflare import CloudflareWorkersAIEmbeddingsComponent
 from .cohere import CohereEmbeddingsComponent
+from .docspace import DocSpaceEmbeddingsComponent
 from .embedding_model import EmbeddingModelComponent
 from .google_generative_ai import GoogleGenerativeAIEmbeddingsComponent
 from .huggingface_inference_api import HuggingFaceInferenceAPIEmbeddingsComponent
@@ -13,8 +14,8 @@ from .ollama import OllamaEmbeddingsComponent
 from .openai import OpenAIEmbeddingsComponent
 from .similarity import EmbeddingSimilarityComponent
 from .text_embedder import TextEmbedderComponent
-from .vertexai import VertexAIEmbeddingsComponent
 from .togetherai import TogetherAIEmbeddingsComponent
+from .vertexai import VertexAIEmbeddingsComponent
 from .watsonx import WatsonxEmbeddingsComponent
 
 __all__ = [
@@ -23,6 +24,7 @@ __all__ = [
     "AzureOpenAIEmbeddingsComponent",
     "CloudflareWorkersAIEmbeddingsComponent",
     "CohereEmbeddingsComponent",
+    "DocSpaceEmbeddingsComponent",
     "EmbeddingModelComponent",
     "EmbeddingSimilarityComponent",
     "GoogleGenerativeAIEmbeddingsComponent",
@@ -33,7 +35,7 @@ __all__ = [
     "OllamaEmbeddingsComponent",
     "OpenAIEmbeddingsComponent",
     "TextEmbedderComponent",
-    "VertexAIEmbeddingsComponent",
     "TogetherAIEmbeddingsComponent",
+    "VertexAIEmbeddingsComponent",
     "WatsonxEmbeddingsComponent",
 ]
