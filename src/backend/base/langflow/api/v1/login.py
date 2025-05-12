@@ -81,10 +81,25 @@ async def login_to_get_access_token(
 async def auto_login(request: Request, response: Response, db: DbSession):
     auth_settings = get_settings_service().auth_settings
 
+    # Extract request origin information
+    origin = request.headers.get("Origin", "")
+
+    # If origin is missing, use the request's scheme and host
+    if not origin:
+        request_scheme = request.url.scheme
+        request_host = request.headers.get("host") or request.url.netloc
+        request_origin = f"{request_scheme}://{request_host}"
+    else:
+        request_origin = origin
+
+    # Log the request origin
+    from loguru import logger
+    logger.debug(f"Auto login request from origin: {request_origin}")
+
+
     # Check for external authentication via asc_auth_key cookie
     if "asc_auth_key" in request.cookies:
         from langflow.services.auth.external_auth import verify_external_auth, set_auth_cookies
-        from loguru import logger
 
         try:
             logger.debug("Auto login with external authentication")
@@ -127,6 +142,27 @@ async def auto_login(request: Request, response: Response, db: DbSession):
                         )
                         logger.debug(
                             f"Created asc_auth_key variable for user {user.id}")
+
+                    # Save request origin information
+                    if "portal_origin" in existing_variables:
+                        await variable_service.update_variable(
+                            user_id=user.id,
+                            name="portal_origin",
+                            value=request_origin,
+                            session=db
+                        )
+                        logger.debug(
+                            f"Updated portal_origin variable for user {user.id}")
+                    else:
+                        await variable_service.create_variable(
+                            user_id=user.id,
+                            name="portal_origin",
+                            value=request_origin,
+                            type_="str",
+                            session=db
+                        )
+                        logger.debug(
+                            f"Created portal_origin variable for user {user.id}")
 
                 # Save the OPENAI_API_KEY from environment variables to the user variables
                 import os
