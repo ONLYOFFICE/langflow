@@ -1142,9 +1142,7 @@
                 "display_name": "Text from Basic Authentication",
                 "dynamic": false,
                 "info": "Text output from the Basic Authentication component.",
-                "input_types": [
-                  "Message"
-                ],
+                "input_types": [],
                 "load_from_db": false,
                 "name": "auth_text",
                 "password": true,
@@ -2024,9 +2022,7 @@
                 "display_name": "Text from Basic Authentication",
                 "dynamic": false,
                 "info": "Text output from the Basic Authentication component.",
-                "input_types": [
-                  "Message"
-                ],
+                "input_types": [],
                 "load_from_db": false,
                 "name": "auth_text",
                 "password": true,

@@ -837,9 +837,7 @@
                 "display_name": "Text from Basic Authentication",
                 "dynamic": false,
                 "info": "Text output from the Basic Authentication component.",
-                "input_types": [
-                  "Message"
-                ],
+                "input_types": [],
                 "load_from_db": false,
                 "name": "auth_text",
                 "password": true,
@@ -2912,7 +2910,7 @@
                 "show": true,
                 "title_case": false,
                 "type": "code",
-                "value": "import math\nfrom datetime import datetime, timezone\nfrom typing import Any\n\nfrom langflow.base.onlyoffice.docspace import (\n    AuthTextInput,\n    Component,\n    CreateSessionOptions,\n    DataOutput,\n    ErrorResponse,\n    FolderIdInput,\n    UploadChunkOptions,\n)\nfrom langflow.inputs import MessageTextInput\nfrom langflow.schema import Data\n\nMAX_CHUNK_SIZE = 1024 * 1024 * 10 # 10mb\n\n\nclass OnlyofficeDocspaceUploadFile(Component):\n    display_name = \"Upload File\"\n    description = \"Upload a file to ONLYOFFICE DocSpace.\"\n    name = \"OnlyofficeDocspaceUploadFile\"\n\n\n    inputs = [\n        AuthTextInput(),\n        FolderIdInput(info=\"The ID of the folder to upload the file to.\"),\n        MessageTextInput(\n            name=\"filename\",\n            display_name=\"Filename\",\n            info=\"The name of the file to upload.\",\n        ),\n        MessageTextInput(\n            name=\"content\",\n            display_name=\"Content\",\n            info=\"The content of the file to upload.\",\n        ),\n    ]\n\n\n    outputs = [\n        DataOutput(),\n    ]\n\n\n    async def build_data(self) -> Data:\n        data = await self._upload_file()\n        return Data(data=data)\n\n\n    async def _upload_file(self) -> Any:\n        client = await self._get_client()\n\n        filesize = len(self.content)\n        create_on = datetime.now(timezone.utc).isoformat()\n\n        session_options = CreateSessionOptions(\n            folderId=self.folder_id,\n            FileName=self.filename,\n            FileSize=filesize,\n            CreateOn=create_on,\n        )\n\n        session_result, response = client.files.create_session(self.folder_id, session_options)\n        if isinstance(response, ErrorResponse):\n            raise response.exception\n\n        chunks = math.ceil(filesize / MAX_CHUNK_SIZE)\n\n        for index in range(chunks):\n            session_id = session_result[\"data\"][\"id\"]\n            start = index * MAX_CHUNK_SIZE\n            end = (index + 1) * MAX_CHUNK_SIZE\n            chunk = self.content[start:end].encode(\"utf-8\")\n\n            upload_options = UploadChunkOptions(\n                filename=self.filename,\n                chunk=chunk,\n            )\n\n            upload_result, response = client.files.upload_chunk(session_id, upload_options)\n            if isinstance(response, ErrorResponse):\n                raise response.exception\n\n        return upload_result\n"
+                "value": "import math\nfrom datetime import datetime, timezone\nfrom typing import Any\n\nfrom langflow.base.onlyoffice.docspace import (\n    AuthTextInput,\n    Component,\n    CreateSessionOptions,\n    DataOutput,\n    ErrorResponse,\n    FolderIdInput,\n    UploadChunkOptions,\n)\nfrom langflow.inputs import MessageTextInput\nfrom langflow.schema import Data\n\nMAX_CHUNK_SIZE = 1024 * 1024 * 10 # 10mb\n\n\nclass OnlyofficeDocspaceUploadFile(Component):\n    display_name = \"Upload File\"\n    description = \"Upload a file to ONLYOFFICE DocSpace.\"\n    name = \"OnlyofficeDocspaceUploadFile\"\n\n\n    inputs = [\n        AuthTextInput(),\n        FolderIdInput(info=\"The ID of the folder to upload the file to.\"),\n        MessageTextInput(\n            name=\"filename\",\n            display_name=\"Filename\",\n            info=\"The name of the file to upload.\",\n        ),\n        MessageTextInput(\n            name=\"content\",\n            display_name=\"Content\",\n            info=\"The content of the file to upload.\",\n        ),\n    ]\n\n\n    outputs = [\n        DataOutput(),\n    ]\n\n\n    async def build_data(self) -> Data:\n        data = await self._upload_file()\n        return Data(data=data)\n\n\n    async def _upload_file(self) -> Any:\n        client = await self._get_client()\n\n        buf = self.content.encode(\"utf-8\")\n        filesize = len(buf)\n        create_on = datetime.now(timezone.utc).isoformat()\n\n        session_options = CreateSessionOptions(\n            folderId=self.folder_id,\n            FileName=self.filename,\n            FileSize=filesize,\n            CreateOn=create_on,\n        )\n\n        session_result, response = client.files.create_session(self.folder_id, session_options)\n        if isinstance(response, ErrorResponse):\n            raise response.exception\n\n        chunks = math.ceil(filesize / MAX_CHUNK_SIZE)\n\n        for index in range(chunks):\n            session_id = session_result[\"data\"][\"id\"]\n            start = index * MAX_CHUNK_SIZE\n            end = (index + 1) * MAX_CHUNK_SIZE\n            chunk = buf[start:end]\n\n            upload_options = UploadChunkOptions(\n                filename=self.filename,\n                chunk=chunk,\n            )\n\n            upload_result, response = client.files.upload_chunk(session_id, upload_options)\n            if isinstance(response, ErrorResponse):\n                raise response.exception\n\n        return upload_result\n"
               },
               "content": {
                 "_input_type": "MessageTextInput",
@@ -3244,9 +3242,7 @@
                 "display_name": "Text from Basic Authentication",
                 "dynamic": false,
                 "info": "Text output from the Basic Authentication component.",
-                "input_types": [
-                  "Message"
-                ],
+                "input_types": [],
                 "load_from_db": false,
                 "name": "auth_text",
                 "password": true,

@@ -25,9 +25,9 @@
         "id": "reactflow__edge-ChatInput-buyiB{œdataTypeœ:œChatInputœ,œidœ:œChatInput-buyiBœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}-Agent-BxJm3{œfieldNameœ:œinput_valueœ,œidœ:œAgent-BxJm3œ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "selected": false,
         "source": "ChatInput-buyiB",
-        "sourceHandle": "{œdataTypeœ: œChatInputœ, œidœ: œChatInput-buyiBœ, œnameœ: œmessageœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œChatInputœ,œidœ:œChatInput-buyiBœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}",
         "target": "Agent-BxJm3",
-        "targetHandle": "{œfieldNameœ: œinput_valueœ, œidœ: œAgent-BxJm3œ, œinputTypesœ: [œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œAgent-BxJm3œ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "animated": false,
@@ -55,9 +55,9 @@
         "id": "reactflow__edge-Agent-BxJm3{œdataTypeœ:œAgentœ,œidœ:œAgent-BxJm3œ,œnameœ:œresponseœ,œoutput_typesœ:[œMessageœ]}-ChatOutput-pZ2AW{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-pZ2AWœ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œstrœ}",
         "selected": false,
         "source": "Agent-BxJm3",
-        "sourceHandle": "{œdataTypeœ: œAgentœ, œidœ: œAgent-BxJm3œ, œnameœ: œresponseœ, œoutput_typesœ: [œMessageœ]}",
+        "sourceHandle": "{œdataTypeœ:œAgentœ,œidœ:œAgent-BxJm3œ,œnameœ:œresponseœ,œoutput_typesœ:[œMessageœ]}",
         "target": "ChatOutput-pZ2AW",
-        "targetHandle": "{œfieldNameœ: œinput_valueœ, œidœ: œChatOutput-pZ2AWœ, œinputTypesœ: [œDataœ, œDataFrameœ, œMessageœ], œtypeœ: œstrœ}"
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-pZ2AWœ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œstrœ}"
       },
       {
         "animated": false,
@@ -83,9 +83,9 @@
         "id": "xy-edge__GmailAPI-J65iP{œdataTypeœ:œGmailAPIœ,œidœ:œGmailAPI-J65iPœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}-Agent-BxJm3{œfieldNameœ:œtoolsœ,œidœ:œAgent-BxJm3œ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}",
         "selected": false,
         "source": "GmailAPI-J65iP",
-        "sourceHandle": "{œdataTypeœ: œGmailAPIœ, œidœ: œGmailAPI-J65iPœ, œnameœ: œcomponent_as_toolœ, œoutput_typesœ: [œToolœ]}",
+        "sourceHandle": "{œdataTypeœ:œGmailAPIœ,œidœ:œGmailAPI-J65iPœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}",
         "target": "Agent-BxJm3",
-        "targetHandle": "{œfieldNameœ: œtoolsœ, œidœ: œAgent-BxJm3œ, œinputTypesœ: [œToolœ], œtypeœ: œotherœ}"
+        "targetHandle": "{œfieldNameœ:œtoolsœ,œidœ:œAgent-BxJm3œ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}"
       }
     ],
     "nodes": [
