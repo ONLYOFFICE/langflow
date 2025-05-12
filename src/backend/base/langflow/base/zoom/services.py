@@ -17,6 +17,24 @@ class AuthOptions(BaseModel):
     client_secret: str | None = Field(None, alias="client_secret")
 
 
+class CreateMeetingOptions(BaseModel):
+    topic: str | None = Field(None, alias="topic")
+    type: int | None = Field(None, alias="type")
+    schedule_for: str | None = Field(None, alias="schedule_for")
+    duration: int | None = Field(None, alias="duration")
+    start_time: str | None = Field(None, alias="start_time")
+    timezone: str | None = Field(None, alias="timezone")
+    settings: dict | None = Field(None, alias="settings")
+    recurrence: dict | None = Field(None, alias="recurrence")
+
+
+class RecurrenceOptions(BaseModel):
+    type: int | None = Field(None, alias="type")
+    end_times: int | None = Field(None, alias="end_times")
+    end_date_time: str | None = Field(None, alias="end_date_time")
+    weekly_days: str | None = Field(None, alias="weekly_days")
+
+
 class AuthService(Service):
     def auth(self, options: AuthOptions):
         if options.api_url:
@@ -41,6 +59,15 @@ class AuthService(Service):
             "/oauth/token",
             headers=headers,
             body=body.model_dump(exclude_none=True, by_alias=True),
+        )
+
+
+class MeetingService(Service):
+    def create(self, user_id: str, options: CreateMeetingOptions):
+        return self._client.request(
+            "POST",
+            f"/v2/users/{user_id}/meetings",
+            body=options.model_dump(exclude_none=True, by_alias=True),
         )
 
 
