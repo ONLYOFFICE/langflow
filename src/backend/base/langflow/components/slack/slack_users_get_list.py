@@ -3,7 +3,7 @@ from typing import Any
 from langchain.tools import StructuredTool
 from pydantic import BaseModel
 
-from langflow.base.slack import OAuthTokenInput, Component, DataOutput, ToolOutput
+from langflow.base.slack import Component, DataOutput, OAuthTokenInput, ToolOutput
 from langflow.field_typing import Tool
 from langflow.schema import Data
 
@@ -40,7 +40,7 @@ class SlackGetUsers(Component):
         return StructuredTool.from_function(
             name="slack_get_users",
             description=DESCRIPTION_COMPONENT,
-            coroutine=self._tool_func,
+            func=self._tool_func,
             args_schema=self.Schema,
         )
 

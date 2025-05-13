@@ -5,12 +5,12 @@ from pydantic import BaseModel, Field
 
 from langflow.base.slack import (
     INPUT_DESCRIPTION_FORCE,
-    OAuthTokenInput,
     Component,
     DataOutput,
     ForceInput,
     ForceMixin,
     InviteOptions,
+    OAuthTokenInput,
     ToolOutput,
 )
 from langflow.field_typing import Tool
@@ -74,7 +74,7 @@ class SlackInviteUsers(Component, ForceMixin):
         return StructuredTool.from_function(
             name="slack_invite_users",
             description=DESCRIPTION_COMPONENT,
-            coroutine=self._tool_func,
+            func=self._tool_func,
             args_schema=self.Schema,
         )
 

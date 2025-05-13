@@ -4,10 +4,10 @@ from langchain.tools import StructuredTool
 from pydantic import BaseModel, Field
 
 from langflow.base.slack import (
-    OAuthTokenInput,
     Component,
     DataOutput,
     JoinOptions,
+    OAuthTokenInput,
     ToolOutput,
 )
 from langflow.field_typing import Tool
@@ -59,7 +59,7 @@ class SlackJoin(Component):
         return StructuredTool.from_function(
             name="slack_join",
             description=DESCRIPTION_COMPONENT,
-            coroutine=self._tool_func,
+            func=self._tool_func,
             args_schema=self.Schema,
         )
 

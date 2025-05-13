@@ -5,12 +5,12 @@ from .inputs import (
     INPUT_DESCRIPTION_INCLUSIVE,
     INPUT_DESCRIPTION_IS_PRIVATE,
     INPUT_DESCRIPTION_LIMIT,
-    OAuthTokenInput,
     ForceInput,
     IncludeAllMetadataInput,
     InclusiveInput,
     IsPrivateInput,
     LimitInput,
+    OAuthTokenInput,
 )
 from .mixins import ForceMixin, IncludeAllMetadataMixin, InclusiveMixin, IsPrivateMixin, LimitMixin
 from .outputs import DataOutput, ToolOutput
@@ -35,7 +35,6 @@ __all__ = [
     "INPUT_DESCRIPTION_IS_PRIVATE",
     "INPUT_DESCRIPTION_LIMIT",
     "ArchiveConversationOptions",
-    "OAuthTokenInput",
     "Component",
     "ConversationHistoryOptions",
     "CreateConversationOptions",
@@ -55,6 +54,7 @@ __all__ = [
     "KickOptions",
     "LimitInput",
     "LimitMixin",
+    "OAuthTokenInput",
     "PinListOptions",
     "PinOptions",
     "PostMessageOptions",

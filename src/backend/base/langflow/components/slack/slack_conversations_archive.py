@@ -5,9 +5,9 @@ from pydantic import BaseModel, Field
 
 from langflow.base.slack import (
     ArchiveConversationOptions,
-    OAuthTokenInput,
     Component,
     DataOutput,
+    OAuthTokenInput,
     ToolOutput,
 )
 from langflow.field_typing import Tool
@@ -60,7 +60,7 @@ class SlackArchiveConversation(Component):
         return StructuredTool.from_function(
             name="slack_archive_conversation",
             description=DESCRIPTION_COMPONENT,
-            coroutine=self._tool_func,
+            func=self._tool_func,
             args_schema=self.Schema,
         )
 

@@ -4,10 +4,10 @@ from langchain.tools import StructuredTool
 from pydantic import BaseModel, Field
 
 from langflow.base.slack import (
-    OAuthTokenInput,
     Component,
     DataOutput,
     KickOptions,
+    OAuthTokenInput,
     ToolOutput,
 )
 from langflow.field_typing import Tool
@@ -68,7 +68,7 @@ class SlackKickUser(Component):
         return StructuredTool.from_function(
             name="slack_kick_user",
             description=DESCRIPTION_COMPONENT,
-            coroutine=self._tool_func,
+            func=self._tool_func,
             args_schema=self.Schema,
         )
 

@@ -4,9 +4,9 @@ from langchain.tools import StructuredTool
 from pydantic import BaseModel, Field
 
 from langflow.base.slack import (
-    OAuthTokenInput,
     Component,
     DataOutput,
+    OAuthTokenInput,
     PinOptions,
     ToolOutput,
 )
@@ -67,7 +67,7 @@ class SlackPinMessage(Component):
         return StructuredTool.from_function(
             name="slack_pin",
             description=DESCRIPTION_COMPONENT,
-            coroutine=self._tool_func,
+            func=self._tool_func,
             args_schema=self.Schema,
         )
 

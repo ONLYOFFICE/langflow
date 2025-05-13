@@ -7,7 +7,6 @@ from langflow.base.slack import (
     INPUT_DESCRIPTION_INCLUDE_ALL_METADATA,
     INPUT_DESCRIPTION_INCLUSIVE,
     INPUT_DESCRIPTION_LIMIT,
-    OAuthTokenInput,
     Component,
     ConversationHistoryOptions,
     DataOutput,
@@ -17,6 +16,7 @@ from langflow.base.slack import (
     InclusiveMixin,
     LimitInput,
     LimitMixin,
+    OAuthTokenInput,
     ToolOutput,
 )
 from langflow.field_typing import Tool
@@ -96,7 +96,7 @@ class SlackGetConversationHistory(Component, IncludeAllMetadataMixin, InclusiveM
         return StructuredTool.from_function(
             name="slack_get_conversation_history",
             description=DESCRIPTION_COMPONENT,
-            coroutine=self._tool_func,
+            func=self._tool_func,
             args_schema=self.Schema,
         )
 

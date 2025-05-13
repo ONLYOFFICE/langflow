@@ -3,7 +3,7 @@ from typing import Any
 from langchain.tools import StructuredTool
 from pydantic import BaseModel, Field
 
-from langflow.base.slack import OAuthTokenInput, Component, DataOutput, PostMessageOptions, ToolOutput
+from langflow.base.slack import Component, DataOutput, OAuthTokenInput, PostMessageOptions, ToolOutput
 from langflow.field_typing import Tool
 from langflow.inputs import MessageTextInput
 from langflow.schema import Data
@@ -62,7 +62,7 @@ class SlackPostMessage(Component):
         return StructuredTool.from_function(
             name="slack_post_message",
             description=DESCRIPTION_COMPONENT,
-            coroutine=self._tool_func,
+            func=self._tool_func,
             args_schema=self.Schema,
         )
 

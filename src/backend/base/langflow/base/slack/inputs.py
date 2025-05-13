@@ -1,4 +1,4 @@
-from langflow.inputs import MessageTextInput, SecretStrInput
+from langflow.inputs import MessageTextInput
 
 INPUT_DESCRIPTION_FORCE = "Continue inviting the valid ones while disregarding invalid IDs."
 INPUT_DESCRIPTION_INCLUDE_ALL_METADATA = "Return all metadata associated with this message."
@@ -6,7 +6,7 @@ INPUT_DESCRIPTION_INCLUSIVE = "Include messages with oldest or latest timestamps
 INPUT_DESCRIPTION_IS_PRIVATE = "Create a private channel instead of a public one."
 INPUT_DESCRIPTION_LIMIT = "The maximum number of items to return."
 
-INPUT_NAME_OAUTH_TOKEN = "oauth_token"
+INPUT_NAME_OAUTH_TOKEN = "oauth_token"  # noqa: S105
 INPUT_NAME_FORCE = "force"
 INPUT_NAME_INCLUDE_ALL_METADATA = "include_all_metadata"
 INPUT_NAME_INCLUSIVE = "inclusive"
@@ -14,7 +14,7 @@ INPUT_NAME_IS_PRIVATE = "is_private"
 INPUT_NAME_LIMIT = "limit"
 
 
-class OAuthTokenInput(SecretStrInput):
+class OAuthTokenInput(MessageTextInput):
     name: str = INPUT_NAME_OAUTH_TOKEN
     display_name: str = "Bot User OAuth Token"
     info: str = "OAuth token for the Slack app."

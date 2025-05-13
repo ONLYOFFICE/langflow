@@ -4,9 +4,9 @@ from langchain.tools import StructuredTool
 from pydantic import BaseModel
 
 from langflow.base.slack import (
-    OAuthTokenInput,
     Component,
     DataOutput,
+    OAuthTokenInput,
     ToolOutput,
 )
 from langflow.field_typing import Tool
@@ -45,7 +45,7 @@ class SlackGetConversations(Component):
         return StructuredTool.from_function(
             name="slack_get_conversations",
             description=DESCRIPTION_COMPONENT,
-            coroutine=self._tool_func,
+            func=self._tool_func,
             args_schema=self.Schema,
         )
 

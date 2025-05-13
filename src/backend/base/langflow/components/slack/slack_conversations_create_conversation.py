@@ -5,12 +5,12 @@ from pydantic import BaseModel, Field
 
 from langflow.base.slack import (
     INPUT_DESCRIPTION_IS_PRIVATE,
-    OAuthTokenInput,
     Component,
     CreateConversationOptions,
     DataOutput,
     IsPrivateInput,
     IsPrivateMixin,
+    OAuthTokenInput,
     ToolOutput,
 )
 from langflow.field_typing import Tool
@@ -73,7 +73,7 @@ class SlackCreateConversation(Component, IsPrivateMixin):
         return StructuredTool.from_function(
             name="slack_create_conversation",
             description=DESCRIPTION_COMPONENT,
-            coroutine=self._tool_func,
+            func=self._tool_func,
             args_schema=self.Schema,
         )
 

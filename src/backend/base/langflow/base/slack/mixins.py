@@ -3,12 +3,12 @@ from abc import ABC, abstractmethod
 from langflow.inputs.inputs import InputTypes
 
 from .inputs import (
-    INPUT_NAME_OAUTH_TOKEN,
     INPUT_NAME_FORCE,
     INPUT_NAME_INCLUDE_ALL_METADATA,
     INPUT_NAME_INCLUSIVE,
     INPUT_NAME_IS_PRIVATE,
     INPUT_NAME_LIMIT,
+    INPUT_NAME_OAUTH_TOKEN,
 )
 
 BOOL_TRUE_VALUES = {"true", "1", "on", "yes", "y"}
