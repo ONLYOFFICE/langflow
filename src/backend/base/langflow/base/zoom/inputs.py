@@ -1,6 +1,7 @@
 from langflow.inputs import MessageTextInput
 
 DESCRIPTION_DURATION = "The meeting's scheduled duration, in minutes. This field is only used for scheduled meetings (2)."  # noqa: E501
+DESCRIPTION_MEETING_ID = "The meeting ID."
 DESCRIPTION_RECURRENCE_END_TIMES = "Select how many times the meeting should recur before it is canceled. If 'end_times' is set to 0, it means there is no end time. The maximum number of recurring is 60. Cannot be used with 'end_date_time'."  # noqa: E501
 DESCRIPTION_RECURRENCE_TYPE = "REQUIRED with meeting type 8. Recurrence meeting types.\n1 - Daily.\n2 - Weekly.\n3 - Monthly."  # noqa: E501
 DESCRIPTION_SETTINGS = "Information about the meeting's settings in JSON string format."
@@ -8,6 +9,7 @@ DESCRIPTION_TYPE = "The type of meeting.\n1 - An instant meeting.\n2 - A schedul
 
 INPUT_NAME_AUTH_TEXT = "auth_text"
 INPUT_NAME_DURATION = "duration"
+INPUT_NAME_MEETING_ID = "meeting_id"
 INPUT_NAME_RECURRENCE_END_TIMES = "recurrence_end_times"
 INPUT_NAME_RECURRENCE_TYPE = "recurrence_type"
 INPUT_NAME_SETTINGS = "settings"
@@ -26,6 +28,12 @@ class DurationInput(MessageTextInput):
     display_name: str = "Duration"
     info: str = DESCRIPTION_DURATION
     advanced: bool = True
+
+
+class MeetingIdInput(MessageTextInput):
+    name: str = INPUT_NAME_MEETING_ID
+    display_name: str = "Meeting ID"
+    info: str = DESCRIPTION_MEETING_ID
 
 
 class RecurrenceEndTimesInput(MessageTextInput):

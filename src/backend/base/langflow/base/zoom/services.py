@@ -28,6 +28,12 @@ class CreateMeetingOptions(BaseModel):
     recurrence: dict | None = Field(None, alias="recurrence")
 
 
+class GetRecordingsOptions(BaseModel):
+    meeting_id: int | None = Field(None, alias="meeting_id")
+    from_: str | None = Field(None, alias="from")
+    to: str | None = Field(None, alias="to")
+
+
 class RecurrenceOptions(BaseModel):
     type: int | None = Field(None, alias="type")
     end_times: int | None = Field(None, alias="end_times")
@@ -67,6 +73,13 @@ class MeetingService(Service):
         return self._client.request(
             "POST",
             f"/v2/users/{user_id}/meetings",
+            body=options.model_dump(exclude_none=True, by_alias=True),
+        )
+
+    def get_recordings(self, user_id: str, options: GetRecordingsOptions):
+        return self._client.request(
+            "GET",
+            f"/v2/users/{user_id}/recordings",
             body=options.model_dump(exclude_none=True, by_alias=True),
         )
 

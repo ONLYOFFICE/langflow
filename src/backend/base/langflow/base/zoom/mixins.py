@@ -6,6 +6,7 @@ from langflow.inputs.inputs import InputTypes
 from .inputs import (
     INPUT_NAME_AUTH_TEXT,
     INPUT_NAME_DURATION,
+    INPUT_NAME_MEETING_ID,
     INPUT_NAME_RECURRENCE_END_TIMES,
     INPUT_NAME_RECURRENCE_TYPE,
     INPUT_NAME_SETTINGS,
@@ -53,6 +54,17 @@ class DurationMixin(ABC):
     def duration(self) -> int | None:
         duration_input = self.get_input(INPUT_NAME_DURATION)
         return to_int(duration_input.value)
+
+
+class MeetingIdMixin(ABC):
+    @abstractmethod
+    def get_input(self, name: str) -> InputTypes:
+        ...
+
+    @property
+    def meeting_id(self) -> int | None:
+        meeting_id_input = self.get_input(INPUT_NAME_MEETING_ID)
+        return to_int(meeting_id_input.value)
 
 
 class RecurrenceEndTimesMixin(ABC):
