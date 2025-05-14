@@ -6,7 +6,7 @@ from langflow.base.onlyoffice.docspace.mixins import AuthTextMixin
 from langflow.custom import Component as BaseComponent
 
 _ROUTER_VARIABLE_NAME = "API_ROUTER_HOST"
-_ORIGIN_VARIABLE_NAME = "origin"
+_ORIGIN_VARIABLE_NAME = "portal_origin"
 _AUTH_KEY_VARIABLE_NAME = "asc_auth_key"
 
 
