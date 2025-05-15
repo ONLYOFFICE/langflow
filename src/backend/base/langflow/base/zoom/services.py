@@ -99,6 +99,13 @@ class MeetingService(Service):
         )
 
 
+    def delete(self, meeting_id: str):
+        return self._client.request(
+            "DELETE",
+            f"/v2/meetings/{meeting_id}",
+        )
+
+
     def get_recordings(self, user_id: str, options: GetRecordingsOptions):
         return self._client.request(
             "GET",
