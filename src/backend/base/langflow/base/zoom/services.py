@@ -76,6 +76,14 @@ class MeetingService(Service):
             body=options.model_dump(exclude_none=True, by_alias=True),
         )
 
+
+    def delete_registrant(self, meeting_id: str, registrant_id: str):
+        return self._client.request(
+            "DELETE",
+            f"/v2/meetings/{meeting_id}/registrants/{registrant_id}",
+        )
+
+
     def get_recordings(self, user_id: str, options: GetRecordingsOptions):
         return self._client.request(
             "GET",
