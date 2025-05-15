@@ -479,9 +479,7 @@
                 "display_name": "Text from Basic Authentication",
                 "dynamic": false,
                 "info": "Text output from the Basic Authentication component.",
-                "input_types": [
-                  "Message"
-                ],
+                "input_types": [],
                 "load_from_db": false,
                 "name": "auth_text",
                 "password": true,
@@ -535,7 +533,7 @@
               },
               "id_separator": {
                 "_input_type": "IdSeparatorInput",
-                "advanced": false,
+                "advanced": true,
                 "display_name": "ID Separator",
                 "dynamic": false,
                 "info": "The separator used to split the IDs in the input string.",
@@ -1498,9 +1496,7 @@
                 "display_name": "Text from Basic Authentication",
                 "dynamic": false,
                 "info": "Text output from the Basic Authentication component.",
-                "input_types": [
-                  "Message"
-                ],
+                "input_types": [],
                 "load_from_db": false,
                 "name": "auth_text",
                 "password": true,
