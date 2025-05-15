@@ -10,6 +10,13 @@ class AuthBody(BaseModel):
     grant_type: str | None = Field(None, alias="grant_type")
 
 
+class AddRegistrantOptions(BaseModel):
+    first_name: str | None = Field(None, alias="first_name")
+    last_name: str | None = Field(None, alias="last_name")
+    email: str | None = Field(None, alias="email")
+    auto_approve: bool | None = Field(None, alias="auto_approve")
+
+
 class AuthOptions(BaseModel):
     api_url: str | None = Field(None, alias="api_url")
     account_id: str | None = Field(None, alias="account_id")
@@ -69,6 +76,14 @@ class AuthService(Service):
 
 
 class MeetingService(Service):
+    def add_registrant(self, meeting_id: str, options: AddRegistrantOptions):
+        return self._client.request(
+            "POST",
+            f"/v2/meetings/{meeting_id}/registrants",
+            body=options.model_dump(exclude_none=True, by_alias=True),
+        )
+
+
     def create(self, user_id: str, options: CreateMeetingOptions):
         return self._client.request(
             "POST",

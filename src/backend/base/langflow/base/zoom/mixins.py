@@ -5,6 +5,7 @@ from langflow.inputs.inputs import InputTypes
 
 from .inputs import (
     INPUT_NAME_AUTH_TEXT,
+    INPUT_NAME_AUTO_APPROVE,
     INPUT_NAME_DURATION,
     INPUT_NAME_MEETING_ID,
     INPUT_NAME_RECURRENCE_END_TIMES,
@@ -12,6 +13,17 @@ from .inputs import (
     INPUT_NAME_SETTINGS,
     INPUT_NAME_TYPE,
 )
+
+BOOL_TRUE_VALUES = {"true", "1", "on", "yes", "y"}
+BOOL_FALSE_VALUES = {"false", "0", "off", "no", "n"}
+
+
+def to_bool(value: str) -> bool | None:
+    if value in BOOL_TRUE_VALUES:
+        return True
+    if value in BOOL_FALSE_VALUES:
+        return False
+    return None
 
 
 def to_dict(value: str) -> dict | None:
@@ -42,6 +54,17 @@ class AuthTextMixin(ABC):
             auth_text = json.loads(auth_text_input.value)
 
         return auth_text
+
+
+class AutoApproveMixin(ABC):
+    @abstractmethod
+    def get_input(self, name: str) -> InputTypes:
+        ...
+
+    @property
+    def auto_approve(self) -> bool | None:
+        auto_approve_input = self.get_input(INPUT_NAME_AUTO_APPROVE)
+        return to_bool(auto_approve_input.value)
 
 
 class DurationMixin(ABC):

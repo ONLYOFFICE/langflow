@@ -1,6 +1,7 @@
 from .client import Client
 from .component import Component
 from .inputs import (
+    DESCRIPTION_AUTO_APPROVE,
     DESCRIPTION_DURATION,
     DESCRIPTION_MEETING_ID,
     DESCRIPTION_RECURRENCE_END_TIMES,
@@ -8,6 +9,7 @@ from .inputs import (
     DESCRIPTION_SETTINGS,
     DESCRIPTION_TYPE,
     AuthTextInput,
+    AutoApproveInput,
     DurationInput,
     MeetingIdInput,
     RecurrenceEndTimesInput,
@@ -16,6 +18,7 @@ from .inputs import (
     TypeInput,
 )
 from .mixins import (
+    AutoApproveMixin,
     DurationMixin,
     MeetingIdMixin,
     RecurrenceEndTimesMixin,
@@ -24,17 +27,21 @@ from .mixins import (
     TypeMixin,
 )
 from .outputs import DataOutput, ToolOutput
-from .services import AuthOptions, CreateMeetingOptions, GetRecordingsOptions, RecurrenceOptions
+from .services import AddRegistrantOptions, AuthOptions, CreateMeetingOptions, GetRecordingsOptions, RecurrenceOptions
 
 __all__ = [
+    "DESCRIPTION_AUTO_APPROVE",
     "DESCRIPTION_DURATION",
     "DESCRIPTION_MEETING_ID",
     "DESCRIPTION_RECURRENCE_END_TIMES",
     "DESCRIPTION_RECURRENCE_TYPE",
     "DESCRIPTION_SETTINGS",
     "DESCRIPTION_TYPE",
+    "AddRegistrantOptions",
     "AuthOptions",
     "AuthTextInput",
+    "AutoApproveInput",
+    "AutoApproveMixin",
     "Client",
     "Component",
     "CreateMeetingOptions",
