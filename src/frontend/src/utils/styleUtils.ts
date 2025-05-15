@@ -6,6 +6,7 @@ import dynamicIconImports from "lucide-react/dynamicIconImports";
 import { lazy } from "react";
 import { FaApple, FaDiscord, FaGithub } from "react-icons/fa";
 import { OnlyofficeIcon } from "../icons/Onlyoffice";
+import { SlackIcon } from "../icons/Slack";
 
 const iconCache = new Map<string, any>();
 
@@ -274,6 +275,7 @@ export const SIDEBAR_BUNDLES = [
     name: "homeassistant",
     icon: "HomeAssistant",
   },
+  { display_name: "Slack", name: "slack", icon: "slack" }
 ];
 
 export const categoryIcons: Record<string, string> = {
@@ -451,6 +453,7 @@ export const eagerLoadedIconsMap = {
   FaGithub: FaGithub,
   TwitterLogoIcon: TwitterLogoIcon,
   onlyoffice: OnlyofficeIcon,
+  slack: SlackIcon,
 };
 
 export const getCachedIcon = (name: string) => {
