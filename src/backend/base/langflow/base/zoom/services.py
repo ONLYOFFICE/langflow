@@ -35,6 +35,11 @@ class CreateMeetingOptions(BaseModel):
     recurrence: dict | None = Field(None, alias="recurrence")
 
 
+class CreateUserOptions(BaseModel):
+    action: str | None = Field(None, alias="action")
+    user_info: dict | None = Field(None, alias="user_info")
+
+
 class GetRecordingsOptions(BaseModel):
     meeting_id: int | None = Field(None, alias="meeting_id")
     from_: str | None = Field(None, alias="from")
@@ -46,6 +51,15 @@ class RecurrenceOptions(BaseModel):
     end_times: int | None = Field(None, alias="end_times")
     end_date_time: str | None = Field(None, alias="end_date_time")
     weekly_days: str | None = Field(None, alias="weekly_days")
+
+
+class UserInfo(BaseModel):
+    type: int | None = Field(None, alias="type")
+    email: str | None = Field(None, alias="email")
+    first_name: str | None = Field(None, alias="first_name")
+    last_name: str | None = Field(None, alias="last_name")
+    display_name: str | None = Field(None, alias="display_name")
+    password: str | None = Field(None, alias="password")
 
 
 class AuthService(Service):
@@ -115,5 +129,13 @@ class MeetingService(Service):
 
 
 class UsersService(Service):
+    def create(self, options: CreateUserOptions):
+        return self._client.request(
+            "POST",
+            "/v2/users",
+            body=options.model_dump(exclude_none=True, by_alias=True),
+        )
+
+
     def get_list(self):
         return self._client.request("GET", "/v2/users")

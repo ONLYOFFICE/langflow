@@ -27,7 +27,15 @@ from .mixins import (
     TypeMixin,
 )
 from .outputs import DataOutput, ToolOutput
-from .services import AddRegistrantOptions, AuthOptions, CreateMeetingOptions, GetRecordingsOptions, RecurrenceOptions
+from .services import (
+    AddRegistrantOptions,
+    AuthOptions,
+    CreateMeetingOptions,
+    CreateUserOptions,
+    GetRecordingsOptions,
+    RecurrenceOptions,
+    UserInfo,
+)
 
 __all__ = [
     "DESCRIPTION_AUTO_APPROVE",
@@ -45,6 +53,7 @@ __all__ = [
     "Client",
     "Component",
     "CreateMeetingOptions",
+    "CreateUserOptions",
     "DataOutput",
     "DurationInput",
     "DurationMixin",
@@ -61,4 +70,5 @@ __all__ = [
     "ToolOutput",
     "TypeInput",
     "TypeMixin",
+    "UserInfo",
 ]
