@@ -1,17 +1,19 @@
-from typing import Annotated
+from typing import Annotated, List, Optional
 from uuid import UUID
+from datetime import datetime, timezone
 
-from fastapi import APIRouter, Depends, HTTPException, Query
+from fastapi import APIRouter, Depends, HTTPException, Query, Body
 from fastapi_pagination import Page, Params
 from fastapi_pagination.ext.sqlmodel import paginate
 from sqlalchemy import delete
 from sqlmodel import col, select
+from pydantic import BaseModel
 from loguru import logger
 
 
 from langflow.api.utils import DbSession, custom_params
 from langflow.services.database.models import User
-from langflow.schema.message import MessageResponse
+from langflow.schema.message import MessageResponse, Message
 from langflow.services.auth.utils import get_current_active_user
 from langflow.services.database.models.message.model import MessageRead, MessageTable, MessageUpdate
 from langflow.services.database.models.transactions.crud import transform_transaction_table
@@ -21,6 +23,7 @@ from langflow.services.database.models.vertex_builds.crud import (
     get_vertex_builds_by_flow_id,
 )
 from langflow.services.database.models.vertex_builds.model import VertexBuildMapModel
+from langflow.memory import aadd_messages
 
 router = APIRouter(prefix="/monitor", tags=["Monitor"])
 
@@ -72,16 +75,18 @@ async def get_messages(
                 logger.debug(f"Folder prefix: {folder_prefix}")
                 # Output the user ID for debugging
                 logger.debug(f"Current user ID for prefix: {current_user.id}")
-                
+
                 # First, check if any matching sessions exist (for debugging)
                 check_stmt = select(MessageTable.session_id).where(
                     MessageTable.session_id.startswith(folder_prefix))
                 sample_sessions = await session.exec(check_stmt)
                 sample_sessions_list = sample_sessions.all()
-                logger.debug(f"Found {len(sample_sessions_list)} sessions matching prefix {folder_prefix}")
+                logger.debug(
+                    f"Found {len(sample_sessions_list)} sessions matching prefix {folder_prefix}")
                 if sample_sessions_list:
-                    logger.debug(f"Sample matching session: {sample_sessions_list[0]}")
-                
+                    logger.debug(
+                        f"Sample matching session: {sample_sessions_list[0]}")
+
                 # Filter for session_ids starting with this prefix
                 stmt = stmt.where(
                     MessageTable.session_id.startswith(folder_prefix))
@@ -197,6 +202,66 @@ async def delete_messages_session(
         raise HTTPException(status_code=500, detail=str(e)) from e
 
     return {"message": "Messages deleted successfully"}
+
+
+# Define a simple request model with only the essential fields
+class SimpleMessageRequest(BaseModel):
+    text: str
+    sender: str
+    sender_name: str
+    session_id: str
+    flow_id: Optional[UUID] = None
+
+
+@router.post("/messages", dependencies=[Depends(get_current_active_user)])
+async def add_messages(
+    message_data: Annotated[SimpleMessageRequest, Body(...)],
+) -> list[MessageResponse]:
+    """Add a message to the database with only essential fields.
+
+    This simplified endpoint accepts only the basic required fields
+    (text, sender, sender_name, session_id, flow_id) and creates a proper
+    Message object to store in the database.
+
+    Returns the stored message with its ID and timestamp.
+    """
+    try:
+        # Create a new Message object with the provided data
+        message = Message(
+            text=message_data.text,
+            sender=message_data.sender,
+            sender_name=message_data.sender_name,
+            session_id=message_data.session_id,
+        )
+
+        # If flow_id was provided in the request, use it
+        if message_data.flow_id:
+            message.flow_id = message_data.flow_id
+
+        # Add the message to the database
+        stored_messages = await aadd_messages(message, flow_id=message_data.flow_id)
+
+        # Convert the stored messages to proper response objects
+        # This will ensure the timestamp is properly formatted for the response
+        response_messages = []
+        for msg in stored_messages:
+            # Convert the message to dict and manually parse the timestamp
+            msg_dict = msg.model_dump()
+            if "timestamp" in msg_dict and isinstance(msg_dict["timestamp"], str):
+                # Remove the UTC timezone name which causes validation errors
+                if "UTC" in msg_dict["timestamp"]:
+                    msg_dict["timestamp"] = datetime.fromisoformat(
+                        msg_dict["timestamp"].replace(" UTC", "").strip()
+                    )
+            # Create a MessageResponse from the cleaned dict
+            response_messages.append(MessageResponse.model_validate(msg_dict))
+
+        return response_messages
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e)) from e
+    except Exception as e:
+        logger.exception(f"Error adding message: {e}")
+        raise HTTPException(status_code=500, detail=str(e)) from e
 
 
 @router.get("/transactions")
