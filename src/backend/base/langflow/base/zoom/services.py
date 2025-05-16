@@ -137,5 +137,23 @@ class UsersService(Service):
         )
 
 
+    def delete(
+        self,
+        user_id: str,
+        action: str | None = None,
+        transfer_email: str | None = None,
+        encrypted_email: str | None = None
+    ):
+        query_params = "?"
+        if action and action != "":
+            query_params += f"action={action}&"
+        if transfer_email and transfer_email != "":
+            query_params += f"transfer_email={transfer_email}&"
+        if encrypted_email and encrypted_email != "":
+            query_params += f"encrypted_email={encrypted_email}"
+
+        return self._client.request("DELETE",f"/v2/users/{user_id}{query_params}")
+
+
     def get_list(self):
         return self._client.request("GET", "/v2/users")
