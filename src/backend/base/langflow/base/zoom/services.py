@@ -120,6 +120,27 @@ class MeetingService(Service):
         )
 
 
+    def get_list(
+        self,
+        user_id: str,
+        type_: str | None = None,
+        from_: str | None = None,
+        to: str | None = None,
+        timezone: str | None = None,
+    ):
+        query_params = "?"
+        if type_ and type_ != "":
+            query_params += f"type={type_}&"
+        if from_ and from_ != "":
+            query_params += f"from={from_}&"
+        if to and to != "":
+            query_params += f"to={to}&"
+        if timezone and timezone != "":
+            query_params += f"timezone={timezone}"
+
+        return self._client.request("GET", f"/v2/users/{user_id}/meetings{query_params}")
+
+
     def get_recordings(self, user_id: str, options: GetRecordingsOptions):
         return self._client.request(
             "GET",
