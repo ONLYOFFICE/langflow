@@ -149,6 +149,10 @@ class MeetingService(Service):
         )
 
 
+    def get(self, meeting_id: str):
+        return self._client.request("GET", f"/v2/meetings/{meeting_id}")
+
+
 class UsersService(Service):
     def create(self, options: CreateUserOptions):
         return self._client.request(
