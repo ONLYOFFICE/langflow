@@ -149,6 +149,13 @@ class MeetingService(Service):
         )
 
 
+    def get_registrants_list(self, meeting_id: str, status: str):
+        return self._client.request(
+            "GET",
+            f"/v2/meetings/{meeting_id}/registrants{f"?status={status}" if status else ""}",
+        )
+
+
     def get(self, meeting_id: str):
         return self._client.request("GET", f"/v2/meetings/{meeting_id}")
 
