@@ -157,3 +157,13 @@ class UsersService(Service):
 
     def get_list(self):
         return self._client.request("GET", "/v2/users")
+
+
+    def get(self, user_id: str, login_type: str | None = None, encrypted_email: str | None = None):
+        query_params = "?"
+        if login_type and login_type != "":
+            query_params += f"login_type={login_type}&"
+        if encrypted_email and encrypted_email != "":
+            query_params += f"encrypted_email={encrypted_email}"
+
+        return self._client.request("GET", f"/v2/users/{user_id}{query_params}")
