@@ -7,6 +7,7 @@ import { lazy } from "react";
 import { FaApple, FaDiscord, FaGithub } from "react-icons/fa";
 import { OnlyofficeIcon } from "../icons/Onlyoffice";
 import { SlackIcon } from "../icons/Slack";
+import { PipedriveIcon } from "../icons/Pipedrive";
 
 const iconCache = new Map<string, any>();
 
@@ -275,7 +276,8 @@ export const SIDEBAR_BUNDLES = [
     name: "homeassistant",
     icon: "HomeAssistant",
   },
-  { display_name: "Slack", name: "slack", icon: "slack" }
+  { display_name: "Slack", name: "slack", icon: "slack" },
+  { display_name: "Pipedrive", name: "pipedrive", icon: "pipedrive" },
 ];
 
 export const categoryIcons: Record<string, string> = {
@@ -454,6 +456,7 @@ export const eagerLoadedIconsMap = {
   TwitterLogoIcon: TwitterLogoIcon,
   onlyoffice: OnlyofficeIcon,
   slack: SlackIcon,
+  pipedrive: PipedriveIcon,
 };
 
 export const getCachedIcon = (name: string) => {
