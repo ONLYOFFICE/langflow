@@ -104,6 +104,34 @@ class DatabaseVariableService(VariableService, Service):
     async def list_variables(self, user_id: UUID | str, session: AsyncSession) -> list[str | None]:
         variables = await self.get_all(user_id=user_id, session=session)
         return [variable.name for variable in variables if variable]
+        
+    async def get_variable_by_name(
+        self,
+        user_id: UUID | str,
+        name: str,
+        session: AsyncSession,
+    ) -> VariableRead | None:
+        stmt = select(Variable).where(Variable.user_id == user_id, Variable.name == name)
+        variable = (await session.exec(stmt)).first()
+        
+        if not variable:
+            return None
+            
+        # For variables of type 'Generic', attempt to decrypt the value
+        # For other types, return with value set to None (consistent with get_all)
+        value = None
+        if variable.type == GENERIC_TYPE:
+            try:
+                value = auth_utils.decrypt_api_key(variable.value, settings_service=self.settings_service)
+            except Exception as e:  # noqa: BLE001
+                logger.debug(
+                    f"Decryption of {variable.type} failed for variable '{variable.name}': {e}. Assuming plaintext."
+                )
+                value = variable.value
+                
+        variable_read = VariableRead.model_validate(variable, from_attributes=True)
+        variable_read.value = value
+        return variable_read
 
     async def update_variable(
         self,
