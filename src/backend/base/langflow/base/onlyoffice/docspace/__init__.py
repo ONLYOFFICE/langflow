@@ -52,7 +52,6 @@ from .inputs import (
     filters_inputs,
 )
 from .mixins import (
-    AICredentialMixin,
     EnableExternalExtMixin,
     FileIdsMixin,
     FiltersMixin,
@@ -62,13 +61,12 @@ from .mixins import (
     TemplateIdMixin,
 )
 from .outputs import DataOutput, ToolOutput
-from .schemas import FiltersSchema, GatewayCredential
+from .schemas import FiltersSchema
 from .syncer import Syncer
 
 __all__ = [
     "INPUT_FORMAT_FILE_IDS",
     "INPUT_FORMAT_FOLDER_IDS",
-    "AICredentialMixin",
     "ArchiveRoomOptions",
     "AuthOptions",
     "AuthResponse",
@@ -100,7 +98,6 @@ __all__ = [
     "FolderIdsMixin",
     "FormIdInput",
     "FormIdMixin",
-    "GatewayCredential",
     "IdSeparatorInput",
     "IdSeparatorMixin",
     "Invitation",

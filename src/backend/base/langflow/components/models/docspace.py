@@ -1,22 +1,34 @@
+import os
+
 from langchain_openai import ChatOpenAI
 from pydantic import SecretStr
 
 from langflow.base.models.model import LCModelComponent
-from langflow.base.onlyoffice.docspace import AICredentialMixin
 from langflow.field_typing import LanguageModel
 from langflow.field_typing.range_spec import RangeSpec
 from langflow.inputs import BoolInput, DictInput, IntInput, MessageTextInput, SliderInput
-from langflow.logging import logger
-from langflow.utils.async_helpers import run_until_complete
+from langflow.inputs.inputs import SecretStrInput
 
 
-class DocSpaceModelComponent(LCModelComponent, AICredentialMixin):
+class DocSpaceModelComponent(LCModelComponent):
     display_name = "DocSpaceAI"
     description = "Generates text using DocSpace LLMs."
     icon = "onlyoffice"
     name = "DocSpaceAIModel"
 
     inputs = [
+        MessageTextInput(
+            name="portal_url",
+            display_name="Portal URL",
+            info="DocSpace portal URL.",
+            required=True,
+        ),
+        SecretStrInput(
+            name="api_key",
+            display_name="API Key",
+            info="The API key to use for the DocSpace AI model.",
+            required=True,
+        ),
         *LCModelComponent._base_inputs,
         IntInput(
             name="max_tokens",
@@ -75,25 +87,27 @@ class DocSpaceModelComponent(LCModelComponent, AICredentialMixin):
     ]
 
     def build_model(self) -> LanguageModel:  # type: ignore[type-var]
-        credential = run_until_complete(self.get_gateway_credential(self.get_variables))
+        base_url = os.environ.get("AI_GATEWAY_BASE_URL")
+        if not base_url:
+            msg = "AI_GATEWAY_BASE_URL environment variable not set"
+            raise ValueError(msg)
 
         parameters = {
             "api_key": SecretStr("docspace"),
             "model_name": self.model_name,
             "max_tokens": self.max_tokens or None,
             "model_kwargs": self.model_kwargs or {},
-            "base_url": credential.gateway_base_url,
+            "base_url": base_url,
             "seed": self.seed,
             "max_retries": self.max_retries,
             "timeout": self.timeout,
             "temperature": self.temperature if self.temperature is not None else 0.1,
             "default_headers": {
-                "origin": credential.origin,
-                "cookie": f"asc_auth_key={credential.auth_key};"
+                "origin": self.portal_url,
+                "cookie": f"asc_auth_key={self.api_key};"
             }
         }
 
-        logger.info(f"Model name: {self.model_name}")
         output = ChatOpenAI(**parameters)
         if self.json_mode:
             output = output.bind(response_format={"type": "json_object"})

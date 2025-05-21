@@ -1,12 +1,8 @@
-import asyncio
 import json
-import os
 from abc import ABC, abstractmethod
-from collections.abc import Callable, Coroutine
-from typing import TYPE_CHECKING, Any
+from typing import TYPE_CHECKING
 
 from langflow.inputs.inputs import InputTypes
-from langflow.logging import logger
 
 from .inputs import (
     INPUT_NAME_AUTH_TEXT,
@@ -25,7 +21,7 @@ from .inputs import (
     INPUT_NAME_ID_SEPARATOR,
     INPUT_NAME_TEMPLATE_ID,
 )
-from .schemas import FiltersSchema, GatewayCredential
+from .schemas import FiltersSchema
 
 if TYPE_CHECKING:
     from .client import FilterOp, SortOrder
@@ -235,39 +231,4 @@ class FiltersMixin(ABC):
             filter_op=filter_op,
             filter_value=filter_value,
             updated_since=updated_since,
-        )
-
-class AICredentialMixin:
-    _ORIGIN_VARIABLE_NAME = "portal_origin"
-    _AUTH_KEY_VARIABLE_NAME = "asc_auth_key"
-    _AI_GATEWAY_BASE_URL_VARIABLE_NAME = "AI_GATEWAY_BASE_URL"
-
-    async def get_gateway_credential(
-        self,
-        var_selector: Callable[[str, str], Coroutine[Any, Any, str]]) -> GatewayCredential:
-
-        base_url = os.environ.get(self._AI_GATEWAY_BASE_URL_VARIABLE_NAME)
-        if not base_url:
-            logger.warning(f"{self._AI_GATEWAY_BASE_URL_VARIABLE_NAME} environment variable not set")
-
-        async with asyncio.TaskGroup() as tg:
-            origin_task = tg.create_task(
-                var_selector(self._ORIGIN_VARIABLE_NAME, "")
-            )
-            auth_key_task = tg.create_task(
-                var_selector(self._AUTH_KEY_VARIABLE_NAME, "")
-            )
-
-        origin = origin_task.result()
-        auth_key = auth_key_task.result()
-
-        if not origin:
-            logger.warning(f"{self._ORIGIN_VARIABLE_NAME} variable not set")
-        if not auth_key:
-            logger.warning(f"{self._AUTH_KEY_VARIABLE_NAME} variable not set")
-
-        return GatewayCredential(
-            gateway_base_url=base_url,
-            origin=origin,
-            auth_key=auth_key,
         )

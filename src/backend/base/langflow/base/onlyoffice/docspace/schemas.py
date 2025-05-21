@@ -35,8 +35,3 @@ class FiltersSchema(BaseModel):
             filter_value=self.filter_value,
             updated_since=self.updated_since,
         )
-
-class GatewayCredential(BaseModel):
-    gateway_base_url: str
-    origin: str
-    auth_key: str
