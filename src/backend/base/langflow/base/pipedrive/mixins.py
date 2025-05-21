@@ -5,7 +5,25 @@ from langflow.inputs.inputs import InputTypes
 
 from .inputs import (
     INPUT_NAME_AUTH_TEXT,
+    INPUT_NAME_ORG_ID,
+    INPUT_NAME_OWNER_ID,
+    INPUT_NAME_PERSON_ID,
+    INPUT_NAME_PIPELINE_ID,
+    INPUT_NAME_STAGE_ID,
+    INPUT_NAME_VALUE,
 )
+
+
+def to_float(value: str) -> float | None:
+    if value.strip().isdigit():
+        return float(value)
+    return None
+
+
+def to_int(value: str) -> int | None:
+    if value.strip().isdigit():
+        return int(value)
+    return None
 
 
 class AuthTextMixin(ABC):
@@ -23,3 +41,81 @@ class AuthTextMixin(ABC):
             auth_text = json.loads(auth_text_input.value)
 
         return auth_text
+
+
+class OrgIdMixin(ABC):
+    @abstractmethod
+    def get_input(self, name: str) -> InputTypes:
+        ...
+
+
+    @property
+    def org_id(self) -> int | None:
+        org_id_input = self.get_input(INPUT_NAME_ORG_ID)
+
+        return to_int(org_id_input.value)
+
+
+class OwnerIdMixin(ABC):
+    @abstractmethod
+    def get_input(self, name: str) -> InputTypes:
+        ...
+
+
+    @property
+    def owner_id(self) -> int | None:
+        owner_id_input = self.get_input(INPUT_NAME_OWNER_ID)
+
+        return to_int(owner_id_input.value)
+
+
+class PersonIdMixin(ABC):
+    @abstractmethod
+    def get_input(self, name: str) -> InputTypes:
+        ...
+
+
+    @property
+    def person_id(self) -> int | None:
+        person_id_input = self.get_input(INPUT_NAME_PERSON_ID)
+
+        return to_int(person_id_input.value)
+
+
+class PipelineIdMixin(ABC):
+    @abstractmethod
+    def get_input(self, name: str) -> InputTypes:
+        ...
+
+
+    @property
+    def pipeline_id(self) -> int | None:
+        pipeline_id_input = self.get_input(INPUT_NAME_PIPELINE_ID)
+
+        return to_int(pipeline_id_input.value)
+
+
+class StageIdMixin(ABC):
+    @abstractmethod
+    def get_input(self, name: str) -> InputTypes:
+        ...
+
+
+    @property
+    def stage_id(self) -> int | None:
+        stage_id_input = self.get_input(INPUT_NAME_STAGE_ID)
+
+        return to_int(stage_id_input.value)
+
+
+class ValueMixin(ABC):
+    @abstractmethod
+    def get_input(self, name: str) -> InputTypes:
+        ...
+
+
+    @property
+    def deal_value(self) -> int | None:
+        value_input = self.get_input(INPUT_NAME_VALUE)
+
+        return to_float(value_input.value)
