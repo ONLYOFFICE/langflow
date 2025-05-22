@@ -3,6 +3,18 @@ from pydantic import BaseModel, Field
 from .base import Service
 
 
+class AddActivityOptions(BaseModel):
+    subject: str | None = Field(None, alias="subject")
+    type: str | None = Field(None, alias="type")
+    public_description: str | None = Field(None, alias="public_description")
+    owner_id: int | None = Field(None, alias="owner_id")
+    deal_id: int | None = Field(None, alias="deal_id")
+    lead_id: str | None = Field(None, alias="lead_id")
+    org_id: int | None = Field(None, alias="org_id")
+    person_id: int | None = Field(None, alias="person_id")
+    project_id: int | None = Field(None, alias="project_id")
+
+
 class CreateDealOptions(BaseModel):
     title: str | None = Field(None, alias="title")
     value: float | None = Field(None, alias="value")
@@ -12,6 +24,15 @@ class CreateDealOptions(BaseModel):
     currency: str | None = Field(None, alias="currency")
     pipeline_id: int | None = Field(None, alias="pipeline_id")
     stage_id: int | None = Field(None, alias="stage_id")
+
+
+class ActivityService(Service):
+    def add(self, options: AddActivityOptions) -> dict:
+        return self._client.request(
+            "POST",
+            "api/v2/activities",
+            body=options.model_dump(exclude_none=True, by_alias=True),
+        )
 
 
 class DealService(Service):

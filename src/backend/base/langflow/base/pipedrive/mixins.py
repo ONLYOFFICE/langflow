@@ -5,10 +5,12 @@ from langflow.inputs.inputs import InputTypes
 
 from .inputs import (
     INPUT_NAME_AUTH_TEXT,
+    INPUT_NAME_DEAL_ID,
     INPUT_NAME_ORG_ID,
     INPUT_NAME_OWNER_ID,
     INPUT_NAME_PERSON_ID,
     INPUT_NAME_PIPELINE_ID,
+    INPUT_NAME_PROJECT_ID,
     INPUT_NAME_STAGE_ID,
     INPUT_NAME_VALUE,
 )
@@ -41,6 +43,19 @@ class AuthTextMixin(ABC):
             auth_text = json.loads(auth_text_input.value)
 
         return auth_text
+
+
+class DealIdMixin(ABC):
+    @abstractmethod
+    def get_input(self, name: str) -> InputTypes:
+        ...
+
+
+    @property
+    def deal_id(self) -> int | None:
+        deal_id_input = self.get_input(INPUT_NAME_DEAL_ID)
+
+        return to_int(deal_id_input.value)
 
 
 class OrgIdMixin(ABC):
@@ -93,6 +108,19 @@ class PipelineIdMixin(ABC):
         pipeline_id_input = self.get_input(INPUT_NAME_PIPELINE_ID)
 
         return to_int(pipeline_id_input.value)
+
+
+class ProjectIdMixin(ABC):
+    @abstractmethod
+    def get_input(self, name: str) -> InputTypes:
+        ...
+
+
+    @property
+    def project_id(self) -> int | None:
+        project_id_input = self.get_input(INPUT_NAME_PROJECT_ID)
+
+        return to_int(project_id_input.value)
 
 
 class StageIdMixin(ABC):
