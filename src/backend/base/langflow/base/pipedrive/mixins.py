@@ -12,6 +12,7 @@ from .inputs import (
     INPUT_NAME_PIPELINE_ID,
     INPUT_NAME_PROJECT_ID,
     INPUT_NAME_STAGE_ID,
+    INPUT_NAME_USER_ID,
     INPUT_NAME_VALUE,
 )
 
@@ -134,6 +135,18 @@ class StageIdMixin(ABC):
         stage_id_input = self.get_input(INPUT_NAME_STAGE_ID)
 
         return to_int(stage_id_input.value)
+
+
+class UserIdMixin(ABC):
+    @abstractmethod
+    def get_input(self, name: str) -> InputTypes:
+        ...
+
+    @property
+    def pipedrive_user_id(self) -> int | None:
+        user_id_input = self.get_input(INPUT_NAME_USER_ID)
+
+        return to_int(user_id_input.value)
 
 
 class ValueMixin(ABC):

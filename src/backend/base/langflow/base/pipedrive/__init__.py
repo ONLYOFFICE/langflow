@@ -9,6 +9,7 @@ from .inputs import (
     PipelineIdInput,
     ProjectIdInput,
     StageIdInput,
+    UserIdInput,
     ValueInput,
 )
 from .mixins import (
@@ -19,13 +20,15 @@ from .mixins import (
     PipelineIdMixin,
     ProjectIdMixin,
     StageIdMixin,
+    UserIdMixin,
     ValueMixin,
 )
 from .outputs import DataOutput, ToolOutput
-from .services import AddActivityOptions, CreateDealOptions
+from .services import AddActivityOptions, AddNoteOptions, CreateDealOptions
 
 __all__ = [
     "AddActivityOptions",
+    "AddNoteOptions",
     "AuthTextInput",
     "Client",
     "Component",
@@ -46,6 +49,8 @@ __all__ = [
     "StageIdInput",
     "StageIdMixin",
     "ToolOutput",
+    "UserIdInput",
+    "UserIdMixin",
     "ValueInput",
     "ValueMixin",
 ]

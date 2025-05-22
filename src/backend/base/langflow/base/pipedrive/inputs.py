@@ -8,6 +8,7 @@ INPUT_NAME_PERSON_ID = "person_id"
 INPUT_NAME_PIPELINE_ID = "pipeline_id"
 INPUT_NAME_PROJECT_ID = "project_id"
 INPUT_NAME_STAGE_ID = "stage_id"
+INPUT_NAME_USER_ID = "pipedrive_user_id"
 INPUT_NAME_VALUE = "deal_value"
 
 
@@ -52,6 +53,9 @@ class StageIdInput(MessageTextInput):
     name: str = INPUT_NAME_STAGE_ID
     display_name: str = "Stage ID"
 
+class UserIdInput(MessageTextInput):
+    name: str = INPUT_NAME_USER_ID
+    display_name: str = "User ID"
 
 class ValueInput(MessageTextInput):
     name: str = INPUT_NAME_VALUE

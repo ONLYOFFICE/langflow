@@ -15,6 +15,16 @@ class AddActivityOptions(BaseModel):
     project_id: int | None = Field(None, alias="project_id")
 
 
+class AddNoteOptions(BaseModel):
+    content: str | None = Field(None, alias="content")
+    user_id: int | None = Field(None, alias="user_id")
+    lead_id: str | None = Field(None, alias="lead_id")
+    deal_id: int | None = Field(None, alias="deal_id")
+    person_id: int | None = Field(None, alias="person_id")
+    org_id: int | None = Field(None, alias="org_id")
+    project_id: int | None = Field(None, alias="project_id")
+
+
 class CreateDealOptions(BaseModel):
     title: str | None = Field(None, alias="title")
     value: float | None = Field(None, alias="value")
@@ -40,5 +50,14 @@ class DealService(Service):
         return self._client.request(
             "POST",
             "api/v2/deals",
+            body=options.model_dump(exclude_none=True, by_alias=True),
+        )
+
+
+class NoteService(Service):
+    def add(self, options: AddNoteOptions) -> dict:
+        return self._client.request(
+            "POST",
+            "api/v1/notes",
             body=options.model_dump(exclude_none=True, by_alias=True),
         )
