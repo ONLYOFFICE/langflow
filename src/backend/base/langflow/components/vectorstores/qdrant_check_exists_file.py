@@ -30,7 +30,7 @@ class QdrantCheckFileComponent(Component):
                method="check_document")
     ]
 
-    def build_vector_store(self) -> Qdrant:
+    def build_vector_store(self) -> Qdrant | None:
         try:
             collection_name: str = self.collection_name.get_text()
             embedding: Embeddings = self.embedding
@@ -40,13 +40,7 @@ class QdrantCheckFileComponent(Component):
 
             if not check_collection_exists(client, collection_name):
                 # Get vector size from first document
-                doc = Document(page_content='content for vectorize',
-                               metadata={**self.metadata.data})
-                vector = embedding.embed_query(doc.page_content)
-                vector_size = len(vector)
-
-                create_collection(
-                    client, collection_name, vector_size)
+                return None
 
             qdrant = Qdrant(client=client,
                             embeddings=embedding,
@@ -60,10 +54,13 @@ class QdrantCheckFileComponent(Component):
     def check_document(self) -> Message:
         qdrant = self.build_vector_store()
 
+        if not qdrant:
+            return Message(text="not_found")
+
         if not self.metadata:
             return Message(text="No metadata provided")
 
-        doc = Document(page_content="", metadata={**self.metadata.data})
+        doc = Document(page_content="content", metadata={**self.metadata.data})
 
         if check_document_exists(qdrant, doc):
             return Message(text="exist")

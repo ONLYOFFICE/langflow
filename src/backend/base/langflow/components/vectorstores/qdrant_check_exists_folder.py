@@ -27,7 +27,7 @@ class QdrantCheckFolderComponent(Component):
                method="check_folder")
     ]
 
-    def build_vector_store(self) -> Qdrant:
+    def build_vector_store(self) -> Qdrant | None:
         try:
             collection_name: str = self.collection_name.get_text()
             embedding: Embeddings = self.embedding
@@ -37,12 +37,7 @@ class QdrantCheckFolderComponent(Component):
 
             if not check_collection_exists(client, collection_name):
                 # Get vector size from first document
-                doc = Document(page_content='content for vectorize')
-                vector = embedding.embed_query(doc.page_content)
-                vector_size = len(vector)
-
-                create_collection(
-                    client, collection_name, vector_size)
+                return None
 
             qdrant = Qdrant(client=client,
                             embeddings=embedding,
@@ -56,6 +51,9 @@ class QdrantCheckFolderComponent(Component):
     def check_folder(self) -> Message:
         qdrant = self.build_vector_store()
 
+        if not qdrant:
+            return Message(text="")
+
         filter = Filter(must=[
             {"key": "metadata.page", "match": {
                 "value": 0
@@ -63,7 +61,7 @@ class QdrantCheckFolderComponent(Component):
         ])
 
         docs = qdrant.similarity_search(
-            query="",
+            query="content",
             k=1000,
             filter=filter
         )
