@@ -57,6 +57,13 @@ class DealService(Service):
             body=options.model_dump(exclude_none=True, by_alias=True),
         )
 
+    def delete(self, deal_id: str) -> dict:
+        return self._client.request(
+            "DELETE",
+            f"api/v2/deals/{deal_id}",
+        )
+
+
     def get_all(self) -> dict:
         return self._client.request("GET", "api/v2/deals")
 
