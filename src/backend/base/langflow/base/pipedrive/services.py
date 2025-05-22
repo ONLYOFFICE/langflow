@@ -45,6 +45,10 @@ class ActivityService(Service):
         )
 
 
+    def get_all(self) -> dict:
+        return self._client.request("GET", "api/v2/activities")
+
+
 class DealService(Service):
     def create(self, options: CreateDealOptions) -> dict:
         return self._client.request(
