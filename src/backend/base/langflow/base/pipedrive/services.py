@@ -53,6 +53,9 @@ class DealService(Service):
             body=options.model_dump(exclude_none=True, by_alias=True),
         )
 
+    def get_all(self) -> dict:
+        return self._client.request("GET", "api/v2/deals")
+
 
 class NoteService(Service):
     def add(self, options: AddNoteOptions) -> dict:
