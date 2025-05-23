@@ -15,6 +15,13 @@ class AddActivityOptions(BaseModel):
     project_id: int | None = Field(None, alias="project_id")
 
 
+class AddLeadOptions(BaseModel):
+    title: str | None = Field(None, alias="title")
+    owner_id: int | None = Field(None, alias="owner_id")
+    person_id: int | None = Field(None, alias="person_id")
+    org_id: int | None = Field(None, alias="organization_id")
+
+
 class AddNoteOptions(BaseModel):
     content: str | None = Field(None, alias="content")
     user_id: int | None = Field(None, alias="user_id")
@@ -70,6 +77,15 @@ class DealService(Service):
 
     def get_all(self) -> dict:
         return self._client.request("GET", "api/v2/deals")
+
+
+class LeadService(Service):
+    def add(self, options: AddLeadOptions) -> dict:
+        return self._client.request(
+            "POST",
+            "api/v1/leads",
+            body=options.model_dump(exclude_none=True, by_alias=True),
+        )
 
 
 class NoteService(Service):
