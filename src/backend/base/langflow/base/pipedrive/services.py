@@ -81,5 +81,9 @@ class NoteService(Service):
         )
 
 
+    def delete(self, note_id: str) -> dict:
+        return self._client.request("DELETE", f"api/v1/notes/{note_id}")
+
+
     def get_all(self) -> dict:
         return self._client.request("GET", "api/v1/notes")
