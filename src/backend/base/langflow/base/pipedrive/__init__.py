@@ -24,12 +24,20 @@ from .mixins import (
     ValueMixin,
 )
 from .outputs import DataOutput, ToolOutput
-from .services import AddActivityOptions, AddLeadOptions, AddNoteOptions, AddPersonOptions, CreateDealOptions
+from .services import (
+    AddActivityOptions,
+    AddLeadOptions,
+    AddNoteOptions,
+    AddOrganizationOptions,
+    AddPersonOptions,
+    CreateDealOptions,
+)
 
 __all__ = [
     "AddActivityOptions",
     "AddLeadOptions",
     "AddNoteOptions",
+    "AddOrganizationOptions",
     "AddPersonOptions",
     "AuthTextInput",
     "Client",
