@@ -32,6 +32,12 @@ class AddNoteOptions(BaseModel):
     project_id: int | None = Field(None, alias="project_id")
 
 
+class AddPersonOptions(BaseModel):
+    name: str | None = Field(None, alias="name")
+    owner_id: int | None = Field(None, alias="owner_id")
+    org_id: int | None = Field(None, alias="org_id")
+
+
 class CreateDealOptions(BaseModel):
     title: str | None = Field(None, alias="title")
     value: float | None = Field(None, alias="value")
@@ -103,3 +109,12 @@ class NoteService(Service):
 
     def get_all(self) -> dict:
         return self._client.request("GET", "api/v1/notes")
+
+
+class PersonService(Service):
+    def add(self, options: AddPersonOptions) -> dict:
+        return self._client.request(
+            "POST",
+            "api/v2/persons",
+            body=options.model_dump(exclude_none=True, by_alias=True),
+        )

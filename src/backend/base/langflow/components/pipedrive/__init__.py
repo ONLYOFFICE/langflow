@@ -9,6 +9,7 @@ from .pipedrive_leads_add import PipedriveLeadsAdd
 from .pipedrive_notes_add import PipedriveNotesAdd
 from .pipedrive_notes_delete import PipedriveNotesDelete
 from .pipedrive_notes_get_all import PipedriveNotesGetAll
+from .pipedrive_persons_add import PipedrivePersonsAdd
 
 __all__ = [
     "PipedriveActivitiesAdd",
@@ -22,4 +23,5 @@ __all__ = [
     "PipedriveNotesAdd",
     "PipedriveNotesDelete",
     "PipedriveNotesGetAll",
+    "PipedrivePersonsAdd",
 ]
