@@ -145,3 +145,6 @@ class UserService(Service):
             "api/v1/users",
             body=options.model_dump(exclude_none=True, by_alias=True),
         )
+
+    def get_all(self) -> dict:
+        return self._client.request("GET", "api/v1/users")
