@@ -129,6 +129,10 @@ class OrganizationService(Service):
         )
 
 
+    def get_all(self) -> dict:
+        return self._client.request("GET", "api/v2/organizations")
+
+
 class PersonService(Service):
     def add(self, options: AddPersonOptions) -> dict:
         return self._client.request(
