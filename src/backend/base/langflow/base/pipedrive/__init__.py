@@ -30,6 +30,7 @@ from .services import (
     AddNoteOptions,
     AddOrganizationOptions,
     AddPersonOptions,
+    AddUserOptions,
     CreateDealOptions,
 )
 
@@ -39,6 +40,7 @@ __all__ = [
     "AddNoteOptions",
     "AddOrganizationOptions",
     "AddPersonOptions",
+    "AddUserOptions",
     "AuthTextInput",
     "Client",
     "Component",

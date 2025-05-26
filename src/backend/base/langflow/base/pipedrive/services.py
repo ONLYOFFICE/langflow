@@ -43,6 +43,10 @@ class AddPersonOptions(BaseModel):
     org_id: int | None = Field(None, alias="org_id")
 
 
+class AddUserOptions(BaseModel):
+    email: str | None = Field(None, alias="email")
+
+
 class CreateDealOptions(BaseModel):
     title: str | None = Field(None, alias="title")
     value: float | None = Field(None, alias="value")
@@ -130,5 +134,14 @@ class PersonService(Service):
         return self._client.request(
             "POST",
             "api/v2/persons",
+            body=options.model_dump(exclude_none=True, by_alias=True),
+        )
+
+
+class UserService(Service):
+    def add(self, options: AddUserOptions) -> dict:
+        return self._client.request(
+            "POST",
+            "api/v1/users",
             body=options.model_dump(exclude_none=True, by_alias=True),
         )

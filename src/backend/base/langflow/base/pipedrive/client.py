@@ -1,5 +1,13 @@
 from .base import BaseClient
-from .services import ActivityService, DealService, LeadService, NoteService, OrganizationService, PersonService
+from .services import (
+    ActivityService,
+    DealService,
+    LeadService,
+    NoteService,
+    OrganizationService,
+    PersonService,
+    UserService,
+)
 
 
 class Client(BaseClient):
@@ -10,3 +18,4 @@ class Client(BaseClient):
         self.persons = PersonService(self)
         self.organizations = OrganizationService(self)
         self.notes = NoteService(self)
+        self.users = UserService(self)
