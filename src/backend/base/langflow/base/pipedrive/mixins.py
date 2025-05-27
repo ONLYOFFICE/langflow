@@ -142,6 +142,7 @@ class UserIdMixin(ABC):
     def get_input(self, name: str) -> InputTypes:
         ...
 
+
     @property
     def pipedrive_user_id(self) -> int | None:
         user_id_input = self.get_input(INPUT_NAME_USER_ID)

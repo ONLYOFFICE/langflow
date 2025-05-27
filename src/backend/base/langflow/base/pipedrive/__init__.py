@@ -26,16 +26,17 @@ from .mixins import (
 from .outputs import DataOutput, ToolOutput
 from .services import (
     AddActivityOptions,
+    AddDealOptions,
     AddLeadOptions,
     AddNoteOptions,
     AddOrganizationOptions,
     AddPersonOptions,
     AddUserOptions,
-    CreateDealOptions,
 )
 
 __all__ = [
     "AddActivityOptions",
+    "AddDealOptions",
     "AddLeadOptions",
     "AddNoteOptions",
     "AddOrganizationOptions",
@@ -44,7 +45,6 @@ __all__ = [
     "AuthTextInput",
     "Client",
     "Component",
-    "CreateDealOptions",
     "DataOutput",
     "DealIdInput",
     "DealIdMixin",

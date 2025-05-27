@@ -37,7 +37,7 @@ class PipedriveActivitiesGetAll(Component):
 
 
     def build_data(self) -> Data:
-        data = self._get_activities()
+        data = self._get_all()
         return Data(data=data)
 
 
@@ -45,12 +45,12 @@ class PipedriveActivitiesGetAll(Component):
         return StructuredTool.from_function(
             name="pipedrive_activities_get_all",
             description=DESCRIPTION_COMPONENT,
-            func=self._get_activities,
+            func=self._get_all,
             args_schema=self.Schema,
         )
 
 
-    def _get_activities(self) -> Any:
+    def _get_all(self) -> Any:
         client = self._get_client()
 
         result, response = client.activities.get_all()

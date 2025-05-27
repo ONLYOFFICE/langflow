@@ -37,7 +37,7 @@ class PipedriveNotesGetAll(Component):
 
 
     def build_data(self) -> Data:
-        data = self._get_notes()
+        data = self._get_all()
         return Data(data=data)
 
 
@@ -45,12 +45,12 @@ class PipedriveNotesGetAll(Component):
         return StructuredTool.from_function(
             name="pipedrive_notes_get_all",
             description=DESCRIPTION_COMPONENT,
-            func=self._get_notes,
+            func=self._get_all,
             args_schema=self.Schema,
         )
 
 
-    def _get_notes(self) -> Any:
+    def _get_all(self) -> Any:
         client = self._get_client()
 
         result, response = client.notes.get_all()

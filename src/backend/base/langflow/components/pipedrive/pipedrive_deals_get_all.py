@@ -37,7 +37,7 @@ class PipedriveDealsGetAll(Component):
 
 
     def build_data(self) -> Data:
-        data = self._get_deals()
+        data = self._get_all()
         return Data(data=data)
 
 
@@ -45,12 +45,12 @@ class PipedriveDealsGetAll(Component):
         return StructuredTool.from_function(
             name="pipedrive_deals_get_all",
             description=DESCRIPTION_COMPONENT,
-            func=self._get_deals,
+            func=self._get_all,
             args_schema=self.Schema,
         )
 
 
-    def _get_deals(self) -> Any:
+    def _get_all(self) -> Any:
         client = self._get_client()
 
         result, response = client.deals.get_all()

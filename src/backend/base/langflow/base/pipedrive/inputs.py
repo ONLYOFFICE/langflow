@@ -53,9 +53,11 @@ class StageIdInput(MessageTextInput):
     name: str = INPUT_NAME_STAGE_ID
     display_name: str = "Stage ID"
 
+
 class UserIdInput(MessageTextInput):
     name: str = INPUT_NAME_USER_ID
     display_name: str = "User ID"
+
 
 class ValueInput(MessageTextInput):
     name: str = INPUT_NAME_VALUE

@@ -2,7 +2,7 @@ from .pipedrive_activities_add import PipedriveActivitiesAdd
 from .pipedrive_activities_delete import PipedriveActivitiesDelete
 from .pipedrive_activities_get_all import PipedriveActivitiesGetAll
 from .pipedrive_authorization import PipedriveAuthentication
-from .pipedrive_deals_create import PipedriveDealsCreate
+from .pipedrive_deals_add import PipedriveDealsAdd
 from .pipedrive_deals_delete import PipedriveDealsDelete
 from .pipedrive_deals_get_all import PipedriveDealsGetAll
 from .pipedrive_leads_add import PipedriveLeadsAdd
@@ -25,7 +25,7 @@ __all__ = [
     "PipedriveActivitiesDelete",
     "PipedriveActivitiesGetAll",
     "PipedriveAuthentication",
-    "PipedriveDealsCreate",
+    "PipedriveDealsAdd",
     "PipedriveDealsDelete",
     "PipedriveDealsGetAll",
     "PipedriveLeadsAdd",

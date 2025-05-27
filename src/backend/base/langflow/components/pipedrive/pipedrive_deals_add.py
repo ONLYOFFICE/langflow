@@ -4,9 +4,9 @@ from langchain.tools import StructuredTool
 from pydantic import BaseModel, Field
 
 from langflow.base.pipedrive import (
+    AddDealOptions,
     AuthTextInput,
     Component,
-    CreateDealOptions,
     DataOutput,
     OrgIdInput,
     OrgIdMixin,
@@ -37,10 +37,10 @@ DESCRIPTION_STAGE_ID = "The ID of the deal stage"
 DESCRIPTION_VALUE = "The value of the deal"
 
 
-class PipedriveDealsCreate(Component,OrgIdMixin,OwnerIdMixin,PersonIdMixin,PipelineIdMixin,StageIdMixin,ValueMixin):
+class PipedriveDealsAdd(Component,OrgIdMixin,OwnerIdMixin,PersonIdMixin,PipelineIdMixin,StageIdMixin,ValueMixin):
     display_name = "Add a Deal"
     description = DESCRIPTION_COMPONENT
-    name = "PipedriveDealsCreate"
+    name = "PipedriveDealsAdd"
 
 
     inputs = [
@@ -98,13 +98,13 @@ class PipedriveDealsCreate(Component,OrgIdMixin,OwnerIdMixin,PersonIdMixin,Pipel
 
     def build_data(self) -> Data:
         schema = self._create_schema()
-        data = self._create(schema)
+        data = self._add(schema)
         return Data(data=data)
 
 
     def build_tool(self) -> Tool:
         return StructuredTool.from_function(
-            name="pipedrive_deals_create",
+            name="pipedrive_deals_add",
             description=DESCRIPTION_COMPONENT,
             func=self._tool_func,
             args_schema=self.Schema,
@@ -113,13 +113,13 @@ class PipedriveDealsCreate(Component,OrgIdMixin,OwnerIdMixin,PersonIdMixin,Pipel
 
     def _tool_func(self, **kwargs) -> list[Any]:
         schema = self.Schema(**kwargs)
-        return self._create(schema)
+        return self._add(schema)
 
 
-    def _create(self, schema: Schema) -> Any:
+    def _add(self, schema: Schema) -> Any:
         client = self._get_client()
 
-        options = CreateDealOptions(
+        options = AddDealOptions(
             title=schema.title,
             value=schema.value,
             owner_id=schema.owner_id,
@@ -130,6 +130,6 @@ class PipedriveDealsCreate(Component,OrgIdMixin,OwnerIdMixin,PersonIdMixin,Pipel
             stage_id=schema.stage_id,
         )
 
-        result, response = client.deals.create(options)
+        result, response = client.deals.add(options)
 
         return result

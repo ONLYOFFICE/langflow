@@ -15,6 +15,17 @@ class AddActivityOptions(BaseModel):
     project_id: int | None = Field(None, alias="project_id")
 
 
+class AddDealOptions(BaseModel):
+    title: str | None = Field(None, alias="title")
+    value: float | None = Field(None, alias="value")
+    owner_id: int | None = Field(None, alias="owner_id")
+    person_id: int | None = Field(None, alias="person_id")
+    org_id: int | None = Field(None, alias="org_id")
+    currency: str | None = Field(None, alias="currency")
+    pipeline_id: int | None = Field(None, alias="pipeline_id")
+    stage_id: int | None = Field(None, alias="stage_id")
+
+
 class AddLeadOptions(BaseModel):
     title: str | None = Field(None, alias="title")
     owner_id: int | None = Field(None, alias="owner_id")
@@ -47,17 +58,6 @@ class AddUserOptions(BaseModel):
     email: str | None = Field(None, alias="email")
 
 
-class CreateDealOptions(BaseModel):
-    title: str | None = Field(None, alias="title")
-    value: float | None = Field(None, alias="value")
-    owner_id: int | None = Field(None, alias="owner_id")
-    person_id: int | None = Field(None, alias="person_id")
-    org_id: int | None = Field(None, alias="org_id")
-    currency: str | None = Field(None, alias="currency")
-    pipeline_id: int | None = Field(None, alias="pipeline_id")
-    stage_id: int | None = Field(None, alias="stage_id")
-
-
 class ActivityService(Service):
     def add(self, options: AddActivityOptions) -> dict:
         return self._client.request(
@@ -76,12 +76,13 @@ class ActivityService(Service):
 
 
 class DealService(Service):
-    def create(self, options: CreateDealOptions) -> dict:
+    def add(self, options: AddDealOptions) -> dict:
         return self._client.request(
             "POST",
             "api/v2/deals",
             body=options.model_dump(exclude_none=True, by_alias=True),
         )
+
 
     def delete(self, deal_id: str) -> dict:
         return self._client.request(
@@ -172,6 +173,7 @@ class UserService(Service):
             "api/v1/users",
             body=options.model_dump(exclude_none=True, by_alias=True),
         )
+
 
     def get_all(self) -> dict:
         return self._client.request("GET", "api/v1/users")

@@ -94,4 +94,3 @@ class PipedrivePersonsAdd(Component, OrgIdMixin, OwnerIdMixin):
         result, response = client.persons.add(options)
 
         return result
-

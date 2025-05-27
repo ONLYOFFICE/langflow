@@ -143,4 +143,3 @@ class PipedriveActivitiesAdd(Component, DealIdMixin, OrgIdMixin, OwnerIdMixin, P
         result, response = client.activities.add(options)
 
         return result
-
