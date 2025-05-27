@@ -103,6 +103,13 @@ class LeadService(Service):
         )
 
 
+    def delete(self, lead_id: str) -> dict:
+        return self._client.request(
+            "DELETE",
+            f"api/v1/leads/{lead_id}",
+        )
+
+
     def get_all(self) -> dict:
         return self._client.request("GET", "api/v1/leads")
 

@@ -6,6 +6,7 @@ from .pipedrive_deals_create import PipedriveDealsCreate
 from .pipedrive_deals_delete import PipedriveDealsDelete
 from .pipedrive_deals_get_all import PipedriveDealsGetAll
 from .pipedrive_leads_add import PipedriveLeadsAdd
+from .pipedrive_leads_delete import PipedriveLeadsDelete
 from .pipedrive_leads_get_all import PipedriveLeadsGetAll
 from .pipedrive_notes_add import PipedriveNotesAdd
 from .pipedrive_notes_delete import PipedriveNotesDelete
@@ -26,6 +27,7 @@ __all__ = [
     "PipedriveDealsDelete",
     "PipedriveDealsGetAll",
     "PipedriveLeadsAdd",
+    "PipedriveLeadsDelete",
     "PipedriveLeadsGetAll",
     "PipedriveNotesAdd",
     "PipedriveNotesDelete",
