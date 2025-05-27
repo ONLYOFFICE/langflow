@@ -103,6 +103,10 @@ class LeadService(Service):
         )
 
 
+    def get_all(self) -> dict:
+        return self._client.request("GET", "api/v1/leads")
+
+
 class NoteService(Service):
     def add(self, options: AddNoteOptions) -> dict:
         return self._client.request(
