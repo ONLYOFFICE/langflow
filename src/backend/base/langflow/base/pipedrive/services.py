@@ -144,6 +144,10 @@ class OrganizationService(Service):
         return self._client.request("GET", "api/v2/organizations")
 
 
+    def delete(self, organization_id: str) -> dict:
+        return self._client.request("DELETE", f"api/v2/organizations/{organization_id}")
+
+
 class PersonService(Service):
     def add(self, options: AddPersonOptions) -> dict:
         return self._client.request(
