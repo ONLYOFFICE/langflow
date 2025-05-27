@@ -12,6 +12,7 @@ from .pipedrive_notes_get_all import PipedriveNotesGetAll
 from .pipedrive_organizations_add import PipedriveOrganizationsAdd
 from .pipedrive_organizations_get_all import PipedriveOrganizationsGetAll
 from .pipedrive_persons_add import PipedrivePersonsAdd
+from .pipedrive_persons_get_all import PipedrivePersonsGetAll
 from .pipedrive_users_add import PipedriveUsersAdd
 from .pipedrive_users_get_all import PipedriveUsersGetAll
 
@@ -30,6 +31,7 @@ __all__ = [
     "PipedriveOrganizationsAdd",
     "PipedriveOrganizationsGetAll",
     "PipedrivePersonsAdd",
+    "PipedrivePersonsGetAll",
     "PipedriveUsersAdd",
     "PipedriveUsersGetAll",
 ]
