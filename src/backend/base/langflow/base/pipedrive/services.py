@@ -150,6 +150,10 @@ class OrganizationService(Service):
         return self._client.request("GET", "api/v2/organizations")
 
 
+    def get_details(self, organization_id: str) -> dict:
+        return self._client.request("GET", f"api/v2/organizations/{organization_id}")
+
+
     def delete(self, organization_id: str) -> dict:
         return self._client.request("DELETE", f"api/v2/organizations/{organization_id}")
 
