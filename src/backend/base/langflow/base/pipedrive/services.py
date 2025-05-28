@@ -171,6 +171,10 @@ class PersonService(Service):
         return self._client.request("GET", "api/v2/persons")
 
 
+    def get_details(self, person_id: str) -> dict:
+        return self._client.request("GET", f"api/v2/persons/{person_id}")
+
+
     def delete(self, person_id: str) -> dict:
         return self._client.request("DELETE", f"api/v2/persons/{person_id}")
 
