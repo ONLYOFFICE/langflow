@@ -14,6 +14,8 @@ from langflow.base.pipedrive import (
     OrgIdMixin,
     PersonIdInput,
     PersonIdMixin,
+    PinnedInput,
+    PinnedMixin,
     ProjectIdInput,
     ProjectIdMixin,
     ToolOutput,
@@ -32,9 +34,10 @@ DESCRIPTION_DEAL_ID = "The ID of the deal the note will be attached to. This pro
 DESCRIPTION_PERSON_ID = "The ID of the person this note will be attached to. This property is required unless one of ('deal_id', 'lead_id', 'org_id', 'project_id') is specified" # noqa: E501
 DESCRIPTION_ORG_ID = "The ID of the organization this note will be attached to. This property is required unless one of ('deal_id', 'lead_id', 'person_id', 'project_id') is specified" # noqa: E501
 DESCRIPTION_PROJECT_ID = "The ID of the project the note will be attached to. This property is required unless one of ('deal_id', 'lead_id', 'person_id', 'org_id') is specified" # noqa: E501
+DESCRIPTION_PINNED = "Whether the note is pinned to the lead, deal, person, organization, or project"
 
 
-class PipedriveNotesAdd(Component, DealIdMixin, OrgIdMixin, PersonIdMixin, ProjectIdMixin, UserIdMixin):
+class PipedriveNotesAdd(Component, DealIdMixin, OrgIdMixin, PersonIdMixin, PinnedMixin, ProjectIdMixin, UserIdMixin):
     display_name = "Add a Note"
     description = DESCRIPTION_COMPONENT
     name = "PipedriveNotesAdd"
@@ -59,6 +62,7 @@ class PipedriveNotesAdd(Component, DealIdMixin, OrgIdMixin, PersonIdMixin, Proje
         PersonIdInput(info=DESCRIPTION_PERSON_ID, advanced=True),
         OrgIdInput(info=DESCRIPTION_ORG_ID, advanced=True),
         ProjectIdInput(info=DESCRIPTION_PROJECT_ID, advanced=True),
+        PinnedInput(info=DESCRIPTION_PINNED, advanced=True),
     ]
 
 
@@ -76,6 +80,7 @@ class PipedriveNotesAdd(Component, DealIdMixin, OrgIdMixin, PersonIdMixin, Proje
         person_id: int | None = Field(None, description=DESCRIPTION_PERSON_ID)
         org_id: int | None = Field(None, description=DESCRIPTION_ORG_ID)
         project_id: int | None = Field(None, description=DESCRIPTION_PROJECT_ID)
+        pinned: bool | None = Field(None, description=DESCRIPTION_PINNED)
 
 
     def _create_schema(self) -> Schema:
@@ -87,6 +92,7 @@ class PipedriveNotesAdd(Component, DealIdMixin, OrgIdMixin, PersonIdMixin, Proje
             person_id=self.person_id,
             org_id=self.org_id,
             project_id=self.project_id,
+            pinned=self.pinned,
         )
 
 
@@ -121,6 +127,11 @@ class PipedriveNotesAdd(Component, DealIdMixin, OrgIdMixin, PersonIdMixin, Proje
             person_id=schema.person_id,
             org_id=schema.org_id,
             project_id=schema.project_id,
+            pinned_to_lead_flag=1 if schema.pinned and schema.lead_id else None,
+            pinned_to_deal_flag=1 if schema.pinned and schema.deal_id else None,
+            pinned_to_person_flag=1 if schema.pinned and schema.person_id else None,
+            pinned_to_org_flag=1 if schema.pinned and schema.org_id else None,
+            pinned_to_project_flag=1 if schema.pinned and schema.project_id else None,
         )
 
         result, response = client.notes.add(options)

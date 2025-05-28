@@ -41,6 +41,11 @@ class AddNoteOptions(BaseModel):
     person_id: int | None = Field(None, alias="person_id")
     org_id: int | None = Field(None, alias="org_id")
     project_id: int | None = Field(None, alias="project_id")
+    pinned_to_lead_flag: int | None = Field(None, alias="pinned_to_lead_flag")
+    pinned_to_deal_flag: int | None = Field(None, alias="pinned_to_deal_flag")
+    pinned_to_person_flag: int | None = Field(None, alias="pinned_to_person_flag")
+    pinned_to_org_flag: int | None = Field(None, alias="pinned_to_org_flag")
+    pinned_to_project_flag: int | None = Field(None, alias="pinned_to_project_flag")
 
 
 class AddOrganizationOptions(BaseModel):

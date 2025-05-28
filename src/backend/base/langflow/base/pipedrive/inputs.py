@@ -4,6 +4,7 @@ INPUT_NAME_AUTH_TEXT = "auth_text"
 INPUT_NAME_DEAL_ID = "deal_id"
 INPUT_NAME_ORG_ID = "org_id"
 INPUT_NAME_OWNER_ID = "owner_id"
+INPUT_NAME_PINNED = "pinned"
 INPUT_NAME_PERSON_ID = "person_id"
 INPUT_NAME_PIPELINE_ID = "pipeline_id"
 INPUT_NAME_PROJECT_ID = "project_id"
@@ -37,6 +38,11 @@ class OwnerIdInput(MessageTextInput):
 class PersonIdInput(MessageTextInput):
     name: str = INPUT_NAME_PERSON_ID
     display_name: str = "Person ID"
+
+
+class PinnedInput(MessageTextInput):
+    name: str = INPUT_NAME_PINNED
+    display_name: str = "Pinned"
 
 
 class PipelineIdInput(MessageTextInput):

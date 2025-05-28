@@ -9,12 +9,24 @@ from .inputs import (
     INPUT_NAME_ORG_ID,
     INPUT_NAME_OWNER_ID,
     INPUT_NAME_PERSON_ID,
+    INPUT_NAME_PINNED,
     INPUT_NAME_PIPELINE_ID,
     INPUT_NAME_PROJECT_ID,
     INPUT_NAME_STAGE_ID,
     INPUT_NAME_USER_ID,
     INPUT_NAME_VALUE,
 )
+
+BOOL_TRUE_VALUES = {"true", "1", "on", "yes", "y"}
+BOOL_FALSE_VALUES = {"false", "0", "off", "no", "n"}
+
+
+def to_bool(value: str) -> bool | None:
+    if value in BOOL_TRUE_VALUES:
+        return True
+    if value in BOOL_FALSE_VALUES:
+        return False
+    return None
 
 
 def to_float(value: str) -> float | None:
@@ -96,6 +108,19 @@ class PersonIdMixin(ABC):
         person_id_input = self.get_input(INPUT_NAME_PERSON_ID)
 
         return to_int(person_id_input.value)
+
+
+class PinnedMixin(ABC):
+    @abstractmethod
+    def get_input(self, name: str) -> InputTypes:
+        ...
+
+
+    @property
+    def pinned(self) -> bool | None:
+        pinned_input = self.get_input(INPUT_NAME_PINNED)
+
+        return to_bool(pinned_input.value)
 
 
 class PipelineIdMixin(ABC):
