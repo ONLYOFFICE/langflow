@@ -190,3 +190,7 @@ class UserService(Service):
 
     def get_all(self) -> dict:
         return self._client.request("GET", "api/v1/users")
+
+
+    def get_details(self, user_id: str) -> dict:
+        return self._client.request("GET", f"api/v1/users/{user_id}")

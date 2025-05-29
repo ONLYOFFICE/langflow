@@ -21,6 +21,7 @@ from .pipedrive_persons_get_all import PipedrivePersonsGetAll
 from .pipedrive_persons_get_details import PipedrivePersonsGetDetails
 from .pipedrive_users_add import PipedriveUsersAdd
 from .pipedrive_users_get_all import PipedriveUsersGetAll
+from .pipedrive_users_get_details import PipedriveUsersGetDetails
 
 __all__ = [
     "PipedriveActivitiesAdd",
@@ -46,4 +47,5 @@ __all__ = [
     "PipedrivePersonsGetDetails",
     "PipedriveUsersAdd",
     "PipedriveUsersGetAll",
+    "PipedriveUsersGetDetails",
 ]
