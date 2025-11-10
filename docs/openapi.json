@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Langflow",
-    "version": "1.4.0"
+    "version": "1.6.5"
   },
   "paths": {
     "/api/v1/build/{flow_id}/vertices": {
@@ -23,22 +23,6 @@
               "type": "string",
               "format": "uuid",
               "title": "Flow Id"
-            }
-          },
-          {
-            "name": "data",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/FlowDataRequest"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Data"
             }
           },
           {
@@ -74,6 +58,23 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "anyOf": [
+                  {
+                    "$ref": "#/components/schemas/FlowDataRequest"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Data"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -849,10 +850,7 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {
-                  "type": "null",
-                  "title": "Response Process Api V1 Process   Flow Id  Post"
-                }
+                "schema": {}
               }
             }
           },
@@ -900,10 +898,7 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {
-                  "type": "null",
-                  "title": "Response Process Api V1 Predict   Flow Id  Post"
-                }
+                "schema": {}
               }
             }
           },
@@ -1096,7 +1091,7 @@
           "Base"
         ],
         "summary": "Custom Component Update",
-        "description": "Update a custom component with the provided code request.\n\nThis endpoint generates the CustomComponentFrontendNode normally but then runs the `update_build_config` method\non the latest version of the template.\nThis ensures that every time it runs, it has the latest version of the template.\n\nArgs:\n    code_request (CustomComponentRequest): The code request containing the updated code for the custom component.\n    user (User, optional): The user making the request. Defaults to the current active user.\n\nReturns:\n    dict: The updated custom component node.\n\nRaises:\n    HTTPException: If there's an error building or updating the component\n    SerializationError: If there's an error serializing the component to JSON",
+        "description": "Update an existing custom component with new code and configuration.\n\nProcesses the provided code and template updates, applies parameter changes (including those loaded from the\ndatabase), updates the component's build configuration, and validates outputs. Returns the updated component node as\na JSON-serializable dictionary.\n\nRaises:\n    HTTPException: If an error occurs during component building or updating.\n    SerializationError: If serialization of the updated component node fails.",
         "operationId": "custom_component_update_api_v1_custom_component_update_post",
         "requestBody": {
           "content": {
@@ -1147,6 +1142,7 @@
           "Base"
         ],
         "summary": "Get Config",
+        "description": "Retrieve the current application configuration settings.\n\nReturns:\n    ConfigResponse: The configuration settings of the application.\n\nRaises:\n    HTTPException: If an error occurs while retrieving the configuration.",
         "operationId": "get_config_api_v1_config_get",
         "responses": {
           "200": {
@@ -1955,7 +1951,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/schemas/Page_FlowRead_"
+                      "$ref": "#/components/schemas/Page_FlowRead_-Output"
                     },
                     {
                       "type": "array",
@@ -3689,6 +3685,71 @@
         }
       }
     },
+    "/api/v1/monitor/messages/sessions": {
+      "get": {
+        "tags": [
+          "Monitor"
+        ],
+        "summary": "Get Message Sessions",
+        "operationId": "get_message_sessions_api_v1_monitor_messages_sessions_get",
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          },
+          {
+            "API key query": []
+          },
+          {
+            "API key header": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "flow_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Flow Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "title": "Response Get Message Sessions Api V1 Monitor Messages Sessions Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/monitor/messages": {
       "get": {
         "tags": [
@@ -3788,7 +3849,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/MessageResponse"
+                    "$ref": "#/components/schemas/MessageResponse-Output"
                   },
                   "title": "Response Get Messages Api V1 Monitor Messages Get"
                 }
@@ -3968,7 +4029,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/MessageResponse"
+                    "$ref": "#/components/schemas/MessageResponse-Output"
                   },
                   "title": "Response Update Session Id Api V1 Monitor Messages Session  Old Session Id  Patch"
                 }
@@ -4229,10 +4290,10 @@
                 "schema": {
                   "anyOf": [
                     {
-                      "$ref": "#/components/schemas/FolderWithPaginatedFlows"
+                      "$ref": "#/components/schemas/FolderWithPaginatedFlows-Output"
                     },
                     {
-                      "$ref": "#/components/schemas/FolderReadWithFlows"
+                      "$ref": "#/components/schemas/FolderReadWithFlows-Output"
                     }
                   ],
                   "title": "Response Read Folder Redirect Api V1 Folders  Folder Id  Get"
@@ -4514,36 +4575,6 @@
             }
           },
           {
-            "name": "is_component",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "boolean",
-              "default": false,
-              "title": "Is Component"
-            }
-          },
-          {
-            "name": "is_flow",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "boolean",
-              "default": false,
-              "title": "Is Flow"
-            }
-          },
-          {
-            "name": "search",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "default": "",
-              "title": "Search"
-            }
-          },
-          {
             "name": "page",
             "in": "query",
             "required": false,
@@ -4574,6 +4605,36 @@
               ],
               "title": "Size"
             }
+          },
+          {
+            "name": "is_component",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false,
+              "title": "Is Component"
+            }
+          },
+          {
+            "name": "is_flow",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false,
+              "title": "Is Flow"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "",
+              "title": "Search"
+            }
           }
         ],
         "responses": {
@@ -4584,10 +4645,10 @@
                 "schema": {
                   "anyOf": [
                     {
-                      "$ref": "#/components/schemas/FolderWithPaginatedFlows"
+                      "$ref": "#/components/schemas/FolderWithPaginatedFlows-Output"
                     },
                     {
-                      "$ref": "#/components/schemas/FolderReadWithFlows"
+                      "$ref": "#/components/schemas/FolderReadWithFlows-Output"
                     }
                   ],
                   "title": "Response Read Project Api V1 Projects  Project Id  Get"
@@ -4862,20 +4923,26 @@
         ]
       }
     },
-    "/api/v1/voice/elevenlabs/voice_ids": {
+    "/api/v1/knowledge_bases/": {
       "get": {
         "tags": [
-          "Voice"
+          "Knowledge Bases"
         ],
-        "summary": "Get Elevenlabs Voice Ids",
-        "description": "Get available voice IDs from ElevenLabs API.",
-        "operationId": "get_elevenlabs_voice_ids_api_v1_voice_elevenlabs_voice_ids_get",
+        "summary": "List Knowledge Bases",
+        "description": "List all available knowledge bases.",
+        "operationId": "list_knowledge_bases_api_v1_knowledge_bases__get",
         "responses": {
           "200": {
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/KnowledgeBaseInfo"
+                  },
+                  "type": "array",
+                  "title": "Response List Knowledge Bases Api V1 Knowledge Bases  Get"
+                }
               }
             }
           }
@@ -4891,6 +4958,257 @@
             "API key header": []
           }
         ]
+      },
+      "delete": {
+        "tags": [
+          "Knowledge Bases"
+        ],
+        "summary": "Delete Knowledge Bases Bulk",
+        "description": "Delete multiple knowledge bases.",
+        "operationId": "delete_knowledge_bases_bulk_api_v1_knowledge_bases__delete",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BulkDeleteRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Response Delete Knowledge Bases Bulk Api V1 Knowledge Bases  Delete"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          },
+          {
+            "API key query": []
+          },
+          {
+            "API key header": []
+          }
+        ]
+      }
+    },
+    "/api/v1/knowledge_bases": {
+      "get": {
+        "tags": [
+          "Knowledge Bases"
+        ],
+        "summary": "List Knowledge Bases",
+        "description": "List all available knowledge bases.",
+        "operationId": "list_knowledge_bases_api_v1_knowledge_bases_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/KnowledgeBaseInfo"
+                  },
+                  "type": "array",
+                  "title": "Response List Knowledge Bases Api V1 Knowledge Bases Get"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          },
+          {
+            "API key query": []
+          },
+          {
+            "API key header": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Knowledge Bases"
+        ],
+        "summary": "Delete Knowledge Bases Bulk",
+        "description": "Delete multiple knowledge bases.",
+        "operationId": "delete_knowledge_bases_bulk_api_v1_knowledge_bases_delete",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BulkDeleteRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Response Delete Knowledge Bases Bulk Api V1 Knowledge Bases Delete"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          },
+          {
+            "API key query": []
+          },
+          {
+            "API key header": []
+          }
+        ]
+      }
+    },
+    "/api/v1/knowledge_bases/{kb_name}": {
+      "get": {
+        "tags": [
+          "Knowledge Bases"
+        ],
+        "summary": "Get Knowledge Base",
+        "description": "Get detailed information about a specific knowledge base.",
+        "operationId": "get_knowledge_base_api_v1_knowledge_bases__kb_name__get",
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          },
+          {
+            "API key query": []
+          },
+          {
+            "API key header": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "kb_name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Kb Name"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/KnowledgeBaseInfo"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Knowledge Bases"
+        ],
+        "summary": "Delete Knowledge Base",
+        "description": "Delete a specific knowledge base.",
+        "operationId": "delete_knowledge_base_api_v1_knowledge_bases__kb_name__delete",
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          },
+          {
+            "API key query": []
+          },
+          {
+            "API key header": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "kb_name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Kb Name"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "title": "Response Delete Knowledge Base Api V1 Knowledge Bases  Kb Name  Delete"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/api/v1/mcp/sse": {
@@ -4935,6 +5253,37 @@
             }
           }
         }
+      }
+    },
+    "/api/v1/voice/elevenlabs/voice_ids": {
+      "get": {
+        "tags": [
+          "Voice"
+        ],
+        "summary": "Get Elevenlabs Voice Ids",
+        "description": "Get available voice IDs from ElevenLabs API.",
+        "operationId": "get_elevenlabs_voice_ids_api_v1_voice_elevenlabs_voice_ids_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          },
+          {
+            "API key query": []
+          },
+          {
+            "API key header": []
+          }
+        ]
       }
     },
     "/api/v1/mcp/project/{project_id}": {
@@ -4984,10 +5333,14 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/MCPSettings"
-                  },
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/MCPProjectResponse"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
                   "title": "Response List Project Tools Api V1 Mcp Project  Project Id  Get"
                 }
               }
@@ -5012,17 +5365,6 @@
         "summary": "Handle Project Messages",
         "description": "Handle POST messages for a project-specific MCP server.",
         "operationId": "handle_project_messages_api_v1_mcp_project__project_id__post",
-        "security": [
-          {
-            "OAuth2PasswordBearer": []
-          },
-          {
-            "API key query": []
-          },
-          {
-            "API key header": []
-          }
-        ],
         "parameters": [
           {
             "name": "project_id",
@@ -5061,7 +5403,7 @@
           "mcp_projects"
         ],
         "summary": "Update Project Mcp Settings",
-        "description": "Update the MCP settings of all flows in a project.",
+        "description": "Update the MCP settings of all flows in a project and project-level auth settings.\n\nOn MCP Composer failure, this endpoint should return with a 200 status code and an error message in\nthe body of the response to display to the user.",
         "operationId": "update_project_mcp_settings_api_v1_mcp_project__project_id__patch",
         "security": [
           {
@@ -5091,11 +5433,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/MCPSettings"
-                },
-                "title": "Settings"
+                "$ref": "#/components/schemas/MCPProjectUpdateRequest"
               }
             }
           }
@@ -5130,17 +5468,6 @@
         "summary": "Handle Project Sse",
         "description": "Handle SSE connections for a specific project.",
         "operationId": "handle_project_sse_api_v1_mcp_project__project_id__sse_get",
-        "security": [
-          {
-            "OAuth2PasswordBearer": []
-          },
-          {
-            "API key query": []
-          },
-          {
-            "API key header": []
-          }
-        ],
         "parameters": [
           {
             "name": "project_id",
@@ -5185,6 +5512,111 @@
         "summary": "Handle Project Messages With Slash",
         "description": "Handle POST messages for a project-specific MCP server with trailing slash.",
         "operationId": "handle_project_messages_with_slash_api_v1_mcp_project__project_id___post",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Project Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/mcp/project/{project_id}/install": {
+      "post": {
+        "tags": [
+          "mcp_projects"
+        ],
+        "summary": "Install Mcp Config",
+        "description": "Install MCP server configuration for Cursor, Windsurf, or Claude.",
+        "operationId": "install_mcp_config_api_v1_mcp_project__project_id__install_post",
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          },
+          {
+            "API key query": []
+          },
+          {
+            "API key header": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Project Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MCPInstallRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/mcp/project/{project_id}/composer-url": {
+      "get": {
+        "tags": [
+          "mcp_projects"
+        ],
+        "summary": "Get Project Composer Url",
+        "description": "Get the MCP Composer URL for a specific project.\n\nOn failure, this endpoint should return with a 200 status code and an error message in\nthe body of the response to display to the user.",
+        "operationId": "get_project_composer_url_api_v1_mcp_project__project_id__composer_url_get",
         "security": [
           {
             "OAuth2PasswordBearer": []
@@ -5230,6 +5662,107 @@
         }
       }
     },
+    "/api/v1/mcp/project/{project_id}/installed": {
+      "get": {
+        "tags": [
+          "mcp_projects"
+        ],
+        "summary": "Check Installed Mcp Servers",
+        "description": "Check if MCP server configuration is installed for this project in Cursor, Windsurf, or Claude.",
+        "operationId": "check_installed_mcp_servers_api_v1_mcp_project__project_id__installed_get",
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          },
+          {
+            "API key query": []
+          },
+          {
+            "API key header": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Project Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/responses": {
+      "post": {
+        "tags": [
+          "OpenAI Responses API"
+        ],
+        "summary": "Create Response",
+        "description": "Create a response using OpenAI Responses API format.\n\nThis endpoint accepts a flow_id in the model parameter and processes\nthe input through the specified Langflow flow.\n\nArgs:\n    request: OpenAI Responses API request with model (flow_id) and input\n    background_tasks: FastAPI background task manager\n    api_key_user: Authenticated user from API key\n    http_request: The incoming HTTP request\n    telemetry_service: Telemetry service for logging\n\nReturns:\n    OpenAI-compatible response or streaming response\n\nRaises:\n    HTTPException: For validation errors or flow execution issues",
+        "operationId": "create_response_api_v1_responses_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OpenAIResponsesRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "API key query": []
+          },
+          {
+            "API key header": []
+          }
+        ]
+      }
+    },
     "/api/v2/files/": {
       "get": {
         "tags": [
@@ -5245,7 +5778,7 @@
               "application/json": {
                 "schema": {
                   "items": {
-                    "$ref": "#/components/schemas/langflow__services__database__models__file__model__File"
+                    "$ref": "#/components/schemas/File"
                   },
                   "type": "array",
                   "title": "Response List Files Api V2 Files  Get"
@@ -5362,7 +5895,7 @@
               "application/json": {
                 "schema": {
                   "items": {
-                    "$ref": "#/components/schemas/langflow__services__database__models__file__model__File"
+                    "$ref": "#/components/schemas/File"
                   },
                   "type": "array",
                   "title": "Response List Files Api V2 Files Get"
@@ -5464,13 +5997,123 @@
         ]
       }
     },
+    "/api/v2/files/batch/": {
+      "post": {
+        "tags": [
+          "Files"
+        ],
+        "summary": "Download Files Batch",
+        "description": "Download multiple files as a zip file by their IDs.",
+        "operationId": "download_files_batch_api_v2_files_batch__post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "items": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "type": "array",
+                "title": "File Ids"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          },
+          {
+            "API key query": []
+          },
+          {
+            "API key header": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Files"
+        ],
+        "summary": "Delete Files Batch",
+        "description": "Delete multiple files by their IDs.",
+        "operationId": "delete_files_batch_api_v2_files_batch__delete",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "items": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "type": "array",
+                "title": "File Ids"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          },
+          {
+            "API key query": []
+          },
+          {
+            "API key header": []
+          }
+        ]
+      }
+    },
     "/api/v2/files/{file_id}": {
       "get": {
         "tags": [
           "Files"
         ],
         "summary": "Download File",
-        "description": "Download a file by its ID.",
+        "description": "Download a file by its ID or return its content as a string/bytes.\n\nArgs:\n    file_id: UUID of the file.\n    current_user: Authenticated user.\n    session: Database session.\n    storage_service: File storage service.\n    return_content: If True, return raw content (str) instead of StreamingResponse.\n\nReturns:\n    StreamingResponse for client downloads or str for internal use.",
         "operationId": "download_file_api_v2_files__file_id__get",
         "security": [
           {
@@ -5492,6 +6135,16 @@
               "type": "string",
               "format": "uuid",
               "title": "File Id"
+            }
+          },
+          {
+            "name": "return_content",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false,
+              "title": "Return Content"
             }
           }
         ],
@@ -5605,6 +6258,286 @@
               "type": "string",
               "format": "uuid",
               "title": "File Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/mcp/servers": {
+      "get": {
+        "tags": [
+          "MCP"
+        ],
+        "summary": "Get Servers",
+        "description": "Get the list of available servers.",
+        "operationId": "get_servers_api_v2_mcp_servers_get",
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          },
+          {
+            "API key query": []
+          },
+          {
+            "API key header": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "action_count",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Action Count"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/mcp/servers/{server_name}": {
+      "get": {
+        "tags": [
+          "MCP"
+        ],
+        "summary": "Get Server Endpoint",
+        "description": "Get a specific server.",
+        "operationId": "get_server_endpoint_api_v2_mcp_servers__server_name__get",
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          },
+          {
+            "API key query": []
+          },
+          {
+            "API key header": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "server_name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Server Name"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "MCP"
+        ],
+        "summary": "Add Server",
+        "operationId": "add_server_api_v2_mcp_servers__server_name__post",
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          },
+          {
+            "API key query": []
+          },
+          {
+            "API key header": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "server_name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Server Name"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "title": "Server Config"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "MCP"
+        ],
+        "summary": "Update Server Endpoint",
+        "operationId": "update_server_endpoint_api_v2_mcp_servers__server_name__patch",
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          },
+          {
+            "API key query": []
+          },
+          {
+            "API key header": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "server_name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Server Name"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "title": "Server Config"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "MCP"
+        ],
+        "summary": "Delete Server",
+        "operationId": "delete_server_api_v2_mcp_servers__server_name__delete",
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          },
+          {
+            "API key query": []
+          },
+          {
+            "API key header": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "server_name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Server Name"
             }
           }
         ],
@@ -5990,6 +6923,135 @@
         ],
         "title": "ApiKeysResponse"
       },
+      "AuthSettings": {
+        "properties": {
+          "auth_type": {
+            "type": "string",
+            "enum": [
+              "none",
+              "apikey",
+              "oauth"
+            ],
+            "title": "Auth Type",
+            "default": "none"
+          },
+          "oauth_host": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Oauth Host"
+          },
+          "oauth_port": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Oauth Port"
+          },
+          "oauth_server_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Oauth Server Url"
+          },
+          "oauth_callback_path": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Oauth Callback Path"
+          },
+          "oauth_client_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Oauth Client Id"
+          },
+          "oauth_client_secret": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "password",
+                "writeOnly": true
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Oauth Client Secret"
+          },
+          "oauth_auth_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Oauth Auth Url"
+          },
+          "oauth_token_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Oauth Token Url"
+          },
+          "oauth_mcp_scope": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Oauth Mcp Scope"
+          },
+          "oauth_provider_scope": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Oauth Provider Scope"
+          }
+        },
+        "type": "object",
+        "title": "AuthSettings",
+        "description": "Model representing authentication settings for MCP."
+      },
       "BaseModel": {
         "properties": {},
         "type": "object",
@@ -6199,6 +7261,7 @@
           },
           "password": {
             "type": "string",
+            "format": "password",
             "title": "Password"
           },
           "scope": {
@@ -6226,6 +7289,7 @@
                 "type": "null"
               }
             ],
+            "format": "password",
             "title": "Client Secret"
           }
         },
@@ -6305,6 +7369,22 @@
           "file"
         ],
         "title": "Body_upload_user_file_api_v2_files_post"
+      },
+      "BulkDeleteRequest": {
+        "properties": {
+          "kb_names": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Kb Names"
+          }
+        },
+        "type": "object",
+        "required": [
+          "kb_names"
+        ],
+        "title": "BulkDeleteRequest"
       },
       "CancelFlowResponse": {
         "properties": {
@@ -6439,7 +7519,64 @@
         ],
         "title": "Code"
       },
-      "CodeContent": {
+      "CodeContent-Input": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "code",
+            "title": "Type",
+            "default": "code"
+          },
+          "duration": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Duration"
+          },
+          "header": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/HeaderDict"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "code": {
+            "type": "string",
+            "title": "Code"
+          },
+          "language": {
+            "type": "string",
+            "title": "Language"
+          },
+          "title": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Title"
+          }
+        },
+        "type": "object",
+        "required": [
+          "code",
+          "language"
+        ],
+        "title": "CodeContent",
+        "description": "Content type for code snippets."
+      },
+      "CodeContent-Output": {
         "type": "object"
       },
       "CodeValidationResponse": {
@@ -6465,15 +7602,13 @@
           "feature_flags": {
             "$ref": "#/components/schemas/FeatureFlags"
           },
-          "serialization_max_items_lenght": {
+          "serialization_max_items_length": {
             "type": "integer",
-            "title": "Serialization Max Items Lenght",
-            "default": 100
+            "title": "Serialization Max Items Length"
           },
           "serialization_max_text_length": {
             "type": "integer",
-            "title": "Serialization Max Text Length",
-            "default": 2000
+            "title": "Serialization Max Text Length"
           },
           "frontend_timeout": {
             "type": "integer",
@@ -6515,11 +7650,17 @@
               "direct"
             ],
             "title": "Event Delivery"
+          },
+          "voice_mode_available": {
+            "type": "boolean",
+            "title": "Voice Mode Available"
           }
         },
         "type": "object",
         "required": [
           "feature_flags",
+          "serialization_max_items_length",
+          "serialization_max_text_length",
           "frontend_timeout",
           "auto_saving",
           "auto_saving_interval",
@@ -6528,11 +7669,72 @@
           "webhook_polling_interval",
           "public_flow_cleanup_interval",
           "public_flow_expiration",
-          "event_delivery"
+          "event_delivery",
+          "voice_mode_available"
         ],
         "title": "ConfigResponse"
       },
-      "ContentBlock": {
+      "ContentBlock-Input": {
+        "properties": {
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "contents": {
+            "items": {
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/ToolContent-Input"
+                },
+                {
+                  "$ref": "#/components/schemas/ErrorContent-Input"
+                },
+                {
+                  "$ref": "#/components/schemas/TextContent-Input"
+                },
+                {
+                  "$ref": "#/components/schemas/MediaContent-Input"
+                },
+                {
+                  "$ref": "#/components/schemas/CodeContent-Input"
+                },
+                {
+                  "$ref": "#/components/schemas/JSONContent-Input"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Contents"
+          },
+          "allow_markdown": {
+            "type": "boolean",
+            "title": "Allow Markdown",
+            "default": true
+          },
+          "media_url": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Media Url"
+          }
+        },
+        "type": "object",
+        "required": [
+          "title",
+          "contents"
+        ],
+        "title": "ContentBlock",
+        "description": "A block of content that can contain different types of content."
+      },
+      "ContentBlock-Output": {
         "properties": {
           "title": {
             "type": "string",
@@ -6726,7 +7928,15 @@
             "$ref": "#/components/schemas/SourceHandleDict"
           },
           "targetHandle": {
-            "$ref": "#/components/schemas/TargetHandleDict"
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TargetHandleDict"
+              },
+              {
+                "$ref": "#/components/schemas/LoopTargetHandleDict"
+              }
+            ],
+            "title": "Targethandle"
           }
         },
         "type": "object",
@@ -6736,7 +7946,96 @@
         ],
         "title": "EdgeDataDetails"
       },
-      "ErrorContent": {
+      "ErrorContent-Input": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "error",
+            "title": "Type",
+            "default": "error"
+          },
+          "duration": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Duration"
+          },
+          "header": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/HeaderDict"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "component": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Component"
+          },
+          "field": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Field"
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason"
+          },
+          "solution": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Solution"
+          },
+          "traceback": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Traceback"
+          }
+        },
+        "type": "object",
+        "title": "ErrorContent",
+        "description": "Content type for error messages."
+      },
+      "ErrorContent-Output": {
         "type": "object"
       },
       "ErrorLog": {
@@ -6777,6 +8076,61 @@
         "additionalProperties": false,
         "type": "object",
         "title": "FeatureFlags"
+      },
+      "File": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "User Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "path": {
+            "type": "string",
+            "title": "Path"
+          },
+          "size": {
+            "type": "integer",
+            "title": "Size"
+          },
+          "provider": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Provider"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "user_id",
+          "name",
+          "path",
+          "size"
+        ],
+        "title": "File"
       },
       "Flow": {
         "properties": {
@@ -7777,6 +9131,18 @@
             ],
             "title": "Description"
           },
+          "auth_settings": {
+            "anyOf": [
+              {
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Auth Settings",
+            "description": "Authentication settings for the folder/project"
+          },
           "components_list": {
             "anyOf": [
               {
@@ -7831,6 +9197,18 @@
             ],
             "title": "Description"
           },
+          "auth_settings": {
+            "anyOf": [
+              {
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Auth Settings",
+            "description": "Authentication settings for the folder/project"
+          },
           "id": {
             "type": "string",
             "format": "uuid",
@@ -7857,7 +9235,7 @@
         ],
         "title": "FolderRead"
       },
-      "FolderReadWithFlows": {
+      "FolderReadWithFlows-Input": {
         "properties": {
           "name": {
             "type": "string",
@@ -7873,6 +9251,81 @@
               }
             ],
             "title": "Description"
+          },
+          "auth_settings": {
+            "anyOf": [
+              {
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Auth Settings",
+            "description": "Authentication settings for the folder/project"
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "parent_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Parent Id"
+          },
+          "flows": {
+            "items": {
+              "$ref": "#/components/schemas/FlowRead"
+            },
+            "type": "array",
+            "title": "Flows",
+            "default": []
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "id",
+          "parent_id"
+        ],
+        "title": "FolderReadWithFlows"
+      },
+      "FolderReadWithFlows-Output": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description"
+          },
+          "auth_settings": {
+            "anyOf": [
+              {
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Auth Settings",
+            "description": "Authentication settings for the folder/project"
           },
           "id": {
             "type": "string",
@@ -7959,18 +9412,45 @@
             },
             "type": "array",
             "title": "Flows"
+          },
+          "auth_settings": {
+            "anyOf": [
+              {
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Auth Settings"
           }
         },
         "type": "object",
         "title": "FolderUpdate"
       },
-      "FolderWithPaginatedFlows": {
+      "FolderWithPaginatedFlows-Input": {
         "properties": {
           "folder": {
             "$ref": "#/components/schemas/FolderRead"
           },
           "flows": {
-            "$ref": "#/components/schemas/Page_Flow_"
+            "$ref": "#/components/schemas/Page_Flow_-Input"
+          }
+        },
+        "type": "object",
+        "required": [
+          "folder",
+          "flows"
+        ],
+        "title": "FolderWithPaginatedFlows"
+      },
+      "FolderWithPaginatedFlows-Output": {
+        "properties": {
+          "folder": {
+            "$ref": "#/components/schemas/FolderRead"
+          },
+          "flows": {
+            "$ref": "#/components/schemas/Page_Flow_-Output"
           }
         },
         "type": "object",
@@ -8159,6 +9639,20 @@
             "type": "boolean",
             "title": "Legacy",
             "default": false
+          },
+          "replacement": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Replacement"
           },
           "error": {
             "anyOf": [
@@ -8365,6 +9859,20 @@
             "type": "boolean",
             "title": "Legacy",
             "default": false
+          },
+          "replacement": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Replacement"
           },
           "error": {
             "anyOf": [
@@ -8614,8 +10122,116 @@
           }
         ]
       },
-      "JSONContent": {
+      "JSONContent-Input": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "json",
+            "title": "Type",
+            "default": "json"
+          },
+          "duration": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Duration"
+          },
+          "header": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/HeaderDict"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "data": {
+            "type": "object",
+            "title": "Data"
+          }
+        },
+        "type": "object",
+        "required": [
+          "data"
+        ],
+        "title": "JSONContent",
+        "description": "Content type for JSON content."
+      },
+      "JSONContent-Output": {
         "type": "object"
+      },
+      "KnowledgeBaseInfo": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "embedding_provider": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Embedding Provider",
+            "default": "Unknown"
+          },
+          "embedding_model": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Embedding Model",
+            "default": "Unknown"
+          },
+          "size": {
+            "type": "integer",
+            "title": "Size",
+            "default": 0
+          },
+          "words": {
+            "type": "integer",
+            "title": "Words",
+            "default": 0
+          },
+          "characters": {
+            "type": "integer",
+            "title": "Characters",
+            "default": 0
+          },
+          "chunks": {
+            "type": "integer",
+            "title": "Chunks",
+            "default": 0
+          },
+          "avg_chunk_size": {
+            "type": "number",
+            "title": "Avg Chunk Size",
+            "default": 0.0
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name"
+        ],
+        "title": "KnowledgeBaseInfo"
       },
       "ListComponentResponse": {
         "properties": {
@@ -8801,7 +10417,7 @@
         ],
         "title": "ListComponentResponseModel"
       },
-      "Log": {
+      "Log-Input": {
         "properties": {
           "name": {
             "type": "string",
@@ -8832,7 +10448,7 @@
                 "$ref": "#/components/schemas/BaseModel"
               },
               {
-                "$ref": "#/components/schemas/PlaygroundEvent"
+                "$ref": "#/components/schemas/PlaygroundEvent-Input"
               },
               {
                 "type": "null"
@@ -8852,6 +10468,156 @@
           "type"
         ],
         "title": "Log"
+      },
+      "Log-Output": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "message": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "object"
+              },
+              {
+                "items": {},
+                "type": "array"
+              },
+              {
+                "type": "integer"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "$ref": "#/components/schemas/BaseModel"
+              },
+              {
+                "$ref": "#/components/schemas/PlaygroundEvent-Output"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "message",
+          "type"
+        ],
+        "title": "Log"
+      },
+      "LoopTargetHandleDict": {
+        "properties": {
+          "dataType": {
+            "type": "string",
+            "title": "Datatype"
+          },
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "output_types": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Output Types"
+          }
+        },
+        "type": "object",
+        "required": [
+          "dataType",
+          "id",
+          "name",
+          "output_types"
+        ],
+        "title": "LoopTargetHandleDict"
+      },
+      "MCPInstallRequest": {
+        "properties": {
+          "client": {
+            "type": "string",
+            "title": "Client"
+          }
+        },
+        "type": "object",
+        "required": [
+          "client"
+        ],
+        "title": "MCPInstallRequest"
+      },
+      "MCPProjectResponse": {
+        "properties": {
+          "tools": {
+            "items": {
+              "$ref": "#/components/schemas/MCPSettings"
+            },
+            "type": "array",
+            "title": "Tools"
+          },
+          "auth_settings": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AuthSettings"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "tools"
+        ],
+        "title": "MCPProjectResponse",
+        "description": "Response model for MCP project tools with auth settings."
+      },
+      "MCPProjectUpdateRequest": {
+        "properties": {
+          "settings": {
+            "items": {
+              "$ref": "#/components/schemas/MCPSettings"
+            },
+            "type": "array",
+            "title": "Settings"
+          },
+          "auth_settings": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AuthSettings"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "settings"
+        ],
+        "title": "MCPProjectUpdateRequest",
+        "description": "Request model for updating MCP project settings including auth."
       },
       "MCPSettings": {
         "properties": {
@@ -8923,7 +10689,62 @@
         "title": "MCPSettings",
         "description": "Model representing MCP settings for a flow."
       },
-      "MediaContent": {
+      "MediaContent-Input": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "media",
+            "title": "Type",
+            "default": "media"
+          },
+          "duration": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Duration"
+          },
+          "header": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/HeaderDict"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "urls": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Urls"
+          },
+          "caption": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Caption"
+          }
+        },
+        "type": "object",
+        "required": [
+          "urls"
+        ],
+        "title": "MediaContent",
+        "description": "Content type for media content."
+      },
+      "MediaContent-Output": {
         "type": "object"
       },
       "MessageRead": {
@@ -8976,7 +10797,7 @@
           },
           "content_blocks": {
             "items": {
-              "$ref": "#/components/schemas/ContentBlock"
+              "$ref": "#/components/schemas/ContentBlock-Output"
             },
             "type": "array",
             "title": "Content Blocks"
@@ -9010,7 +10831,7 @@
         ],
         "title": "MessageRead"
       },
-      "MessageResponse": {
+      "MessageResponse-Input": {
         "properties": {
           "id": {
             "anyOf": [
@@ -9108,7 +10929,126 @@
             "anyOf": [
               {
                 "items": {
-                  "$ref": "#/components/schemas/ContentBlock"
+                  "$ref": "#/components/schemas/ContentBlock-Input"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Content Blocks"
+          }
+        },
+        "type": "object",
+        "required": [
+          "sender",
+          "sender_name",
+          "session_id",
+          "text",
+          "edit"
+        ],
+        "title": "MessageResponse"
+      },
+      "MessageResponse-Output": {
+        "properties": {
+          "id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Id"
+          },
+          "flow_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Flow Id"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Timestamp"
+          },
+          "sender": {
+            "type": "string",
+            "title": "Sender"
+          },
+          "sender_name": {
+            "type": "string",
+            "title": "Sender Name"
+          },
+          "session_id": {
+            "type": "string",
+            "title": "Session Id"
+          },
+          "text": {
+            "type": "string",
+            "title": "Text"
+          },
+          "files": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Files",
+            "default": []
+          },
+          "edit": {
+            "type": "boolean",
+            "title": "Edit"
+          },
+          "duration": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Duration"
+          },
+          "properties": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Properties"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "category": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Category"
+          },
+          "content_blocks": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/ContentBlock-Output"
                 },
                 "type": "array"
               },
@@ -9280,6 +11220,79 @@
         ],
         "title": "NodeTypeEnum"
       },
+      "OpenAIResponsesRequest": {
+        "properties": {
+          "model": {
+            "type": "string",
+            "title": "Model",
+            "description": "The flow ID to execute (used instead of OpenAI model)"
+          },
+          "input": {
+            "type": "string",
+            "title": "Input",
+            "description": "The input text to process"
+          },
+          "stream": {
+            "type": "boolean",
+            "title": "Stream",
+            "description": "Whether to stream the response",
+            "default": false
+          },
+          "background": {
+            "type": "boolean",
+            "title": "Background",
+            "description": "Whether to process in background",
+            "default": false
+          },
+          "tools": {
+            "anyOf": [
+              {
+                "items": {},
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tools",
+            "description": "Tools are not supported yet"
+          },
+          "previous_response_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Previous Response Id",
+            "description": "ID of previous response to continue conversation"
+          },
+          "include": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Include",
+            "description": "Additional response data to include, e.g., ['tool_call.results']"
+          }
+        },
+        "type": "object",
+        "required": [
+          "model",
+          "input"
+        ],
+        "title": "OpenAIResponsesRequest",
+        "description": "OpenAI-compatible responses request with flow_id as model parameter."
+      },
       "Output": {
         "properties": {
           "types": {
@@ -9373,6 +11386,11 @@
             "title": "Allows Loop",
             "default": false
           },
+          "group_outputs": {
+            "type": "boolean",
+            "title": "Group Outputs",
+            "default": false
+          },
           "options": {
             "anyOf": [
               {
@@ -9447,7 +11465,7 @@
         ],
         "title": "OutputValue"
       },
-      "Page_FlowRead_": {
+      "Page_FlowRead_-Input": {
         "properties": {
           "items": {
             "items": {
@@ -9457,51 +11475,23 @@
             "title": "Items"
           },
           "total": {
-            "anyOf": [
-              {
-                "type": "integer",
-                "minimum": 0.0
-              },
-              {
-                "type": "null"
-              }
-            ],
+            "type": "integer",
+            "minimum": 0.0,
             "title": "Total"
           },
           "page": {
-            "anyOf": [
-              {
-                "type": "integer",
-                "minimum": 1.0
-              },
-              {
-                "type": "null"
-              }
-            ],
+            "type": "integer",
+            "minimum": 1.0,
             "title": "Page"
           },
           "size": {
-            "anyOf": [
-              {
-                "type": "integer",
-                "minimum": 1.0
-              },
-              {
-                "type": "null"
-              }
-            ],
+            "type": "integer",
+            "minimum": 1.0,
             "title": "Size"
           },
           "pages": {
-            "anyOf": [
-              {
-                "type": "integer",
-                "minimum": 0.0
-              },
-              {
-                "type": "null"
-              }
-            ],
+            "type": "integer",
+            "minimum": 0.0,
             "title": "Pages"
           }
         },
@@ -9510,11 +11500,52 @@
           "items",
           "total",
           "page",
-          "size"
+          "size",
+          "pages"
         ],
         "title": "Page[FlowRead]"
       },
-      "Page_Flow_": {
+      "Page_FlowRead_-Output": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/FlowRead"
+            },
+            "type": "array",
+            "title": "Items"
+          },
+          "total": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Total"
+          },
+          "page": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Page"
+          },
+          "size": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Size"
+          },
+          "pages": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Pages"
+          }
+        },
+        "type": "object",
+        "required": [
+          "items",
+          "total",
+          "page",
+          "size",
+          "pages"
+        ],
+        "title": "Page[FlowRead]"
+      },
+      "Page_Flow_-Input": {
         "properties": {
           "items": {
             "items": {
@@ -9524,51 +11555,23 @@
             "title": "Items"
           },
           "total": {
-            "anyOf": [
-              {
-                "type": "integer",
-                "minimum": 0.0
-              },
-              {
-                "type": "null"
-              }
-            ],
+            "type": "integer",
+            "minimum": 0.0,
             "title": "Total"
           },
           "page": {
-            "anyOf": [
-              {
-                "type": "integer",
-                "minimum": 1.0
-              },
-              {
-                "type": "null"
-              }
-            ],
+            "type": "integer",
+            "minimum": 1.0,
             "title": "Page"
           },
           "size": {
-            "anyOf": [
-              {
-                "type": "integer",
-                "minimum": 1.0
-              },
-              {
-                "type": "null"
-              }
-            ],
+            "type": "integer",
+            "minimum": 1.0,
             "title": "Size"
           },
           "pages": {
-            "anyOf": [
-              {
-                "type": "integer",
-                "minimum": 0.0
-              },
-              {
-                "type": "null"
-              }
-            ],
+            "type": "integer",
+            "minimum": 0.0,
             "title": "Pages"
           }
         },
@@ -9577,7 +11580,48 @@
           "items",
           "total",
           "page",
-          "size"
+          "size",
+          "pages"
+        ],
+        "title": "Page[Flow]"
+      },
+      "Page_Flow_-Output": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/Flow"
+            },
+            "type": "array",
+            "title": "Items"
+          },
+          "total": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Total"
+          },
+          "page": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Page"
+          },
+          "size": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Size"
+          },
+          "pages": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Pages"
+          }
+        },
+        "type": "object",
+        "required": [
+          "items",
+          "total",
+          "page",
+          "size",
+          "pages"
         ],
         "title": "Page[Flow]"
       },
@@ -9585,57 +11629,29 @@
         "properties": {
           "items": {
             "items": {
-              "$ref": "#/components/schemas/TransactionTable"
+              "$ref": "#/components/schemas/TransactionTable-Output"
             },
             "type": "array",
             "title": "Items"
           },
           "total": {
-            "anyOf": [
-              {
-                "type": "integer",
-                "minimum": 0.0
-              },
-              {
-                "type": "null"
-              }
-            ],
+            "type": "integer",
+            "minimum": 0.0,
             "title": "Total"
           },
           "page": {
-            "anyOf": [
-              {
-                "type": "integer",
-                "minimum": 1.0
-              },
-              {
-                "type": "null"
-              }
-            ],
+            "type": "integer",
+            "minimum": 1.0,
             "title": "Page"
           },
           "size": {
-            "anyOf": [
-              {
-                "type": "integer",
-                "minimum": 1.0
-              },
-              {
-                "type": "null"
-              }
-            ],
+            "type": "integer",
+            "minimum": 1.0,
             "title": "Size"
           },
           "pages": {
-            "anyOf": [
-              {
-                "type": "integer",
-                "minimum": 0.0
-              },
-              {
-                "type": "null"
-              }
-            ],
+            "type": "integer",
+            "minimum": 0.0,
             "title": "Pages"
           }
         },
@@ -9644,11 +11660,12 @@
           "items",
           "total",
           "page",
-          "size"
+          "size",
+          "pages"
         ],
         "title": "Page[TransactionTable]"
       },
-      "PlaygroundEvent": {
+      "PlaygroundEvent-Input": {
         "properties": {
           "properties": {
             "anyOf": [
@@ -9675,7 +11692,104 @@
             "anyOf": [
               {
                 "items": {
-                  "$ref": "#/components/schemas/ContentBlock"
+                  "$ref": "#/components/schemas/ContentBlock-Input"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Content Blocks"
+          },
+          "format_type": {
+            "type": "string",
+            "enum": [
+              "default",
+              "error",
+              "warning",
+              "info"
+            ],
+            "title": "Format Type",
+            "default": "default"
+          },
+          "files": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Files"
+          },
+          "text": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Text"
+          },
+          "timestamp": {
+            "type": "string",
+            "title": "Timestamp"
+          },
+          "id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Id"
+          }
+        },
+        "additionalProperties": true,
+        "type": "object",
+        "title": "PlaygroundEvent"
+      },
+      "PlaygroundEvent-Output": {
+        "properties": {
+          "properties": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Properties"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "sender_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sender Name"
+          },
+          "content_blocks": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/ContentBlock-Output"
                 },
                 "type": "array"
               },
@@ -9865,7 +11979,7 @@
         "type": "object",
         "title": "Properties"
       },
-      "ResultData": {
+      "ResultData-Input": {
         "properties": {
           "results": {
             "anyOf": [
@@ -9981,10 +12095,210 @@
         "type": "object",
         "title": "ResultData"
       },
-      "ResultDataResponse": {
+      "ResultData-Output": {
+        "properties": {
+          "results": {
+            "anyOf": [
+              {},
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Results"
+          },
+          "artifacts": {
+            "anyOf": [
+              {},
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Artifacts"
+          },
+          "outputs": {
+            "anyOf": [
+              {
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Outputs"
+          },
+          "logs": {
+            "anyOf": [
+              {
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Logs"
+          },
+          "messages": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/ChatOutputResponse"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Messages"
+          },
+          "timedelta": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Timedelta"
+          },
+          "duration": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Duration"
+          },
+          "component_display_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Component Display Name"
+          },
+          "component_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Component Id"
+          },
+          "used_frozen_result": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Used Frozen Result",
+            "default": false
+          }
+        },
+        "type": "object",
+        "title": "ResultData"
+      },
+      "ResultDataResponse-Input": {
+        "properties": {
+          "results": {
+            "anyOf": [
+              {},
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Results"
+          },
+          "outputs": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/OutputValue"
+            },
+            "type": "object",
+            "title": "Outputs"
+          },
+          "logs": {
+            "additionalProperties": {
+              "items": {
+                "$ref": "#/components/schemas/Log-Input"
+              },
+              "type": "array"
+            },
+            "type": "object",
+            "title": "Logs"
+          },
+          "message": {
+            "anyOf": [
+              {},
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Message"
+          },
+          "artifacts": {
+            "anyOf": [
+              {},
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Artifacts"
+          },
+          "timedelta": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Timedelta"
+          },
+          "duration": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Duration"
+          },
+          "used_frozen_result": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Used Frozen Result",
+            "default": false
+          }
+        },
+        "type": "object",
+        "title": "ResultDataResponse"
+      },
+      "ResultDataResponse-Output": {
         "type": "object"
       },
-      "RunOutputs": {
+      "RunOutputs-Input": {
         "properties": {
           "inputs": {
             "type": "object",
@@ -9994,7 +12308,31 @@
             "items": {
               "anyOf": [
                 {
-                  "$ref": "#/components/schemas/ResultData"
+                  "$ref": "#/components/schemas/ResultData-Input"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Outputs"
+          }
+        },
+        "type": "object",
+        "title": "RunOutputs"
+      },
+      "RunOutputs-Output": {
+        "properties": {
+          "inputs": {
+            "type": "object",
+            "title": "Inputs"
+          },
+          "outputs": {
+            "items": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/ResultData-Output"
                 },
                 {
                   "type": "null"
@@ -10014,7 +12352,7 @@
             "anyOf": [
               {
                 "items": {
-                  "$ref": "#/components/schemas/RunOutputs"
+                  "$ref": "#/components/schemas/RunOutputs-Output"
                 },
                 "type": "array"
               },
@@ -10405,7 +12743,48 @@
         "title": "TaskStatusResponse",
         "description": "Task status response schema."
       },
-      "TextContent": {
+      "TextContent-Input": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "text",
+            "title": "Type",
+            "default": "text"
+          },
+          "duration": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Duration"
+          },
+          "header": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/HeaderDict"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "text": {
+            "type": "string",
+            "title": "Text"
+          }
+        },
+        "type": "object",
+        "required": [
+          "text"
+        ],
+        "title": "TextContent",
+        "description": "Content type for simple text content."
+      },
+      "TextContent-Output": {
         "type": "object"
       },
       "Token": {
@@ -10431,10 +12810,162 @@
         ],
         "title": "Token"
       },
-      "ToolContent": {
+      "ToolContent-Input": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "tool_use",
+            "title": "Type",
+            "default": "tool_use"
+          },
+          "duration": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Duration"
+          },
+          "header": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/HeaderDict"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Name"
+          },
+          "input": {
+            "type": "object",
+            "title": "Input"
+          },
+          "output": {
+            "anyOf": [
+              {},
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Output"
+          },
+          "error": {
+            "anyOf": [
+              {},
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error"
+          }
+        },
+        "type": "object",
+        "title": "ToolContent",
+        "description": "Content type for tool start content."
+      },
+      "ToolContent-Output": {
         "type": "object"
       },
-      "TransactionTable": {
+      "TransactionTable-Input": {
+        "properties": {
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Timestamp"
+          },
+          "vertex_id": {
+            "type": "string",
+            "title": "Vertex Id"
+          },
+          "target_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Target Id"
+          },
+          "inputs": {
+            "anyOf": [
+              {
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Inputs"
+          },
+          "outputs": {
+            "anyOf": [
+              {
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Outputs"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "error": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error"
+          },
+          "flow_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Flow Id"
+          },
+          "id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "vertex_id",
+          "status",
+          "flow_id"
+        ],
+        "title": "TransactionTable"
+      },
+      "TransactionTable-Output": {
         "properties": {
           "timestamp": {
             "type": "string",
@@ -11182,7 +13713,7 @@
           "vertex_builds": {
             "additionalProperties": {
               "items": {
-                "$ref": "#/components/schemas/VertexBuildTable"
+                "$ref": "#/components/schemas/VertexBuildTable-Output"
               },
               "type": "array"
             },
@@ -11287,7 +13818,81 @@
         ],
         "title": "VertexBuildResponse"
       },
-      "VertexBuildTable": {
+      "VertexBuildTable-Input": {
+        "properties": {
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Timestamp"
+          },
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "data": {
+            "anyOf": [
+              {
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Data"
+          },
+          "artifacts": {
+            "anyOf": [
+              {
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Artifacts"
+          },
+          "params": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Params"
+          },
+          "valid": {
+            "type": "boolean",
+            "title": "Valid"
+          },
+          "flow_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Flow Id"
+          },
+          "build_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Build Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "valid",
+          "flow_id"
+        ],
+        "title": "VertexBuildTable"
+      },
+      "VertexBuildTable-Output": {
         "properties": {
           "timestamp": {
             "type": "string",
@@ -11454,61 +14059,6 @@
         ],
         "title": "UploadFileResponse",
         "description": "Upload file response schema."
-      },
-      "langflow__services__database__models__file__model__File": {
-        "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid",
-            "title": "Id"
-          },
-          "user_id": {
-            "type": "string",
-            "format": "uuid",
-            "title": "User Id"
-          },
-          "name": {
-            "type": "string",
-            "title": "Name"
-          },
-          "path": {
-            "type": "string",
-            "title": "Path"
-          },
-          "size": {
-            "type": "integer",
-            "title": "Size"
-          },
-          "provider": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Provider"
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time",
-            "title": "Created At"
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time",
-            "title": "Updated At"
-          }
-        },
-        "type": "object",
-        "required": [
-          "user_id",
-          "name",
-          "path",
-          "size"
-        ],
-        "title": "File"
       },
       "langflow__utils__schemas__File": {
         "properties": {
